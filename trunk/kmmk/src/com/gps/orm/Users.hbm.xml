@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.Users" table="users" schema="dbo" catalog="mkgps1">
+        <id name="userId" type="int">
+            <column name="userID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="organization" class="com.gps.orm.Organization" fetch="select">
+            <column name="organizationID" />
+        </many-to-one>
+        <property name="loginName" type="string">
+            <column name="loginName" length="20" />
+        </property>
+        <property name="passwd" type="string">
+            <column name="passwd" length="30" />
+        </property>
+        <property name="realName" type="string">
+            <column name="realName" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <property name="registerDate" type="timestamp">
+            <column name="registerDate" length="23" />
+        </property>
+        <property name="lastLoginDate" type="timestamp">
+            <column name="lastLoginDate" length="23" />
+        </property>
+        <property name="lastLoginIp" type="string">
+            <column name="lastLoginIP" length="64" />
+        </property>
+        <property name="userState" type="java.lang.Short">
+            <column name="userState" />
+        </property>
+        <property name="tel" type="string">
+            <column name="tel" length="20" />
+        </property>
+        <set name="gpsfees" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="operatorID" />
+            </key>
+            <one-to-many class="com.gps.orm.Gpsfee" />
+        </set>
+        <set name="FMaintains" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="operatorID" />
+            </key>
+            <one-to-many class="com.gps.orm.FMaintain" />
+        </set>
+        <set name="vehicles" inverse="true" cascade="all-delete-orphan" order-by="internalNumber">
+            <key>
+                <column name="userID" />
+            </key>
+            <one-to-many class="com.gps.orm.Vehicle" />
+        </set>
+        <set name="FTyreses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="operatorID" />
+            </key>
+            <one-to-many class="com.gps.orm.FTyres" />
+        </set>
+        <set name="drivers" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="ownerID" />
+            </key>
+            <one-to-many class="com.gps.orm.Driver" />
+        </set>
+        <set name="escorters" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="ownerID" />
+            </key>
+            <one-to-many class="com.gps.orm.Escorter" />
+        </set>
+        <set name="FToolsKeepLogs" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="operatorID" />
+            </key>
+            <one-to-many class="com.gps.orm.FToolsKeepLog" />
+        </set>
+        <set name="FMaterialKeepLogs" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="operatorID" />
+            </key>
+            <one-to-many class="com.gps.orm.FMaterialKeepLog" />
+        </set>
+        <set name="tasks" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="assignerID" />
+            </key>
+            <one-to-many class="com.gps.orm.Task" />
+        </set>
+        <set name="userRoles" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="userID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.UserRole" />
+        </set>
+        <set name="FVehicleMaterials" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="lastOperatorID" />
+            </key>
+            <one-to-many class="com.gps.orm.FVehicleMaterial" />
+        </set>
+    </class>
+</hibernate-mapping>

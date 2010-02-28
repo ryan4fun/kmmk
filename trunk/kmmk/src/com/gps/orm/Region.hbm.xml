@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.Region" table="region" schema="dbo" catalog="mkgps1">
+        <id name="regionId" type="int">
+            <column name="regionID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="regionTypeDic" class="com.gps.orm.RegionTypeDic" fetch="select">
+            <column name="regionTypeID" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <property name="centralLong" type="java.lang.Double">
+            <column name="centralLong" precision="15" scale="0" />
+        </property>
+        <property name="centralLat" type="java.lang.Double">
+            <column name="centralLat" precision="15" scale="0" />
+        </property>
+        <property name="radius" type="java.lang.Double">
+            <column name="radius" precision="15" scale="0" />
+        </property>
+        <property name="edgeLong" type="java.lang.Double">
+            <column name="edgeLong" precision="15" scale="0" />
+        </property>
+        <property name="edgeLat" type="java.lang.Double">
+            <column name="edgeLat" precision="15" scale="0" />
+        </property>
+        <property name="figurType" type="java.lang.Short">
+            <column name="figurType" />
+        </property>
+        <set name="checkPointses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="regionID" />
+            </key>
+            <one-to-many class="com.gps.orm.CheckPoints" />
+        </set>
+        <set name="regionPointses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="regionID" />
+            </key>
+            <one-to-many class="com.gps.orm.RegionPoints" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+1. 所有xml中
+<generator class="assigned" />改<generator class="native" />
+
+2. Segment.hbm.xml 对 segmentDetails 按照 segDetailID 进行排序：
+<set name="segmentDetails" inverse="true" cascade="all-delete-orphan" order-by="segDetailID">
+
+3. VehicleStatus.hbm.xml 的 generator class 设置为 "assigned"：
+<generator class="assigned">
+
+4. StateHelper.hbm.xml 的 generator class 设置为 "assigned"：
+<generator class="assigned">
+
+5. Users.hbm.xml 对 vehicles 按照 internalNumber 进行排序：
+<set name="vehicles" inverse="true" cascade="all-delete-orphan" order-by="internalNumber">
+
+6. Organization.hbm.xml 对 userses 按照 realName 进行排序：
+<set name="userses" inverse="true" cascade="all-delete-orphan" order-by="realName">

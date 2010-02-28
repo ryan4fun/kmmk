@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.MalfunctionDeviceLog" table="malfunctionDeviceLog" schema="dbo" catalog="mkgps1">
+        <id name="entryId" type="long">
+            <column name="entryID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <property name="occurDate" type="timestamp">
+            <column name="occurDate" length="23" />
+        </property>
+        <property name="errorType" type="java.lang.Short">
+            <column name="errorType" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="100" />
+        </property>
+        <property name="msgDetail" type="string">
+            <column name="msgDetail" length="200" />
+        </property>
+        <property name="entryState" type="java.lang.Short">
+            <column name="entryState" />
+        </property>
+    </class>
+</hibernate-mapping>

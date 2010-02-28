@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.FRuningLog" table="f_runingLog" schema="dbo" catalog="mkgps1">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <property name="startDate" type="timestamp">
+            <column name="startDate" length="23" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="endDate" length="23" />
+        </property>
+        <property name="driverId" type="java.lang.Integer">
+            <column name="driverID" />
+        </property>
+        <property name="escorterId" type="java.lang.Integer">
+            <column name="escorterID" />
+        </property>
+        <property name="goodsName" type="string">
+            <column name="goodsName" length="30" />
+        </property>
+        <property name="shipPrice" type="java.lang.Double">
+            <column name="shipPrice" precision="15" scale="0" />
+        </property>
+        <property name="loadWeight" type="java.lang.Double">
+            <column name="loadWeight" precision="15" scale="0" />
+        </property>
+        <property name="unloadWeight" type="java.lang.Double">
+            <column name="unloadWeight" precision="15" scale="0" />
+        </property>
+        <property name="startDisRecord" type="java.lang.Double">
+            <column name="startDisRecord" precision="15" scale="0" />
+        </property>
+        <property name="endDisRecord" type="java.lang.Double">
+            <column name="endDisRecord" precision="15" scale="0" />
+        </property>
+        <property name="loadSite" type="string">
+            <column name="loadSite" length="100" />
+        </property>
+        <property name="unloadSite" type="string">
+            <column name="unloadSite" length="100" />
+        </property>
+        <property name="billTo" type="string">
+            <column name="billTo" length="50" />
+        </property>
+        <property name="totalCost" type="java.lang.Double">
+            <column name="totalCost" precision="15" scale="0" />
+        </property>
+        <property name="paymentMethod" type="string">
+            <column name="paymentMethod" length="20" />
+        </property>
+        <property name="paymentReceiveDate" type="timestamp">
+            <column name="paymentReceiveDate" length="23" />
+        </property>
+        <property name="state" type="java.lang.Short">
+            <column name="state" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

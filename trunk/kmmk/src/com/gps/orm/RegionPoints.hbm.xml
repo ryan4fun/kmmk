@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.RegionPoints" table="regionPoints" schema="dbo" catalog="mkgps1">
+        <id name="pointId" type="int">
+            <column name="pointId" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="region" class="com.gps.orm.Region" fetch="select">
+            <column name="regionID" />
+        </many-to-one>
+        <property name="longVal" type="java.lang.Double">
+            <column name="longVal" precision="15" scale="0" />
+        </property>
+        <property name="latVal" type="java.lang.Double">
+            <column name="latVal" precision="15" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

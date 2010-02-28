@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.FTools" table="f_tools" schema="dbo" catalog="mkgps1">
+        <id name="toolId" type="long">
+            <column name="toolId" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <property name="toolName" type="string">
+            <column name="toolName" length="30" />
+        </property>
+        <property name="lastKeeper" type="string">
+            <column name="lastKeeper" length="30" />
+        </property>
+        <property name="lastChangeDate" type="timestamp">
+            <column name="lastChangeDate" length="23" />
+        </property>
+        <property name="state" type="java.lang.Short">
+            <column name="state" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="200" />
+        </property>
+        <set name="FToolsKeepLogs" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="toolId" />
+            </key>
+            <one-to-many class="com.gps.orm.FToolsKeepLog" />
+        </set>
+    </class>
+</hibernate-mapping>

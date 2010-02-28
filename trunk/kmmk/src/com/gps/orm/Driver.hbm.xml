@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.Driver" table="driver" schema="dbo" catalog="mkgps1">
+        <id name="driverId" type="int">
+            <column name="driverID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
+            <column name="ownerID" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="drivingLicenceType" type="java.lang.Short">
+            <column name="drivingLicenceType" />
+        </property>
+        <property name="tel" type="string">
+            <column name="tel" length="20" />
+        </property>
+        <property name="annualCheckState" type="java.lang.Short">
+            <column name="annualCheckState" />
+        </property>
+        <property name="certificateNumber" type="string">
+            <column name="certificateNumber" length="50" />
+        </property>
+        <property name="certificateDue" type="timestamp">
+            <column name="certificateDue" length="23" />
+        </property>
+        <property name="dangerousCertLevel" type="string">
+            <column name="dangerousCertLevel" length="10" />
+        </property>
+        <property name="dangerousCertDue" type="timestamp">
+            <column name="dangerousCertDue" length="23" />
+        </property>
+        <property name="driverState" type="java.lang.Short">
+            <column name="driverState" />
+        </property>
+        <set name="taskDrivers" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="driverID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.TaskDriver" />
+        </set>
+    </class>
+</hibernate-mapping>

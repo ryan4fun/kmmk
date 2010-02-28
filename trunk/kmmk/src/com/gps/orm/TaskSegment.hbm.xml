@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.TaskSegment" table="taskSegment" schema="dbo" catalog="mkgps1">
+        <id name="taskSegId" type="int">
+            <column name="taskSegID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="task" class="com.gps.orm.Task" fetch="select">
+            <column name="taskID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="segment" class="com.gps.orm.Segment" fetch="select">
+            <column name="segmentID" not-null="true" />
+        </many-to-one>
+        <property name="orderNo" type="java.lang.Integer">
+            <column name="orderNo" />
+        </property>
+        <property name="speedLimit" type="java.lang.Double">
+            <column name="speedLimit" precision="15" scale="0" />
+        </property>
+        <set name="segmentRuleses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskSegID" />
+            </key>
+            <one-to-many class="com.gps.orm.SegmentRules" />
+        </set>
+    </class>
+</hibernate-mapping>

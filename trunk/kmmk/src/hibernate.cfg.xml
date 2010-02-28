@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="SessionFactory">
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.c3p0.acquire_increment">5</property>
+        <property name="hibernate.c3p0.idle_test_period">120</property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <property name="hibernate.c3p0.validate">true</property>
+        <property name="hibernate.connection.autocommit">false</property>
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;databaseName=mkgps1</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.show_sql">false</property>
+        <mapping resource="com/gps/orm/AlertHistory.hbm.xml" />
+        <mapping resource="com/gps/orm/SystemSettings.hbm.xml" />
+        <mapping resource="com/gps/orm/RegionPoints.hbm.xml" />
+        <mapping resource="com/gps/orm/Role.hbm.xml" />
+        <mapping resource="com/gps/orm/FToolsKeepLog.hbm.xml" />
+        <mapping resource="com/gps/orm/Driver.hbm.xml" />
+        <mapping resource="com/gps/orm/TaskRule.hbm.xml" />
+        <mapping resource="com/gps/orm/VehicleRule.hbm.xml" />
+        <mapping resource="com/gps/orm/VehicleStatus.hbm.xml" />
+        <mapping resource="com/gps/orm/SegmentRules.hbm.xml" />
+        <mapping resource="com/gps/orm/GpsDeviceInstallation.hbm.xml" />
+        <mapping resource="com/gps/orm/FTyres.hbm.xml" />
+        <mapping resource="com/gps/orm/RealtimeTrack.hbm.xml" />
+        <mapping resource="com/gps/orm/MalfunctionDeviceLog.hbm.xml" />
+        <mapping resource="com/gps/orm/FGasfee.hbm.xml" />
+        <mapping resource="com/gps/orm/TenMinTrackHis.hbm.xml" />
+        <mapping resource="com/gps/orm/TaskSegment.hbm.xml" />
+        <mapping resource="com/gps/orm/VehiclePic.hbm.xml" />
+        <mapping resource="com/gps/orm/CheckPoints.hbm.xml" />
+        <mapping resource="com/gps/orm/Gpsfee.hbm.xml" />
+        <mapping resource="com/gps/orm/FVehicleMaterial.hbm.xml" />
+        <mapping resource="com/gps/orm/TaskRealtimeTrackHis.hbm.xml" />
+        <mapping resource="com/gps/orm/HourlyTrack.hbm.xml" />
+        <mapping resource="com/gps/orm/PrivateRules.hbm.xml" />
+        <mapping resource="com/gps/orm/SegmentDetail.hbm.xml" />
+        <mapping resource="com/gps/orm/AlertTypeDic.hbm.xml" />
+        <mapping resource="com/gps/orm/Region.hbm.xml" />
+        <mapping resource="com/gps/orm/TaskDriver.hbm.xml" />
+        <mapping resource="com/gps/orm/Vehicle.hbm.xml" />
+        <mapping resource="com/gps/orm/RegionTypeDic.hbm.xml" />
+        <mapping resource="com/gps/orm/VehicleAssociations.hbm.xml" />
+        <mapping resource="com/gps/orm/Escorter.hbm.xml" />
+        <mapping resource="com/gps/orm/FTools.hbm.xml" />
+        <mapping resource="com/gps/orm/StateHelper.hbm.xml" />
+        <mapping resource="com/gps/orm/FVehicleBasic.hbm.xml" />
+        <mapping resource="com/gps/orm/HourlyTrackHis.hbm.xml" />
+        <mapping resource="com/gps/orm/VehicleTypeDic.hbm.xml" />
+        <mapping resource="com/gps/orm/FMaintain.hbm.xml" />
+        <mapping resource="com/gps/orm/Organization.hbm.xml" />
+        <mapping resource="com/gps/orm/FRuningLog.hbm.xml" />
+        <mapping resource="com/gps/orm/FMaterialKeepLog.hbm.xml" />
+        <mapping resource="com/gps/orm/UserRole.hbm.xml" />
+        <mapping resource="com/gps/orm/Segment.hbm.xml" />
+        <mapping resource="com/gps/orm/VehiclePicTypeDic.hbm.xml" />
+        <mapping resource="com/gps/orm/TenMinTrack.hbm.xml" />
+        <mapping resource="com/gps/orm/QualifiedCoordArea.hbm.xml" />
+        <mapping resource="com/gps/orm/RealtimeTrackHis.hbm.xml" />
+        <mapping resource="com/gps/orm/TaskEscorter.hbm.xml" />
+        <mapping resource="com/gps/orm/Rules.hbm.xml" />
+        <mapping resource="com/gps/orm/TaskRealtimeTrack.hbm.xml" />
+        <mapping resource="com/gps/orm/Task.hbm.xml" />
+        <mapping resource="com/gps/orm/PictureStore.hbm.xml" />
+        <mapping resource="com/gps/orm/Users.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

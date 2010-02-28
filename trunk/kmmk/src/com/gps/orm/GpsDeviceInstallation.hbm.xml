@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.GpsDeviceInstallation" table="gpsDeviceInstallation" schema="dbo" catalog="mkgps1">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="vehicleId" type="java.lang.Integer">
+            <column name="vehicleID" />
+        </property>
+        <property name="installState" type="java.lang.Short">
+            <column name="installState" />
+        </property>
+        <property name="installDate" type="timestamp">
+            <column name="installDate" length="23" />
+        </property>
+        <property name="deviceId" type="string">
+            <column name="deviceID" length="50" />
+        </property>
+        <property name="deviceType" type="string">
+            <column name="deviceType" length="50" />
+        </property>
+        <property name="commPotocol" type="string">
+            <column name="commPotocol" length="50" />
+        </property>
+        <property name="costs" type="java.lang.Double">
+            <column name="costs" precision="15" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

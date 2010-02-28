@@ -1,0 +1,20 @@
+﻿SVN:
+https://opensvn.csie.org/mkgps
+
+远程服务器
+116.52.2.210
+用户名: gps_liu
+密码: 13888777616
+
+Serv-U控制中心
+密码：13099422931
+
+网站路径:d:/mkgps-site/apache-tomcat-6.0.18/webapps/mkgps
+ftp:
+116.52.2.210
+用户名: gps_liu
+密码: 13888777616
+
+
+
+http://www.kmmkgps.com:8080/mkgps

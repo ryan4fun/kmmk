@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.FTyres" table="f_tyres" schema="dbo" catalog="mkgps1">
+        <id name="tyreId" type="long">
+            <column name="tyreId" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
+            <column name="operatorID" />
+        </many-to-one>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <property name="tyreNo" type="string">
+            <column name="tyreNo" length="30" />
+        </property>
+        <property name="tyreName" type="string">
+            <column name="tyreName" length="30" />
+        </property>
+        <property name="state" type="java.lang.Short">
+            <column name="state" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="200" />
+        </property>
+        <property name="installDate" type="timestamp">
+            <column name="installDate" length="23" />
+        </property>
+        <property name="installDistanceRec" type="java.lang.Double">
+            <column name="installDistanceRec" precision="15" scale="0" />
+        </property>
+        <property name="usedPeriod" type="java.lang.Double">
+            <column name="usedPeriod" precision="15" scale="0" />
+        </property>
+        <property name="disposeDate" type="timestamp">
+            <column name="disposeDate" length="23" />
+        </property>
+        <property name="disposeDistanceRec" type="java.lang.Double">
+            <column name="disposeDistanceRec" precision="15" scale="0" />
+        </property>
+        <property name="usedDistance" type="java.lang.Double">
+            <column name="usedDistance" precision="15" scale="0" />
+        </property>
+        <property name="price" type="java.lang.Double">
+            <column name="price" precision="15" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
