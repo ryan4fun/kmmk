@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.FMaintain" table="f_maintain" schema="dbo" catalog="mkgps1">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
+            <column name="operatorID" />
+        </many-to-one>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <property name="maintainDate" type="timestamp">
+            <column name="maintainDate" length="23" />
+        </property>
+        <property name="category" type="string">
+            <column name="category" length="50" />
+        </property>
+        <property name="subCategory" type="string">
+            <column name="subCategory" length="50" />
+        </property>
+        <property name="cost" type="java.lang.Double">
+            <column name="cost" precision="15" scale="0" />
+        </property>
+        <property name="quantity" type="java.lang.Integer">
+            <column name="quantity" />
+        </property>
+        <property name="handler" type="string">
+            <column name="handler" length="20" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="200" />
+        </property>
+        <property name="studio" type="string">
+            <column name="studio" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

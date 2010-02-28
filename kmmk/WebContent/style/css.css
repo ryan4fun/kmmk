@@ -1,0 +1,203 @@
+* {
+	FONT-FAMILY: 宋体; FONT-SIZE: 12px;PADDING-BOTTOM: 0px; LIST-STYLE-TYPE: none; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+BODY {
+	COLOR: #333; 
+	margin:10px;
+	background-color: #FFF;
+}
+IMG {
+	BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px
+}
+TABLE {
+	FONT-SIZE: 12px
+}
+TD {
+	FONT-SIZE: 12px
+}
+INPUT {
+	FONT-SIZE: 12px
+}
+TEXTAREA {
+	FONT-SIZE: 12px
+}
+SELECT {
+	FONT-SIZE: 12px
+}
+A {
+	COLOR: #07519a; TEXT-DECORATION: none
+}
+A:hover {
+	TEXT-DECORATION: underline
+}
+EM {
+	FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+
+#login {
+	POSITION: relative;
+	TEXT-ALIGN: center;
+	MARGIN: 0px auto;
+	WIDTH: 543px;
+	HEIGHT: 453px;
+	TOP: 0px;
+	background-image: url(images/mk_login_G.jpg);
+}
+
+#top {
+	width:100%;
+	height:100%;
+	padding:0px;
+	margin:0px;
+}
+
+#success {
+	position:relative;
+	top:100px;
+	padding-top:50px;
+	width:400px;
+	height:200px;
+	margin:0px auto;
+	text-align:center;
+	background-color: #EFFDF8;	
+}
+
+#success input[type=button]{
+	width:150px;
+	height:24px;
+}
+
+#faild {
+	position:relative;
+	top:100px;
+	padding-top:50px;
+	width:400px;
+	height:200px;
+	margin:0px auto;
+	text-align:center;
+	background-color: #EFDDA8;
+}
+
+#inputform {
+	
+}
+
+#inputform select{	
+	width:174px;
+}
+
+#inputform input[type=text], input[type=password], select{	
+	width:170px;
+}
+
+#inputform textarea{
+	width:300px;
+}
+
+#inputform input[type=button], input[type=reset], input[type=submit]{	
+	width:100px;
+}
+
+input[type=file]{
+	width:240px;
+	
+}
+
+fieldset {
+	border: none;
+	border-top: 1px solid #C9DCA6;
+	background: url(images/submit-form-fieldset.gif) left bottom repeat-x;
+	background-color: #F8FDEF;
+	padding-bottom:10px;
+}
+
+
+div.error { display: none; }
+/*input:focus { border: 1px dotted black; }*/
+input.error { border: 1px dotted red; }
+#inputform label.error, label.error {
+	/* remove the next line when you have trouble in IE6 with labels in list */
+	color: red;
+	font-style: italic;
+	/*background:url("images/unchecked.gif") no-repeat 0px 0px;*/
+	/*padding-left: 16px;*/
+}
+
+#inputform label.success, label.success {
+	color: blue;
+	font-style: italic;
+	background:url("images/checked.gif") no-repeat 0px 0px;
+	padding-left: 16px;
+}
+
+#inputform .gray * { color: gray; }
+
+
+
+
+
+
+.listtable{
+	margin-top:15px;
+}
+
+.listtable th, .listtable table td{
+	border-bottom: 1px solid #C9DCA6;
+}
+
+.listtable table td{	
+	padding-left:5px;
+	padding-top:2px;
+	padding-right:5px;
+	padding-bottom:2px;
+	text-align: center;
+}
+
+.pagination{
+	padding-left:5px;
+	padding-top:2px;
+	padding-right:5px;
+	padding-bottom:2px;
+}
+
+.pagination A {
+	BORDER-RIGHT: #aae 1px solid; BORDER-TOP: #aae 1px solid; BORDER-LEFT: #aae 1px solid; COLOR: #15b; BORDER-BOTTOM: #aae 1px solid; TEXT-DECORATION: none
+}
+.pagination A {
+	PADDING-RIGHT: 0.5em; DISPLAY: block; PADDING-LEFT: 0.5em; FLOAT: left; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 0.1em; MARGIN-RIGHT: 5px; PADDING-TOP: 0.1em
+}
+.pagination SPAN {
+	PADDING-RIGHT: 0.5em; DISPLAY: block; PADDING-LEFT: 0.5em; FLOAT: left; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 0.1em; MARGIN-RIGHT: 5px; PADDING-TOP: 0.1em;
+}
+.pagination .current {
+	BORDER-RIGHT: #000 1px solid; BORDER-TOP: #dddddd 1px solid; BACKGROUND: gray; BORDER-LEFT: #dddddd 1px solid; COLOR: #fff; BORDER-BOTTOM: #000 1px solid
+}
+.pagination .prev.current {
+	BORDER-LEFT-COLOR: #999; BACKGROUND: #fff; BORDER-BOTTOM-COLOR: #999; COLOR: #999; BORDER-TOP-COLOR: #999; BORDER-RIGHT-COLOR: #999
+}
+.pagination .next.current {
+	BORDER-LEFT-COLOR: #999; BACKGROUND: #fff; BORDER-BOTTOM-COLOR: #999; COLOR: #999; BORDER-TOP-COLOR: #999; BORDER-RIGHT-COLOR: #999
+}
+
+.vehicleSelectorTable {
+	position: absolute;
+	z-index:1000;
+	background-color:#ddd;
+	border: 1px solid #999;
+}
+
+.mapLink {
+		text-decoration : underline;		
+}
+
+.mapLabel {
+		color :#0000cc;
+		background-color : white;
+		font : small Arial;
+		border : 1px solid gray;
+		padding-left:1px;
+		padding-right:1px;
+		text-align : center;
+		cursor : pointer;
+		white-space : nowrap;
+}

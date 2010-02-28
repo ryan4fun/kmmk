@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.Vehicle" table="vehicle" schema="dbo" catalog="mkgps1">
+        <id name="vehicleId" type="int">
+            <column name="vehicleID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
+            <column name="userID" />
+        </many-to-one>
+        <many-to-one name="vehicleTypeDic" class="com.gps.orm.VehicleTypeDic" fetch="select">
+            <column name="vehicleTypeID" />
+        </many-to-one>
+        <property name="deviceId" type="string">
+            <column name="deviceID" length="30" />
+        </property>
+        <property name="licensPadNumber" type="string">
+            <column name="licensPadNumber" length="10" />
+        </property>
+        <property name="internalNumber" type="string">
+            <column name="internalNumber" length="30" />
+        </property>
+        <property name="engineNumber" type="string">
+            <column name="engineNumber" length="100" />
+        </property>
+        <property name="frameNumber" type="string">
+            <column name="frameNumber" length="100" />
+        </property>
+        <property name="modelNumber" type="string">
+            <column name="modelNumber" length="100" />
+        </property>
+        <property name="capability" type="java.lang.Double">
+            <column name="capability" precision="15" scale="0" />
+        </property>
+        <property name="registerDate" type="timestamp">
+            <column name="registerDate" length="23" />
+        </property>
+        <property name="approvalDate" type="timestamp">
+            <column name="approvalDate" length="23" />
+        </property>
+        <property name="annualCheckState" type="java.lang.Short">
+            <column name="annualCheckState" />
+        </property>
+        <property name="secondMaintainDate" type="timestamp">
+            <column name="secondMaintainDate" length="23" />
+        </property>
+        <property name="assetBaseValue" type="java.lang.Integer">
+            <column name="assetBaseValue" />
+        </property>
+        <property name="simCardNo" type="string">
+            <column name="simCardNo" length="20" />
+        </property>
+        <property name="vehicleState" type="java.lang.Short">
+            <column name="vehicleState" />
+        </property>
+        <property name="serviceExpireDate" type="timestamp">
+            <column name="serviceExpireDate" length="23" />
+        </property>
+        <property name="msgIntervel" type="java.lang.Short">
+            <column name="msgIntervel" />
+        </property>
+        <property name="monitLevel" type="java.lang.Short">
+            <column name="monitLevel" />
+        </property>
+        <property name="speedLimitation" type="java.lang.Double">
+            <column name="speedLimitation" precision="15" scale="0" />
+        </property>
+        <set name="FToolses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FTools" />
+        </set>
+        <set name="vehicleRules" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.VehicleRule" />
+        </set>
+        <set name="FTyreses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FTyres" />
+        </set>
+        <set name="FRuningLogs" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FRuningLog" />
+        </set>
+        <set name="FMaintains" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FMaintain" />
+        </set>
+        <set name="FVehicleBasics" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FVehicleBasic" />
+        </set>
+        <set name="FVehicleMaterials" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FVehicleMaterial" />
+        </set>
+        <set name="FGasfees" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FGasfee" />
+        </set>
+        <set name="vehiclePics" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.VehiclePic" />
+        </set>
+        <set name="gpsfees" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.Gpsfee" />
+        </set>
+        <one-to-one name="vehicleStatus" class="com.gps.orm.VehicleStatus"></one-to-one>
+        <one-to-one name="stateHelper" class="com.gps.orm.StateHelper"></one-to-one>
+        <set name="tasks" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.Task" />
+        </set>
+        <set name="vehicleAssociationses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.VehicleAssociations" />
+        </set>
+        <set name="malfunctionDeviceLogs" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.MalfunctionDeviceLog" />
+        </set>
+    </class>
+</hibernate-mapping>

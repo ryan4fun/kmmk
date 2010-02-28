@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.QualifiedCoordArea" table="qualifiedCoordArea" schema="dbo" catalog="mkgps1">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="northEastLong" type="java.lang.Double">
+            <column name="northEastLong" precision="15" scale="0" />
+        </property>
+        <property name="northEastLat" type="java.lang.Double">
+            <column name="northEastLat" precision="15" scale="0" />
+        </property>
+        <property name="southWestLong" type="java.lang.Double">
+            <column name="southWestLong" precision="15" scale="0" />
+        </property>
+        <property name="southWestLat" type="java.lang.Double">
+            <column name="southWestLat" precision="15" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

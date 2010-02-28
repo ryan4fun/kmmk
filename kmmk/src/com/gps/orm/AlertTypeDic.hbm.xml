@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.AlertTypeDic" table="AlertTypeDic" schema="dbo" catalog="mkgps1">
+        <id name="alertTypeId" type="int">
+            <column name="AlertTypeID" />
+            <generator class="native" />
+        </id>
+        <property name="alertTypeName" type="string">
+            <column name="AlertTypeName" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="imagePath" type="string">
+            <column name="imagePath" length="200" />
+        </property>
+        <property name="voicePath" type="string">
+            <column name="voicePath" length="200" />
+        </property>
+        <set name="ruleses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="AlertTypeID" />
+            </key>
+            <one-to-many class="com.gps.orm.Rules" />
+        </set>
+        <set name="alertHistories" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="AlertTypeID" />
+            </key>
+            <one-to-many class="com.gps.orm.AlertHistory" />
+        </set>
+        <set name="privateRuleses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="AlertTypeID" />
+            </key>
+            <one-to-many class="com.gps.orm.PrivateRules" />
+        </set>
+    </class>
+</hibernate-mapping>

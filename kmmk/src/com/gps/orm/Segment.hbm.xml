@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.Segment" table="Segment" schema="dbo" catalog="mkgps1">
+        <id name="segmentId" type="int">
+            <column name="segmentID" />
+            <generator class="native" />
+        </id>
+        <property name="segName" type="string">
+            <column name="segName" length="50" />
+        </property>
+        <property name="segType" type="java.lang.Short">
+            <column name="segType" />
+        </property>
+        <property name="createTime" type="timestamp">
+            <column name="createTime" length="23" />
+        </property>
+        <property name="state" type="java.lang.Short">
+            <column name="state" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="startDetialId" type="java.lang.Long">
+            <column name="startDetialID" />
+        </property>
+        <property name="endDetailId" type="java.lang.Long">
+            <column name="endDetailID" />
+        </property>
+        <property name="speedLimit" type="java.lang.Double">
+            <column name="speedLimit" precision="15" scale="0" />
+        </property>
+        <set name="segmentDetails" inverse="true" cascade="all-delete-orphan" order-by="segDetailID">
+            <key>
+                <column name="segmentID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.SegmentDetail" />
+        </set>
+        <set name="taskSegments" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="segmentID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.TaskSegment" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.FGasfee" table="f_gasfee" schema="dbo" catalog="mkgps1">
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <property name="occurDate" type="timestamp">
+            <column name="occurDate" length="23" />
+        </property>
+        <property name="deposit" type="java.lang.Double">
+            <column name="deposit" precision="15" scale="0" />
+        </property>
+        <property name="refill" type="java.lang.Double">
+            <column name="refill" precision="15" scale="0" />
+        </property>
+        <property name="refillMoney" type="java.lang.Double">
+            <column name="refillMoney" precision="15" scale="0" />
+        </property>
+        <property name="balance" type="java.lang.Double">
+            <column name="balance" precision="15" scale="0" />
+        </property>
+        <property name="comment" type="string">
+            <column name="comment" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

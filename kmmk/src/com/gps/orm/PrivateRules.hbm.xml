@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.PrivateRules" table="privateRules" schema="dbo" catalog="mkgps1">
+        <id name="ruleId" type="int">
+            <column name="ruleID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="task" class="com.gps.orm.Task" fetch="select">
+            <column name="taskID" />
+        </many-to-one>
+        <many-to-one name="alertTypeDic" class="com.gps.orm.AlertTypeDic" fetch="select">
+            <column name="AlertTypeID" />
+        </many-to-one>
+        <property name="ruleName" type="string">
+            <column name="ruleName" length="30" />
+        </property>
+        <property name="intParam1" type="java.lang.Integer">
+            <column name="intParam1" />
+        </property>
+        <property name="timeParam" type="timestamp">
+            <column name="timeParam" length="23" />
+        </property>
+        <property name="opType" type="short">
+            <column name="opType" not-null="true" />
+        </property>
+        <property name="ruleType" type="short">
+            <column name="ruleType" not-null="true" />
+        </property>
+        <property name="ruleState" type="short">
+            <column name="ruleState" not-null="true" />
+        </property>
+        <set name="segmentRuleses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="privateRuleID" />
+            </key>
+            <one-to-many class="com.gps.orm.SegmentRules" />
+        </set>
+    </class>
+</hibernate-mapping>

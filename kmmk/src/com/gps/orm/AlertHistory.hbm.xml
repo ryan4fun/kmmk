@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.AlertHistory" table="alertHistory" schema="dbo" catalog="mkgps1">
+        <id name="alertId" type="long">
+            <column name="alertID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="alertTypeDic" class="com.gps.orm.AlertTypeDic" fetch="select">
+            <column name="AlertTypeID" />
+        </many-to-one>
+        <property name="tag" type="java.lang.Short">
+            <column name="tag" />
+        </property>
+        <property name="vehicleId" type="java.lang.Integer">
+            <column name="vehicleID" />
+        </property>
+        <property name="occurDate" type="timestamp">
+            <column name="occurDate" length="23" />
+        </property>
+        <property name="acctime" type="timestamp">
+            <column name="acctime" length="23" />
+        </property>
+        <property name="accUser" type="java.lang.Integer">
+            <column name="accUser" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" />
+        </property>
+        <property name="accComment" type="string">
+            <column name="accComment" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

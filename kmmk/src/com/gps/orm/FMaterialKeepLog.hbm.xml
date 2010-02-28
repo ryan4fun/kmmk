@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.FMaterialKeepLog" table="f_material_keep_log" schema="dbo" catalog="mkgps1">
+        <composite-id name="id" class="com.gps.orm.FMaterialKeepLogId">
+            <key-property name="id" type="java.lang.Long">
+                <column name="ID" />
+            </key-property>
+            <key-property name="materialId" type="java.lang.Long">
+                <column name="materialId" />
+            </key-property>
+            <key-property name="keeper" type="string">
+                <column name="keeper" length="25" />
+            </key-property>
+            <key-property name="occurDate" type="timestamp">
+                <column name="occurDate" length="23" />
+            </key-property>
+            <key-property name="operatorId" type="java.lang.Integer">
+                <column name="operatorID" />
+            </key-property>
+            <key-property name="comment" type="string">
+                <column name="comment" length="200" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="users" class="com.gps.orm.Users" update="false" insert="false" fetch="select">
+            <column name="operatorID" />
+        </many-to-one>
+        <many-to-one name="FVehicleMaterial" class="com.gps.orm.FVehicleMaterial" update="false" insert="false" fetch="select">
+            <column name="materialId" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

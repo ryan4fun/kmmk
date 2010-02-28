@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.RegionTypeDic" table="regionTypeDic" schema="dbo" catalog="mkgps1">
+        <id name="regionTypeId" type="short">
+            <column name="regionTypeID" />
+            <generator class="native" />
+        </id>
+        <property name="regionTypeName" type="string">
+            <column name="regionTypeName" length="100" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="200" />
+        </property>
+        <property name="stateTag" type="java.lang.Short">
+            <column name="stateTag" />
+        </property>
+        <set name="regions" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="regionTypeID" />
+            </key>
+            <one-to-many class="com.gps.orm.Region" />
+        </set>
+    </class>
+</hibernate-mapping>

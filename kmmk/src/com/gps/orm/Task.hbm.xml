@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.Task" table="task" schema="dbo" catalog="mkgps1">
+        <id name="taskId" type="int">
+            <column name="taskID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
+            <column name="assignerID" />
+        </many-to-one>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" not-null="true" />
+        </many-to-one>
+        <property name="taskName" type="string">
+            <column name="taskName" length="50" />
+        </property>
+        <property name="planedStartDate" type="timestamp">
+            <column name="planedStartDate" length="23" />
+        </property>
+        <property name="planedEndDate" type="timestamp">
+            <column name="planedEndDate" length="23" />
+        </property>
+        <property name="actualStartTime" type="timestamp">
+            <column name="actualStartTime" length="23" />
+        </property>
+        <property name="actualFinishTime" type="timestamp">
+            <column name="actualFinishTime" length="23" />
+        </property>
+        <property name="taskDescription" type="string">
+            <column name="taskDescription" length="500" />
+        </property>
+        <property name="startPositionLong" type="java.lang.Double">
+            <column name="startPositionLong" precision="15" scale="0" />
+        </property>
+        <property name="startPositionLat" type="java.lang.Double">
+            <column name="startPositionLat" precision="15" scale="0" />
+        </property>
+        <property name="endPositionLong" type="java.lang.Double">
+            <column name="endPositionLong" precision="15" scale="0" />
+        </property>
+        <property name="endPositionLat" type="java.lang.Double">
+            <column name="endPositionLat" precision="15" scale="0" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="200" />
+        </property>
+        <property name="taskState" type="java.lang.Short">
+            <column name="taskState" />
+        </property>
+        <property name="startPositionName" type="string">
+            <column name="startPositionName" length="50" />
+        </property>
+        <property name="endPositionName" type="string">
+            <column name="endPositionName" length="50" />
+        </property>
+        <property name="assignDate" type="timestamp">
+            <column name="assignDate" length="23" />
+        </property>
+        <property name="lastModify" type="timestamp">
+            <column name="lastModify" length="23" />
+        </property>
+        <property name="configTag" type="java.lang.Short">
+            <column name="configTag" />
+        </property>
+        <set name="taskEscorters" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskID" />
+            </key>
+            <one-to-many class="com.gps.orm.TaskEscorter" />
+        </set>
+        <set name="taskDrivers" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskID" />
+            </key>
+            <one-to-many class="com.gps.orm.TaskDriver" />
+        </set>
+        <set name="taskSegments" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.TaskSegment" />
+        </set>
+        <set name="taskRules" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskID" not-null="true" />
+            </key>
+            <one-to-many class="com.gps.orm.TaskRule" />
+        </set>
+        <set name="checkPointses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskID" />
+            </key>
+            <one-to-many class="com.gps.orm.CheckPoints" />
+        </set>
+        <set name="privateRuleses" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="taskID" />
+            </key>
+            <one-to-many class="com.gps.orm.PrivateRules" />
+        </set>
+    </class>
+</hibernate-mapping>

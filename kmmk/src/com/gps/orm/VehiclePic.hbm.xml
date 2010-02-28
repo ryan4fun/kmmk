@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.VehiclePic" table="vehiclePic" schema="dbo" catalog="mkgps1">
+        <id name="vpId" type="int">
+            <column name="vpId" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
+            <column name="vehicleID" />
+        </many-to-one>
+        <many-to-one name="vehiclePicTypeDic" class="com.gps.orm.VehiclePicTypeDic" fetch="select">
+            <column name="vehiclePicTypeID" />
+        </many-to-one>
+        <many-to-one name="pictureStore" class="com.gps.orm.PictureStore" fetch="select">
+            <column name="storageId" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

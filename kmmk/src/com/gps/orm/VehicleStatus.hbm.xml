@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.VehicleStatus" table="vehicleStatus" schema="dbo" catalog="mkgps1">
+        <id name="vehicleId" type="int">
+            <column name="vehicleID" />
+            <generator class="assigned">
+                <param name="property">vehicle</param>
+            </generator>
+        </id>
+        <one-to-one name="vehicle" class="com.gps.orm.Vehicle" constrained="true"></one-to-one>
+        <property name="currentLong" type="java.lang.Double">
+            <column name="currentLong" precision="15" scale="0" />
+        </property>
+        <property name="currentLat" type="java.lang.Double">
+            <column name="currentLat" precision="15" scale="0" />
+        </property>
+        <property name="licensPadNumber" type="string">
+            <column name="licensPadNumber" length="10" />
+        </property>
+        <property name="isRunning" type="java.lang.Byte">
+            <column name="isRunning" />
+        </property>
+        <property name="isOnline" type="java.lang.Byte">
+            <column name="isOnline" />
+        </property>
+        <property name="isAskHelp" type="java.lang.Byte">
+            <column name="isAskHelp" />
+        </property>
+        <property name="limitAreaAlarm" type="java.lang.Byte">
+            <column name="limitAreaAlarm" />
+        </property>
+        <property name="overSpeed" type="java.lang.Byte">
+            <column name="overSpeed" />
+        </property>
+        <property name="taskId" type="java.lang.Integer">
+            <column name="taskID" />
+        </property>
+        <property name="tireDrive" type="java.lang.Byte">
+            <column name="tireDrive" />
+        </property>
+        <property name="currentSpeed" type="java.lang.Double">
+            <column name="currentSpeed" precision="15" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

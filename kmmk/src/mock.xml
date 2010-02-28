@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<mock-config>
+
+	<server>
+		<property name="ipAddress" value="127.0.0.1"/>
+		<property name="port" value="6225"/>
+		<property name="potocol" value="TCP"/>
+	</server>
+	
+	
+	<mocker type="basic">
+		<property name="name" value="testMocker">  </property>
+		<property name="deviceType" value="YD518">  </property>
+		<property name="deviceID" value="13629624641">  </property>
+		<property name="instanceCount" value="1"> </property>
+		<property name="interval" value="5"></property>
+		
+		<property name="startLong" value="103.693908">  </property>
+		<property name="startLat" value="25.05211">  </property>
+
+		<property name="endLong" value="106.9">  </property>
+		<property name="endLat" value="26.5">  </property>
+		
+		<property name="maxMessageCount" value="100">  </property>
+		
+	</mocker>
+
+
+</mock-config>

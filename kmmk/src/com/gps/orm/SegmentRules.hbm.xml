@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.SegmentRules" table="segmentRules" schema="dbo" catalog="mkgps1">
+        <id name="segRuleId" type="long">
+            <column name="segRuleID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="rules" class="com.gps.orm.Rules" fetch="select">
+            <column name="pubRuleID" />
+        </many-to-one>
+        <many-to-one name="privateRules" class="com.gps.orm.PrivateRules" fetch="select">
+            <column name="privateRuleID" />
+        </many-to-one>
+        <many-to-one name="taskSegment" class="com.gps.orm.TaskSegment" fetch="select">
+            <column name="taskSegID" />
+        </many-to-one>
+        <property name="stateTag" type="java.lang.Short">
+            <column name="stateTag" />
+        </property>
+    </class>
+</hibernate-mapping>

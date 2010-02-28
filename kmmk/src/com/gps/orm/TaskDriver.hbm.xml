@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2010-2-25 23:09:47 by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.gps.orm.TaskDriver" table="taskDriver" schema="dbo" catalog="mkgps1">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <many-to-one name="task" class="com.gps.orm.Task" fetch="select">
+            <column name="taskID" />
+        </many-to-one>
+        <many-to-one name="driver" class="com.gps.orm.Driver" fetch="select">
+            <column name="driverID" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
