@@ -19,9 +19,9 @@ public class DriverService extends AbstractService {
 	
 	public static Map<Short, String> drivingLicenceType = new HashMap<Short, String>();
 	static {
-		drivingLicenceType.put(DRIVING_LICENCE_TYPE_A, "A Á±ª");
-		drivingLicenceType.put(DRIVING_LICENCE_TYPE_B, "B Á±ª");
-		drivingLicenceType.put(DRIVING_LICENCE_TYPE_C, "C Á±ª");
+		drivingLicenceType.put(DRIVING_LICENCE_TYPE_A, "A ¿‡");
+		drivingLicenceType.put(DRIVING_LICENCE_TYPE_B, "B ¿‡");
+		drivingLicenceType.put(DRIVING_LICENCE_TYPE_C, "C ¿‡");
 	}
 	
 	

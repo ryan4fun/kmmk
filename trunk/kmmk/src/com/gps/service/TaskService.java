@@ -23,11 +23,11 @@ public class TaskService extends AbstractService {
 	
 	public static Map<Short, String> taskStates = new HashMap<Short, String>();
 	static {
-		taskStates.put(TASK_PLANED_STATE, "å·²åˆ†é…");
-		taskStates.put(TASK_IN_PROGRESS_STATE, "è¿›è¡Œä¸­");
-		taskStates.put(TASK_FINISH_STATE, "å·²å®Œæˆ");
-		taskStates.put(TASK_CANCEL_STATE, "å·²å–æ¶ˆ");
-		taskStates.put(TASK_ABORTED_STATE, "ä¸­é€”æ”¾å¼ƒ");
+		taskStates.put(TASK_PLANED_STATE, "ÒÑ·ÖÅä");
+		taskStates.put(TASK_IN_PROGRESS_STATE, "½øĞĞÖĞ");
+		taskStates.put(TASK_FINISH_STATE, "ÒÑÍê³É");
+		taskStates.put(TASK_CANCEL_STATE, "ÒÑÈ¡Ïû");
+		taskStates.put(TASK_ABORTED_STATE, "ÖĞÍ¾·ÅÆú");
 	}
 	
 	public void addTask(Task es){
@@ -82,7 +82,7 @@ public class TaskService extends AbstractService {
 			
 			t.setTaskState(newState);
 			if(newState == null || TaskService.taskStates.get(t.getTaskState()) == null)
-				throw new Message("ä¸å…è®¸è®¾ç½®è¯¥ä»»åŠ¡çŠ¶æ€ï¼");
+				throw new Message("²»ÔÊĞíÉèÖÃ¸ÃÈÎÎñ×´Ì¬£¡");
 			if (t.getTaskState() == TaskService.TASK_IN_PROGRESS_STATE) {
 				t.setActualStartTime(Util.getCurrentDateTime());
 				VehicleStatus vs = t.getVehicle().getVehicleStatus();
