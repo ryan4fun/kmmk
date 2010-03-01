@@ -58,10 +58,10 @@ public class RuleManager {
 	public RuleManager(VehicleStatus vs) {
 		
 		if(vs != null){
+//			System.out.println("Start initial rule manager for vechiel " + vs.getVehicle() + " vechileId = " + vs.getVehicleId() + " taskId =  " + vs.getTaskId());
 			this.vehicle = vs.getVehicle();
-			int taskId = vs.getTaskId();
-			if(taskId >=0){
-				this.currentTask = getServiceLocator().getTaskService().findById(taskId);
+			if(vs.getTaskId() != null){
+				this.currentTask = getServiceLocator().getTaskService().findById(vs.getTaskId());
 			}
 			initial();
 		}
@@ -113,8 +113,10 @@ public class RuleManager {
 	
 	private void initVehicleRules() {
 		
-		double speedLimt = -1;
-		speedLimt = vehicle.getSpeedLimitation();
+		double speedLimt = 100;
+		if(vehicle.getSpeedLimitation() != null){
+			speedLimt = vehicle.getSpeedLimitation();
+		}
 		AbstractRuleChecker checker = RuleCheckerFactory.getSpeedChecker(speedLimt,vehicle);
 			
 		List<AbstractRuleChecker> checkerList = this.everyMessageRules;
