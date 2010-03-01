@@ -30,7 +30,6 @@ if(vss == null || vss.size()<1){
 
 </style>
 <script language="JavaScript">
-var normIcon = "<%=mapImagePath%>images/google_icon/running.png";
 var points = new Array();
 var mapObj = null;
 $(document).ready(function(){
@@ -94,7 +93,7 @@ $(document).ready(function(){
 			tireDrive : "<%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%>",
 			currentSpeed : "<%=vs.getCurrentSpeed()==null?"":vs.getCurrentSpeed()%>",
 			lastUpdate : "<%=Util.FormatDateLong(sh.getLastUpdate())%>",
-			alertIcon : "<%=alertIcon%>"
+			alertIcon : "<%=mapImagePath + alertIcon%>"
 		});
 	<%
 	}
@@ -126,10 +125,7 @@ function createMarker(vs) {
 		tipOption.title = "车辆信息";
 		tipOption.content = html;
 		var markerOption = new MMarkerOptions();
-		if( vs.alertIcon && vs.alertIcon != "" )
-			markerOption.imageUrl = "<%=mapImagePath %>" + vs.alertIcon;
-	  	else
-	  		markerOption.imageUrl = runningIcon;
+		markerOption.imageUrl = vs.alertIcon;
 		markerOption.tipOption = tipOption;
 		markerOption.canShowTip = true;
 		markerOption.imageAlign=5;
@@ -138,7 +134,7 @@ function createMarker(vs) {
 		marker.id = vs.licensPadNumber;
 		return marker;
 	<%} else {%>
-		var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,normIcon );
+		var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,vs.alertIcon );
 	    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 	    	mapObj.setCenter(latlng);
 			marker.imgMarker_.openInfoWindowHtml(html);
