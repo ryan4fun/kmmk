@@ -55,6 +55,7 @@ $(document).ready(function(){
 });
 </script>
 <script language="JavaScript">
+var mapObj;
 function initialize() {
 <%
 if(c.getCentralLong() != null && c.getCentralLat() != null && c.getCentralLong()>0 && c.getCentralLat()>0 ){
@@ -86,13 +87,9 @@ if(c.getCentralLong() != null && c.getCentralLat() != null && c.getCentralLong()
 	  	mapObj.addOverlay(marker,true);
 <%} else {%>
     if (GBrowserIsCompatible()) {
-      	var mapObj = new GMap2(document.getElementById("map_canvas"));
-		var startPoint = new GLatLng(Number(<%=strLat%>)+CN_OFFSET_LAT, Number(<%=strLon%>)+CN_OFFSET_LON);
-		mapObj.setCenter(startPoint, 14);
-		mapObj.addControl(new GMapTypeControl());
-		mapObj.addControl(new GLargeMapControl());
-		mapObj.addControl(new MeasureDistanceControl());
-		mapObj.addControl(new MapSearcherControl());
+    	mapObj = createCommonMap("map_canvas");
+    	var startPoint = new GLatLng(Number(<%=strLat%>)+CN_OFFSET_LAT, Number(<%=strLon%>)+CN_OFFSET_LON);
+    	mapObj.setCenter(startPoint, 14);
       	marker = new DivImageMarker( startPoint, "<%=c.getName()%>" );
       	mapObj.addOverlay(marker);
     }

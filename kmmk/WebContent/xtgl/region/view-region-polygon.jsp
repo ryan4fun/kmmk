@@ -74,15 +74,9 @@ var points = new Array();
 <%} else {%>
 function initialize() {
 	if (GBrowserIsCompatible()) {
-      	mapObj = new GMap2(document.getElementById("map_canvas"),{googleBarOptions : {style : "new"} });
-
+		mapObj = createCommonMap("map_canvas");
 		var startPoint = new GLatLng(Number(<%=strLat%>)+CN_OFFSET_LAT, Number(<%=strLon%>)+CN_OFFSET_LON);
 		mapObj.setCenter(startPoint, 14);
-		mapObj.addControl(new GMapTypeControl());
-      	mapObj.addControl(new GLargeMapControl());
-      	mapObj.addControl(new MeasureDistanceControl());
-      	mapObj.addControl(new MapSearcherControl());
-
       	<%
       	Double lat = null;
       	Double lon = null;

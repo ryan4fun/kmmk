@@ -63,8 +63,8 @@ var marker1 = null, marker2 = null;
 
 function initialize() {
     if (GBrowserIsCompatible()) {
-    <%if( login.getMapType()==LoginInfo.MAPABC ){%>
     	mapObj = createCommonMap("map_canvas");
+    <%if( login.getMapType()==LoginInfo.MAPABC ){%>
 	    var startPoint = createCommonLatLng(<%=strLat%>, <%=strLon%>);
 	    mapObj.setZoomAndCenter(14,startPoint);
 
@@ -88,15 +88,9 @@ function initialize() {
       	
 	    drawPoly();
 	<%} else {%>
-      	mapObj = new GMap2(document.getElementById("map_canvas"));
 		var startPoint = new GLatLng(<%=strLat%>, <%=strLon%>);
 		mapObj.setCenter(startPoint, 14);
 		mapObj.disableDoubleClickZoom();
-		mapObj.addControl(new GMapTypeControl());
-      	mapObj.addControl(new GLargeMapControl());
-      	mapObj.addControl(new MeasureDistanceControl());
-      	mapObj.addControl(new MapSearcherControl());
-
       	<%
       	if( c.getCentralLat() != null && c.getCentralLong() != null && c.getCentralLong()>0 && c.getCentralLat()>0 ){
       	%>
