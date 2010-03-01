@@ -96,7 +96,7 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 		
 		if(state != this.curState  && this.curState != -1){
 			
-		
+			System.out.println("Area checker about to return true : state = " + state + "CurState = "+ this.curState);
 			result =  true;
 		}
 		this.curState = state;
@@ -115,7 +115,7 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 				
 				if(msg.getLatitude() < this.regione.getCentralLat()
 						&& msg.getLatitude() > this.regione.getEdgeLat()){
-					
+					System.out.println("Rect checker return true ");
 					return true;
 				}
 			}
@@ -133,6 +133,8 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 			double distance = Util.CalculateLatLng2Distance(msg.getLatitude(),msg.getLongitude(),regione.getCentralLat(),regione.getCentralLong());
 			distance = distance * 1000;
 			if(distance < radius){
+				
+				System.out.println("Node region checker return true: distence = " + distance);
 				return true;
 			}
 			
