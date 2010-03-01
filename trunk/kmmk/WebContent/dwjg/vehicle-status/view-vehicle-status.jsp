@@ -66,21 +66,14 @@ function resize(){
 
 function initialize() {
 	if (GBrowserIsCompatible()) {
-	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
 		mapObj = createCommonMap("map_canvas");
-		
+	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
 		var markerOption = new MMarkerOptions();
 		markerOption.canShowTip = true;
 		markerOption.isDraggable = false;
 		markerOption.imageAlign=5;
 		markerOption.imageUrl = normIcon;
 		mapObj.setDefaultMarkerOption(markerOption);
-	<%} else {%>
-	    mapObj = new GMap2(document.getElementById("map_canvas"));
-	    mapObj.addControl(new GMapTypeControl());
-	    mapObj.addControl(new GLargeMapControl());
-	    mapObj.addControl(new MeasureDistanceControl());
-	    mapObj.addControl(new MapSearcherControl());
 	<%}%>
 	}
 }
