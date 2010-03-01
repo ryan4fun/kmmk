@@ -36,15 +36,7 @@ $(document).ready(function(){
 	$("#map_canvas").height($(window).height()-$("#search-div").height()-16-25);
 //	init mapObj
 	if (GBrowserIsCompatible()) {
-		<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-			mapObj = createCommonMap("map_canvas");
-		<%} else {%>
-		    mapObj = new GMap2(document.getElementById("map_canvas"));
-		    mapObj.addControl(new GMapTypeControl());
-		    mapObj.addControl(new GLargeMapControl());
-		    mapObj.addControl(new MeasureDistanceControl());
-		    mapObj.addControl(new MapSearcherControl());
-		<%}%>
+		mapObj = createCommonMap("map_canvas");
 	}
 //	add marker
 	<%
