@@ -91,15 +91,54 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	var RUNNING_ICON = "<%=mapImagePath %>images/google_icon/running.png";
 	var OFFLINE_ICON = "<%=mapImagePath %>images/google_icon/offline.png";
 	var ALERT_ICON = "<%=mapImagePath %>images/google_icon/alert.png";
+
+	function createVehicleMarker(mapObj, vs) {
+		var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
+			"</b><br>纬度: <b>" + vs.currentLat + 
+			"</b><br>经度: <b>" + vs.currentLong + 
+			"</b><br>行驶状态: <b>" + vs.isRunning + 
+			"</b><br>在线状态: <b>" + vs.isOnline + 
+			"</b><br>求救状态: <b>" + vs.isAskHelp + 
+			"</b><br>限制区域报警: <b>" + vs.limitAreaAlarm + 
+			"</b><br>超速报警: <b>" + vs.overSpeed + 
+			"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
+			"</b><br>任务ID: <b>" + vs.taskId + 
+			"</b><br>当前速度: <b>" + vs.currentSpeed + 
+			"</b><br>更新时间: <b>" + vs.lastUpdate;
+		
+		<%if( login.getMapType()==LoginInfo.MAPABC ){%>
+			var tipOption = new MTipOptions();
+			tipOption.title = "车辆信息";
+			tipOption.content = html;
+			var markerOption = new MMarkerOptions();
+			markerOption.imageUrl = vs.alertIcon;
+			markerOption.tipOption = tipOption;
+			markerOption.canShowTip = true;
+			markerOption.imageAlign=5;
+			var marker = new MMarker(new MLngLat(vs.currentLong,vs.currentLat),markerOption);
+			mapObj.addOverlay(marker,false);
+			marker.id = vs.licensPadNumber;
+			return marker;
+		<%} else {%>
+			var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,vs.alertIcon );
+		    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
+		    	mapObj.setCenter(latlng);
+				marker.imgMarker_.openInfoWindowHtml(html);
+			});
+		    mapObj.addOverlay(marker);
+		    return marker;
+		<%}%>
+	}
 	
 	function createCommonMap( mapDivID, option ){
 		if(option) {
 			return new GMap2( document.getElementById(mapDivID), option );
 		} else {
 			var mapObj = new GMap2( document.getElementById(mapDivID) );
-		  	mapObj.addControl(new GMapTypeControl());
-		  	mapObj.addControl(new GLargeMapControl());
-		  	mapObj.addControl(new MeasureDistanceControl());
+			mapObj.addControl(new GMapTypeControl());
+		    mapObj.addControl(new GLargeMapControl());
+		    mapObj.addControl(new MeasureDistanceControl());
+		    mapObj.addControl(new MapSearcherControl());
 		  	return mapObj;
 		}
 	}

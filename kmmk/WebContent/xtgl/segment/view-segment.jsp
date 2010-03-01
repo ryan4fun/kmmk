@@ -48,11 +48,11 @@ $(document).ready(function(){
 function initialize() {
 <%if(sds.size()>0){ %>
     if (GBrowserIsCompatible()) {
+    	mapObj = createCommonMap("map_canvas");
     	<%
     	Double lat = null;
       	Double lon = null;
 		if( login.getMapType()==LoginInfo.MAPABC ){%>
-		    mapObj = createCommonMap("map_canvas");
 		    var startPoint = createCommonLatLng(<%=Util.CENTER_LAT%>, <%=Util.CENTER_LON%>);
 		    mapObj.setZoomAndCenter(10,startPoint);
 
@@ -98,12 +98,6 @@ function initialize() {
 			createMarker(points[0], startIcon, "起点");
 			createMarker(points[points.length-1], endIcon, "终点");
 		<%} else {%>
-	      	mapObj = new GMap2(document.getElementById("map_canvas"));
-	      	mapObj.addControl(new GMapTypeControl());
-	      	mapObj.addControl(new GLargeMapControl());
-	      	mapObj.addControl(new MeasureDistanceControl());
-	      	mapObj.addControl(new MapSearcherControl());
-	      	
 	      	var points = new Array();
 			<%
 			Double tempValue = null;
