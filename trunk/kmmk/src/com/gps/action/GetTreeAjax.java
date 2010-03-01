@@ -130,7 +130,7 @@ public class GetTreeAjax extends Action {
 			boolean checked = false;
 			String tip = null;
 			if(vs.getCurrentSpeed()!=null){
-				tip = "当前速度 ："+vs.getCurrentSpeed();
+				tip = "当前速度："+vs.getCurrentSpeed();
 			} else {
 				tip = "无法获取速度信息";
 			}
