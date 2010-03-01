@@ -10,6 +10,7 @@ import com.gps.bean.OrganizationBean;
 import com.gps.bean.UsersBean;
 import com.gps.bean.VehicleBean;
 import com.gps.orm.Organization;
+import com.gps.orm.StateHelper;
 import com.gps.orm.Users;
 import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleStatus;
@@ -17,6 +18,7 @@ import com.gps.service.RoleService;
 import com.gps.service.UsersService;
 import com.gps.service.VehicleService;
 import com.gps.service.VehicleStatusService;
+import com.gps.util.Util;
 
 public class GetTreeAjax extends Action {
 
@@ -126,6 +128,7 @@ public class GetTreeAjax extends Action {
 			tmpJson.put("id", "v_"+v.getVehicleId());
 			tmpJson.put("text", v.getInternalNumber()+"("+v.getLicensPadNumber()+")");
 			VehicleStatus vs = v.getVehicleStatus();
+			StateHelper sh = v.getStateHelper();
 			String style = "color:black;";
 			boolean checked = false;
 			String tip = "";
@@ -155,6 +158,14 @@ public class GetTreeAjax extends Action {
 			} else {
 				tip += "无法获取速度信息";
 			}
+			
+			tip += "\n";
+			if(sh.getLastUpdate() != null){
+				tip += "最后联系时间："+Util.FormatDateLong(sh.getLastUpdate());
+			} else {
+				tip += "最后联系时间: 未知";
+			}
+			
 			tmpJson.put("style", style);
 			Short monitLevel = v.getMonitLevel();
 			if(monitLevel!=null && monitLevel==VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON)
