@@ -83,12 +83,7 @@ var points = new Array();
 var rcvTimes = new Array();
 function initialize() {
     if (GBrowserIsCompatible()) {
-    	mapObj = new GMap2(document.getElementById("map_canvas"));
-      	mapObj.addControl(new GMapTypeControl());
-      	mapObj.addControl(new GLargeMapControl());
-      	mapObj.addControl(new MeasureDistanceControl());
-      	mapObj.addControl(new MapSearcherControl());
-      	
+    	mapObj = createCommonMap("map_canvas");
 		<%
 		Double lat = null;
       	Double lon = null;
