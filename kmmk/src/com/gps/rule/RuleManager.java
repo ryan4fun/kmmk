@@ -81,7 +81,9 @@ public class RuleManager {
 			
 		}
 		initVehicleRules();
-		segScheduler = new SegmentScheduler(currentTask);
+		if(currentTask !=null){
+			segScheduler = new SegmentScheduler(currentTask);
+		}
 		startTimingRuleChecker();
 	}
 	
