@@ -84,6 +84,8 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 //		}
 //		return false;
 		short state;
+		boolean result = false;
+		
 		if(isInThisRegione(msg)){
 			
 			state = STATE_INSIDE;
@@ -92,13 +94,14 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 			state = STATE_OUTSIDE;
 		}
 		
-		if(state != this.curState){
+		if(state != this.curState  && this.curState != -1){
 			
-			this.curState = state;
-			return true;
-		}
 		
-		return false;
+			result =  true;
+		}
+		this.curState = state;
+		
+		return result;
 	}
 
 
