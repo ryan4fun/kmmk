@@ -128,30 +128,29 @@ public class GetTreeAjax extends Action {
 			VehicleStatus vs = v.getVehicleStatus();
 			String style = "color:black;";
 			boolean checked = false;
-			String tip = null;
+			String tip = "";
+			if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE){				
+				icon = "vehicle-offline.gif";
+				tip += "当前状态：离线";
+			} else if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_BLIND){				
+				icon = "vehicle-blind.gif";
+				tip += "当前状态：盲区";
+			} else if(vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ALERT){				
+				icon = "vehicle-error.gif";
+				tip += "当前状态：警告";
+			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING){				
+				icon = "vehicle-run.gif";
+				tip += "当前状态：正在行驶";
+			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){				
+				icon = "vehicle-stop.gif";
+				tip += "当前状态：停车";
+			}
 			if(vs.getCurrentSpeed()!=null){
 				tip = "当前速度："+vs.getCurrentSpeed();
 			} else {
 				tip = "无法获取速度信息";
 			}
-			
-			if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE){
-				//style = "color:black;";
-				icon = "vehicle-offline.gif";
-			} else if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_BLIND){
-				//style = "color:gray;";
-				icon = "vehicle-blind.gif";
-			} else if(vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ALERT){
-				//style = "color:red;";
-				icon = "vehicle-error.gif";
-			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING){
-				//style = "color:#00FB07";
-				icon = "vehicle-run.gif";
-			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){
-				//style = "color:blue;";
-				icon = "vehicle-stop.gif";
-			}
-			
+			tip += "\n";
 			tmpJson.put("style", style);
 			Short monitLevel = v.getMonitLevel();
 			if(monitLevel!=null && monitLevel==VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON)
