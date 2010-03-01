@@ -221,10 +221,10 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 		
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			
-			str.append("è¿›å…¥ï¼š");
+			str.append("½øÈë£º");
 		}else{
 			
-			str.append("ç¦»å¼€ï¼š");
+			str.append("Àë¿ª£º");
 		}
 		str.append(this.regione.getName());
 		
