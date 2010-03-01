@@ -144,13 +144,20 @@ public class GetTreeAjax extends Action {
 			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){				
 				icon = "vehicle-stop.gif";
 				tip += "当前状态：停车";
+			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){				
+				icon = "vehicle-stop.gif";
+				tip += "当前状态：停车";
+			} else {				
+				icon = "vehicle-unknown.gif";
+				tip += "当前状态：未知";
 			}
-			if(vs.getCurrentSpeed()!=null){
-				tip = "当前速度："+vs.getCurrentSpeed();
-			} else {
-				tip = "无法获取速度信息";
-			}
+			
 			tip += "\n";
+			if(vs.getCurrentSpeed()!=null){
+				tip += "当前速度："+vs.getCurrentSpeed();
+			} else {
+				tip += "无法获取速度信息";
+			}
 			tmpJson.put("style", style);
 			Short monitLevel = v.getMonitLevel();
 			if(monitLevel!=null && monitLevel==VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON)
