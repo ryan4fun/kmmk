@@ -20,7 +20,7 @@ import com.gps.servlet.MKgpsServlet;
 
 public class Util {
 	public final static String DATE_FORMAT_SHORT = "yyyy/MM/dd";
-	public final static String DATE_FORMAT_MID = "yyyy/MM/dd HHç‚¹";
+	public final static String DATE_FORMAT_MID = "yyyy/MM/dd HHµã";
 	public final static String DATE_FORMAT_LONG = "yyyy/MM/dd HH:mm:ss";
 	
 	public final static int DAY_MILSEC = 24 * 60 * 60 *1000;
@@ -418,19 +418,19 @@ public class Util {
 		int days = getDays(longValue);
 		if(days > 0) {
 			buf.append(days);
-			buf.append("å¤© ");
+			buf.append("Ìì ");
 		}
 		
 		int hours = getHours(longValue);
 		if(hours > 0) {
 			buf.append(hours);
-			buf.append("å°æ—¶ ");
+			buf.append("Ğ¡Ê± ");
 		}
 		
 		int mins = getMins(longValue);
 		if(mins > 0) {
 			buf.append(mins);
-			buf.append("åˆ†é’Ÿ ");
+			buf.append("·ÖÖÓ ");
 		}
 		
 		return buf.toString();
