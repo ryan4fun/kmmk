@@ -259,11 +259,11 @@ public class RuleManager {
 			}
 		}
 		
-		for(AlertTypeDic alertDic :clearList){
-			
-			cleartUI(alertDic);
-		}
-		
+//		for(AlertTypeDic alertDic :clearList){
+//			
+//			cleartUI(alertDic);
+//		}
+//		
 		for(AlertHistory alert :alertList){
 			
 			notiryUI(alert);
