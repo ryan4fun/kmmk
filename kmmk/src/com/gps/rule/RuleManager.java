@@ -288,7 +288,7 @@ public class RuleManager {
 		
 		if(checker.doCheck(msg)){
 			//trigger alert
-			System.out.println("Alert!");
+			System.out.println("Alert!   long = " + msg.getLongitude() + " lat = "+ msg.getLatitude());
 			AlertTypeDic alertDic = ((AbstractPrivateRuleChecker)checker).getAlertTypeDic();
 			AlertHistory alert =  new AlertHistory();
 			alert.setVehicleId(checker.vehicle.getVehicleId());
