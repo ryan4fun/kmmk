@@ -85,6 +85,12 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	<script type="text/javascript">
 	var CN_OFFSET_LAT = <%=login.getMapType()==LoginInfo.GOOGLE_MAP_CN ? MKgpsServlet.mkgpsConf.getProperty("googleMap.cnOffsetLat") : 0%>;
 	var CN_OFFSET_LON = <%=login.getMapType()==LoginInfo.GOOGLE_MAP_CN ? MKgpsServlet.mkgpsConf.getProperty("googleMap.cnOffsetLon") : 0%>;
+
+	var START_ICON = "<%=mapImagePath %>images/google_icon/start.png";
+	var STOP_ICON = "<%=mapImagePath %>images/google_icon/stop.png";
+	var RUNNING_ICON = "<%=mapImagePath %>images/google_icon/running.png";
+	var OFFLINE_ICON = "<%=mapImagePath %>images/google_icon/offline.png";
+	var ALERT_ICON = "<%=mapImagePath %>images/google_icon/alert.png";
 	
 	function createCommonMap( mapDivID, option ){
 		if(option) {
@@ -221,7 +227,6 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	MapSearcherControl.prototype.oldOverLays = null;
 	MapSearcherControl.prototype.addoverlayListener = null;
 	MapSearcherControl.prototype.removeoverlayListener = null;
-	MapSearcherControl.prototype.runningIcon = "<%=mapImagePath %>images/google_icon/running.png";
 	MapSearcherControl.prototype.initialize = function(mapObj) {
 		var msc = this;
 		this.mapObj = mapObj;
@@ -234,11 +239,11 @@ if( login.getMapType()==LoginInfo.MAPABC ){
     	;
     	this.oldOverLays = new Array();
     	this.addoverlayListener = GEvent.addListener(mapObj, "addoverlay", function(overlay) {
-    		if( overlay instanceof GMarker || overlay instanceof DivImageMarker || overlay instanceof DivMarker )
+    		if( overlay instanceof GOverlay )
 				msc.oldOverLays.push(overlay);
     	});
     	this.removeoverlayListener = GEvent.addListener(mapObj, "removeoverlay", function(overlay) {
-    		if( overlay instanceof GMarker || overlay instanceof DivImageMarker || overlay instanceof DivMarker ){
+    		if( overlay instanceof GOverlay ){
     			for(var i=0;i<msc.oldOverLays.length;i++){
     				if( msc.oldOverLays[i] == overlay ){
     					msc.oldOverLays.splice(i,1);
@@ -433,7 +438,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 			var html = "</b><br>车牌号: <b>" + vehicle.licensPadNumber + 
 				"</b><br>经度: <b>" + vehicle.lng +
 				"</b><br>纬度: <b>" + vehicle.lat;
-			var marker = new DivImageMarker( new GLatLng(Number(vehicle.lat)+CN_OFFSET_LAT,Number(vehicle.lng)+CN_OFFSET_LON), vehicle.licensPadNumber, this.runningIcon );
+			var marker = new DivImageMarker( new GLatLng(Number(vehicle.lat)+CN_OFFSET_LAT,Number(vehicle.lng)+CN_OFFSET_LON), vehicle.licensPadNumber, RUNNING_ICON );
 		    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 				marker.imgMarker_.openInfoWindowHtml(html);
 			});
