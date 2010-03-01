@@ -82,6 +82,7 @@ var stopIcon = "<%=mapImagePath %>images/google_icon/stop.png";
 function initialize() {
 	<% if(ts.size()>0){ %>
     if (GBrowserIsCompatible()) {
+    	mapObj = createCommonMap("map_canvas");
     	<%
     	Double lat = null;
       	Double lon = null;
@@ -93,7 +94,6 @@ function initialize() {
 		recieveTime = (Date)PropertyUtils.getProperty(firstPoint,"recieveTime");
 		
 		if( login.getMapType()==LoginInfo.MAPABC ){%>
-		    mapObj = createCommonMap("map_canvas");
 		    var startPoint = createCommonLatLng(<%=Util.CENTER_LAT%>, <%=Util.CENTER_LON%>);
 		    mapObj.setZoomAndCenter(10,startPoint);
 
@@ -186,12 +186,6 @@ function initialize() {
 			polyShape.id="polyShape";
 			mapObj.addOverlay(polyShape, true);
 		<%} else {%>
-	      	mapObj = new GMap2(document.getElementById("map_canvas"));
-	      	mapObj.addControl(new GMapTypeControl());
-	      	mapObj.addControl(new GLargeMapControl());
-	      	mapObj.addControl(new MeasureDistanceControl());
-	      	mapObj.addControl(new MapSearcherControl());
-	      	
 	      	<%
 			if( lat != null && lon != null ){
 			%>
