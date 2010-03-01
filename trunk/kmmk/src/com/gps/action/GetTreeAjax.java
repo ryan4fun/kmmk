@@ -130,9 +130,9 @@ public class GetTreeAjax extends Action {
 			boolean checked = false;
 			String tip = null;
 			if(vs.getCurrentSpeed()!=null){
-				tip = "µ±Ç°Ê±ËÙ£º"+vs.getCurrentSpeed();
+				tip = "å½“å‰é€Ÿåº¦ ï¼š"+vs.getCurrentSpeed();
 			} else {
-				tip = "Ã»ÓĞËÙ¶ÈĞÅÏ¢";
+				tip = "æ— æ³•è·å–é€Ÿåº¦ä¿¡æ¯";
 			}
 			
 			if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE){
