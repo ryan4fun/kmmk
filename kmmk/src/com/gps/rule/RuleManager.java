@@ -57,12 +57,14 @@ public class RuleManager {
 
 	public RuleManager(VehicleStatus vs) {
 		
-		this.vehicle = vs.getVehicle();
-		int taskId = vs.getTaskId();
-		if(taskId >=0){
-			this.currentTask = getServiceLocator().getTaskService().findById(taskId);
+		if(vs != null){
+			this.vehicle = vs.getVehicle();
+			int taskId = vs.getTaskId();
+			if(taskId >=0){
+				this.currentTask = getServiceLocator().getTaskService().findById(taskId);
+			}
+			initial();
 		}
-		initial();
 	}
 	
 
