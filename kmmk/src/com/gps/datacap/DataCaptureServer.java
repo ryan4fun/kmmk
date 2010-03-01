@@ -11,12 +11,14 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.gps.orm.Vehicle;
 import com.gps.service.ServiceLocator;
 
 /**
@@ -37,6 +39,7 @@ public class DataCaptureServer {
 	private Hashtable<String,AbstractClientHandler> registedClients = new Hashtable<String,AbstractClientHandler>();
 	private Hashtable<String,Integer> unknowDevicesMsgCount = new Hashtable<String,Integer>();
 	
+	private static HashMap<String, Vehicle> vechileCache = new HashMap<String, Vehicle>();
 
 
 	public static void initServer(String[] gps_ports) {
@@ -240,5 +243,20 @@ public class DataCaptureServer {
 		this.unknowDevicesMsgCount.put(deviceId, count);
 		
 		return count<UNKNOW_DEVICE_ALLOWED_MSG_COUNT;
+	}
+
+	
+	public Vehicle getVehicleById(String deviceId) {
+		
+		
+		return this.vechileCache.get(deviceId);
+	}
+	
+	public synchronized void registerVehicleCache(String deviceId, Vehicle v){
+		
+//		if(!this.vechileCache.containsKey(deviceId)){
+			
+			this.vechileCache.put(deviceId, v);
+//		}
 	}
 }
