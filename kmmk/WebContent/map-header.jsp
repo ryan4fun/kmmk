@@ -190,9 +190,6 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 		setCenterByLatLngs(mapObj, maxLat, maxLng, minLat, minLng);
 	}
 	
-	function _setButtonStyle(button) {}
-	
-	
 	function MeasureDistanceControl() {}
 	MeasureDistanceControl.prototype = new GControl();
 	MeasureDistanceControl.prototype.measureDistanceLine = null;

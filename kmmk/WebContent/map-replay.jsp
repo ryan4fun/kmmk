@@ -13,8 +13,7 @@
 	ReplayControl.prototype = new GControl();
 	ReplayControl.prototype.initialize = function(mapObj) {
 		var container = document.createElement("div");
-    	_setButtonStyle(container);
-    	$(container).html("轨迹回放");
+    	$(container).addClass("mapLabel").html("轨迹回放");
         GEvent.addDomListener(container, "click", function() {
        		if( _replayLine ){
        			clearInterval(_replayInterval);
