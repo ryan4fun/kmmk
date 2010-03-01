@@ -144,9 +144,6 @@ public class GetTreeAjax extends Action {
 			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){				
 				icon = "vehicle-stop.gif";
 				tip += "当前状态：停车";
-			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){				
-				icon = "vehicle-stop.gif";
-				tip += "当前状态：停车";
 			} else {				
 				icon = "vehicle-unknown.gif";
 				tip += "当前状态：未知";
