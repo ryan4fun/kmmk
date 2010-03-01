@@ -174,7 +174,7 @@ function initialize() {
 		GEvent.addListener(mapObj, "click", leftClick);
 		mapObj.addControl(new GMapTypeControl());
       	mapObj.addControl(new GLargeMapControl());
-      	mapObj.addControl(new MeasureDistanceControl());
+      	//mapObj.addControl(new MeasureDistanceControl());
       	mapObj.addControl(new MapSearcherControl());
 
       	<%

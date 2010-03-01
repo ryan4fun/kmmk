@@ -141,7 +141,7 @@ function initialize(){
 		  	mapObj = new GMap2(document.getElementById("map_canvas"),{googleBarOptions : {style : "new"} });
 		  	mapObj.addControl(new GMapTypeControl());
 		  	mapObj.addControl(new GLargeMapControl());
-		  	mapObj.addControl(new MeasureDistanceControl());
+		  	//mapObj.addControl(new MeasureDistanceControl());
 		  	mapObj.addControl(new MapSearcherControl());
 			var startPoint = new GLatLng(Number($("#centralLat").val())+CN_OFFSET_LAT, Number($("#centralLong").val())+CN_OFFSET_LON);
 			mapObj.setCenter(startPoint, 14);
