@@ -96,7 +96,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		
 		if(message != null){			
 	
-			Vehicle vehicle = getServiceLocator().getVehicleService().findByDeviceId(message.getDeviceId());			
+			Vehicle vehicle = getVehicleById(message.getDeviceId());			
 			if(vehicle != null){
 				
 				//for illeagle position:
@@ -130,7 +130,7 @@ public abstract class AbstractClientHandler implements Runnable{
 					alert.setVehicleId(-1);
 					alert.setAlertTypeDic(alertDic);
 					alert.setOccurDate(new Date());
-					alert.setDescription("Êú™ÁôªËÆ∞ËÆæÂ§á:" + message.getDeviceId());
+					alert.setDescription("Œ¥µ«º«…Ë±∏:" + message.getDeviceId());
 					ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 				}
 			}
@@ -138,6 +138,20 @@ public abstract class AbstractClientHandler implements Runnable{
 		
 	}
 	
+	private Vehicle getVehicleById(String deviceId) {
+		
+		Vehicle result = null;
+		result = this.server.getVehicleById(deviceId);
+		if(result == null){
+			result = getServiceLocator().getVehicleService().findByDeviceId(deviceId);
+			if(result != null){
+				
+				this.server.registerVehicleCache(deviceId, result);
+			}
+		}
+		return result;
+	}
+
 	private void addIleaglePosAlert(Message message, Vehicle vehicle) {
 		
 		AlertTypeDic alertDic = AlertTypeDicService.getInstance(AlertTypeDicService.ALERT_TYPE_DIC_ID_ILLEAGLE_POS);
@@ -146,7 +160,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		alert.setAlertTypeDic(alertDic);
 		alert.setOccurDate(new Date());
 		System.out.println("get an illeagle position data :  long=" + message.getLongitude() + "lat="+ message.getLatitude());
-		alert.setDescription("ÈùûÊ≥ïÂùêÊ†á : ÁªèÂ∫¶=" + message.getLongitude() + "Á∫¨Â∫¶="+ message.getLatitude());
+		alert.setDescription("∑«∑®◊¯±Í : æ≠∂»=" + message.getLongitude() + " Œ≥∂»="+ message.getLatitude());
 		ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 
 		
