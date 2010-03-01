@@ -73,18 +73,18 @@ $(document).ready(function(){
 function resize(){
 	$("#map_canvas").height($(window).height()-$("#search-div").height()-25);
 }
-
+var mapObj = null;
 var startIcon = "<%=mapImagePath %>images/google_icon/start.png";
 var endIcon = "<%=mapImagePath %>images/google_icon/running.png";
 function initialize() {
 	if (GBrowserIsCompatible()) {
+		mapObj = createCommonMap("map_canvas");
 		<%
     	Double lat = null;
       	Double lon = null;
       	Date recieveTime = null;
       	
       	if( login.getMapType()==LoginInfo.MAPABC ){%>
-		    mapObj = createCommonMap("map_canvas");
 		    var startPoint = createCommonLatLng(<%=Util.CENTER_LAT%>, <%=Util.CENTER_LON%>);
 		    mapObj.setZoomAndCenter(10,startPoint);
 
@@ -150,12 +150,6 @@ function initialize() {
 			mapObj.addOverlay(line, true);
 			line.id="line";
 		<%} else {%>
-	      	mapObj = new GMap2(document.getElementById("map_canvas"));
-	      	mapObj.addControl(new GMapTypeControl());
-	      	mapObj.addControl(new GLargeMapControl());
-	      	mapObj.addControl(new MeasureDistanceControl());
-	      	mapObj.addControl(new MapSearcherControl());
-	      	
 	      	<%
 	      	if(ts.size()>0){
 				Object firstPoint = ts.get(0);
