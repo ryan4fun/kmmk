@@ -143,10 +143,10 @@ public class GetTreeAjax extends Action {
 				tip += "当前状态：警告";
 			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING){				
 				icon = "vehicle-run.gif";
-				tip += "当前状态：正在行驶";
+				tip += "当前状态：行驶中";
 			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_STOP){				
 				icon = "vehicle-stop.gif";
-				tip += "当前状态：停车";
+				tip += "当前状态：静止";
 			} else {				
 				icon = "vehicle-unknown.gif";
 				tip += "当前状态：未知";
