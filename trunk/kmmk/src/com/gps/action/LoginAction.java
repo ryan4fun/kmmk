@@ -19,7 +19,7 @@ public class LoginAction extends Action{
 	public void doAction() throws Exception{
 		String verifyCode = (String)request.getSession().getAttribute("verifyCode");
 		if(!get("verifyCode").toLowerCase().equals(verifyCode.toLowerCase())){
-			throw new Exception("æ ¡éªŒç é”™è¯¯ï¼");
+			throw new Exception("Ğ£ÑéÂë´íÎó£¡");
 		}
 		
 		
@@ -53,7 +53,7 @@ public class LoginAction extends Action{
 			}
 			request.getSession().setAttribute("login", login);
 		} else {			
-			throw new Message("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯ï¼");
+			throw new Message("ÓÃ»§Ãû»òÃÜÂë´íÎó£¡");
 		}
 	}
 }
