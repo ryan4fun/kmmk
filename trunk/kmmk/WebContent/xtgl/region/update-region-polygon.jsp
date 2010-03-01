@@ -111,7 +111,7 @@ function initialize() {
 		GEvent.addListener(mapObj, "click", addMarker);
 		mapObj.addControl(new GMapTypeControl());
       	mapObj.addControl(new GLargeMapControl());
-      	mapObj.addControl(new MeasureDistanceControl());
+      	//mapObj.addControl(new MeasureDistanceControl());
       	mapObj.addControl(new MapSearcherControl());
 
       	<%
