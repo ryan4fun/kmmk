@@ -70,7 +70,7 @@ $(document).ready(function(){
 		}
 	});
 	
-  	$("#inputform").validate({
+  	$("#tackform").validate({
 		rules: {
   			taskName: {
 				required: true
@@ -182,18 +182,11 @@ $(document).ready(function(){
 	%>
 //	init mapObj
 	if (GBrowserIsCompatible()) {
+		mapObj = createCommonMap("map_canvas");
 		<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-	 		mapObj = createCommonMap("map_canvas");
-
 	 		var lineopt = new MLineOptions();
 			lineopt.canShowTip = false;
 			mapObj.setDefaultLineOption(lineopt);
-		<%} else {%>
-			mapObj = new GMap2(document.getElementById("map_canvas"));
-		    mapObj.addControl(new GMapTypeControl());
-		    mapObj.addControl(new GLargeMapControl());
-		    mapObj.addControl(new MeasureDistanceControl());
-		    mapObj.addControl(new MapSearcherControl());
 		<%}%>
 	}
 //	add overlay
@@ -408,7 +401,7 @@ function checkName(newName){
 <div id="search-div">
 <h3><a href="#">车辆任务信息</a></h3>
 <div style="padding:2px;">
-	<form id="inputform" action="mkgps.do" method="post">
+	<form id="tackform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
 		<input type="hidden" name = "success" value="update-task-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-task-faild.jsp"/>
@@ -509,12 +502,11 @@ function checkName(newName){
 			</tr>
 			<tr>
 				<td colSpan="4" align="center"">
-					<input type="submit" value="提 交"/> <input type="reset" value="重 置"/></td>				
+					<input type="submit" value="提 交"/> <input type="reset" value="重 置"/></td>
 			</tr>
 		</table>
-		
-		<div id="map_canvas" style="border:1px solid black; width: 98%; height: 450px"></div>		
 	</form>
+	<div id="map_canvas" style="border:1px solid black; width: 98%; height: 450px"></div>
 </div>
 </div>
 </body>
