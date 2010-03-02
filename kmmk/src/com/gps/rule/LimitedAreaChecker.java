@@ -224,13 +224,22 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 		
 		StringBuffer str = new StringBuffer(100);
 		
-		if(this.opType == RulesService.RULE_OP_OBEY){
+//		if(this.opType == RulesService.RULE_OP_OBEY){
+//			
+//			str.append("进入：");
+//		}else{
+//			
+//			str.append("离开：");
+//		}
+
+		if(this.curState == STATE_INSIDE){
 			
 			str.append("进入：");
 		}else{
 			
 			str.append("离开：");
 		}
+			
 		str.append(this.regione.getName());
 		
 		return str.toString();
