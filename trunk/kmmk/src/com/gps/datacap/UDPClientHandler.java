@@ -76,7 +76,7 @@ public class UDPClientHandler extends AbstractClientHandler {
 		while(true){
 			
 			try {
-			
+				if(serverSocket == null) continue;
 				serverSocket.receive(dataPacket);
 				receivCount = dataPacket.getLength();
 				
