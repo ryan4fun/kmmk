@@ -57,25 +57,9 @@ $(document).ready(function(){
 		setTimeout(resize, 500);
 	});
 	<%if( isShowMap ){
-		StateHelperBean shb = new StateHelperBean();
-		shb.setVehicleId(vs.getVehicleId());
-		StateHelper sh = shb.findById();
+		String vInfo = VehicleStatusBean.generateVehicleInfo(vs).toString();
 	%>
-		createMarker({
-			currentLat : <%=vs.getCurrentLat()%>,
-			currentLong : <%=vs.getCurrentLong()%>,
-			licensPadNumber : "<%=vs.getLicensPadNumber() == null ? "" : vs.getLicensPadNumber()%>",
-			internalNumber: "<%=vs.getVehicle().getInternalNumber() == null ? "" : vs.getVehicle().getInternalNumber()%>",
-			isRunning : "<%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%>",
-			isOnline : "<%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%>",
-			isAskHelp : "<%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%>",
-			limitAreaAlarm : "<%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%>",
-			overSpeed : "<%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%>",
-			tireDrive : "<%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%>",
-			currentSpeed : "<%=vs.getCurrentSpeed()==null?"":vs.getCurrentSpeed()%>",
-			lastUpdate : "<%=Util.FormatDateLong(sh.getLastUpdate())%>",
-			alertIcon : "<%=mapImagePath + VehicleStatusBean.getAlertIcon(vs)%>"
-		});
+		createMarker(eval(<%=vInfo%>));
 	<%}%>
 	autoRefresh();
 });
@@ -101,16 +85,17 @@ function initialize() {
 function createMarker(vs) {
 	if(mapObj == null)
 		initialize();
-<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-	var marker = new MMarker(new MLngLat(vs.currentLong,vs.currentLat));
-	mapObj.setZoomAndCenter(10,marker.lnglat);
-	mapObj.addEventListener( marker, MOUSE_CLICK, leftClick );
-	mapObj.addOverlay(marker,true);
-<%} else {%>
-	var marker = createVehicleMarker(mapObj,vs);
-	mapObj.addOverlay(marker);
-	mapObj.setCenter(marker.getLatLng(), 13);
-<%}%>
+	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
+		var marker = new MMarker(new MLngLat(vs.currentLong,vs.currentLat));
+		mapObj.setZoomAndCenter(10,marker.lnglat);
+		mapObj.addEventListener( marker, MOUSE_CLICK, leftClick );
+		mapObj.addOverlay(marker,true);
+	<%} else {%>
+		mapObj.clearOverlays();
+		var marker = createVehicleMarker(mapObj,vs);
+		mapObj.addOverlay(marker);
+		mapObj.setCenter(marker.getLatLng(), 13);
+	<%}%>
 }
 
 var resreshObj = null;
