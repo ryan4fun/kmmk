@@ -318,20 +318,20 @@ public class VehicleStatusBean extends AbstractBean {
 //			isTiredDrive = true;
 //		if (!isAskHelp && vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON)
 //			isAskHelp = true;
+		
 		json.put("currentLat", vs.getCurrentLat())
 			.put("currentLong", vs.getCurrentLong())
-			.put("licensPadNumber", vs.getLicensPadNumber())
-			.put("currentSpeed", vs.getCurrentSpeed())
-			.put("isRunning", VehicleStatusService.runningStates.get(vs.getIsRunning()))
-			.put("isOnline", VehicleStatusService.onlineStates.get(vs.getIsOnline()))
-			.put("isAskHelp", VehicleStatusService.askHelpStates.get(vs.getIsAskHelp()))
-			.put("limitAreaAlarm", VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm()))
-			.put("overSpeed", VehicleStatusService.overSpeedStates.get(vs.getOverSpeed()))
-			.put("tireDrive", VehicleStatusService.tiredDriveStates.get(vs.getTireDrive()))
-			.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()));
-		if(vs.getTaskId()!=null && vs.getTaskId()>0)
-			json.put("taskId", vs.getTaskId());
-		json.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
+			.put("licensPadNumber", vs.getLicensPadNumber() == null ? "" : vs.getLicensPadNumber())
+			.put("internalNumber", vs.getVehicle().getInternalNumber() == null ? "" : vs.getVehicle().getInternalNumber())
+			.put("currentSpeed", vs.getCurrentSpeed()==null?"":vs.getCurrentSpeed())
+			.put("isRunning", vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning()))
+			.put("isOnline", vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline()))
+			.put("isAskHelp", vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp()))
+			.put("limitAreaAlarm", vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm()))
+			.put("overSpeed", vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed()))
+			.put("tireDrive", vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive()))
+			.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()))
+			.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
 		
 //		if (!isOverSpeed) {
 //			json.put("overSpeedIcon", "");
