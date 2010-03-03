@@ -90,8 +90,7 @@ function createMarker(vs) {
 		mapObj.addOverlay(marker,true);
 	<%} else {%>
 		mapObj.clearOverlays();
-		var marker = createVehicleMarker(mapObj,vs);
-		mapObj.addOverlay(marker);
+		var marker = addVehicleMarker(mapObj,vs);
 		mapObj.setCenter(marker.getLatLng(), 13);
 	<%}%>
 }

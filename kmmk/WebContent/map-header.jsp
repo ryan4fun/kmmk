@@ -92,7 +92,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	var OFFLINE_ICON = "<%=mapImagePath %>images/google_icon/offline.png";
 	var ALERT_ICON = "<%=mapImagePath %>images/google_icon/alert.png";
 
-	function createVehicleMarker(mapObj, vs) {
+	function addVehicleMarker(mapObj, vs) {
 		var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
 			"</b><br>自编号: <b>" + vs.internalNumber + 
 			"</b><br>纬度: <b>" + vs.currentLat + 
