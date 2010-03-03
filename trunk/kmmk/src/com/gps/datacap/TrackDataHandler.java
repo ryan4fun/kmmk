@@ -18,6 +18,7 @@ import com.gps.orm.VehicleStatus;
 import com.gps.service.ServiceLocator;
 import com.gps.service.VehicleStatusService;
 import com.gps.util.BeanUtils;
+import com.gps.util.Util;
 
 /**
  * @author Ryan
@@ -67,6 +68,7 @@ public class TrackDataHandler {
 			alert.setVehicleId(vehicle.getVehicleId());
 			alert.setAlertTypeDic(getAlertTypeDic(message.getAlertType()));
 			alert.setOccurDate(message.getServerReceiveDate());
+			alert.setDescription(getAlertDescription(message));
 			getServiceLocator().getAlertHistoryService().addAlertHistory(alert);			
 			
 			this.messageCount++;
@@ -102,14 +104,34 @@ public class TrackDataHandler {
 			case Message.ALERT_TYPE_SOS:
 				return 4;
 			case Message.ALERT_TYPE_ENTERSPOT:
-				return 2;
-			
-				
+				return 2;		
 		
 		}
 		return 1;
 	}
 
+	private String getAlertDescription(Message msg){
+		
+		StringBuilder strBuf = new StringBuilder();
+		int alertType = msg.getAlertType();
+		switch(alertType){
+		
+			case Message.ALERT_TYPE_OVERSPEED:
+				strBuf.append("GPS设备发出超速报警, 速度:"+msg.getSpeed());
+				break;
+			case Message.ALERT_TYPE_SOS:
+				strBuf.append("GPS设备发出求救报警, 时间:"+Util.FormatDateLong(msg.getGPSTimestamp()));
+				break;
+			case Message.ALERT_TYPE_ENTERSPOT:
+				strBuf.append("GPS设备发出限制区域报警, 经度:"+msg.getLongitude() + " 纬度:"+msg.getLatitude());
+				break;
+	
+		}
+		
+		return strBuf.toString();
+	}
+	
+	
 	private boolean handleTrackInfo(Vehicle vehicle, Message message) {
 
 		short result = updateVehicleState(message, vehicle);

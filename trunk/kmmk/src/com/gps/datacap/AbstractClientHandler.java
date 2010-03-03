@@ -15,6 +15,7 @@ import com.gps.rule.RuleManager;
 import com.gps.service.AlertHistoryService;
 import com.gps.service.AlertTypeDicService;
 import com.gps.service.ServiceLocator;
+import com.gps.service.VehicleService;
 
 /**
  * @author Ryan
@@ -113,7 +114,7 @@ public abstract class AbstractClientHandler implements Runnable{
 
 				boolean isHandled = this.dataHandler.handle(vehicle,message);
 
-				if(isHandled){
+				if(isHandled && vehicle.getMonitLevel()== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){
 					
 					if(this.ruleManager != null && vs.getTaskId()!= null && vs.getTaskId().intValue() > 0){
 						
