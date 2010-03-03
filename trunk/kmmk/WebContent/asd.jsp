@@ -1,10 +1,13 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.gps.util.*,
-	com.gps.orm.*" %>
+	com.gps.orm.*,com.gps.service.*" %>
 
 <%@ include file="/header.jsp" %><%
     AlertHistoryBean vb = new AlertHistoryBean(request);
     vb.setAccepted(false);
     vb.setPagination(true);
+    vb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_OVERSPEED);
+    vb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
+    vb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_TIREDDRIVING);
     vb.setRowsPerPage(10);
     List<AlertHistory> vs = vb.getList();
     
