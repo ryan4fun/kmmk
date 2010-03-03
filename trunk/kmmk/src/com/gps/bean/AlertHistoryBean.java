@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
@@ -23,6 +24,8 @@ public class AlertHistoryBean extends AbstractBean {
 	
 	private Integer alertId;
 	private Integer alertTypeId;
+	private List<Integer> alertTypeIds;
+	
 	private Integer vehicleId;
 	private Date occurDate;
 	private Date acctime;
@@ -46,6 +49,13 @@ public class AlertHistoryBean extends AbstractBean {
 			Criteria crit = HibernateUtil.getSession().createCriteria(AlertHistory.class);
 			if (this.getAlertTypeId() != null && alertTypeId > 0)
 				crit.add(Restrictions.eq("alertTypeDic.alertTypeId", this.getAlertTypeId()));
+			else if (this.alertTypeIds != null && !this.alertTypeIds.isEmpty()){
+				Disjunction disj = Restrictions.disjunction();
+				for(Integer alertTypeId:this.alertTypeIds){
+					disj.add(Restrictions.eq("alertTypeDic.alertTypeId", alertTypeId));
+				}
+				crit.add(disj);
+			}
 			if (this.getVehicleId() != null && vehicleId > 0)
 				crit.add(Restrictions.eq("vehicleId", this.getVehicleId()));
 			if (this.getOccurDate() != null)
@@ -59,12 +69,9 @@ public class AlertHistoryBean extends AbstractBean {
 			
 			if (this.occurDateStart != null)
 				crit.add(Restrictions.ge("occurDate", this.occurDateStart));
-//			else 
-//				return new ArrayList(0);
+
 			if (this.occurDateEnd != null)
-				crit.add(Restrictions.le("occurDate", this.occurDateEnd));
-//			else 
-//				return new ArrayList(0);			
+				crit.add(Restrictions.le("occurDate", this.occurDateEnd));		
 			
 			if (this.getAccepted() != null){
 				if(this.getAccepted()){
@@ -77,8 +84,7 @@ public class AlertHistoryBean extends AbstractBean {
 			getTotalCount(crit);
 			crit.addOrder(Order.desc("occurDate"));
 			addPagination(crit);
-			List<AlertHistory> list = crit.list();
-			
+			List<AlertHistory> list = crit.list();			
 			
 			return list;
 		} catch (HibernateException e) {
@@ -174,6 +180,19 @@ public class AlertHistoryBean extends AbstractBean {
 		this.accepted = accepted;
 	}
 
+	public List<Integer> getAlertTypeIds() {
+		return alertTypeIds;
+	}
 	
+	public void addAlertTypeId(Integer alertTypeId) {
+		if(this.alertTypeIds == null){
+			this.alertTypeIds = new ArrayList<Integer>();
+		}
+		this.alertTypeIds.add(alertTypeId);
+	}
+
+	public void setAlertTypeIds(List<Integer> alertTypeIds) {
+		this.alertTypeIds = alertTypeIds;
+	}
 
 }
