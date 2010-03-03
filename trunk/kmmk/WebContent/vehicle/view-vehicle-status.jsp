@@ -56,8 +56,26 @@ $(document).ready(function(){
 	$("#search-div-title").click(function(){
 		setTimeout(resize, 500);
 	});
-	<%if( isShowMap ){%>
-		createMarker(<%=vs.getCurrentLat()%>,<%=vs.getCurrentLong()%>);
+	<%if( isShowMap ){
+		StateHelperBean shb = new StateHelperBean();
+		shb.setVehicleId(vs.getVehicleId());
+		StateHelper sh = shb.findById();
+	%>
+		createMarker({
+			currentLat : <%=vs.getCurrentLat()%>,
+			currentLong : <%=vs.getCurrentLong()%>,
+			licensPadNumber : "<%=vs.getLicensPadNumber() == null ? "" : vs.getLicensPadNumber()%>",
+			internalNumber: "<%=vs.getVehicle().getInternalNumber() == null ? "" : vs.getVehicle().getInternalNumber()%>",
+			isRunning : "<%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%>",
+			isOnline : "<%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%>",
+			isAskHelp : "<%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%>",
+			limitAreaAlarm : "<%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%>",
+			overSpeed : "<%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%>",
+			tireDrive : "<%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%>",
+			currentSpeed : "<%=vs.getCurrentSpeed()==null?"":vs.getCurrentSpeed()%>",
+			lastUpdate : "<%=Util.FormatDateLong(sh.getLastUpdate())%>",
+			alertIcon : "<%=mapImagePath + VehicleStatusBean.getAlertIcon(vs)%>"
+		});
 	<%}%>
 	autoRefresh();
 });
@@ -80,21 +98,16 @@ function initialize() {
 	}
 }
 
-function createMarker(lat,lng) {
+function createMarker(vs) {
 	if(mapObj == null)
 		initialize();
 <%if( login.getMapType()==LoginInfo.MAPABC ){%>
-	var marker = new MMarker(new MLngLat(lng,lat));
+	var marker = new MMarker(new MLngLat(vs.currentLong,vs.currentLat));
 	mapObj.setZoomAndCenter(10,marker.lnglat);
 	mapObj.addEventListener( marker, MOUSE_CLICK, leftClick );
 	mapObj.addOverlay(marker,true);
 <%} else {%>
-	var marker = new DivImageMarker( new GLatLng(Number(lat)+CN_OFFSET_LAT,Number(lng)+CN_OFFSET_LON), "<%=vs.getLicensPadNumber()%>" , normIcon );	
-	GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
-		marker.imgMarker_.openInfoWindowHtml(
-			"</b><br>纬度: <b>" + latlng.lat() + 
-			"</b><br>经度: <b>" + latlng.lng() );
-	});
+	var marker = createVehicleMarker(mapObj,vs);
 	mapObj.addOverlay(marker);
 	mapObj.setCenter(marker.getLatLng(), 13);
 <%}%>
@@ -103,7 +116,7 @@ function createMarker(lat,lng) {
 var resreshObj = null;
 function autoRefresh(){
 	if($("#isRefresh").attr("checked")){
-		resreshObj = setInterval("searchVehicleStatus()",60 * 1000);
+		resreshObj = setInterval("searchVehicleStatus()",5 * 1000);
 	} else {
 		clearInterval(resreshObj);
 	}
@@ -122,7 +135,7 @@ function searchVehicleStatus(){
 			cache: false,
 			success: function(json) {
 			   if (json.currentLat && json.currentLat != "" && json.currentLong && json.currentLong != ""){
-				  createMarker(json.currentLat,json.currentLong);
+				  createMarker(json);
 			   }
 			}
 		});	
