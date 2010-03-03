@@ -284,4 +284,17 @@ public class VehicleStatusBean extends AbstractBean {
 		this.organizationId = organizationId;
 	}
 
+	public static String getAlertIcon(VehicleStatus vs){
+		String alertIcon = VehicleStatusService.VEHICLE_STOP_ICON;
+		if( vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON || 
+				vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER ||
+				vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON || 
+				vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON)
+			alertIcon = VehicleStatusService.VEHICLE_OVERSPEED_STATE_ICON;
+		else if( vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING )
+			alertIcon = VehicleStatusService.VEHICLE_RUNNING_ICON;
+		else if( vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE )
+			alertIcon = VehicleStatusService.VEHICLE_OFFLINE_ICON;
+		return alertIcon;
+	}
 }

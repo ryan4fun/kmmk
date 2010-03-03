@@ -34,17 +34,6 @@ public class VehicleStatusSearchAction extends Action {
 //				if( !isAskHelp && vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON )
 //					isAskHelp = true;
 				
-				String alertIcon = VehicleStatusService.VEHICLE_STOP_ICON;
-				if( vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON || 
-						vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER ||
-						vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON || 
-						vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON)
-					alertIcon = VehicleStatusService.VEHICLE_OVERSPEED_STATE_ICON;
-				else if( vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING )
-					alertIcon = VehicleStatusService.VEHICLE_RUNNING_ICON;
-				else if( vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE )
-					alertIcon = VehicleStatusService.VEHICLE_OFFLINE_ICON;
-				
 				StateHelper sh = getServiceLocator().getStateHelperService().findById(vs.getVehicleId());
 				
 				JSONObject tmpJson = new JSONObject();
@@ -61,7 +50,7 @@ public class VehicleStatusSearchAction extends Action {
 					.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()));
 				if(vs.getTaskId()!=null && vs.getTaskId()>0)
 					tmpJson.put("taskId", vs.getTaskId());
-				tmpJson.put("alertIcon", alertIcon);
+				tmpJson.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
 				
 				json.put(String.valueOf(vs.getVehicleId()),tmpJson);
 			}
@@ -69,17 +58,6 @@ public class VehicleStatusSearchAction extends Action {
 			VehicleStatus vs = getServiceLocator().getVehicleStatusService().findById(vehicleId);
 			StateHelper sh = getServiceLocator().getStateHelperService().findById(vehicleId);
 
-			String alertIcon = VehicleStatusService.VEHICLE_STOP_ICON;
-			if( vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON || 
-					vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER ||
-					vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON || 
-					vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON)
-				alertIcon = VehicleStatusService.VEHICLE_OVERSPEED_STATE_ICON;
-			else if( vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING )
-				alertIcon = VehicleStatusService.VEHICLE_RUNNING_ICON;
-			else if( vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE )
-				alertIcon = VehicleStatusService.VEHICLE_OFFLINE_ICON;
-			
 			json.put("currentLat", vs.getCurrentLat())
 				.put("currentLong", vs.getCurrentLong())
 				.put("licensPadNumber", vs.getLicensPadNumber())
@@ -94,7 +72,7 @@ public class VehicleStatusSearchAction extends Action {
 			if(vs.getTaskId()!=null && vs.getTaskId()>0)
 				json.put("taskId", vs.getTaskId());
 			
-			json.put("alertIcon", alertIcon);
+			json.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
 		}
 		
 //		if( !isOverSpeed ){
