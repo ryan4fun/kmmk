@@ -60,32 +60,21 @@ $(document).ready(function(){
 		StateHelperBean shb = new StateHelperBean();
 		shb.setVehicleId(vs.getVehicleId());
 		StateHelper sh = shb.findById();
-		
-		String alertIcon = VehicleStatusService.VEHICLE_STOP_ICON;
-		if( vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON || 
-				vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER ||
-				vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON || 
-				vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON)
-			alertIcon = VehicleStatusService.VEHICLE_OVERSPEED_STATE_ICON;
-		else if( vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING )
-			alertIcon = VehicleStatusService.VEHICLE_RUNNING_ICON;
-		else if( vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE )
-			alertIcon = VehicleStatusService.VEHICLE_OFFLINE_ICON;
 	%>
 		points["<%=vs.getVehicleId()%>"] = createMarker({
 			currentLat : <%=vs.getCurrentLat()%>,
 			currentLong : <%=vs.getCurrentLong()%>,
 			licensPadNumber : "<%=vs.getLicensPadNumber() == null ? "" : vs.getLicensPadNumber()%>",
+			internalNumber: "<%=vs.getVehicle().getInternalNumber() == null ? "" : vs.getVehicle().getInternalNumber()%>",
 			isRunning : "<%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%>",
 			isOnline : "<%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%>",
 			isAskHelp : "<%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%>",
 			limitAreaAlarm : "<%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%>",
 			overSpeed : "<%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%>",
-			taskId : "<%=vs.getTaskId()==null?"":vs.getTaskId()%>",
 			tireDrive : "<%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%>",
 			currentSpeed : "<%=vs.getCurrentSpeed()==null?"":vs.getCurrentSpeed()%>",
 			lastUpdate : "<%=Util.FormatDateLong(sh.getLastUpdate())%>",
-			alertIcon : "<%=mapImagePath + alertIcon%>"
+			alertIcon : "<%=mapImagePath + VehicleStatusBean.getAlertIcon(vs)%>"
 		});
 	<%
 	}
@@ -100,6 +89,7 @@ $(document).ready(function(){
 
 function createMarker(vs) {
 	var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
+		"</b><br>自编号: <b>" + vs.internalNumber + 
 		"</b><br>纬度: <b>" + vs.currentLat + 
 		"</b><br>经度: <b>" + vs.currentLong + 
 		"</b><br>行驶状态: <b>" + vs.isRunning + 
@@ -108,7 +98,6 @@ function createMarker(vs) {
 		"</b><br>限制区域报警: <b>" + vs.limitAreaAlarm + 
 		"</b><br>超速报警: <b>" + vs.overSpeed + 
 		"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
-		"</b><br>任务ID: <b>" + vs.taskId + 
 		"</b><br>当前速度: <b>" + vs.currentSpeed + 
 		"</b><br>更新时间: <b>" + vs.lastUpdate;
 	

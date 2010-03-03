@@ -94,6 +94,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 
 	function createVehicleMarker(mapObj, vs) {
 		var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
+			"</b><br>自编号: <b>" + vs.internalNumber + 
 			"</b><br>纬度: <b>" + vs.currentLat + 
 			"</b><br>经度: <b>" + vs.currentLong + 
 			"</b><br>行驶状态: <b>" + vs.isRunning + 
@@ -102,24 +103,9 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 			"</b><br>限制区域报警: <b>" + vs.limitAreaAlarm + 
 			"</b><br>超速报警: <b>" + vs.overSpeed + 
 			"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
-			"</b><br>任务ID: <b>" + vs.taskId + 
 			"</b><br>当前速度: <b>" + vs.currentSpeed + 
 			"</b><br>更新时间: <b>" + vs.lastUpdate;
 		
-		<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-			var tipOption = new MTipOptions();
-			tipOption.title = "车辆信息";
-			tipOption.content = html;
-			var markerOption = new MMarkerOptions();
-			markerOption.imageUrl = vs.alertIcon;
-			markerOption.tipOption = tipOption;
-			markerOption.canShowTip = true;
-			markerOption.imageAlign=5;
-			var marker = new MMarker(new MLngLat(vs.currentLong,vs.currentLat),markerOption);
-			mapObj.addOverlay(marker,false);
-			marker.id = vs.licensPadNumber;
-			return marker;
-		<%} else {%>
 			var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,vs.alertIcon );
 		    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 		    	mapObj.setCenter(latlng);
@@ -127,7 +113,6 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 			});
 		    mapObj.addOverlay(marker);
 		    return marker;
-		<%}%>
 	}
 	
 	function createCommonMap( mapDivID, option ){
