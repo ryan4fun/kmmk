@@ -300,83 +300,70 @@ public class VehicleStatusBean extends AbstractBean {
 		return alertIcon;
 	}
 	
-	public JSONObject getVehicleInfo() throws Exception{
-		JSONObject json = new JSONObject();
+	public static JSONObject generateVehicleInfo(VehicleStatus vs) throws Exception{
 //		globe state
 //		boolean isOverSpeed = false;
 //		boolean isInlimitArea = false;
 //		boolean isTiredDrive = false;
 //		boolean isAskHelp = false;
-		if( vehicleId == null || vehicleId < 1 ){
-			List<VehicleStatus> vss = getList();
-			for(VehicleStatus vs:vss){
-//				if( !isOverSpeed && vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON )
-//					isOverSpeed = true;
-//				if( !isInlimitArea && vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER )
-//					isInlimitArea = true;
-//				if( !isTiredDrive && vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON )
-//					isTiredDrive = true;
-//				if( !isAskHelp && vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON )
-//					isAskHelp = true;
-				
-				StateHelper sh = getServiceLocator().getStateHelperService().findById(vs.getVehicleId());
-				
-				JSONObject tmpJson = new JSONObject();
-				tmpJson.put("currentLat", vs.getCurrentLat())
-					.put("currentLong", vs.getCurrentLong())
-					.put("licensPadNumber", vs.getLicensPadNumber())
-					.put("internalNumber", vs.getVehicle().getInternalNumber())
-					.put("currentSpeed", vs.getCurrentSpeed())
-					.put("isRunning", VehicleStatusService.runningStates.get(vs.getIsRunning()))
-					.put("isOnline", VehicleStatusService.onlineStates.get(vs.getIsOnline()))
-					.put("isAskHelp", VehicleStatusService.askHelpStates.get(vs.getIsAskHelp()))
-					.put("limitAreaAlarm", VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm()))
-					.put("overSpeed", VehicleStatusService.overSpeedStates.get(vs.getOverSpeed()))
-					.put("tireDrive", VehicleStatusService.tiredDriveStates.get(vs.getTireDrive()))
-					.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()));
-//				if(vs.getTaskId()!=null && vs.getTaskId()>0)
-//					tmpJson.put("taskId", vs.getTaskId());
-				tmpJson.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
-				
-				json.put(String.valueOf(vs.getVehicleId()),tmpJson);
-			}
-		} else {
-			VehicleStatus vs = getServiceLocator().getVehicleStatusService().findById(vehicleId);
-			StateHelper sh = getServiceLocator().getStateHelperService().findById(vehicleId);
-
-			json.put("currentLat", vs.getCurrentLat())
-				.put("currentLong", vs.getCurrentLong())
-				.put("licensPadNumber", vs.getLicensPadNumber())
-				.put("currentSpeed", vs.getCurrentSpeed())
-				.put("isRunning", VehicleStatusService.runningStates.get(vs.getIsRunning()))
-				.put("isOnline", VehicleStatusService.onlineStates.get(vs.getIsOnline()))
-				.put("isAskHelp", VehicleStatusService.askHelpStates.get(vs.getIsAskHelp()))
-				.put("limitAreaAlarm", VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm()))
-				.put("overSpeed", VehicleStatusService.overSpeedStates.get(vs.getOverSpeed()))
-				.put("tireDrive", VehicleStatusService.tiredDriveStates.get(vs.getTireDrive()))
-				.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()));
-			if(vs.getTaskId()!=null && vs.getTaskId()>0)
-				json.put("taskId", vs.getTaskId());
-			
-			json.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
-		}
 		
-//		if( !isOverSpeed ){
+		JSONObject json = new JSONObject();
+		StateHelper sh = getServiceLocator().getStateHelperService().findById(vs.getVehicleId());
+		
+//		if (!isOverSpeed && vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON)
+//			isOverSpeed = true;
+//		if (!isInlimitArea && vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER)
+//			isInlimitArea = true;
+//		if (!isTiredDrive && vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON)
+//			isTiredDrive = true;
+//		if (!isAskHelp && vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON)
+//			isAskHelp = true;
+		json.put("currentLat", vs.getCurrentLat())
+			.put("currentLong", vs.getCurrentLong())
+			.put("licensPadNumber", vs.getLicensPadNumber())
+			.put("currentSpeed", vs.getCurrentSpeed())
+			.put("isRunning", VehicleStatusService.runningStates.get(vs.getIsRunning()))
+			.put("isOnline", VehicleStatusService.onlineStates.get(vs.getIsOnline()))
+			.put("isAskHelp", VehicleStatusService.askHelpStates.get(vs.getIsAskHelp()))
+			.put("limitAreaAlarm", VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm()))
+			.put("overSpeed", VehicleStatusService.overSpeedStates.get(vs.getOverSpeed()))
+			.put("tireDrive", VehicleStatusService.tiredDriveStates.get(vs.getTireDrive()))
+			.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()));
+		if(vs.getTaskId()!=null && vs.getTaskId()>0)
+			json.put("taskId", vs.getTaskId());
+		json.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
+		
+//		if (!isOverSpeed) {
 //			json.put("overSpeedIcon", "");
 //			json.put("overSpeedAlert", "");
 //		}
-//		if( !isInlimitArea ){
+//		if (!isInlimitArea) {
 //			json.put("inLimitAreaIcon", "");
 //			json.put("inLimitAreaAlert", "");
 //		}
-//		if( !isTiredDrive ){
+//		if (!isTiredDrive) {
 //			json.put("tiredDriveIcon", "");
 //			json.put("tiredDriveAlert", "");
 //		}
-//		if( !isAskHelp ){
+//		if (!isAskHelp) {
 //			json.put("askHelpIcon", "");
 //			json.put("askHelpAlert", "");
 //		}
+		
 		return json;
+	}
+	
+	public JSONObject getVehicleInfo() throws Exception{
+		if( vehicleId == null || vehicleId < 1 ){
+			JSONObject json = new JSONObject();
+			List<VehicleStatus> vss = getList();
+			for(VehicleStatus vs:vss){
+				json.put(String.valueOf(vs.getVehicleId()),generateVehicleInfo(vs));
+			}
+			return json;
+		} else {
+			VehicleStatus vs = getServiceLocator().getVehicleStatusService().findById(vehicleId);
+			return generateVehicleInfo(vs);
+		}
 	}
 }
