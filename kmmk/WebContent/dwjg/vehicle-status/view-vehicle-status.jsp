@@ -55,8 +55,10 @@ $(document).ready(function(){
 	$("#search-div-title").click(function(){
 		setTimeout(resize, 500);
 	});
-	<%if( isShowMap ){%>
-		createMarker(<%=vs.getCurrentLat()%>,<%=vs.getCurrentLong()%>);
+	<%if( isShowMap ){
+		String vInfo = VehicleStatusBean.generateVehicleInfo(vs).toString();
+	%>
+		createMarker(eval(<%=vInfo%>));
 	<%}%>
 });
 
@@ -78,24 +80,20 @@ function initialize() {
 	}
 }
 
-function createMarker(lat,lng) {
+function createMarker(vs) {
 	if(mapObj == null)
 		initialize();
-<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-	var marker = new MMarker(new MLngLat(lng,lat));
-	mapObj.setZoomAndCenter(10,marker.lnglat);
-	mapObj.addEventListener( marker, MOUSE_CLICK, leftClick );
-	mapObj.addOverlay(marker,true);
-<%} else {%>
-	var marker = new DivImageMarker(new GLatLng(Number(lat)+CN_OFFSET_LAT,Number(lng)+CN_OFFSET_LON), "<%=vs.getLicensPadNumber()%>", normIcon);	
-	GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
-		marker.imgMarker_.openInfoWindowHtml(
-			"</b><br>纬度: <b>" + latlng.lat() + 
-			"</b><br>经度: <b>" + latlng.lng() );
-	});
-	mapObj.addOverlay(marker);
-	mapObj.setCenter(marker.getLatLng(), 13);
-<%}%>
+	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
+		var marker = new MMarker(new MLngLat(vs.currentLong,vs.currentLat));
+		mapObj.setZoomAndCenter(10,marker.lnglat);
+		mapObj.addEventListener( marker, MOUSE_CLICK, leftClick );
+		mapObj.addOverlay(marker,true);
+	<%} else {%>
+		mapObj.clearOverlays();
+		var marker = createVehicleMarker(mapObj,vs);
+		mapObj.addOverlay(marker);
+		mapObj.setCenter(marker.getLatLng(), 13);
+	<%}%>
 }
 
 var resreshObj = null;
@@ -120,7 +118,7 @@ function searchVehicleStatus(){
 			cache: false,
 			success: function(json) {
 			   if (json.currentLat && json.currentLat != "" && json.currentLong && json.currentLong != ""){
-				  createMarker(json.currentLat,json.currentLong);
+				  createMarker(json);
 			   }
 			}
 		});	

@@ -57,25 +57,9 @@ $(document).ready(function(){
 		if(vs.getCurrentLong() > maxLon)
 			maxLon = vs.getCurrentLong();
 		
-		StateHelperBean shb = new StateHelperBean();
-		shb.setVehicleId(vs.getVehicleId());
-		StateHelper sh = shb.findById();
+		String vInfo = VehicleStatusBean.generateVehicleInfo(vs).toString();
 	%>
-		points["<%=vs.getVehicleId()%>"] = createMarker({
-			currentLat : <%=vs.getCurrentLat()%>,
-			currentLong : <%=vs.getCurrentLong()%>,
-			licensPadNumber : "<%=vs.getLicensPadNumber() == null ? "" : vs.getLicensPadNumber()%>",
-			internalNumber: "<%=vs.getVehicle().getInternalNumber() == null ? "" : vs.getVehicle().getInternalNumber()%>",
-			isRunning : "<%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%>",
-			isOnline : "<%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%>",
-			isAskHelp : "<%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%>",
-			limitAreaAlarm : "<%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%>",
-			overSpeed : "<%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%>",
-			tireDrive : "<%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%>",
-			currentSpeed : "<%=vs.getCurrentSpeed()==null?"":vs.getCurrentSpeed()%>",
-			lastUpdate : "<%=Util.FormatDateLong(sh.getLastUpdate())%>",
-			alertIcon : "<%=mapImagePath + VehicleStatusBean.getAlertIcon(vs)%>"
-		});
+		points["<%=vs.getVehicleId()%>"] = createMarker(eval(<%=vInfo%>));
 	<%
 	}
 	%>
@@ -115,7 +99,7 @@ function createMarker(vs) {
 		marker.id = vs.licensPadNumber;
 		return marker;
 	<%} else {%>
-		var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,vs.alertIcon );
+		var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,"<%=mapImagePath%>" + vs.alertIcon );
 	    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 	    	mapObj.setCenter(latlng);
 			marker.imgMarker_.openInfoWindowHtml(html);

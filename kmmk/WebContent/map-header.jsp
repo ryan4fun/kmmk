@@ -106,7 +106,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 			"</b><br>当前速度: <b>" + vs.currentSpeed + 
 			"</b><br>更新时间: <b>" + vs.lastUpdate;
 		
-			var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,vs.alertIcon );
+			var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,"<%=mapImagePath%>" + vs.alertIcon );
 		    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 		    	mapObj.setCenter(latlng);
 				marker.imgMarker_.openInfoWindowHtml(html);
