@@ -248,15 +248,18 @@ public class DataCaptureServer {
 	
 	public Vehicle getVehicleById(String deviceId) {
 		
-		
+		if(deviceId == null){
+			deviceId = "";
+		}
 		return this.vechileCache.get(deviceId);
 	}
 	
 	public synchronized void registerVehicleCache(String deviceId, Vehicle v){
 		
 //		if(!this.vechileCache.containsKey(deviceId)){
-			
+		if(deviceId != null){
 			this.vechileCache.put(deviceId, v);
+		}
 //		}
 	}
 }
