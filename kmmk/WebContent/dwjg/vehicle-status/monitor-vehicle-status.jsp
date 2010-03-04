@@ -72,20 +72,20 @@ $(document).ready(function(){
 });
 
 function createMarker(vs) {
-	var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
-		"</b><br>自编号: <b>" + vs.internalNumber + 
-		"</b><br>纬度: <b>" + vs.currentLat + 
-		"</b><br>经度: <b>" + vs.currentLong + 
-		"</b><br>行驶状态: <b>" + vs.isRunning + 
-		"</b><br>在线状态: <b>" + vs.isOnline + 
-		"</b><br>求救状态: <b>" + vs.isAskHelp + 
-		"</b><br>限制区域报警: <b>" + vs.limitAreaAlarm + 
-		"</b><br>超速报警: <b>" + vs.overSpeed + 
-		"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
-		"</b><br>当前速度: <b>" + vs.currentSpeed + 
-		"</b><br>更新时间: <b>" + vs.lastUpdate;
-	
 	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
+		var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
+			"</b><br>自编号: <b>" + vs.internalNumber + 
+			"</b><br>纬度: <b>" + vs.currentLat + 
+			"</b><br>经度: <b>" + vs.currentLong + 
+			"</b><br>行驶状态: <b>" + vs.isRunning + 
+			"</b><br>在线状态: <b>" + vs.isOnline + 
+			"</b><br>求救状态: <b>" + vs.isAskHelp + 
+			"</b><br>限制区域报警: <b>" + vs.limitAreaAlarm + 
+			"</b><br>超速报警: <b>" + vs.overSpeed + 
+			"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
+			"</b><br>当前速度: <b>" + vs.currentSpeed + 
+			"</b><br>更新时间: <b>" + vs.lastUpdate;
+	
 		var tipOption = new MTipOptions();
 		tipOption.title = "车辆信息";
 		tipOption.content = html;
@@ -99,13 +99,7 @@ function createMarker(vs) {
 		marker.id = vs.licensPadNumber;
 		return marker;
 	<%} else {%>
-		var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,"<%=mapImagePath%>" + vs.alertIcon );
-	    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
-	    	mapObj.setCenter(latlng);
-			marker.imgMarker_.openInfoWindowHtml(html);
-		});
-	    mapObj.addOverlay(marker);
-	    return marker;
+		return addVehicleMarker( mapObj, vs );
 	<%}%>
 }
 
