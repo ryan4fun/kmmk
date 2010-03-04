@@ -234,10 +234,10 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 
 		if(this.curState == STATE_INSIDE){
 			
-			str.append("进入 : ");
+			str.append("进入 ");
 		}else{
 			
-			str.append("离开 : ");
+			str.append("离开 ");
 		}
 			
 		str.append(this.regione.getName());
