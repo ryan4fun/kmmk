@@ -131,7 +131,7 @@ public abstract class AbstractClientHandler implements Runnable{
 					alert.setVehicleId(-1);
 					alert.setAlertTypeDic(alertDic);
 					alert.setOccurDate(new Date());
-					alert.setDescription("未登记设备:" + message.getDeviceId());
+					alert.setDescription("鏈巿鏉冪殑杞﹁締:" + message.getDeviceId());
 					ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 				}
 			}
@@ -161,7 +161,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		alert.setAlertTypeDic(alertDic);
 		alert.setOccurDate(new Date());
 		System.out.println("get an illeagle position data :  long=" + message.getLongitude() + "lat="+ message.getLatitude());
-		alert.setDescription("非法坐标 : 经度=" + message.getLongitude() + " 纬度="+ message.getLatitude());
+		alert.setDescription("寮傚父瀹氫綅鏁版嵁 : 缁忓害=" + message.getLongitude() + " 绾害="+ message.getLatitude());
 		ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 
 		

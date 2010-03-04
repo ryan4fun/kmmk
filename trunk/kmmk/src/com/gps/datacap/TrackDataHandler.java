@@ -117,13 +117,13 @@ public class TrackDataHandler {
 		switch(alertType){
 		
 			case Message.ALERT_TYPE_OVERSPEED:
-				strBuf.append("GPSÉè±¸·¢³ö³¬ËÙ±¨¾¯, ËÙ¶È:"+msg.getSpeed());
+				strBuf.append("GPSè®¾å¤‡å‘å‡ºè¶…é€Ÿå‘Šè­¦!  é€Ÿåº¦:"+msg.getSpeed());
 				break;
 			case Message.ALERT_TYPE_SOS:
-				strBuf.append("GPSÉè±¸·¢³öÇó¾È±¨¾¯, Ê±¼ä:"+Util.FormatDateLong(msg.getGPSTimestamp()));
+				strBuf.append("GPSè®¾å¤‡å‘å‡ºæ±‚æ•‘å‘Šè­¦!  æ—¶é—´:"+Util.FormatDateLong(msg.getGPSTimestamp()));
 				break;
 			case Message.ALERT_TYPE_ENTERSPOT:
-				strBuf.append("GPSÉè±¸·¢³öÏŞÖÆÇøÓò±¨¾¯, ¾­¶È:"+msg.getLongitude() + " Î³¶È:"+msg.getLatitude());
+				strBuf.append("GPSè®¾å¤‡å‘å‡ºé™åˆ¶åŒºåŸŸå‘Šè­¦! ç»åº¦:"+msg.getLongitude() + " çº¬åº¦:"+msg.getLatitude());
 				break;
 	
 		}
