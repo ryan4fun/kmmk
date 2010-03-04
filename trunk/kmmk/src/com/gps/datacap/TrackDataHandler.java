@@ -126,7 +126,7 @@ public class TrackDataHandler {
 				strBuf.append("GPS设备发出限制区域告警! 经度:"+msg.getLongitude() + " 纬度:"+msg.getLatitude());
 				break;
 				
-			default:  strBuf.append("Unknow Alert : " + alertType);
+			default:  strBuf.append("GPS设备发出其他报警 : " + alertType);
 	
 		}
 		
