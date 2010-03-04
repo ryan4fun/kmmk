@@ -3,6 +3,8 @@
  */
 package com.gps.rule;
 
+import java.text.NumberFormat;
+
 import com.gps.datacap.Message;
 import com.gps.orm.AlertTypeDic;
 import com.gps.orm.PrivateRules;
@@ -21,6 +23,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	
 	public static int DEFAULT_ALERTTYPEDIC_ID = 1;
 	private Integer speedLimitation;
+	private Double currentSpeed;
 
 
 	public OverSpeedChecker(Rules rule, Vehicle vehicle) {
@@ -60,7 +63,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 
 	@Override
 	public boolean doCheck(Message msg) {
-		
+		this.currentSpeed = msg.getSpeed();
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			
 			if(msg.getSpeed() > this.speedLimitation){
@@ -95,19 +98,15 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 
 	@Override
 	public String getDiscription() {
-		
 		StringBuffer str = new StringBuffer(100);
-		str.append("车速");
+		str.append("当时车速 ");
+		str.append(this.currentSpeed.intValue());
 		if(this.opType == RulesService.RULE_OP_OBEY){
-			
-			str.append("超过");
-		}else{
-			
-			str.append("低于");
+			str.append(" 超过警戒速 ");
+		} else {
+			str.append(" 低于警戒速 ");
 		}
 		str.append(this.speedLimitation);
-		str.append("码");
-		
 		return str.toString();
 	}
 }
