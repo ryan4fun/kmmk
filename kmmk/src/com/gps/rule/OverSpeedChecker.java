@@ -43,7 +43,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		this.opType = RulesService.RULE_OP_OBEY;
 		AlertTypeDic alertDic = ServiceLocator.getInstance().getAlertTypeDicService().findById(AlertTypeDicService.ALERT_TYPE_DIC_ID_OVERSPEED);
 		this.alertTypeDic = alertDic;
-		this.ruleName = "Â·¶ÎÏŞÖÆ";
+		this.ruleName = "è¶…é€Ÿé™åˆ¶";
 		this.intParam1 = (int) speedLimt;
 		initial();
 	}
@@ -97,16 +97,16 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public String getDiscription() {
 		
 		StringBuffer str = new StringBuffer(100);
-		str.append("³µËÙ");
+		str.append("è½¦é€Ÿ");
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			
-			str.append("³¬¹ı£º");
+			str.append("è¶…è¿‡");
 		}else{
 			
-			str.append("µÍÓÚ£º");
+			str.append("ä½äº");
 		}
 		str.append(this.speedLimitation);
-		str.append("Âë");
+		str.append("ç ");
 		
 		return str.toString();
 	}

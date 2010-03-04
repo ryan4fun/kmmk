@@ -226,18 +226,18 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 		
 //		if(this.opType == RulesService.RULE_OP_OBEY){
 //			
-//			str.append("½øÈë£º");
+//			str.append("ï¿½ï¿½ï¿½ë£º");
 //		}else{
 //			
-//			str.append("Àë¿ª£º");
+//			str.append("ï¿½ë¿ªï¿½ï¿½");
 //		}
 
 		if(this.curState == STATE_INSIDE){
 			
-			str.append("½øÈë£º");
+			str.append("è¿›å…¥ : ");
 		}else{
 			
-			str.append("Àë¿ª£º");
+			str.append("ç¦»å¼€ : ");
 		}
 			
 		str.append(this.regione.getName());
