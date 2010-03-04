@@ -124,6 +124,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 		    mapObj.addControl(new GLargeMapControl());
 		    mapObj.addControl(new MeasureDistanceControl());
 		    mapObj.addControl(new MapSearcherControl());
+		    mapObj.addControl(new LimitAreaControl());
 		  	return mapObj;
 		}
 	}
@@ -174,7 +175,8 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 		}
 		setCenterByLatLngs(mapObj, maxLat, maxLng, minLat, minLng);
 	}
-	
+
+	//controls
 	function MeasureDistanceControl() {}
 	MeasureDistanceControl.prototype = new GControl();
 	MeasureDistanceControl.prototype.measureDistanceLine = null;
@@ -447,7 +449,6 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	    					setTimeout('$.unblockUI()', 1000);
 	            		}
 	            	});
-	            	
 		    	});
 	    	marker.imgMarker_.openInfoWindowHtml($info[0]);
 		});
@@ -468,6 +469,85 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 		}
 	}
 
+	function LimitAreaControl() {}
+	LimitAreaControl.prototype = new GControl();
+	LimitAreaControl.prototype.isShow = false;
+	LimitAreaControl.prototype.limitAreas = null;
+	LimitAreaControl.prototype.initialize = function(mapObj) {
+    	var container = document.createElement("div");
+    	var $controlDiv = $(container).width(150).append("<div>限制区域</div>").children();
+    	$controlDiv.addClass("mapLabel").addClass("mapLink");
+    	var lac = this;
+    	
+        GEvent.addDomListener($controlDiv[0], "click", function() {
+            if(lac.isShow){
+            	$controlDiv.nextAll().hide();
+            	for(var i=0;i<lac.limitAreas.length;i++){
+                    lac.limitAreas[i].polygon.hide();
+                }
+            } else {
+            	if( lac.limitAreas==null ){
+                	$.blockUI({
+        				message : "<label style='height:100px;'>查询中请稍候...</label>"
+        			});
+                	$.ajax({
+                		url: "mkgps.do",
+                		data: {
+                			action: "LimitAreaSearchAjaxAction"
+                		},
+                		dataType: "json",
+                		cache: false,
+                		async: false,
+                		success: function(json) {
+                			lac.limitAreas = json ? json : new Array();
+                			for(var i=0;i<lac.limitAreas.length;i++){
+                				var limitArea = lac.limitAreas[i];
+                				limitArea.isShow = false;
+                				limitArea.polygon = new GPolygon(limitArea.points, "#3355ff", 3, 0.8, "#335599", 0.3);
+                				mapObj.addOverlay(limitArea.polygon);
+
+                				$controlDiv.after(
+               						"<input type='checkBox' maxlength=10 checked='" 
+                                    + limitArea.isShow 
+                                    + "' /><span style='color:#0000cc;background:white;' >" 
+                                   	+ limitArea.name 
+                                   	+ "</span><br>");
+                          		$controlDiv.nextAll("input").click( function() {
+                              		if( isNaN( $(this).val()) )
+                              			limitArea.polygon.hide();
+                              		else
+                              			limitArea.polygon.show();
+                          		}); 
+                			}
+                			$.unblockUI();
+                		},
+                		error: function() {
+                			$.blockUI({
+        						message : "<label>查询限制区域失败!</label>"
+        					});
+        					setTimeout('$.unblockUI()', 1000);
+                		}
+                	});
+                }
+            	$controlDiv.nextAll().show();
+                for(var i=0;i<lac.limitAreas.length;i++){
+                    var limitArea = lac.limitAreas[i];
+                    if(limitArea.isShow)
+                    	limitArea.polygon.show();
+                    else
+                    	limitArea.polygon.hide();
+                }
+            }
+            lac.isShow = !lac.isShow;
+        });
+        mapObj.getContainer().appendChild(container);
+        return container;
+    }
+	LimitAreaControl.prototype.getDefaultPosition = function() {
+		return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(500, 7));
+    }
+    
+	// markers
 	function DivMarker( latlng, text ) {
 		this.latlng_ = latlng;
 		this.text_ = text;
