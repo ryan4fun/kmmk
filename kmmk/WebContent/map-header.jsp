@@ -502,7 +502,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 			lac.limitAreas = json ? json : new Array();
                 			for(var i=0;i<lac.limitAreas.length;i++){
                 				var limitArea = lac.limitAreas[i];
-                				limitArea.isShow = true;
+                				limitArea.isShow = false;
                 				var points = new Array();
                 				for(var j=0;j<limitArea.points.length;j++){
                 					var p = limitArea.points[j];
@@ -513,17 +513,16 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 				mapObj.addOverlay(limitArea.polygon);
 
                 				$controlDiv.after(
-               						"<input type='checkBox' maxlength=10 checked='" 
-                                    + limitArea.isShow 
-                                    + "' /><span style='color:#0000cc;background:white;' >" 
+               						"<input type='checkBox' maxlength=10 /><span style='color:#0000cc;background:white;' >" 
                                    	+ limitArea.name 
                                    	+ "</span><br>");
-                          		$controlDiv.nextAll("input:last").click( function() {
-                              		if( isNaN( $(this).val()) )
-                              			limitArea.polygon.hide();
+                          		$controlDiv.nextAll("input:last").change( function() {
+                          			this.limitArea.isShow = this.checked;
+                              		if( this.checked )
+                              			this.limitArea.polygon.show();
                               		else
-                              			limitArea.polygon.show();
-                          		}); 
+                              			this.limitArea.polygon.hide();
+                          		})[0].limitArea = lac.limitAreas[i]; 
                 			}
                 			$.unblockUI();
                 		},
