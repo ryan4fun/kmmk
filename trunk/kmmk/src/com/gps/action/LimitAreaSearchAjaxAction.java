@@ -31,8 +31,10 @@ public class LimitAreaSearchAjaxAction extends Action{
 			JSONArray pointsJson = new JSONArray();
 			if(r.getCentralLong() != null && r.getCentralLat() != null && r.getCentralLong()>0 && r.getCentralLat()>0 ){
 				Double radius = r.getRadius();
-				if( radius == null || radius<0)
+				if( radius == null || radius<0 )
 					radius = 0.1; //default radius 0.1km
+				else
+					radius = radius / 1000d;
 				
 				double latGap = Util.CalculateDistance2LatGap( radius );
 				double lngGap = Util.CalculateDistance2LongGap( r.getCentralLong(), radius );
@@ -54,6 +56,7 @@ public class LimitAreaSearchAjaxAction extends Action{
 				pointJson = new JSONObject();
 				pointJson.put("lat", r.getCentralLat()-latGap);
 				pointJson.put("lng", r.getCentralLong()-lngGap);
+				pointsJson.put(pointJson);
 				
 				pointJson = new JSONObject();
 				pointJson.put("lat", r.getCentralLat()-latGap);
