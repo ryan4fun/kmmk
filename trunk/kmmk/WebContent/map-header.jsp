@@ -502,14 +502,14 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 			lac.limitAreas = json ? json : new Array();
                 			for(var i=0;i<lac.limitAreas.length;i++){
                 				var limitArea = lac.limitAreas[i];
-                				limitArea.isShow = false;
+                				limitArea.isShow = true;
                 				var points = new Array();
                 				for(var j=0;j<limitArea.points.length;j++){
                 					var p = limitArea.points[j];
                 					if( p.lat && p.lng && p.lat>0 && p.lng>0 )
                 						points.push(new GLatLng( Number(p.lat)+CN_OFFSET_LAT,Number(p.lng)+CN_OFFSET_LON ));
                 				}
-                				limitArea.polygon = new GPolygon(limitArea.points, "#3355ff", 3, 0.8, "#335599", 0.3);
+                				limitArea.polygon = new GPolygon(points, "#3355ff", 3, 0.8, "#335599", 0.3);
                 				mapObj.addOverlay(limitArea.polygon);
 
                 				$controlDiv.after(
@@ -518,7 +518,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                                     + "' /><span style='color:#0000cc;background:white;' >" 
                                    	+ limitArea.name 
                                    	+ "</span><br>");
-                          		$controlDiv.nextAll("input").click( function() {
+                          		$controlDiv.nextAll("input:last").click( function() {
                               		if( isNaN( $(this).val()) )
                               			limitArea.polygon.hide();
                               		else
