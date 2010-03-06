@@ -28,12 +28,20 @@ public class LimitAreaSearchAjaxAction extends Action{
 			tmpJson.put("id", r.getRegionId());
 			tmpJson.put("name", r.getName());
 			JSONArray pointsJson = new JSONArray();
-			for(RegionPoints rp : r.getRegionPointses()){
+			if(r.getCentralLong() != null && r.getCentralLat() != null && r.getCentralLong()>0 && r.getCentralLat()>0 ){
 				JSONObject pointJson = new JSONObject();
-				pointJson.put("lat", rp.getLatVal());
-				pointJson.put("lat", rp.getLongVal());
+				pointJson.put("lat", r.getCentralLong());
+				pointJson.put("lng", r.getCentralLong());
 				pointsJson.put(pointJson);
+			} else {
+				for(RegionPoints rp : r.getRegionPointses()){
+					JSONObject pointJson = new JSONObject();
+					pointJson.put("lat", rp.getLatVal());
+					pointJson.put("lng", rp.getLongVal());
+					pointsJson.put(pointJson);
+				}
 			}
+			
 			tmpJson.put("points", pointsJson);
 			json.put(tmpJson);
 		}
