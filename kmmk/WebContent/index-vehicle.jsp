@@ -65,8 +65,11 @@
 	<li><a href="#tabs-2"><span>72小时轨迹</span></a></li>
 	<li><a href="#tabs-3"><span>更多时段轨迹</span></a></li>	
 	<li><a href="#tabs-4"><span>车辆信息</span></a></li>
+	<!-- 
 	<li><a href="#tabs-5"><span>当前任务</span></a></li>
 	<li><a href="#tabs-6"><span>历史任务</span></a></li>
+	 -->
+	 <li><a href="#tabs-5"><span>报警记录</span></a></li>
 </ul>
 <div id="tabs-0">
 <iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/view-vehicle-status.jsp?vehicleId=<%=vehicleId%>" ></iframe>
@@ -83,11 +86,16 @@
 <div id="tabs-4">
 <iframe id="main-frame-4" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/view-vehicle.jsp?vehicleId=<%=vehicleId%>" ></iframe>
 </div>
+<!-- 
 <div id="tabs-5">
 <iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/view-task.jsp?vehicleId=<%=vehicleId%>" ></iframe>
 </div>
 <div id="tabs-6">
 <iframe id="main-frame-6" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/view-task.jsp?vehicleId=<%=vehicleId%>" ></iframe>
+</div>
+ -->
+<div id="tabs-5">
+<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?vehicleId=<%=vehicleId%>" ></iframe>
 </div>
 </div>
 </body>
