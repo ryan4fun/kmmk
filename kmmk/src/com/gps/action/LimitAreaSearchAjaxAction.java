@@ -32,7 +32,7 @@ public class LimitAreaSearchAjaxAction extends Action{
 			if(r.getCentralLong() != null && r.getCentralLat() != null && r.getCentralLong()>0 && r.getCentralLat()>0 ){
 				Double radius = r.getRadius();
 				if( radius == null || radius<0)
-					radius = 100d; //default radius
+					radius = 0.1; //default radius 0.1km
 				
 				double latGap = Util.CalculateDistance2LatGap( radius );
 				double lngGap = Util.CalculateDistance2LongGap( r.getCentralLong(), radius );
