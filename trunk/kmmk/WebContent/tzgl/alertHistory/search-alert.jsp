@@ -42,7 +42,8 @@ List<AlertTypeDic> vts = vtb.getList();
 $(document).ready(function(){
 	$("#search-div").accordion({
 		header:"h3",		
-		collapsible:false,
+		collapsible:true,
+		active: false,
 		change: function(event, ui) {		
 			
 		}
@@ -122,7 +123,7 @@ function getUsersList(){
 </head>
 <body>
 <div id="search-div">
-<h3><a href="#">请输入查询条件</a></h3>
+<h3><a href="#">更多查询条件</a></h3>
 <div style="padding:2px;">
 <form id="inputform" action="search-alert.jsp" method="post">
 <input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
@@ -158,16 +159,16 @@ function getUsersList(){
 </form>
 </div>
 </div>
-<% if(vs.size()>0){ %>
+
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>		
 		<th width="15%">车牌号</th>
 		<th width="15%">违规类型</th>
 		<th width="20%">发生时间</th>
 		<th width="50%">描述</th>
-
 	</tr>
-	<% for(AlertHistory v:vs){ 
+	<%
+	for(AlertHistory v:vs){ 
 		Util.setNull2DefaultValue(v);%>
 	<tr>
 		<td id="p_<%=v.getAlertId()%>" colspan="4">
@@ -179,8 +180,7 @@ function getUsersList(){
 				%>
 				<td align="left" width="15%"><%=vechile.getLicensPadNumber()==null?"未知":vechile.getLicensPadNumber()%></td>
 				<td align="left" width="15%"><%=v.getAlertTypeDic().getAlertTypeName()%></td>
-				<td align="left" width="20%"><%=Util.FormatDateLong(v.getOccurDate())%></td>				
-				
+				<td align="left" width="20%"><%=Util.FormatDateLong(v.getOccurDate())%></td>
 				<%
 					//UsersBean userBean = new UsersBean();
 					//String userName = "";
@@ -190,8 +190,7 @@ function getUsersList(){
 					//	userName = user.getRealName();
 					//}
 				%>				
-				<td align="left" width="50%"><%=v.getDescription()%></td>
-				
+				<td align="left" width="50%"><%=v.getDescription()%></td>				
 			</tr>
 		</table>
 		</td>
@@ -201,6 +200,5 @@ function getUsersList(){
 		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
 	</tr>
 </table>
-<% } %>
 </body>
 </html>
