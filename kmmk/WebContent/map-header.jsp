@@ -503,6 +503,12 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 			for(var i=0;i<lac.limitAreas.length;i++){
                 				var limitArea = lac.limitAreas[i];
                 				limitArea.isShow = false;
+                				var points = new Array();
+                				for(var j=0;j<limitArea.points.length;j++){
+                					var p = limitArea.points[j];
+                					if( p.lat && p.lng && p.lat>0 && p.lng>0 )
+                						points.push(new GLatLng( Number(p.lat)+CN_OFFSET_LAT,Number(p.lng)+CN_OFFSET_LON ));
+                				}
                 				limitArea.polygon = new GPolygon(limitArea.points, "#3355ff", 3, 0.8, "#335599", 0.3);
                 				mapObj.addOverlay(limitArea.polygon);
 
