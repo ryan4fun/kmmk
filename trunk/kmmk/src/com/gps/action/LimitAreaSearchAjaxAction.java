@@ -11,6 +11,7 @@ import com.gps.orm.PrivateRules;
 import com.gps.orm.Region;
 import com.gps.orm.RegionPoints;
 import com.gps.service.AlertTypeDicService;
+import com.gps.util.Util;
 
 public class LimitAreaSearchAjaxAction extends Action{
 	@Override
@@ -29,9 +30,34 @@ public class LimitAreaSearchAjaxAction extends Action{
 			tmpJson.put("name", r.getName());
 			JSONArray pointsJson = new JSONArray();
 			if(r.getCentralLong() != null && r.getCentralLat() != null && r.getCentralLong()>0 && r.getCentralLat()>0 ){
+				Double radius = r.getRadius();
+				if( radius == null || radius<0)
+					radius = 100d; //default radius
+				
+				double latGap = Util.CalculateDistance2LatGap( radius );
+				double lngGap = Util.CalculateDistance2LongGap( r.getCentralLong(), radius );
 				JSONObject pointJson = new JSONObject();
-				pointJson.put("lat", r.getCentralLong());
-				pointJson.put("lng", r.getCentralLong());
+				pointJson.put("lat", r.getCentralLat()-latGap);
+				pointJson.put("lng", r.getCentralLong()+lngGap);
+				pointsJson.put(pointJson);
+				
+				pointJson = new JSONObject();
+				pointJson.put("lat", r.getCentralLat()+latGap);
+				pointJson.put("lng", r.getCentralLong()+lngGap);
+				pointsJson.put(pointJson);
+				
+				pointJson = new JSONObject();
+				pointJson.put("lat", r.getCentralLat()+latGap);
+				pointJson.put("lng", r.getCentralLong()-lngGap);
+				pointsJson.put(pointJson);
+				
+				pointJson = new JSONObject();
+				pointJson.put("lat", r.getCentralLat()-latGap);
+				pointJson.put("lng", r.getCentralLong()-lngGap);
+				
+				pointJson = new JSONObject();
+				pointJson.put("lat", r.getCentralLat()-latGap);
+				pointJson.put("lng", r.getCentralLong()+lngGap);
 				pointsJson.put(pointJson);
 			} else {
 				for(RegionPoints rp : r.getRegionPointses()){
