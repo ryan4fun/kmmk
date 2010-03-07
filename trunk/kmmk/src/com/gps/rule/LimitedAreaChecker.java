@@ -6,7 +6,6 @@ package com.gps.rule;
 import java.util.Set;
 
 import com.gps.datacap.Message;
-import com.gps.orm.CheckPoints;
 import com.gps.orm.PrivateRules;
 import com.gps.orm.Region;
 import com.gps.orm.RegionPoints;

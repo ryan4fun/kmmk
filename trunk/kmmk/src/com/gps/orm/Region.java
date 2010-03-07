@@ -20,7 +20,6 @@ public class Region implements java.io.Serializable {
 	private Double edgeLong;
 	private Double edgeLat;
 	private Short figurType;
-	private Set<CheckPoints> checkPointses = new HashSet<CheckPoints>(0);
 	private Set<RegionPoints> regionPointses = new HashSet<RegionPoints>(0);
 
 	public Region() {
@@ -33,7 +32,7 @@ public class Region implements java.io.Serializable {
 	public Region(int regionId, RegionTypeDic regionTypeDic, String name,
 			String description, Double centralLong, Double centralLat,
 			Double radius, Double edgeLong, Double edgeLat, Short figurType,
-			Set<CheckPoints> checkPointses, Set<RegionPoints> regionPointses) {
+			Set<RegionPoints> regionPointses) {
 		this.regionId = regionId;
 		this.regionTypeDic = regionTypeDic;
 		this.name = name;
@@ -44,7 +43,6 @@ public class Region implements java.io.Serializable {
 		this.edgeLong = edgeLong;
 		this.edgeLat = edgeLat;
 		this.figurType = figurType;
-		this.checkPointses = checkPointses;
 		this.regionPointses = regionPointses;
 	}
 
@@ -128,13 +126,6 @@ public class Region implements java.io.Serializable {
 		this.figurType = figurType;
 	}
 
-	public Set<CheckPoints> getCheckPointses() {
-		return this.checkPointses;
-	}
-
-	public void setCheckPointses(Set<CheckPoints> checkPointses) {
-		this.checkPointses = checkPointses;
-	}
 
 	public Set<RegionPoints> getRegionPointses() {
 		return this.regionPointses;

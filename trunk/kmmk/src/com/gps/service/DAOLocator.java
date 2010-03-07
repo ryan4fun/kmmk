@@ -4,7 +4,6 @@ import org.hibernate.Session;
 
 import com.gps.orm.AlertHistoryHome;
 import com.gps.orm.AlertTypeDicHome;
-import com.gps.orm.CheckPointsHome;
 import com.gps.orm.DriverHome;
 import com.gps.orm.EscorterHome;
 import com.gps.orm.GpsDeviceInstallationHome;
@@ -77,7 +76,6 @@ public class DAOLocator {
 	private AlertHistoryHome alertHistoryHome;
 	private GpsfeeHome gpsfeeHome;
 	private QualifiedCoordAreaHome qualifiedCoordAreaHome;
-	private CheckPointsHome checkPointsHome;
 	private VehicleRuleHome vehicleRuleHome;
 	
 
@@ -122,7 +120,6 @@ public class DAOLocator {
 		alertHistoryHome = new AlertHistoryHome();
 		gpsfeeHome = new GpsfeeHome();
 		qualifiedCoordAreaHome = new QualifiedCoordAreaHome();
-		checkPointsHome = new CheckPointsHome();
 		vehicleRuleHome = new VehicleRuleHome();
 	}
 
@@ -416,13 +413,7 @@ public class DAOLocator {
 		 qualifiedCoordAreaHome = home;
 	}
 	
-	public CheckPointsHome getCheckPointsHome() {
-		return checkPointsHome;
-	}
 
-	public void setCheckPointsHome(CheckPointsHome checkPointsHome) {
-		this.checkPointsHome = checkPointsHome;
-	}
 
 	public RegionPointsHome getRegionPointsHome() {
 		return regionPointsHome;
