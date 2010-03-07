@@ -61,7 +61,7 @@
         return container;
     }
 	ReplayControl.prototype.getDefaultPosition = function() {
-      return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(500, 7));
+      return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(480, 7));
     }
 	ReplayControl.prototype.initReplay = function( mapObj, replayLinePoints, oldLine, endMarker, stopMarkers ) {
 		if(mapObj){
