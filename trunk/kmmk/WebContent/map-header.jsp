@@ -284,11 +284,11 @@ if( login.getMapType()==LoginInfo.MAPABC ){
         			}
         		}
         		msc.addoverlayListener = GEvent.addListener(mapObj, "addoverlay", function(overlay) {
-        			if( overlay instanceof GMarker )
+        			if( overlay instanceof GOverlay )
         				msc.oldOverLays.push(overlay);
             	});
         		msc.removeoverlayListener = GEvent.addListener(mapObj, "removeoverlay", function(overlay) {
-            		if( overlay instanceof GMarker ){
+            		if( overlay instanceof GOverlay ){
             			for(var i=0;i<msc.oldOverLays.length;i++){
             				if( msc.oldOverLays[i] == overlay ){
             					msc.oldOverLays.splice(i,1);
