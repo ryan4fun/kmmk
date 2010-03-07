@@ -12,7 +12,7 @@ if(vb.getOccurDateEnd()==null)
 	vb.setOccurDateEnd(Util.getCurrentDateTime());
 
 
-List<AlertHistory> vs = vb.getList();
+List<AlertHistory> ahs = vb.getList();
 Util.setNull2DefaultValue(vb);
 
 AlertTypeDicBean vtb = new AlertTypeDicBean();
@@ -49,7 +49,7 @@ $(document).ready(function(){
 		}
 	});
 	
-	<%if(vs!=null && vs.size()>0){%>
+	<%if(ahs!=null && ahs.size()>0){%>
 	$("#__pagination").pagination(
 			<%=vb.getMaxRecord()%>,
 			{
@@ -162,25 +162,26 @@ function getUsersList(){
 
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>		
-		<th width="15%">车牌号</th>
-		<th width="15%">违规类型</th>
-		<th width="20%">发生时间</th>
-		<th width="50%">描述</th>
+		<th width="12%">车牌号</th>
+		<th width="12%">违规类型</th>
+		<th width="15%">发生时间</th>
+		<th >描述</th>
+		<th width="10%">&nbsp;</th>
 	</tr>
 	<%
-	for(AlertHistory v:vs){ 
-		Util.setNull2DefaultValue(v);%>
+	for(AlertHistory ah:ahs){ 
+		Util.setNull2DefaultValue(ah);%>
 	<tr>
-		<td id="p_<%=v.getAlertId()%>" colspan="4">
+		<td id="p_<%=ah.getAlertId()%>" colspan="4">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>				
 				<%  VehicleBean vehcileBean = new VehicleBean();
-					vehcileBean.setVehicleId(v.getVehicleId());
+					vehcileBean.setVehicleId(ah.getVehicleId());
 					Vehicle vechile = vehcileBean.findById();
 				%>
-				<td align="left" width="15%"><%=vechile.getLicensPadNumber()==null?"未知":vechile.getLicensPadNumber()%></td>
-				<td align="left" width="15%"><%=v.getAlertTypeDic().getAlertTypeName()%></td>
-				<td align="left" width="20%"><%=Util.FormatDateLong(v.getOccurDate())%></td>
+				<td align="left" width="12%"><%=vechile.getLicensPadNumber()==null?"未知":vechile.getLicensPadNumber()%></td>
+				<td align="left" width="12%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>
+				<td align="left" width="15%"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
 				<%
 					//UsersBean userBean = new UsersBean();
 					//String userName = "";
@@ -190,7 +191,11 @@ function getUsersList(){
 					//	userName = user.getRealName();
 					//}
 				%>				
-				<td align="left" width="50%"><%=v.getDescription()%></td>				
+				<td align="left" ><%=ah.getDescription()%></td>		
+				<td width="12%">
+					<%if(ah.getAccComment()==null){%>
+					<a href="javascript:href('confirm-alert.jsp?alertId=<%=ah.getAlertId()%>')">违规报警确认</a>
+					<%}%>&nbsp;</td>		
 			</tr>
 		</table>
 		</td>
