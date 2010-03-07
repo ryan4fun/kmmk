@@ -11,7 +11,6 @@ if(vb.getOccurDateStart()==null)
 if(vb.getOccurDateEnd()==null)
 	vb.setOccurDateEnd(Util.getCurrentDateTime());
 
-
 List<AlertHistory> ahs = vb.getList();
 Util.setNull2DefaultValue(vb);
 
@@ -165,17 +164,18 @@ function getUsersList(){
 		<th width="12%">车牌号</th>
 		<th width="12%">违规类型</th>
 		<th width="15%">发生时间</th>
-		<th >描述</th>
-		<th width="10%">&nbsp;</th>
+		<th width="50%" >描述</th>
+		<th>&nbsp;</th>
 	</tr>
 	<%
 	for(AlertHistory ah:ahs){ 
 		Util.setNull2DefaultValue(ah);%>
 	<tr>
-		<td id="p_<%=ah.getAlertId()%>" colspan="4">
+		<td id="p_<%=ah.getAlertId()%>" colspan="5">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>				
-				<%  VehicleBean vehcileBean = new VehicleBean();
+				<%  
+					VehicleBean vehcileBean = new VehicleBean();
 					vehcileBean.setVehicleId(ah.getVehicleId());
 					Vehicle vechile = vehcileBean.findById();
 				%>
@@ -191,10 +191,12 @@ function getUsersList(){
 					//	userName = user.getRealName();
 					//}
 				%>				
-				<td align="left" ><%=ah.getDescription()%></td>		
-				<td width="12%">
-					<%if(ah.getAccComment()==null){%>
-					<a href="javascript:href('confirm-alert.jsp?alertId=<%=ah.getAlertId()%>')">违规报警确认</a>
+				<td align="left" width="50%" ><%=ah.getDescription()%></td>		
+				<td>
+					<%if(ah.getAcctime()==null || ah.getAccUser()==null){%>
+						<a href="javascript:href('confirm-alert.jsp?alertId=<%=ah.getAlertId()%>')">违规报警确认</a>
+					<%} else {%>
+						已确认
 					<%}%>&nbsp;</td>		
 			</tr>
 		</table>
