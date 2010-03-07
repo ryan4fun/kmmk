@@ -68,7 +68,7 @@ $(document).ready(function(){
 		<div style="padding:2px;">
 			<form id="form1" action="mkgps.do" method="post">
 				<input type="hidden" name="alertId" value="<%=ah.getAlertId()%>"/>
-				<input type="hidden" name="action" value="AlertHistoryChangeAction"/>
+				<input type="hidden" name="action" value="AlertHistoryUpdateAction"/>
 				<input type="hidden" name="success" value="update-alert-history-succ.jsp"/>
 				<input type="hidden" name="failed" value="update-alert-history-faild.jsp"/>
 				<table cellSpacing="5" width="95%">
