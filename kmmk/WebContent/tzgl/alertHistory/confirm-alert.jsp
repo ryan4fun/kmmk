@@ -91,7 +91,7 @@ $(document).ready(function(){
 					<tr>
 						<td width="20%" align="right">确认信息：</td>
 						<td align="left">
-							<textarea rows="3" id="accComment" name="accComment"></textarea> </td>
+							<textarea rows="3" id="accComment" name="accComment" cols="100" ></textarea> </td>
 					</tr>
 				</table>
 				<p align="center">
