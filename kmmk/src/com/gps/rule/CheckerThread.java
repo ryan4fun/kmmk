@@ -41,7 +41,7 @@ public class CheckerThread implements Runnable{
 						
 						AlertTypeDic alertDic = checker.getAlertTypeDic();
 						AlertHistory alert =  new AlertHistory();
-						alert.setVehicleId(this.checker.vehicle.getVehicleId());
+						alert.setVehicle(this.checker.vehicle);
 						alert.setAlertTypeDic(alertDic);
 						alert.setOccurDate(new Date());
 						alert.setTag(AlertHistoryService.FROM_TASK_RULE);
