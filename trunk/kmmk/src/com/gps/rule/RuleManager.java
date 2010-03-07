@@ -291,7 +291,7 @@ public class RuleManager {
 			System.out.println("Alert!   long = " + msg.getLongitude() + " lat = "+ msg.getLatitude());
 			AlertTypeDic alertDic = ((AbstractPrivateRuleChecker)checker).getAlertTypeDic();
 			AlertHistory alert =  new AlertHistory();
-			alert.setVehicleId(checker.vehicle.getVehicleId());
+			alert.setVehicle(checker.vehicle);
 			alert.setAlertTypeDic(alertDic);
 			alert.setOccurDate(new Date());
 			alert.setTag(AlertHistoryService.FROM_TASK_RULE);
