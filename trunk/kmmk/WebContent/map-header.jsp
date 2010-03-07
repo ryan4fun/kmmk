@@ -183,7 +183,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	MeasureDistanceControl.prototype.measureDistancePoints = null;
 	MeasureDistanceControl.prototype.initialize = function(mapObj) {
     	var container = document.createElement("div");
-    	var $controlDiv = $(container).width(180).append("<div>描点测距 / 油耗估算</div>").children();
+    	var $controlDiv = $(container).width(160).append("<div>描点测距 / 油耗估算</div>").children();
     	$controlDiv.addClass("mapLabel").addClass("mapLink");
     	
         GEvent.addDomListener($controlDiv[0], "click", function() {
@@ -254,7 +254,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 		var msc = this;
 		this.mapObj = mapObj;
 		var container = document.createElement("div");
-    	var $controlDiv = $(container).width(180).append("<div>地图查询</div>").children();
+    	var $controlDiv = $(container).width(80).append("<div>地图查询</div>").children();
     	$controlDiv.addClass("mapLabel").addClass("mapLink")
 //    		.append("<img src='<%=mapImagePath%>images/google_icon/map_center.gif' width='16' height='16' style='positon:absolute' />").children("img:first")
 //    		.css("top",mapObj.getSize().height/2-8)
@@ -339,7 +339,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
         return container;	    
 	}
 	MapSearcherControl.prototype.getDefaultPosition = function() {
-		return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(300, 7));
+		return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(280, 7));
 	}
 	MapSearcherControl.prototype.OnLocalSearchComplete = function() {
 		if ( this.localSearch.results==null || this.localSearch.results.length<1 ){
@@ -475,7 +475,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	LimitAreaControl.prototype.limitAreas = null;
 	LimitAreaControl.prototype.initialize = function(mapObj) {
     	var container = document.createElement("div");
-    	var $controlDiv = $(container).width(150).append("<div>限制区域</div>").children();
+    	var $controlDiv = $(container).width(80).append("<div>限制区域</div>").children();
     	$controlDiv.addClass("mapLabel").addClass("mapLink");
     	var lac = this;
     	
@@ -513,9 +513,9 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 				mapObj.addOverlay(limitArea.polygon);
 
                 				$controlDiv.after(
-               						"<input type='checkBox' maxlength=10 id='" + 
+               						"<input type='checkBox' style='display:inline;white-space:nowrap;' id='"
                						+ limitArea.id 
-               						+ "' /><span style='color:#0000cc;background:white;' >" 
+               						+ "' /><span style='color:#0000cc;background:white;white-space:nowrap' >" 
                                    	+ limitArea.name 
                                    	+ "</span><br>");
                           		$controlDiv.nextAll("input:first").click( function() {
@@ -551,7 +551,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
         return container;
     }
 	LimitAreaControl.prototype.getDefaultPosition = function() {
-		return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(500, 7));
+		return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(380, 7));
     }
     
 	// markers
