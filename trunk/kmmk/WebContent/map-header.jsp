@@ -482,7 +482,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
         GEvent.addDomListener($controlDiv[0], "click", function() {
             if(lac.isShow){
             	$controlDiv.nextAll().hide();
-            	var $checkBoxs = $controlDiv.nextAll("input");
+            	var $checkBoxs = $controlDiv.nextAll("span").children("input");
                 for(var i=0;i<$checkBoxs.length;i++){
               		lac.limitAreas[$checkBoxs[i].id].polygon.hide();
                 }
@@ -513,12 +513,13 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 				mapObj.addOverlay(limitArea.polygon);
 
                 				$controlDiv.after(
-               						"<input type='checkBox' style='display:inline;white-space:nowrap;' id='"
+               						"<span style='color:#0000cc;background:white;white-space:nowrap' >" 
+               						+ "<input type='checkBox' id='"
                						+ limitArea.id 
-               						+ "' /><span style='color:#0000cc;background:white;white-space:nowrap' >" 
+               						+ "' />"
                                    	+ limitArea.name 
                                    	+ "</span><br>");
-                          		$controlDiv.nextAll("input:first").click( function() {
+                          		$controlDiv.next("span:first").children("input").click( function() {
                               		if( this.checked )
                               			lac.limitAreas[this.id].polygon.show();
                               		else
@@ -536,7 +537,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 	});
                 }
             	$controlDiv.nextAll().show();
-            	var $checkBoxs = $controlDiv.nextAll("input");
+            	var $checkBoxs = $controlDiv.nextAll("span").children("input");
                 for(var i=0;i<$checkBoxs.length;i++){
                     var cb = $checkBoxs[i];
                     if( cb.checked )
