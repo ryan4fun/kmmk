@@ -482,8 +482,9 @@ if( login.getMapType()==LoginInfo.MAPABC ){
         GEvent.addDomListener($controlDiv[0], "click", function() {
             if(lac.isShow){
             	$controlDiv.nextAll().hide();
-            	for(var i=0;i<lac.limitAreas.length;i++){
-                    lac.limitAreas[i].polygon.hide();
+            	var $checkBoxs = $controlDiv.nextAll("input");
+                for(var i=0;i<$checkBoxs.length;i++){
+              		lac.limitAreas[$checkBoxs[i].id].polygon.hide();
                 }
             } else {
             	if( lac.limitAreas==null ){
@@ -499,10 +500,9 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 		cache: false,
                 		async: false,
                 		success: function(json) {
-                			lac.limitAreas = json ? json : new Array();
-                			for(var i=0;i<lac.limitAreas.length;i++){
-                				var limitArea = lac.limitAreas[i];
-                				limitArea.isShow = false;
+                			lac.limitAreas = json ? json : {};
+                			for(var p in lac.limitAreas){
+                				var limitArea = lac.limitAreas[p];
                 				var points = new Array();
                 				for(var j=0;j<limitArea.points.length;j++){
                 					var p = limitArea.points[j];
@@ -513,16 +513,17 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 				mapObj.addOverlay(limitArea.polygon);
 
                 				$controlDiv.after(
-               						"<input type='checkBox' maxlength=10 /><span style='color:#0000cc;background:white;' >" 
+               						"<input type='checkBox' maxlength=10 id='" + 
+               						+ limitArea.id 
+               						+ "' /><span style='color:#0000cc;background:white;' >" 
                                    	+ limitArea.name 
                                    	+ "</span><br>");
-                          		$controlDiv.nextAll("input:last").change( function() {
-                          			this.limitArea.isShow = this.checked;
+                          		$controlDiv.nextAll("input:first").click( function() {
                               		if( this.checked )
-                              			this.limitArea.polygon.show();
+                              			lac.limitAreas[this.id].polygon.show();
                               		else
-                              			this.limitArea.polygon.hide();
-                          		})[0].limitArea = lac.limitAreas[i]; 
+                              			lac.limitAreas[this.id].polygon.hide();
+                          		}); 
                 			}
                 			$.unblockUI();
                 		},
@@ -535,12 +536,13 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 	});
                 }
             	$controlDiv.nextAll().show();
-                for(var i=0;i<lac.limitAreas.length;i++){
-                    var limitArea = lac.limitAreas[i];
-                    if(limitArea.isShow)
-                    	limitArea.polygon.show();
-                    else
-                    	limitArea.polygon.hide();
+            	var $checkBoxs = $controlDiv.nextAll("input");
+                for(var i=0;i<$checkBoxs.length;i++){
+                    var cb = $checkBoxs[i];
+                    if( cb.checked )
+                    	lac.limitAreas[cb.id].polygon.show();
+              		else
+              			lac.limitAreas[cb.id].polygon.hide();
                 }
             }
             lac.isShow = !lac.isShow;
