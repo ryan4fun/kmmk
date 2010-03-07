@@ -43,7 +43,6 @@ public class ServiceLocator {
 	private AlertHistoryService alertHistoryService;
 	private GpsFeeService gpsFeeService;
 	private QualifiedCoordAreaService qualifiedCoordAreaService;
-	private CheckPointsService checkPointsService;
 	private VehicleRuleService vehicleRuleService;
 	
 	public static ServiceLocator getInstance(){
@@ -89,7 +88,6 @@ public class ServiceLocator {
 		alertHistoryService = new AlertHistoryService();
 		setGpsFeeService(new GpsFeeService());
 		qualifiedCoordAreaService = new QualifiedCoordAreaService();
-		checkPointsService = new CheckPointsService();
 		setVehicleRuleService(new VehicleRuleService());
 	}
 
@@ -392,13 +390,6 @@ public class ServiceLocator {
 		return qualifiedCoordAreaService;
 	}
 
-	public void setCheckPointsService(CheckPointsService checkPointsService) {
-		this.checkPointsService = checkPointsService;
-	}
-
-	public CheckPointsService getCheckPointsService() {
-		return checkPointsService;
-	}
 
 	public RegionPointsService getRegionPointsService() {
 		return regionPointsService;

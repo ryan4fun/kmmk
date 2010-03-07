@@ -35,7 +35,6 @@ public class Task implements java.io.Serializable {
 	private Set<TaskDriver> taskDrivers = new HashSet<TaskDriver>(0);
 	private Set<TaskSegment> taskSegments = new HashSet<TaskSegment>(0);
 	private Set<TaskRule> taskRules = new HashSet<TaskRule>(0);
-	private Set<CheckPoints> checkPointses = new HashSet<CheckPoints>(0);
 	private Set<PrivateRules> privateRuleses = new HashSet<PrivateRules>(0);
 
 	public Task() {
@@ -55,7 +54,7 @@ public class Task implements java.io.Serializable {
 			Date assignDate, Date lastModify, Short configTag,
 			Set<TaskEscorter> taskEscorters, Set<TaskDriver> taskDrivers,
 			Set<TaskSegment> taskSegments, Set<TaskRule> taskRules,
-			Set<CheckPoints> checkPointses, Set<PrivateRules> privateRuleses) {
+			Set<PrivateRules> privateRuleses) {
 		this.taskId = taskId;
 		this.users = users;
 		this.vehicle = vehicle;
@@ -80,7 +79,6 @@ public class Task implements java.io.Serializable {
 		this.taskDrivers = taskDrivers;
 		this.taskSegments = taskSegments;
 		this.taskRules = taskRules;
-		this.checkPointses = checkPointses;
 		this.privateRuleses = privateRuleses;
 	}
 
@@ -276,13 +274,6 @@ public class Task implements java.io.Serializable {
 		this.taskRules = taskRules;
 	}
 
-	public Set<CheckPoints> getCheckPointses() {
-		return this.checkPointses;
-	}
-
-	public void setCheckPointses(Set<CheckPoints> checkPointses) {
-		this.checkPointses = checkPointses;
-	}
 
 	public Set<PrivateRules> getPrivateRuleses() {
 		return this.privateRuleses;
