@@ -65,7 +65,7 @@ public class TrackDataHandler {
 				System.out.println(vehicle.getVehicleId()+" is alerting, saving track information...");
 			}
 			AlertHistory alert =  new AlertHistory();
-			alert.setVehicleId(vehicle.getVehicleId());
+			alert.setVehicle(vehicle);
 			alert.setAlertTypeDic(getAlertTypeDic(message.getAlertType()));
 			alert.setOccurDate(message.getServerReceiveDate());
 			alert.setDescription(getAlertDescription(message));

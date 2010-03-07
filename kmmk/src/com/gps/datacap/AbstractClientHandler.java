@@ -6,6 +6,8 @@ package com.gps.datacap;
 import java.io.IOException;
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 import com.gps.orm.AlertHistory;
 import com.gps.orm.AlertTypeDic;
 import com.gps.orm.Vehicle;
@@ -23,7 +25,7 @@ import com.gps.service.VehicleService;
  */
 public abstract class AbstractClientHandler implements Runnable{
 
-	
+	static Logger logger = Logger.getLogger(AbstractClientHandler.class);
 	public static int MESSAGE_INTERVAL = 10*1000;
 
 	public static double LEAGLE_POS_SOUTH_WEST_LONG;
@@ -126,13 +128,15 @@ public abstract class AbstractClientHandler implements Runnable{
 //				vehicle == null
 				System.out.println("get an un-authorized vechile : " + message.getDeviceId());
 				if(this.server.allowLogAlert(message.getDeviceId())){
-					AlertTypeDic alertDic = AlertTypeDicService.getInstance(AlertTypeDicService.ALERT_TYPE_DIC_ID_UNAUTHORIZED_NUMBER);
-					AlertHistory alert =  new AlertHistory();
-					alert.setVehicleId(-1);
-					alert.setAlertTypeDic(alertDic);
-					alert.setOccurDate(new Date());
-					alert.setDescription("未授权的车辆:" + message.getDeviceId());
-					ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
+//					AlertTypeDic alertDic = AlertTypeDicService.getInstance(AlertTypeDicService.ALERT_TYPE_DIC_ID_UNAUTHORIZED_NUMBER);
+//					AlertHistory alert =  new AlertHistory();
+//					alert.setVehicleId(-1);
+//					alert.setAlertTypeDic(alertDic);
+//					alert.setOccurDate(new Date());
+//					alert.setDescription("未授权的车辆:" + message.getDeviceId());
+//					ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
+					logger.warn("未授权的车辆:" + message.getDeviceId());
+				
 				}
 			}
 		}
@@ -157,7 +161,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		
 		AlertTypeDic alertDic = AlertTypeDicService.getInstance(AlertTypeDicService.ALERT_TYPE_DIC_ID_ILLEAGLE_POS);
 		AlertHistory alert =  new AlertHistory();
-		alert.setVehicleId(vehicle.getVehicleId());
+		alert.setVehicle(vehicle);
 		alert.setAlertTypeDic(alertDic);
 		alert.setOccurDate(new Date());
 		System.out.println("get an illeagle position data :  long=" + message.getLongitude() + "lat="+ message.getLatitude());
