@@ -1,5 +1,6 @@
 package com.gps.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -16,15 +17,22 @@ import com.gps.util.Util;
 public class LimitAreaSearchAjaxAction extends Action{
 	@Override
 	public void doAction() throws Exception{
+//		select tname,distinct prof from
+		
 		PrivateRulesBean prb = new PrivateRulesBean();
 		prb.setPagination(false);
 		prb.setAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
 		List<PrivateRules> prs = prb.getList();
+		
 		RegionBean rb = new RegionBean();
-		JSONArray json = new JSONArray();
+		List<Integer> list = new ArrayList<Integer>();
 		for(PrivateRules pr : prs){
-			rb.setRegionId(pr.getIntParam1());
-			Region r = rb.findById();
+			list.add(pr.getIntParam1());
+		}
+		rb.setIdList(list);
+		
+		JSONObject json = new JSONObject();
+		for(Region r : rb.getListByIdList()){
 			JSONObject tmpJson = new JSONObject();
 			tmpJson.put("id", r.getRegionId());
 			tmpJson.put("name", r.getName());
@@ -70,9 +78,8 @@ public class LimitAreaSearchAjaxAction extends Action{
 					pointsJson.put(pointJson);
 				}
 			}
-			
 			tmpJson.put("points", pointsJson);
-			json.put(tmpJson);
+			json.put(String.valueOf(r.getRegionId()), tmpJson);
 		}
 		response.getWriter().write(json.toString());
 	}
