@@ -32,6 +32,8 @@ public class RegionBean extends AbstractBean {
 	private Double queryLong;
 	private Integer queryRadius;
 	
+	private List<Integer> idList;
+	
 	public RegionBean(){
 	}
 			
@@ -80,6 +82,19 @@ public class RegionBean extends AbstractBean {
 			List<Region> list = crit.list();
 			
 			getTotalCount(crit);
+			return list;
+		} catch (HibernateException e) {
+			logger.error(e);
+			throw e;
+		}
+	}
+	
+	public List<Region> getListByIdList(){
+		try {
+			Criteria crit = this.generateStringPropCriteria(Region.class,this);
+			if (idList != null && idList.size()>0)
+				crit.add(Restrictions.in("regionId", idList));
+			List<Region> list = crit.list();
 			return list;
 		} catch (HibernateException e) {
 			logger.error(e);
@@ -204,6 +219,14 @@ public class RegionBean extends AbstractBean {
 
 	public void setQueryRadius(Integer queryRadius) {
 		this.queryRadius = queryRadius;
+	}
+
+	public List<Integer> getIdList() {
+		return idList;
+	}
+
+	public void setIdList(List<Integer> idList) {
+		this.idList = idList;
 	}
 
 }
