@@ -30,13 +30,11 @@ public class Region implements java.io.Serializable {
 		this.regionId = regionId;
 	}
 
-
 	public Region(int regionId, Organization organization,
 			RegionTypeDic regionTypeDic, String name, String description,
 			Double centralLong, Double centralLat, Double radius,
 			Double edgeLong, Double edgeLat, Short figurType,
 			Set<RegionPoints> regionPointses) {
-
 		this.regionId = regionId;
 		this.organization = organization;
 		this.regionTypeDic = regionTypeDic;
