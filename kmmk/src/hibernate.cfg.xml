@@ -40,7 +40,6 @@
         <mapping resource="com/gps/orm/TenMinTrackHis.hbm.xml" />
         <mapping resource="com/gps/orm/TaskSegment.hbm.xml" />
         <mapping resource="com/gps/orm/VehiclePic.hbm.xml" />
-        <mapping resource="com/gps/orm/CheckPoints.hbm.xml" />
         <mapping resource="com/gps/orm/Gpsfee.hbm.xml" />
         <mapping resource="com/gps/orm/FVehicleMaterial.hbm.xml" />
         <mapping resource="com/gps/orm/TaskRealtimeTrackHis.hbm.xml" />
@@ -65,8 +64,8 @@
         <mapping resource="com/gps/orm/FMaterialKeepLog.hbm.xml" />
         <mapping resource="com/gps/orm/UserRole.hbm.xml" />
         <mapping resource="com/gps/orm/Segment.hbm.xml" />
-        <mapping resource="com/gps/orm/VehiclePicTypeDic.hbm.xml" />
         <mapping resource="com/gps/orm/TenMinTrack.hbm.xml" />
+        <mapping resource="com/gps/orm/VehiclePicTypeDic.hbm.xml" />
         <mapping resource="com/gps/orm/QualifiedCoordArea.hbm.xml" />
         <mapping resource="com/gps/orm/RealtimeTrackHis.hbm.xml" />
         <mapping resource="com/gps/orm/TaskEscorter.hbm.xml" />
