@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Tuesday, February 23, 2010 22:37:15
+ * Date Created : Sunday, March 07, 2010 22:50:12
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -60,30 +60,6 @@ IF OBJECT_ID('AlertTypeDic') IS NOT NULL
     PRINT '<<< CREATED TABLE AlertTypeDic >>>'
 ELSE
     PRINT '<<< FAILED CREATING TABLE AlertTypeDic >>>'
-go
-
-/* 
- * TABLE: checkPoints 
- */
-
-CREATE TABLE checkPoints(
-    ID                   bigint      IDENTITY(1,1),
-    regionID             int         NULL,
-    taskID               int         NULL,
-    checkedState         smallint    NULL,
-    enterDate            datetime    NULL,
-    leaveDate            datetime    NULL,
-    requiredCheckType    smallint    NULL,
-    CONSTRAINT PK63 PRIMARY KEY NONCLUSTERED (ID)
-)
-go
-
-
-
-IF OBJECT_ID('checkPoints') IS NOT NULL
-    PRINT '<<< CREATED TABLE checkPoints >>>'
-ELSE
-    PRINT '<<< FAILED CREATING TABLE checkPoints >>>'
 go
 
 /* 
@@ -646,16 +622,17 @@ go
  */
 
 CREATE TABLE region(
-    regionID        int                 IDENTITY(1,1),
-    name            varchar(50)         NULL,
-    description     varchar(100)        NULL,
-    centralLong     double precision    NULL,
-    centralLat      double precision    NULL,
-    radius          float               NULL,
-    edgeLong        double precision    NULL,
-    edgeLat         double precision    NULL,
-    figurType       smallint            NULL,
-    regionTypeID    smallint            NULL,
+    regionID          int                 IDENTITY(1,1),
+    name              varchar(50)         NULL,
+    description       varchar(100)        NULL,
+    centralLong       double precision    NULL,
+    centralLat        double precision    NULL,
+    radius            float               NULL,
+    edgeLong          double precision    NULL,
+    edgeLat           double precision    NULL,
+    figurType         smallint            NULL,
+    regionTypeID      smallint            NULL,
+    organizationID    int                 NULL,
     CONSTRAINT PK32 PRIMARY KEY NONCLUSTERED (regionID)
 )
 go
@@ -760,15 +737,16 @@ go
  */
 
 CREATE TABLE Segment(
-    segmentID        int                 IDENTITY(1,1),
-    segName          varchar(50)         NULL,
-    segType          smallint            NULL,
-    createTime       datetime            NULL,
-    state            smallint            NULL,
-    description      varchar(200)        NULL,
-    startDetialID    bigint              NULL,
-    endDetailID      bigint              NULL,
-    speedLimit       double precision    NULL,
+    segmentID         int                 IDENTITY(1,1),
+    segName           varchar(50)         NULL,
+    segType           smallint            NULL,
+    createTime        datetime            NULL,
+    state             smallint            NULL,
+    description       varchar(200)        NULL,
+    startDetialID     bigint              NULL,
+    endDetailID       bigint              NULL,
+    speedLimit        double precision    NULL,
+    organizationID    int                 NULL,
     CONSTRAINT PK44 PRIMARY KEY NONCLUSTERED (segmentID)
 )
 go
@@ -1413,19 +1391,9 @@ ALTER TABLE alertHistory ADD CONSTRAINT RefAlertTypeDic64
     REFERENCES AlertTypeDic(AlertTypeID)
 go
 
-
-/* 
- * TABLE: checkPoints 
- */
-
-ALTER TABLE checkPoints ADD CONSTRAINT Refregion79 
-    FOREIGN KEY (regionID)
-    REFERENCES region(regionID)
-go
-
-ALTER TABLE checkPoints ADD CONSTRAINT Reftask80 
-    FOREIGN KEY (taskID)
-    REFERENCES task(taskID)
+ALTER TABLE alertHistory ADD CONSTRAINT Refvehicle102 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
 go
 
 
@@ -1528,14 +1496,14 @@ go
  * TABLE: f_tyres 
  */
 
-ALTER TABLE f_tyres ADD CONSTRAINT Refvehicle89 
-    FOREIGN KEY (vehicleID)
-    REFERENCES vehicle(vehicleID)
-go
-
 ALTER TABLE f_tyres ADD CONSTRAINT Refusers92 
     FOREIGN KEY (operatorID)
     REFERENCES users(userID)
+go
+
+ALTER TABLE f_tyres ADD CONSTRAINT Refvehicle89 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
 go
 
 
@@ -1568,14 +1536,14 @@ go
  * TABLE: GPSFee 
  */
 
-ALTER TABLE GPSFee ADD CONSTRAINT Refusers66 
-    FOREIGN KEY (operatorID)
-    REFERENCES users(userID)
-go
-
 ALTER TABLE GPSFee ADD CONSTRAINT Refvehicle65 
     FOREIGN KEY (vehicleID)
     REFERENCES vehicle(vehicleID)
+go
+
+ALTER TABLE GPSFee ADD CONSTRAINT Refusers66 
+    FOREIGN KEY (operatorID)
+    REFERENCES users(userID)
 go
 
 
@@ -1613,6 +1581,11 @@ ALTER TABLE region ADD CONSTRAINT RefregionTypeDic57
     REFERENCES regionTypeDic(regionTypeID)
 go
 
+ALTER TABLE region ADD CONSTRAINT Reforganization101 
+    FOREIGN KEY (organizationID)
+    REFERENCES organization(organizationID)
+go
+
 
 /* 
  * TABLE: regionPoints 
@@ -1631,6 +1604,16 @@ go
 ALTER TABLE rules ADD CONSTRAINT RefAlertTypeDic58 
     FOREIGN KEY (AlertTypeID)
     REFERENCES AlertTypeDic(AlertTypeID)
+go
+
+
+/* 
+ * TABLE: Segment 
+ */
+
+ALTER TABLE Segment ADD CONSTRAINT Reforganization103 
+    FOREIGN KEY (organizationID)
+    REFERENCES organization(organizationID)
 go
 
 
