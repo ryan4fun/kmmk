@@ -128,7 +128,7 @@ public class DataCaptureServer {
 						
 					
 					logger.info("UDP server successfully started at port: "+ port);
-					System.out.println("UDP Server Started at port : " + port);
+//					System.out.println("UDP Server Started at port : " + port);
 					
 					int receivCount = 0;
 					UDPClientHandler handler = new UDPClientHandler(serverSocket,DataCaptureServer.this);
