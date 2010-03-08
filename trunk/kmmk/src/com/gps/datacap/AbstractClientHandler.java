@@ -165,7 +165,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		alert.setAlertTypeDic(alertDic);
 		alert.setOccurDate(new Date());
 		System.out.println("get an illeagle position data :  long=" + message.getLongitude() + "lat="+ message.getLatitude());
-		alert.setDescription("异常定位数据 : 经度=" + message.getLongitude() + " 纬度="+ message.getLatitude());
+		alert.setDescription("异常数据: 经度(" + message.getLongitude() + ") 纬度("+ message.getLatitude()+")");
 		ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 
 		
