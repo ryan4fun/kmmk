@@ -69,7 +69,7 @@ public class VehicleRuleService extends AbstractService {
 	public List<VehicleRule> getRuleListByVehicleId(int vehicleId) {
 
 		Criteria criteria = HibernateUtil.getSession().createCriteria(VehicleRule.class);
-		criteria.add(Restrictions.eq("vehilceId", vehicleId));
+		criteria.add(Restrictions.eq("vehicle.vehicleId", vehicleId));
 		List<VehicleRule> rules = criteria.list();
 		return rules;
 		
