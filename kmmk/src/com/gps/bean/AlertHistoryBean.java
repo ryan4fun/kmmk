@@ -75,55 +75,82 @@ public class AlertHistoryBean extends AbstractBean {
 	public List<AlertHistory> getList(){
 		try {
 			Criteria crit = HibernateUtil.getSession().createCriteria(AlertHistory.class);			
-			
 			crit.createAlias("vehicle", "v");
 			crit.createAlias("vehicle.users", "u");
 			crit.createAlias("vehicle.users.organization", "o");
 			
-			if (this.getUserId() != null && userId>0)
-				crit.add(Restrictions.eq("u.userId", this.getUserId()));
-			if (this.getOrganizationId() != null && organizationId>0)
-				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
+			Criteria _crit = HibernateUtil.getSession().createCriteria(AlertHistory.class);			
+			_crit.createAlias("vehicle", "v");
+			_crit.createAlias("vehicle.users", "u");
+			_crit.createAlias("vehicle.users.organization", "o");
 			
-			if (this.getAlertTypeId() != null && alertTypeId > 0)
+			if (this.getUserId() != null && userId>0){
+				crit.add(Restrictions.eq("u.userId", this.getUserId()));
+				_crit.add(Restrictions.eq("u.userId", this.getUserId()));
+			}				
+			if (this.getOrganizationId() != null && organizationId>0) {
+				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
+				_crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));	
+			}			
+			if (this.getAlertTypeId() != null && alertTypeId > 0){
 				crit.add(Restrictions.eq("alertTypeDic.alertTypeId", this.getAlertTypeId()));
-			else if (this.alertTypeIds != null && !this.alertTypeIds.isEmpty()){
+				_crit.add(Restrictions.eq("alertTypeDic.alertTypeId", this.getAlertTypeId()));	
+			} else if (this.alertTypeIds != null && !this.alertTypeIds.isEmpty()){
 				Disjunction disj = Restrictions.disjunction();
 				for(Integer alertTypeId:this.alertTypeIds){
 					disj.add(Restrictions.eq("alertTypeDic.alertTypeId", alertTypeId));
 				}
 				crit.add(disj);
+				_crit.add(disj);
 			}
-			if (this.getVehicleId() != null && vehicleId > 0)
+			if (this.getVehicleId() != null && vehicleId > 0){
 				crit.add(Restrictions.eq("v.vehicleId", this.getAlertTypeId()));
-			if (this.getOccurDate() != null)
+				_crit.add(Restrictions.eq("v.vehicleId", this.getAlertTypeId()));
+			}				
+			if (this.getOccurDate() != null){
 				crit.add(Restrictions.eq("occurDate", this.getOccurDate()));
-			if (this.getAcctime() != null)
+				_crit.add(Restrictions.eq("occurDate", this.getOccurDate()));
+			}
+				
+			if (this.getAcctime() != null){
 				crit.add(Restrictions.eq("acctime", this.getAcctime()));
-			if (this.getAccUser() != null && this.accUser>0)
-				crit.add(Restrictions.eq("accUser", this.accUser));			
-			if (this.getDescription() != null && !this.description.equals(""))
+				_crit.add(Restrictions.eq("acctime", this.getAcctime()));
+			}
+				
+			if (this.getAccUser() != null && this.accUser>0){
+				crit.add(Restrictions.eq("accUser", this.accUser));	
+				_crit.add(Restrictions.eq("accUser", this.accUser));	
+			}
+			if (this.getDescription() != null && !this.description.equals("")){
 				crit.add(Restrictions.ge("description", this.description));
+				_crit.add(Restrictions.ge("description", this.description));
+			}
 			
-			if (this.occurDateStart != null)
+			if (this.occurDateStart != null){
 				crit.add(Restrictions.ge("occurDate", this.occurDateStart));
+				_crit.add(Restrictions.ge("occurDate", this.occurDateStart));
+			}
 
-			if (this.occurDateEnd != null)
-				crit.add(Restrictions.le("occurDate", this.occurDateEnd));		
+			if (this.occurDateEnd != null){
+				crit.add(Restrictions.le("occurDate", this.occurDateEnd));
+				_crit.add(Restrictions.le("occurDate", this.occurDateEnd));
+			}
 			
 			if (this.getAccepted() != null){
 				if(this.getAccepted()){
 					crit.add(Restrictions.isNotNull("acctime"));
+					_crit.add(Restrictions.isNotNull("acctime"));
 				} else {
 					crit.add(Restrictions.isNull("acctime"));
+					_crit.add(Restrictions.isNull("acctime"));
 				}
 			}
 			
-			getTotalCount(crit);
 			crit.addOrder(Order.desc("occurDate"));
 			addPagination(crit);
-			List<AlertHistory> list = crit.list();			
+			List<AlertHistory> list = crit.list();
 			
+			getTotalCount(_crit);
 			return list;
 		} catch (HibernateException e) {
 			logger.error(e);
