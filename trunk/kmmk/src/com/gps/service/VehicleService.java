@@ -32,8 +32,8 @@ public class VehicleService extends AbstractService {
 	
 	public static Map<Short, String> annualCheckStates = new HashMap<Short, String>();
 	static {
-		annualCheckStates.put(VEHICLE_ANNUALCHECK_STATE_PASSED, "ÒÑÄê¼ì");
-		annualCheckStates.put(VEHICLE_ANNUALCHECK_STATE_UNPASSED, "Î´Äê¼ì");		
+		annualCheckStates.put(VEHICLE_ANNUALCHECK_STATE_PASSED, "å·²å¹´æ£€");
+		annualCheckStates.put(VEHICLE_ANNUALCHECK_STATE_UNPASSED, "æœªå¹´æ£€");		
 	}
 	
 	

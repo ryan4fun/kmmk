@@ -59,53 +59,53 @@ public class VehicleStatusService extends AbstractService {
 	
 	public static Map<Byte, String> runningStates = new HashMap<Byte, String>();
 	static {
-//		runningStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		runningStates.put(VEHICLE_RUNNING_STATE_RUNNING, "ĞĞÊ»ÖĞ");
-		runningStates.put(VEHICLE_RUNNING_STATE_STOP, "¾²Ö¹");
+//		runningStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		runningStates.put(VEHICLE_RUNNING_STATE_RUNNING, "è¡Œé©¶ä¸­");
+		runningStates.put(VEHICLE_RUNNING_STATE_STOP, "é™æ­¢");
 	}
 	
 	public static Map<Byte, String> onlineStates = new HashMap<Byte, String>();
 	static {
-//		onlineStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		onlineStates.put(VEHICLE_ONLINE_STATE_ONLINE, "ÔÚÏß");
-		onlineStates.put(VEHICLE_ONLINE_STATE_OFFLINE, "ÀëÏß");
-		onlineStates.put(VEHICLE_ONLINE_STATE_BLIND, "Ã¤Çø");
+//		onlineStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		onlineStates.put(VEHICLE_ONLINE_STATE_ONLINE, "åœ¨çº¿");
+		onlineStates.put(VEHICLE_ONLINE_STATE_OFFLINE, "ç¦»çº¿");
+		onlineStates.put(VEHICLE_ONLINE_STATE_BLIND, "ç›²åŒº");
 	}	
 	
 	public static Map<Byte, String> askHelpStates = new HashMap<Byte, String>();
 	static {
-//		askHelpStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		askHelpStates.put(VEHICLE_ASKHELP_STATE_ON, "Çó¾È");
-		askHelpStates.put(VEHICLE_ASKHELP_STATE_OFF, "Õı³£");
+//		askHelpStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		askHelpStates.put(VEHICLE_ASKHELP_STATE_ON, "æ±‚æ•‘");
+		askHelpStates.put(VEHICLE_ASKHELP_STATE_OFF, "æ­£å¸¸");
 	}	
 	
 	public static Map<Byte, String> taskStates = new HashMap<Byte, String>();
 	static {
-//		taskStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		taskStates.put(VEHICLE_ONTASK_STATE_OFF, "ÎŞÈÎÎñ");
-		taskStates.put(VEHICLE_ONTASK_STATE_ON, "ÓĞÈÎÎñ");
+//		taskStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		taskStates.put(VEHICLE_ONTASK_STATE_OFF, "æ— ä»»åŠ¡");
+		taskStates.put(VEHICLE_ONTASK_STATE_ON, "æœ‰ä»»åŠ¡");
 	}
 	
 	public static Map<Byte, String> regionStates = new HashMap<Byte, String>();
 	static {
-//		regionStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		regionStates.put(VEHICLE_LIMITAREAALARM_STATE_LEAVE, "Àë¿ªÌØ¶¨ÇøÓò");
-		regionStates.put(VEHICLE_LIMITAREAALARM_STATE_ENTER, "½øÈëÌØ¶¨ÇøÓò");
-		regionStates.put(VEHICLE_LIMITAREAALARM_STATE, "Õı³£");
+//		regionStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		regionStates.put(VEHICLE_LIMITAREAALARM_STATE_LEAVE, "ç¦»å¼€ç‰¹å®šåŒºåŸŸ");
+		regionStates.put(VEHICLE_LIMITAREAALARM_STATE_ENTER, "è¿›å…¥ç‰¹å®šåŒºåŸŸ");
+		regionStates.put(VEHICLE_LIMITAREAALARM_STATE, "æ­£å¸¸");
 	}
 	
 	public static Map<Byte, String> tiredDriveStates = new HashMap<Byte, String>();
 	static {
-//		overSpeedStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		tiredDriveStates.put(VEHICLE_TIREDRIVE_STATE_ON, "Æ£ÀÍ");
-		tiredDriveStates.put(VEHICLE_TIREDRIVE_STATE_OFF, "Õı³£");
+//		overSpeedStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		tiredDriveStates.put(VEHICLE_TIREDRIVE_STATE_ON, "ç–²åŠ³");
+		tiredDriveStates.put(VEHICLE_TIREDRIVE_STATE_OFF, "æ­£å¸¸");
 	}
 	
 	public static Map<Byte, String> overSpeedStates = new HashMap<Byte, String>();
 	static {
-//		tiredDriveStates.put(new Byte("0"), "Ã»ÓĞĞÅºÅ");
-		overSpeedStates.put(VEHICLE_OVERSPEED_STATE_ON, "³¬ËÙ");
-		overSpeedStates.put(VEHICLE_OVERSPEED_STATE_OFF, "Õı³£");		
+//		tiredDriveStates.put(new Byte("0"), "æ²¡æœ‰ä¿¡å·");
+		overSpeedStates.put(VEHICLE_OVERSPEED_STATE_ON, "è¶…é€Ÿ");
+		overSpeedStates.put(VEHICLE_OVERSPEED_STATE_OFF, "æ­£å¸¸");		
 	}
 	
 	public void addVehicleStatus(VehicleStatus es){		
