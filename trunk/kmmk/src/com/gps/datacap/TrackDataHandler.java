@@ -119,16 +119,16 @@ public class TrackDataHandler {
 		switch(alertType){
 		
 			case Message.ALERT_TYPE_OVERSPEED:
-				strBuf.append("GPS设备发出超速告警!  速度:"+msg.getSpeed());
+				strBuf.append("GPS设备超速告警! 速度: "+msg.getSpeed());
 				break;
 			case Message.ALERT_TYPE_SOS:
-				strBuf.append("GPS设备发出求救告警!  时间:"+Util.FormatDateLong(msg.getGPSTimestamp()));
+				strBuf.append("GPS设备求救告警! 时间: "+Util.FormatDateLong(msg.getGPSTimestamp()));
 				break;
 			case Message.ALERT_TYPE_ENTERSPOT:
-				strBuf.append("GPS设备发出限制区域告警! 经度:"+msg.getLongitude() + " 纬度:"+msg.getLatitude());
+				strBuf.append("GPS设备限制区域告警! 经度("+msg.getLongitude() + ") 纬度("+msg.getLatitude()+")");
 				break;
 				
-			default:  strBuf.append("GPS设备发出其他报警 : " + alertType);
+			default:  strBuf.append("GPS设备未知报警类别: " + alertType);
 	
 		}
 		
