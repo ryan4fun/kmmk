@@ -8,14 +8,12 @@ import org.hibernate.HibernateException;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.HibernateUtil;
-import com.gps.orm.TaskRule;
-import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleRule;
 
 public class VehicleRuleService extends AbstractService {
 	static Logger logger = Logger.getLogger(VehicleRuleService.class);
 	
-	public void addTaskRule(VehicleRule es){		
+	public void addVehicleRule(VehicleRule es){		
 		try {
 			beginTransaction();
 			getDAOLocator().getVehicleRuleHome().persist(es);
@@ -28,7 +26,7 @@ public class VehicleRuleService extends AbstractService {
 		}
 	}
 	
-	public void deleteTaskRule(VehicleRule es){		
+	public void deleteVehicleRule(VehicleRule es){		
 		try {
 			beginTransaction();
 			getDAOLocator().getVehicleRuleHome().delete(es);
@@ -41,7 +39,7 @@ public class VehicleRuleService extends AbstractService {
 		}
 	}
 	
-	public void updateTaskRule(VehicleRule es){		
+	public void updateVehicleRule(VehicleRule es){		
 		try {
 			beginTransaction();
 			getDAOLocator().getVehicleRuleHome().attachDirty(es);
