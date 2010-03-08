@@ -84,6 +84,10 @@ public class AlertHistoryBean extends AbstractBean {
 			_crit.createAlias("vehicle.users", "u");
 			_crit.createAlias("vehicle.users.organization", "o");
 			
+			if (this.getVehicleId() != null && vehicleId > 0){
+				crit.add(Restrictions.eq("v.vehicleId", this.getVehicleId()));
+				_crit.add(Restrictions.eq("v.vehicleId", this.getVehicleId()));
+			}			
 			if (this.getUserId() != null && userId>0){
 				crit.add(Restrictions.eq("u.userId", this.getUserId()));
 				_crit.add(Restrictions.eq("u.userId", this.getUserId()));
@@ -102,11 +106,7 @@ public class AlertHistoryBean extends AbstractBean {
 				}
 				crit.add(disj);
 				_crit.add(disj);
-			}
-			if (this.getVehicleId() != null && vehicleId > 0){
-				crit.add(Restrictions.eq("v.vehicleId", this.getAlertTypeId()));
-				_crit.add(Restrictions.eq("v.vehicleId", this.getAlertTypeId()));
-			}				
+			}							
 			if (this.getOccurDate() != null){
 				crit.add(Restrictions.eq("occurDate", this.getOccurDate()));
 				_crit.add(Restrictions.eq("occurDate", this.getOccurDate()));
