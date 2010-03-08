@@ -26,6 +26,7 @@ public class SegmentBean extends AbstractBean {
 	private String startDetialId;
 	private String endDetailId;
 	
+	private Integer organizationId;
 	private Date createTimeStart;
 	private Date createTimeEnd;
 	
@@ -39,7 +40,11 @@ public class SegmentBean extends AbstractBean {
 	public List<Segment> getList(){
 		try {
 			Criteria crit = this.generateStringPropCriteria(Segment.class,this);
-
+			if (organizationId != null && organizationId>0)
+				crit.add(Restrictions.eq("organization.organizationId", organizationId));
+			else
+				crit.add(Restrictions.eq("organization.organizationId", getCurrentOrganizationId()));
+			
 			if(this.state == null || this.state.equals(""))
 				crit.add(Restrictions.ne("state", SegmentService.SWGMENT_DEL_STATE));
 			if (this.createTimeStart != null)
@@ -144,6 +149,14 @@ public class SegmentBean extends AbstractBean {
 
 	public void setCreateTimeEnd(Date createTimeEnd) {
 		this.createTimeEnd = createTimeEnd;
+	}
+
+	public Integer getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(Integer organizationId) {
+		this.organizationId = organizationId;
 	}
 	
 }

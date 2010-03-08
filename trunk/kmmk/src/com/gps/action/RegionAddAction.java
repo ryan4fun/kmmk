@@ -3,6 +3,7 @@ package com.gps.action;
 import java.util.Set;
 
 import com.gps.Message;
+import com.gps.orm.Organization;
 import com.gps.orm.Region;
 import com.gps.orm.RegionPoints;
 import com.gps.orm.RegionTypeDic;
@@ -16,6 +17,10 @@ public class RegionAddAction extends Action{
 			throw new Message("RegionTypeDic not find!");
 		generateAllSimpleProp(r);
 		r.setRegionTypeDic(rtd);
+		Organization o = getServiceLocator().getOrganizationService().findById(getCurrentOrganizationId());
+		if(o == null)
+			throw new Message("无法找到用户所属单位！");
+		r.setOrganization(o);
 		
 		String[] longValues = getArray("longValue");
 		String[] latValues = getArray("latValue");
