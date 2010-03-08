@@ -6,11 +6,11 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.gps.bean.PrivateRulesBean;
 import com.gps.bean.RegionBean;
-import com.gps.orm.PrivateRules;
+import com.gps.bean.RulesBean;
 import com.gps.orm.Region;
 import com.gps.orm.RegionPoints;
+import com.gps.orm.Rules;
 import com.gps.service.AlertTypeDicService;
 import com.gps.util.Util;
 
@@ -19,20 +19,20 @@ public class LimitAreaSearchAjaxAction extends Action{
 	public void doAction() throws Exception{
 //		select tname,distinct prof from
 		
-		PrivateRulesBean prb = new PrivateRulesBean();
-		prb.setPagination(false);
-		prb.setAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
-		List<PrivateRules> prs = prb.getList();
+		RulesBean rb = new RulesBean();
+		rb.setPagination(false);
+		rb.setAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
+		List<Rules> rs = rb.getList();
 		
-		RegionBean rb = new RegionBean();
+		RegionBean rgb = new RegionBean();
 		List<Integer> list = new ArrayList<Integer>();
-		for(PrivateRules pr : prs){
+		for(Rules pr : rs){
 			list.add(pr.getIntParam1());
 		}
-		rb.setIdList(list);
+		rgb.setIdList(list);
 		
 		JSONObject json = new JSONObject();
-		for(Region r : rb.getListByIdList()){
+		for(Region r : rgb.getListByIdList()){
 			JSONObject tmpJson = new JSONObject();
 			tmpJson.put("id", r.getRegionId());
 			tmpJson.put("name", r.getName());
