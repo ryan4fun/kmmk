@@ -2,14 +2,14 @@
 	com.gps.orm.*,com.gps.service.*" %>
 
 <%@ include file="/header.jsp" %><%
-    AlertHistoryBean vb = new AlertHistoryBean(request);
-    vb.setAccepted(false);
-    vb.setPagination(true);
-    vb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_OVERSPEED);
-    vb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
-    vb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_TIREDDRIVING);
-    vb.setRowsPerPage(10);
-    List<AlertHistory> vs = vb.getList();
+    AlertHistoryBean ahb = new AlertHistoryBean(request);
+	ahb.setAccepted(false);
+	ahb.setPagination(true);
+	ahb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_OVERSPEED);
+	ahb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
+	ahb.addAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_TIREDDRIVING);
+	ahb.setRowsPerPage(10);
+    List<AlertHistory> ahs = ahb.getList();
     
 %><HTML><HEAD><TITLE></TITLE>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -86,7 +86,7 @@ window.onerror = killErrors;
 <TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
 <TR>
 <TD width="44"><IMG src="images/asd/kk1.gif" width="44" height="20" border="0"></TD>
-<TD class="STYLE2" style="PADDING-TOP: 4px" width="293" background="images/asd/kk2.gif"><A href="#" target="main"><B>您有 <%=vb.getMaxRecord() %> 条未处理消息</B></A></TD>
+<TD class="STYLE2" style="PADDING-TOP: 4px" width="293" background="images/asd/kk2.gif"><A href="#" target="main"><B>您有 <%=ahb.getMaxRecord() %> 条未处理消息</B></A></TD>
 <TD width="19" background="images/asd/kk3.gif"></TD>
 </TR></TABLE>
 </TD></TR>
@@ -104,16 +104,14 @@ window.onerror = killErrors;
 		<td width="40%"></td>		
 	</tr>
 <%
-	for(AlertHistory v:vs){ 
-		Util.setNull2DefaultValue(v);
-		VehicleBean vehcileBean = new VehicleBean();
-		vehcileBean.setVehicleId(v.getVehicleId());
-		Vehicle vechile = vehcileBean.findById();
+	for(AlertHistory ah:ahs){ 
+		Util.setNull2DefaultValue(ah);
+		Vehicle vechile = ah.getVehicle();
 %>
 	<tr>
 		<td><%=vechile.getLicensPadNumber()==null?"未知":vechile.getLicensPadNumber()%></td>
-		<td><%=Util.FormatDateLong(v.getOccurDate())%></td>
-		<td><%=v.getDescription()%></td>
+		<td><%=Util.FormatDateLong(ah.getOccurDate())%></td>
+		<td><%=ah.getDescription()%></td>
 	</tr>
 <% } %>	
 </table>
