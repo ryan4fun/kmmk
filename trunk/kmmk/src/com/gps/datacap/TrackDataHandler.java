@@ -106,8 +106,10 @@ public class TrackDataHandler {
 			case Message.ALERT_TYPE_ENTERSPOT:
 				return 2;		
 		
+			default: return 5;
+			
 		}
-		return 1;
+		
 	}
 
 	private String getAlertDescription(Message msg){
