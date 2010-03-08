@@ -6,7 +6,7 @@ GO
 BEGIN TRANSACTION SUN_DATA_IMPORT_TRANS
 GO
 
-Print 'starting import AlertTypeDic (8 records)'
+Print 'starting import AlertTypeDic (7 records)'
 SET IDENTITY_INSERT [AlertTypeDic] ON
 INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePath],[voicePath]) VALUES(1,'超速报警','','user_images/AlertTypeDic/1245569401140.gif',NULL)
 INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePath],[voicePath]) VALUES(2,'疲劳驾驶报警','','user_images/AlertTypeDic/1245569410062.gif',NULL)
@@ -15,7 +15,6 @@ INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePa
 INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePath],[voicePath]) VALUES(5,'其他报警','','user_images/AlertTypeDic/1245569401140.gif',NULL)
 INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePath],[voicePath]) VALUES(6,'异常定位数据','','user_images/AlertTypeDic/1245569401140.gif',NULL)
 INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePath],[voicePath]) VALUES(7,'异常频繁回传',NULL,'user_images/AlertTypeDic/1245569401140.gif',NULL)
-INSERT INTO [AlertTypeDic] ([AlertTypeID],[AlertTypeName],[description],[imagePath],[voicePath]) VALUES(8,'其他报警',NULL,'user_images/AlertTypeDic/1245569401140.gif',NULL)
 SET IDENTITY_INSERT [AlertTypeDic] OFF
 
 Print 'starting import organization (2 records)'
