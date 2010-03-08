@@ -175,9 +175,7 @@ function getUsersList(){
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>				
 				<%  
-					VehicleBean vehcileBean = new VehicleBean();
-					vehcileBean.setVehicleId(ah.getVehicleId());
-					Vehicle vechile = vehcileBean.findById();
+					Vehicle vechile = ah.getVehicle();
 				%>
 				<td align="left" width="12%"><%=vechile.getLicensPadNumber()==null?"未知":vechile.getLicensPadNumber()%></td>
 				<td align="left" width="12%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>

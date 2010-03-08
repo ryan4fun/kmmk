@@ -11,9 +11,7 @@ if(idstr!=null || !idstr.equals("")){
 if(ah == null){
 	out.print("无法找到该违规信息！");
 } else {
-	VehicleBean vehcileBean = new VehicleBean();
-	vehcileBean.setVehicleId(ah.getVehicleId());
-	Vehicle vechile = vehcileBean.findById();
+	Vehicle vechile = ah.getVehicle();
 %>
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
