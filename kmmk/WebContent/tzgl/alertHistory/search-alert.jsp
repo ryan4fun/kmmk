@@ -164,8 +164,8 @@ function getUsersList(){
 		<th width="12%">车牌号</th>
 		<th width="12%">违规类型</th>
 		<th width="15%">发生时间</th>
-		<th width="50%" >描述</th>
-		<th>&nbsp;</th>
+		<th width="30%" >描述</th>
+		<th>违规报警确认信息</th>
 	</tr>
 	<%
 	for(AlertHistory ah:ahs){ 
@@ -189,12 +189,12 @@ function getUsersList(){
 					//	userName = user.getRealName();
 					//}
 				%>				
-				<td align="left" width="50%" ><%=ah.getDescription()%></td>		
+				<td align="left" width="30%" ><%=ah.getDescription()%></td>
 				<td>
 					<%if(ah.getAcctime()==null || ah.getAccUser()==null){%>
 						<a href="javascript:href('confirm-alert.jsp?alertId=<%=ah.getAlertId()%>')">违规报警确认</a>
 					<%} else {%>
-						已确认
+						确认时间：<%=Util.FormatDateLong(ah.getAcctime())%><br><%=ah.getAccComment()%>
 					<%}%>&nbsp;</td>		
 			</tr>
 		</table>
