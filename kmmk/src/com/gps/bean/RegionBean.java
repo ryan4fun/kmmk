@@ -100,6 +100,7 @@ public class RegionBean extends AbstractBean {
 			Criteria crit = this.generateStringPropCriteria(Region.class,this);
 			if (idList != null && idList.size()>0)
 				crit.add(Restrictions.in("regionId", idList));
+			crit.add(Restrictions.eq("organization.organizationId", this.getCurrentOrganizationId()));
 			List<Region> list = crit.list();
 			return list;
 		} catch (HibernateException e) {
