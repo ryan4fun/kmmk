@@ -64,12 +64,16 @@
 <ul>
 	<li><a href="#tabs-0"><span><%=o.getName() %> 车辆位置</span></a></li>
 	<li><a href="#tabs-1"><span>营运单位信息</span></a></li>
+	<li><a href="#tabs-2"><span>报警记录</span></a></li>
 </ul>
 <div id="tabs-0">
 <iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="dwjg/vehicle-status/monitor-vehicle-status.jsp?organizationId=<%=organizationId%>" ></iframe>
 </div>
 <div id="tabs-1">
 <iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="org-struc/organization/view-organization.jsp?organizationId=<%=organizationId%>" ></iframe>
+</div>
+<div id="tabs-2">
+<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?organizationId=<%=organizationId%>" ></iframe>
 </div>
 </div>
 </body>

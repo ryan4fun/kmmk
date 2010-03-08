@@ -18,6 +18,7 @@ import com.gps.orm.Escorter;
 import com.gps.orm.HibernateUtil;
 import com.gps.orm.Vehicle;
 import com.gps.service.EscorterService;
+import com.gps.service.RoleService;
 
 public class AlertHistoryBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(AlertHistoryBean.class);
@@ -37,16 +38,53 @@ public class AlertHistoryBean extends AbstractBean {
 	private Date occurDateStart;
 	private Date occurDateEnd;
 	
+	private Integer userId;
+	private Integer organizationId;
+	
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Integer getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(Integer organizationId) {
+		this.organizationId = organizationId;
+	}
+
 	public AlertHistoryBean(){
 	}
 			
 	public AlertHistoryBean(HttpServletRequest request) {
 		super(request);
+		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
+		
+		int role = login.getRoles().iterator().next();
+		if(role == RoleService.ROLE_ORG_ADMIN){
+			setOrganizationId(login.getOrganizationId());
+		} else if(role == RoleService.ROLE_VEHICLE_OWNER){
+			setUserId(login.getUserId());
+		}
 	}
 
 	public List<AlertHistory> getList(){
 		try {
-			Criteria crit = HibernateUtil.getSession().createCriteria(AlertHistory.class);
+			Criteria crit = HibernateUtil.getSession().createCriteria(AlertHistory.class);			
+			
+			crit.createAlias("vehicle", "v");
+			crit.createAlias("vehicle.users", "u");
+			crit.createAlias("vehicle.users.organization", "o");
+			
+			if (this.getUserId() != null && userId>0)
+				crit.add(Restrictions.eq("u.userId", this.getUserId()));
+			if (this.getOrganizationId() != null && organizationId>0)
+				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
+			
 			if (this.getAlertTypeId() != null && alertTypeId > 0)
 				crit.add(Restrictions.eq("alertTypeDic.alertTypeId", this.getAlertTypeId()));
 			else if (this.alertTypeIds != null && !this.alertTypeIds.isEmpty()){
@@ -57,7 +95,7 @@ public class AlertHistoryBean extends AbstractBean {
 				crit.add(disj);
 			}
 			if (this.getVehicleId() != null && vehicleId > 0)
-				crit.add(Restrictions.eq("vehicleId", this.getVehicleId()));
+				crit.add(Restrictions.eq("v.vehicleId", this.getAlertTypeId()));
 			if (this.getOccurDate() != null)
 				crit.add(Restrictions.eq("occurDate", this.getOccurDate()));
 			if (this.getAcctime() != null)
