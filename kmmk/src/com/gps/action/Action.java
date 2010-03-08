@@ -214,6 +214,10 @@ public abstract class Action {
 		return login.getUserId();
 	}
 	
+	protected int getCurrentOrganizationId(){
+		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
+		return login.getOrganizationId();
+	}
 	
 	public abstract void doAction() throws Exception;
 	

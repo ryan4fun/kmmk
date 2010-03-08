@@ -8,6 +8,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 import com.gps.Message;
 import com.gps.bean.TrackBean;
+import com.gps.orm.Organization;
 import com.gps.orm.Segment;
 import com.gps.orm.SegmentDetail;
 import com.gps.service.SegmentDetailService;
@@ -21,6 +22,10 @@ public class SegmentAddAction extends Action{
 		generateAllSimpleProp(s);
 		s.setCreateTime(Util.getCurrentDateTime());
 		s.setState(SegmentService.SEGMENT_NORM_STATE);
+		Organization o = getServiceLocator().getOrganizationService().findById(getCurrentOrganizationId());
+		if(o == null)
+			throw new Message("无法找到用户所属单位！");
+		s.setOrganization(o);
 		
 		TrackBean tb = new TrackBean(request);
 		List list = tb.getList();

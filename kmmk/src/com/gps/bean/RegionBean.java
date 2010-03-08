@@ -26,6 +26,7 @@ public class RegionBean extends AbstractBean {
 	private String edgeLat;
 	private String figurType;
 	
+	private Integer organizationId;
 	private Short regionTypeId;
 	private Short stateTag;
 	private Double queryLat;
@@ -48,6 +49,11 @@ public class RegionBean extends AbstractBean {
 				crit.add(Restrictions.eq("regionTypeDic.regionTypeId", regionTypeId));
 //			if (stateTag != null && stateTag>0)
 //				crit.add(Restrictions.eq("regionTypeDic.stateTag", stateTag));
+			
+			if (organizationId != null && organizationId>0)
+				crit.add(Restrictions.eq("organization.organizationId", organizationId));
+			else
+				crit.add(Restrictions.eq("organization.organizationId", this.getCurrentOrganizationId()));
 			
 			if (queryRadius != null && queryRadius > 0 && queryLong != null
 					&& queryLong > 0 && queryLat != null && queryLat > 0) {
@@ -227,6 +233,14 @@ public class RegionBean extends AbstractBean {
 
 	public void setIdList(List<Integer> idList) {
 		this.idList = idList;
+	}
+
+	public Integer getOrganizationId() {
+		return organizationId;
+	}
+
+	public void setOrganizationId(Integer organizationId) {
+		this.organizationId = organizationId;
 	}
 
 }

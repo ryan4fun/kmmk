@@ -22,9 +22,9 @@ public class UsersAddAction extends Action{
 		u.setUserState(UsersService.USERS_NORM_STATE);
 		u.setPasswd(INIT_PWD);
 		if(get("organizationId")!=null){
-			Organization o = this.getServiceLocator().getOrganizationService().findById(this.getInteger("organizationId"));
+			Organization o = getServiceLocator().getOrganizationService().findById(this.getInteger("organizationId"));
 			if(o == null)
-				throw new Message("Organization not find!");
+				throw new Message("无法找到该单位！");
 			u.setOrganization(o);
 		}
 		
