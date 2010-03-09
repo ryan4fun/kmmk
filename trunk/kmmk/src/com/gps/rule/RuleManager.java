@@ -243,18 +243,20 @@ public class RuleManager {
 			}
 		}
 		
-		Segment seg = this.segScheduler.getCurrentSegment(msg);
-		
-		if(seg != null){
+		if(this.segScheduler != null){
+			Segment seg = this.segScheduler.getCurrentSegment(msg);
 			
-			List<AbstractRuleChecker> checkerList = this.segmentRuleSet.get(seg.getSegmentId());
-			for(AbstractRuleChecker tempChecker : checkerList){
+			if(seg != null){
 				
-				Object checkResult = check(tempChecker,msg);
-				if(checkResult instanceof AlertHistory){
-					alertList.add((AlertHistory) checkResult);
-				}else if(checkResult instanceof AlertTypeDic){
-					clearList.add((AlertTypeDic) checkResult);
+				List<AbstractRuleChecker> checkerList = this.segmentRuleSet.get(seg.getSegmentId());
+				for(AbstractRuleChecker tempChecker : checkerList){
+					
+					Object checkResult = check(tempChecker,msg);
+					if(checkResult instanceof AlertHistory){
+						alertList.add((AlertHistory) checkResult);
+					}else if(checkResult instanceof AlertTypeDic){
+						clearList.add((AlertTypeDic) checkResult);
+					}
 				}
 			}
 		}
