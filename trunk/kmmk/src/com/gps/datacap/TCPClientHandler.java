@@ -70,7 +70,7 @@ public class TCPClientHandler extends AbstractClientHandler {
 				if(count < 0){
 					count = 0;
 				}
-				System.out.println(Util.FormatDateLong(new Date()) +"  Message received : "  + new String(buff,0,count));
+//				System.out.println(Util.FormatDateLong(new Date()) +"  Message received : "  + new String(buff,0,count));
 				callCount++;
 //				if(callCount > 5000){
 //					System.out.println(System.currentTimeMillis() +"Message exception : " +count+ " msg = " + new String(buff));
