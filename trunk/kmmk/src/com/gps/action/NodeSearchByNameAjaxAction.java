@@ -20,7 +20,7 @@ public class NodeSearchByNameAjaxAction extends Action{
 	public void doAction() throws Exception{
 		String name = this.get("name");
 		
-		RegionBean rb = new RegionBean();
+		RegionBean rb = new RegionBean(request);
 		rb.setPagination(false);
 
 		List<Region> rs = null;
