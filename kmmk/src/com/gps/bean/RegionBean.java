@@ -35,9 +35,6 @@ public class RegionBean extends AbstractBean {
 	
 	private List<Integer> idList;
 	
-	public RegionBean(){
-	}
-			
 	public RegionBean(HttpServletRequest request) {
 		super(request);
 	}
