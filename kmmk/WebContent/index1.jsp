@@ -277,7 +277,7 @@ var currentId;
 
 </head>
 <body style="margin:0px;background-color:#f3f3f3;">
-<div id="contextMenuModal" style="display:none">111</div>
+<div id="contextMenuModal" style="display:none">&nbsp;</div>
 <table id="main-table" border="0" cellpadding="0" cellspacing="0" style="100%;height:100%;">	
 	<tr height="30">
 		<td colSpan="3" align="left">		
