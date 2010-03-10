@@ -34,7 +34,6 @@ public class VehicleRuleBean extends AbstractBean {
 				crit.add(Restrictions.eq("vehicle.vehicleId", vehicleId));
 			if (ruleId != null && ruleId>0)
 				crit.add(Restrictions.eq("rules.ruleId", ruleId));
-			crit.add(Restrictions.ne("rules.ruleState", RulesService.RULE_NORM_STATE));
 			
 			addPagination(crit);
 			
