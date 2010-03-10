@@ -18,21 +18,21 @@ public class LimitAreaSearchAjaxAction extends Action{
 	@Override
 	public void doAction() throws Exception{
 //		select tname,distinct prof from
+//		RulesBean rb = new RulesBean();
+//		rb.setPagination(false);
+//		rb.setAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
+//		List<Rules> rs = rb.getList();
+//		
+//		RegionBean rgb = new RegionBean();
+//		List<Integer> list = new ArrayList<Integer>();
+//		for(Rules pr : rs){
+//			list.add(pr.getIntParam1());
+//		}
+//		rgb.setIdList(list);
 		
-		RulesBean rb = new RulesBean();
-		rb.setPagination(false);
-		rb.setAlertTypeId(AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA);
-		List<Rules> rs = rb.getList();
-		
-		RegionBean rgb = new RegionBean();
-		List<Integer> list = new ArrayList<Integer>();
-		for(Rules pr : rs){
-			list.add(pr.getIntParam1());
-		}
-		rgb.setIdList(list);
-		
+		RegionBean rgb = new RegionBean(request);
 		JSONObject json = new JSONObject();
-		for(Region r : rgb.getListByIdList()){
+		for(Region r : rgb.getList()){
 			JSONObject tmpJson = new JSONObject();
 			tmpJson.put("id", r.getRegionId());
 			tmpJson.put("name", r.getName());
