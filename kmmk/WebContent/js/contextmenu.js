@@ -48,6 +48,52 @@ function treeContextMenu(obj, event) {
 						div+='<a img="stop-trace.gif" class="{action: \'stopTrack()\'}">停止本车监控</a>';
 					div+='<a img="frequence.gif" class="{action: \'setFrequence()\'}">设定本车采样频率</a>';
 				}
+				
+				div+='<a img="hprio_tsk.gif" class="{menu:\'sub_menu\'}">增改限制区域</a>';
+				$("#tree-div").block({
+					message : "<label>查询限制区域中！</label>"
+				});
+				$.ajax({
+					url : "mkgps.do",
+					dataType : "json",
+					data : {
+						action : "LimitAreaSearchByVehicleAjaxAction",
+						id: currentId
+					},
+					cache : false,
+					async: false,
+					success : function(json){
+						if(json){
+							for(var p in json){
+		        				var limitArea = json[p];
+		        				if(limitArea.opType){
+//		        					public final static short RULE_OP_OBEY = 1;
+//		        					public final static short RULE_OP_DISOBEY = 2;
+		        					if( limitArea.opType==1 ){
+		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">禁止进入' + limitArea.name + '</a>';
+		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">禁止离开' + limitArea.name + '</a>';
+		        					} else {
+		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
+		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">禁止离开' + limitArea.name + '</a>';
+		        					}
+		        				} else {
+		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
+		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">禁止离开' + limitArea.name + '</a>';
+		        				}
+							}
+						}
+					},
+					error : function(xml, status, e){
+						$("#tree-div").block({
+							message : "<label>查询限制区域失败！</label>"
+						});
+					},
+					complete : function(data){
+						setTimeout(function(){
+							$("#tree-div").unblock();
+						}, 500);
+					}
+				});
 			} else if(currentId.indexOf("o_")==0){
 				if(role==1 || role==2){
 					if(uncheckedList.indexOf(currentId)!=-1 || partiallyList.indexOf(currentId)!=-1)
@@ -65,47 +111,9 @@ function treeContextMenu(obj, event) {
 					div+='<a img="frequence.gif" class="{action: \'setFrequence()\'}">批量设定车主车辆采样频率</a>';
 				}
 			}
-			div+='<a img="hprio_tsk.gif" class="{menu:\'sub_menu\'}">增改限制区域</a>';
-			//subDiv+='<div id="sub_menu" class="mbmenu">';
-			$("#tree-div").block({
-				message : "<label>查询限制区域中！</label>"
-			});
-			$.ajax({
-				url : "mkgps.do",
-				dataType : "json",
-				data : {
-					action : "LimitAreaSearchByVehicleAjaxAction",
-					id: currentId
-				},
-				cache : false,
-				async: false,
-				success : function(json){
-					if(json){
-						for(var p in json){
-	        				var limitArea = json[p];
-	        				if(limitArea.opType)
-	        					subDiv+='<a img="enabled_co(1).gif" class="{action: \'alert(' + limitArea.id + ')\'}">' + limitArea.name + '</a>';
-	        				else
-	        					subDiv+='<a class="{action: \'alert(' + limitArea.id + ')\'}">' + limitArea.name + '</a>';
-						}
-					}
-				},
-				error : function(xml, status, e){
-					$("#tree-div").block({
-						message : "<label>查询限制区域失败！</label>"
-					});
-				},
-				complete : function(data){
-					setTimeout(function(){
-						$("#tree-div").unblock();
-					}, 500);
-				}
-			});
-			//subDiv+='<div>';
 		}
 		div+='<a img="delete.gif" class="{action: \'alert(1)\'}">删除</a>';
 	}
-	//div+=subDiv;
 	$("#sub_menu").html(subDiv);
 	return div;
 }
@@ -134,11 +142,10 @@ function setFrequence(){
 				$("#tree-div").block( {
 					message : "<label>设定成功</label>"
 				});
-				
 			},
 			error : function(xml, status, e) {
 				$("#tree-div").block( {
-					message : '<label>设定失败' + e + '</label>'
+					message : "<label style='color:red;'>设定失败" + e + "</label>"
 				});
 			},
 			complete : function(data){
@@ -150,14 +157,15 @@ function setFrequence(){
 	});
 }
 
-function addLimitArea( limitAreaId ){
+function addLimitArea( limitAreaId, isObey ){
 	$.ajax({
 		url : "mkgps.do",
 		dataType : "json",
 		data : {
 			action : "addLimitAreaAjax",
 			id: currentId,
-			limitAreaId: limitAreaId
+			limitAreaId: limitAreaId,
+			isObey: isObey
 		},
 		cache : false,
 		success : function(json){
@@ -167,13 +175,13 @@ function addLimitArea( limitAreaId ){
 		},
 		error : function(xml, status, e){
 			$("#tree-div").block({
-				message : "<label>添加限制区域失败！</label>"
+				message : "<label style='color:red;'>添加限制区域失败！</label>"
 			});
 		},
 		complete : function(data){
 			setTimeout(function(){
 				$("#tree-div").unblock();
-			}, 500);
+			}, 2000);
 		}
 	});
 }
@@ -195,13 +203,13 @@ function delLimitArea( limitAreaId ){
 		},
 		error : function(xml, status, e){
 			$("#tree-div").block({
-				message : "<label>取消限制区域失败！</label>"
+				message : "<label style='color:red;'>取消限制区域失败！</label>"
 			});
 		},
 		complete : function(data){
 			setTimeout(function(){
 				$("#tree-div").unblock();
-			}, 500);
+			}, 2000);
 		}
 	});
 }
