@@ -70,11 +70,11 @@ function treeContextMenu(obj, event) {
 //		        					public final static short RULE_OP_OBEY = 1;
 //		        					public final static short RULE_OP_DISOBEY = 2;
 		        					if( limitArea.opType==1 ){
-		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
+		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">禁止进入' + limitArea.name + '</a>';
 		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">禁止离开' + limitArea.name + '</a>';
 		        					} else {
 		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
-		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ', false)\'}">禁止离开' + limitArea.name + '</a>';
+		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">禁止离开' + limitArea.name + '</a>';
 		        					}
 		        				} else {
 		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
@@ -186,15 +186,14 @@ function addLimitArea( limitAreaId, isObey ){
 	});
 }
 
-function delLimitArea( limitAreaId, isObey ){
+function delLimitArea( limitAreaId ){
 	$.ajax({
 		url : "mkgps.do",
 		dataType : "json",
 		data : {
 			action : "delLimitAreaAjax",
 			id: currentId,
-			limitAreaId: limitAreaId,
-			isObey: isObey
+			limitAreaId: limitAreaId
 		},
 		cache : false,
 		success : function(json){
