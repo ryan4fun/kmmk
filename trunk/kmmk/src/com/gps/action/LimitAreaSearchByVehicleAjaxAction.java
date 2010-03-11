@@ -35,8 +35,9 @@ public class LimitAreaSearchByVehicleAjaxAction extends Action {
 			Rules r = vr.getRules();
 			if(r.getAlertTypeDic().getAlertTypeId()==PrivateRulesService.RULE_TYPE_LIMITAREAALARM 
 					&& r.getRuleState() == PrivateRulesService.RULE_NORM_STATE
-					&& r.getIntParam1()!=null)
-				rIds[i++] = r.getIntParam1().intValue();
+					&& r.getIntParam1()!=null){
+				rIds[i++] = r.getRuleType()==PrivateRulesService.RULE_OP_OBEY ? r.getIntParam1().intValue() : 0-r.getIntParam1().intValue();
+			}
 		}
 		
 		RegionBean rgb = new RegionBean(request);
@@ -48,6 +49,9 @@ public class LimitAreaSearchByVehicleAjaxAction extends Action {
 			for(int rid: rIds){
 				if( rid == r.getRegionId()){
 					tmpJson.put("opType", PrivateRulesService.RULE_OP_OBEY);
+					break;
+				} else if( rid == 0-r.getRegionId()){
+					tmpJson.put("opType", PrivateRulesService.RULE_OP_DISOBEY);
 					break;
 				}
 			}
