@@ -74,8 +74,8 @@ function pageSelectCallback(pageNumber){
 <table cellSpacing="5" width="650px;">
 	<tr>
 		<td width="20%" align="right">车牌号：</td>
-		<td><%@ include file="/vehicle-selector.jsp"%>
-			<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+		<td><jsp:include page="/vehicle-selector.jsp" />
+			</td>
 		<td width="20%" align="right">GPS设备号：</td>
 		<td align="left"><input type="text" id="deviceId" name="deviceId" value="<%=gdib.getDeviceId()%>" /></td>
 	</tr>	

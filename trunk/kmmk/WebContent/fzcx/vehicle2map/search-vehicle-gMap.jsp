@@ -161,8 +161,8 @@ function createMarker(node) {
 <table cellSpacing="5" style="table-layout:fixed;width:650px;height:80px;" >
 	<tr>
 		<td width="10%" align="right" style="vertical-align:top;" >车辆：</td>
-		<td width="20%" align="left" style="vertical-align:top;" ><%@ include file="/vehicle-selector.jsp"%>
-			<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+		<td width="20%" align="left" style="vertical-align:top;" ><jsp:include page="/vehicle-selector.jsp" />
+			</td>
 		<td width="10%" align="right" style="vertical-align:top;" >区域名：</td>
 		<td align="left" style="vertical-align:top;" ><div id="nameDiv" style="width:100%;"/></td>
 	</tr>

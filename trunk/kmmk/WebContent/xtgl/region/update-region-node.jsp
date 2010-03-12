@@ -269,8 +269,8 @@ function resetAll(){
 				<tr>
  					<td width="20%" align="right">根据车辆坐标：</td>
 					<td align="left" colSpan="3">
-						<%@ include file="/vehicle-selector.jsp"%>
-						<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+						<jsp:include page="/vehicle-selector.jsp" />
+						</td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">经度：</td>

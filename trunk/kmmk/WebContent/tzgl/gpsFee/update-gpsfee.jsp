@@ -96,8 +96,8 @@ if(idstr==null || idstr.equals("")){
  				<tr> 
 					
 					<td width="20%" align="right">车牌号：</td>
-					<td align="left"><%@ include file="/vehicle-selector.jsp"%>
-						<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+					<td align="left"><jsp:include page="/vehicle-selector.jsp" />
+						</td>
 				</tr>				
 				<tr>				
 					<td width="20%" align="right">收费类型：</td>

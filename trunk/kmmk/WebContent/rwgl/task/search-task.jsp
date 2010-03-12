@@ -171,8 +171,8 @@ function changeTaskState(recID,taskState){
 <table cellSpacing="5" width="650px;">
 	<tr>
 		<td align="right">任务车辆：</td>
-		<td><%@ include file="/vehicle-selector.jsp"%>
-			<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+		<td><jsp:include page="/vehicle-selector.jsp" />
+			</td>
 		<td align="right">任务状态：</td>
 		<td>
 		<select id="_taskState" name="_taskState">

@@ -55,8 +55,8 @@ font-weight: bold;
 <table cellSpacing="5" width="width:650px;">
 	<tr>
 		<td width="20%" align="right">车牌号：</td>
-		<td align="left"><%@ include file="/vehicle-selector.jsp"%>
-			<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+		<td align="left"><jsp:include page="/vehicle-selector.jsp" />
+			</td>
 		<td width="20%" align="right">行驶状态：</td>
 		<td align="left">
 			<select id="isRunning" name="isRunning" >
