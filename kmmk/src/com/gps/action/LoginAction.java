@@ -47,7 +47,7 @@ public class LoginAction extends Action{
 			login.setSkin(get("skin"));
 //			login.setUseMapABC(get("map").equals("mapabc"));
 			login.setMapType(getInteger("map"));
-			login.setNewUI(get("ui").equals("new"));
+			login.setNewUI(true);
 			for(UserRole ur: users.getUserRoles()){
 				login.getRoles().add(ur.getRole().getRoleId());
 			}
