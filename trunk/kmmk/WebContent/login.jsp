@@ -110,9 +110,6 @@ type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name=
     	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP%>" /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP)%>&nbsp;&nbsp;&nbsp;&nbsp;
     	<input type="radio" name="map" value="<%=LoginInfo.MAPABC%>"/><%=LoginInfo.mapTypes.get(LoginInfo.MAPABC)%>
     </TD></TR>
-  <TR>
-    <TD width="20%" align="right"></TD>
-    <TD width="80%" align="left"><input type="radio" name="ui" id="ui-original" value="original" /><label for="ui-original">传统界面</label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" id="ui-new" name="ui" value="new" checked /><label for="ui-new">新界面</label></TD></TR>
   </TBODY></TABLE><br /><br /><br />
 
 <input style="position:absolute;top:343px;left:108px;WIDTH: 40px" value="登录" type="submit" />
