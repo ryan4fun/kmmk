@@ -50,7 +50,7 @@ $(document).ready(function(){
 <body style="background: transparent;">
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 <form id="inputform" action="add-segment.jsp" method="post">
 <input type="hidden" name = "queryPrecision" value="<%=TrackBean.QUERY_REALTIME%>"/>
 

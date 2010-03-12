@@ -188,7 +188,7 @@ $(document).ready(function(){
 <body style="background:transparent;" >
 <div id="search-div">
 <h3><a href="#">请输入规则信息</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
 		<input type="hidden" name = "success" value="update-rule-succ.jsp"/>

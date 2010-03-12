@@ -122,9 +122,9 @@ function getUsersList(){
 </script>
 </head>
 <body>
-<div id="search-div">
+<div id="search-div" style="">
 <h3><a href="#">更多查询条件</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible;" >
 <form id="inputform" action="search-alert.jsp" method="post">
 <input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
 <input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />

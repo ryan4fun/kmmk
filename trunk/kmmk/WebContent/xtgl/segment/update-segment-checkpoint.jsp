@@ -248,7 +248,7 @@ function doAction() {
 <body style="background:transparent;" onunload="GUnload()">
 <div id="search-div">
 <h3><a href="#">路线校验点信息</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="SegmentCheckPointUpdateAction"/>
 		<input type="hidden" name = "success" value="update-segment-succ.jsp"/>
