@@ -118,7 +118,7 @@ function delOrg(id){
 			<tr>
 				<td width="50%"><a href="javascript:href('view-segment.jsp?segmentId=<%=o.getSegmentId()%>')" ><%=o.getSegName()%></a></td>
 				<td width="25%"><a href="javascript:href('view-segment.jsp?segmentId=<%=o.getSegmentId()%>')" ><%=Util.FormatDateLong(o.getCreateTime())%></a></td>
-				<td width="25%"><a href="javascript:href('update-segment.jsp?segmentId=<%=o.getSegmentId()%>')">修   改</a> | <a href="javascript:href('update-segment-checkpoint.jsp?segmentId=<%=o.getSegmentId()%>')">修改校验点</a> | <a href="javascript:delOrg('<%=o.getSegmentId()%>')">删   除</a></td>
+				<td width="25%"><a href="javascript:href('update-segment.jsp?segmentId=<%=o.getSegmentId()%>')">修   改</a> | <a href="javascript:href('update-segment-checkpoint.jsp?segmentId=<%=o.getSegmentId()%>')">修改检查点</a> | <a href="javascript:delOrg('<%=o.getSegmentId()%>')">删   除</a></td>
 			</tr>
 		</table>
 		</td>

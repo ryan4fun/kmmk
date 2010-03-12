@@ -212,7 +212,7 @@ function createMarker(latlng,icon,text) {
 		</table>
 		<p align="center">
 			<input type="button" value="修 改" onclick="javascript:href('update-segment.jsp?segmentId=<%=s.getSegmentId()%>')" />
-			<input type="button" value="修改校验点" onclick="javascript:href('update-segment-checkpoint.jsp?segmentId=<%=s.getSegmentId()%>')" />
+			<input type="button" value="修改检查点" onclick="javascript:href('update-segment-checkpoint.jsp?segmentId=<%=s.getSegmentId()%>')" />
 			<input type="button" value="返 回" onclick="javascript:history.back()" /></p>
 	</form>
 </div>
