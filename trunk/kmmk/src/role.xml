@@ -28,19 +28,10 @@
 			<link url="tzgl/gpsFee/search-gpsfee.jsp" name="收费历史查询" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="dwjg" name="定位监管" roles="1,2,3,11,12">
-		<Function name="车辆基本运行状态管理" roles="1,2,3,11,12">			
-			<Link url="dwjg/vehicle-status/search-vehicle-status.jsp" name="车辆运行状态管理" roles="1,2,3,11,12" />
-			<Link url="dwjg/vehicle-status/monitor-vehicle-status.jsp" name="全局车辆运行状态监控" roles="1,2,3,11,12" />
-		</Function>
+	<FunctionGroup folder="dwjg" name="定位监管" roles="1,2,3,11,12">		
 		<Function name="车辆违规信息管理" roles="1,2,4,11,12">			
 			<Link url="tzgl/alertHistory/search-alert.jsp" name="车辆违规信息管理" roles="1,2,4,11,12" />
-		</Function>
-		<Function name="单台车辆轨迹信息管理" roles="1,2,4,11,12">			
-			<Link url="dwjg/vehicle-trace/search-vehicle-trace.jsp" name="单台车辆轨迹信息管理" roles="1,2,4,11,12" />
-			<Link url="dwjg/vehicle-trace/mock-trace.jsp" name="模拟发送轨迹信号" roles="1,2,4,11,12" />
-			<Link url="dwjg/vehicle-trace/mock-trace-single.jsp" name="模拟发送单条告警信号" roles="1,2,4,11,12" />
-		</Function>
+		</Function>		
 	</FunctionGroup>
 	<FunctionGroup folder="rwgl" name="任务管理" roles="1,2,3,11">			
 		<Function name="任务管理" roles="1,2,3,11">			

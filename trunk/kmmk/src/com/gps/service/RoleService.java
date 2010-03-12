@@ -22,32 +22,32 @@ public class RoleService extends AbstractService {
 	
 	public final static Integer ROLE_PROHIBIT = -1;
 	
-//	Æ½Ì¨¹ÜÀíÔ±
+//	Æ½Ì¨ï¿½ï¿½ï¿½ï¿½Ô±
 	public final static Integer ROLE_SYS_ADMIN = 1;
-//	ÆóÒµ¹ÜÀíÔ±
+//	ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½Ô±
 	public final static Integer ROLE_ORG_ADMIN = 2;
-//	¹æÔò¹ÜÀíÔ±
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±
 	public final static Integer ROLE_RULE_ADMIN = 3;
-//	²éÑ¯µ÷¶ÈÔ±
+//	ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½Ô±
 	public final static Integer ROLE_DISPATCHER = 4;
-//	ÆäËûÔËÊäÆóÒµ¹ÜÀíÕß
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public final static Integer ROLE_OTHER_ORG_ADMIN = 10;
-//	³µÁ¾ËùÓĞÕß
+//	ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public final static Integer ROLE_VEHICLE_OWNER = 11;
-//	¼à¹ÜÓÃ»§
+//	ï¿½ï¿½ï¿½ï¿½Ã»ï¿½
 	public final static Integer ROLE_WATCHER = 12;
 	
 	public static Map<Integer,Set<String>> ROLE_PAGE_MAP;
 	
 	public static Map<Integer, String> roleNames = new HashMap<Integer, String>();
 	static {
-		roleNames.put(ROLE_SYS_ADMIN, "Æ½Ì¨¹ÜÀíÔ±");
-		roleNames.put(ROLE_ORG_ADMIN, "ÆóÒµ¹ÜÀíÔ±");
-		roleNames.put(ROLE_RULE_ADMIN, "¹æÔò¹ÜÀíÔ±");
-		roleNames.put(ROLE_DISPATCHER, "²éÑ¯µ÷¶ÈÔ±");
-		roleNames.put(ROLE_OTHER_ORG_ADMIN, "ÆäËûÔËÊäÆóÒµ¹ÜÀíÕß");
-		roleNames.put(ROLE_VEHICLE_OWNER, "³µÁ¾ËùÓĞÕß");
-		roleNames.put(ROLE_WATCHER, "¼à¹ÜÓÃ»§");
+		roleNames.put(ROLE_SYS_ADMIN, "å¹³å°ç®¡ç†å‘˜");
+		roleNames.put(ROLE_ORG_ADMIN, "ä¼ä¸šç®¡ç†å‘˜");
+		roleNames.put(ROLE_RULE_ADMIN, "è§„åˆ™ç®¡ç†å‘˜");
+		roleNames.put(ROLE_DISPATCHER, "æŸ¥è¯¢è°ƒåº¦å‘˜");
+		roleNames.put(ROLE_OTHER_ORG_ADMIN, "å…¶ä»–è¿è¾“ä¼ä¸šç®¡ç†è€…");
+		roleNames.put(ROLE_VEHICLE_OWNER, "è½¦è¾†æ‰€æœ‰è€…");
+		roleNames.put(ROLE_WATCHER, "ç›‘ç®¡ç”¨æˆ·");
 	}
 	
 	static List<Tab> tabs;
