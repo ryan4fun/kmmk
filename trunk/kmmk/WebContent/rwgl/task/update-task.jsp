@@ -5,7 +5,7 @@
 <%
 String idstr = request.getParameter("taskId");
 Task t = null;
-TaskBean tb = new TaskBean();
+TaskBean tb = new TaskBean(request);
 String actionName = "TaskAddAction";
 if(idstr==null || idstr.equals("")){
 	t = new Task();
@@ -34,7 +34,7 @@ List<Escorter> es = eb.getList();
 RulesBean rb = new RulesBean();
 List<Rules> rs = rb.getList();
 
-SegmentBean sb = new SegmentBean();
+SegmentBean sb = new SegmentBean(request);
 List<Segment> ss = sb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
