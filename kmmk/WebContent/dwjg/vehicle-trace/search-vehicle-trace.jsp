@@ -338,7 +338,7 @@ function createMarker(rcvTime,latlng,stopTimeDisp,icon) {
 <body style="background: transparent;" onunload="GUnload()">
 <div id="search-div">
 <h3 id="search-div-title"><a href="#">请输入查询条件</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 <form id="inputform" action="search-vehicle-trace.jsp" method="post">
 <table cellSpacing="5" width="width:650px;">
 	<tr>

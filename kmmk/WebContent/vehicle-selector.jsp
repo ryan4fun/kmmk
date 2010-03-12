@@ -197,6 +197,7 @@ function selectUser(userId){
 	$("#vehicleId").change();
 }
 </script>
+<input type="hidden" name="vehicle_select" value="<%=vehicle_select %> " />
 <input type="text" id="vehicleString" readOnly value="" />
 <table id="vehicleSelectorTable" cellSpacing="0" cellpadding="0" border="0" style="display:none;width:100px;" class="vehicleSelectorTable" >
 	<tr>

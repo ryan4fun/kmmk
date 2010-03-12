@@ -156,7 +156,7 @@ function createMarker(node) {
 <body onunload="GUnload()">
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 <form id="mapform" action="search-vehicle-map.jsp" method="post">
 <table cellSpacing="5" style="table-layout:fixed;width:650px;height:80px;" >
 	<tr>

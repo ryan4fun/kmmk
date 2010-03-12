@@ -92,7 +92,7 @@ function changeTaskState(taskState){
 <body style="background:transparent;">
 <div id="search-div">
 <h3><a href="#">车辆任务信息</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name="taskId" value="<%=t.getTaskId()%>"/>
 		<input type="hidden" name="action" value="TaskStateChangeAction"/>
@@ -172,7 +172,7 @@ function changeTaskState(taskState){
 	</form>
 </div>
 <h3><a href="#">任务规则</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 <% if(t.getPrivateRuleses().size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>

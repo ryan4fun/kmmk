@@ -52,7 +52,7 @@ $(document).ready(function(){
 <body style="background:transparent;" >
 <div id="search-div">
 <h3><a href="#">规则信息</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">
 		
 			<table cellSpacing="5" width="95%">

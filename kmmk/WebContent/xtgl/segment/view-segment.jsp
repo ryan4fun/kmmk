@@ -198,7 +198,7 @@ function createMarker(latlng,icon,text) {
 <body style="background:transparent;" onunload="GUnload()">
 <div id="search-div">
 <h3><a href="#">路线信息</a></h3>
-<div style="padding:2px;">
+<div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">
 		<table cellSpacing="5" width="95%">
 			<tr>
