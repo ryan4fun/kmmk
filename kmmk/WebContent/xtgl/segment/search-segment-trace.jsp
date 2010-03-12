@@ -63,8 +63,8 @@ $(document).ready(function(){
 	</tr>
 	<tr>
 		<td align="right">车牌号：</td>
-		<td><%@ include file="/vehicle-selector.jsp"%>
-			<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+		<td><jsp:include page="/vehicle-selector.jsp" />
+			</td>
 		<td></td>
 		<td></td>
 	</tr>

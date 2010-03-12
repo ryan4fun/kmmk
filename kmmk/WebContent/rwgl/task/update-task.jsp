@@ -413,8 +413,8 @@ function checkName(newName){
 				<input type="text" id="taskName" name="taskName" value="<%=t.getTaskName()%>" />
 				</td>
 				<td width="20%" align="right">任务车辆：</td>
-				<td width="30%" align="left"><%@ include file="/vehicle-selector.jsp"%>
-					<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
+				<td width="30%" align="left"><jsp:include page="/vehicle-selector.jsp" />
+					</td>
 			</tr>						
 			<tr>
 				<td width="20%" align="right">计划任务时间：</td>

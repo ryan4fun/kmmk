@@ -135,7 +135,7 @@ function getUsersList(){
 <table cellSpacing="5" width="650px;">
 	<tr>
 		<td width="20%" align="right">车牌号：</td>
-		<td align="left" colSpan="3"><%@ include file="/vehicle-selector.jsp"%></td>		
+		<td align="left" colSpan="3"><jsp:include page="/vehicle-selector.jsp" /></td>		
 	</tr>
 	<tr>
 		<td width="20%" align="right">车型：</td>
