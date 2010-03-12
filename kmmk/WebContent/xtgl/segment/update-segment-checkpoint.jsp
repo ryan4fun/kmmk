@@ -21,7 +21,7 @@ Set<SegmentDetail> sds = s.getSegmentDetails();
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>修改路线校验点</title>
+<title>修改路线检查点</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="/map-header.jsp"%>
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
@@ -156,7 +156,7 @@ function initialize() {
 	      	mapObj.addOverlay(roadLine);
 	      	GEvent.addListener(roadLine, "click", function(latlng) {
 	      		mapObj.openInfoWindowHtml(latlng,
-	    				"<br><input type=\"button\" value=\"设为校验点\"  onclick='createCheckPoints(" + latlng.lat() + ", " + latlng.lng() + ")' />");
+	    				"<br><input type=\"button\" value=\"设为检查点\"  onclick='createCheckPoints(" + latlng.lat() + ", " + latlng.lng() + ")' />");
 	      	});
 	      	createMarker(points[0], startIcon, "起点");
 	      	createMarker(points[points.length-1], endIcon, "终点");
@@ -169,9 +169,9 @@ function initialize() {
 
 function createCheckPoints(lat,lng) {
 	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-		checkPoints.push(createMarker(new MLngLat(lng,lat), checkPointIcon, "<input type=\"button\" value=\"删除校验点\"  onclick='removeCheckPoints(" + lat + "," + lng + ")' />"));
+		checkPoints.push(createMarker(new MLngLat(lng,lat), checkPointIcon, "<input type=\"button\" value=\"删除检查点\"  onclick='removeCheckPoints(" + lat + "," + lng + ")' />"));
 	<% } else { %>
-		checkPoints.push(createMarker(new GLatLng(lat,lng), checkPointIcon, "<input type=\"button\" value=\"删除校验点\"  onclick='removeCheckPoints(" + lat + "," + lng + ")' />"));
+		checkPoints.push(createMarker(new GLatLng(lat,lng), checkPointIcon, "<input type=\"button\" value=\"删除检查点\"  onclick='removeCheckPoints(" + lat + "," + lng + ")' />"));
 	<% } %>
 	mapObj.closeInfoWindow();
 }
@@ -247,7 +247,7 @@ function doAction() {
 </head>
 <body style="background:transparent;" onunload="GUnload()">
 <div id="search-div">
-<h3><a href="#">路线校验点信息</a></h3>
+<h3><a href="#">路线检查点信息</a></h3>
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="SegmentCheckPointUpdateAction"/>
