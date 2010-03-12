@@ -42,11 +42,17 @@ public class DelLimitAreaAjax extends Action {
 		if(v!=null){
 			RulesBean rb = new RulesBean();
 			rb.setAlertTypeId(new Integer(RulesService.RULE_TYPE_LIMITAREAALARM));
+			rb.setRuleState(String.valueOf(RulesService.RULE_NORM_STATE));
 			rb.setIntParam1(String.valueOf(limitAreaId));
 			List<Rules> rs = rb.getList();
 			for(Rules existRule : rs){
-				existRule.setRuleState(RulesService.RULE_DEL_STATE);
-				getServiceLocator().getRulesService().updateRules(existRule);
+				VehicleRuleBean vrb = new VehicleRuleBean();
+				vrb.setVehicleId(v.getVehicleId());
+				vrb.setRuleId(existRule.getRuleId());
+				List<VehicleRule> vrs = vrb.getList();
+				for(VehicleRule vr : vrs ){
+					getServiceLocator().getVehicleRuleService().deleteVehicleRule(vr);
+				}
 			}
 		}
 		response.getWriter().write(json.toString());
