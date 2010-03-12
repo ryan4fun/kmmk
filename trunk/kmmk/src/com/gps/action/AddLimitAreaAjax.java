@@ -43,6 +43,7 @@ public class AddLimitAreaAjax extends Action {
 			Rules r = null;
 			RulesBean rb = new RulesBean();
 			rb.setAlertTypeId(new Integer(RulesService.RULE_TYPE_LIMITAREAALARM));
+			rb.setRuleState(String.valueOf(RulesService.RULE_NORM_STATE));
 			rb.setIntParam1(String.valueOf(limitAreaId));
 			List<Rules> rs = rb.getList();
 			if( rs.size()>0 ){
@@ -53,7 +54,6 @@ public class AddLimitAreaAjax extends Action {
 					if( isObey ){
 						if(existRule.getRuleType()==RulesService.RULE_OP_OBEY){
 							r = existRule;
-							existRule.setRuleState(RulesService.RULE_NORM_STATE);
 							List<VehicleRule> vrs = vrb.getList();
 							if( vrs.size()<1 ){
 								VehicleRule vr = new VehicleRule();
@@ -62,17 +62,14 @@ public class AddLimitAreaAjax extends Action {
 								getServiceLocator().getVehicleRuleService().addVehicleRule(vr);
 							}
 						} else if(existRule.getRuleType()==RulesService.RULE_OP_DISOBEY){
-							existRule.setRuleState(RulesService.RULE_DEL_STATE);
 							List<VehicleRule> vrs = vrb.getList();
-							if( vrs.size()>1 ){
-								VehicleRule vr = vrs.get(0);
+							for(VehicleRule vr : vrs ){
 								getServiceLocator().getVehicleRuleService().deleteVehicleRule(vr);
 							}
 						}
 					} else {
 						if(existRule.getRuleType()==RulesService.RULE_OP_DISOBEY){
 							r = existRule;
-							existRule.setRuleState(RulesService.RULE_NORM_STATE);
 							List<VehicleRule> vrs = vrb.getList();
 							if( vrs.size()<1 ){
 								VehicleRule vr = new VehicleRule();
@@ -81,15 +78,12 @@ public class AddLimitAreaAjax extends Action {
 								getServiceLocator().getVehicleRuleService().addVehicleRule(vr);
 							}
 						} else if(existRule.getRuleType()==RulesService.RULE_OP_OBEY){
-							existRule.setRuleState(RulesService.RULE_DEL_STATE);
 							List<VehicleRule> vrs = vrb.getList();
-							if( vrs.size()>1 ){
-								VehicleRule vr = vrs.get(0);
+							for(VehicleRule vr : vrs ){
 								getServiceLocator().getVehicleRuleService().deleteVehicleRule(vr);
 							}
 						}
 					}
-					getServiceLocator().getRulesService().updateRules(existRule);
 				}
 			}
 			if( r==null ){
@@ -107,12 +101,13 @@ public class AddLimitAreaAjax extends Action {
 				r.setAlertTypeDic(vt);
 				r.setRuleState(RulesService.RULE_NORM_STATE);
 				r.setIntParam1(limitAreaId);
-				getServiceLocator().getRulesService().addRules(r);
 				
 				VehicleRule vr = new VehicleRule();
 				vr.setRules(r);
 				vr.setVehicle(v);
-				getServiceLocator().getVehicleRuleService().addVehicleRule(vr);
+				r.getVehicleRules().add(vr);
+				getServiceLocator().getRulesService().addRules(r);
+//				getServiceLocator().getVehicleRuleService().addVehicleRule(vr);
 			}
 		}
 		response.getWriter().write(json.toString());
