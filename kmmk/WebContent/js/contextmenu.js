@@ -162,7 +162,7 @@ function addLimitArea( limitAreaId, isObey ){
 		url : "mkgps.do",
 		dataType : "json",
 		data : {
-			action : "addLimitAreaAjax",
+			action : "AddLimitAreaAjax",
 			id: currentId,
 			limitAreaId: limitAreaId,
 			isObey: isObey
@@ -191,7 +191,7 @@ function delLimitArea( limitAreaId ){
 		url : "mkgps.do",
 		dataType : "json",
 		data : {
-			action : "delLimitAreaAjax",
+			action : "DelLimitAreaAjax",
 			id: currentId,
 			limitAreaId: limitAreaId
 		},
