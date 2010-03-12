@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.*"%>
-<%
+	pageEncoding="UTF-8"%><%@page import="com.gps.bean.*,com.gps.service.*,com.gps.orm.*,com.gps.util.*,java.util.*"%><%
 OrganizationBean _ob = new OrganizationBean();
 List<Organization> _obs = null;
 List<Vehicle> _vs = null;
@@ -16,11 +14,20 @@ String __organizationId = request.getParameter("organizationId");
 if(__organizationId == null)
 	__organizationId = "";
 
-if(intRole==RoleService.ROLE_ORG_ADMIN){
+LoginInfo _login = (LoginInfo)session.getAttribute("login");
+int _intRole = _login.getRoles().iterator().next();
+
+if(_intRole==RoleService.ROLE_ORG_ADMIN){
 	VehicleBean _vb = new VehicleBean(request);
 	_vs = _vb.getList();
 } else {
 	_obs = _ob.getList();
+}
+
+
+boolean vehicle_select = true;
+if(request.getParameter("vehicle_select") != null && request.getParameter("vehicle_select").equals("false")){
+	vehicle_select = false;
 }
 %>
 <script language="JavaScript">
@@ -91,16 +98,18 @@ function initVehicleSelector(){
 	}	
 	setVehicleString();
 	
-	//$("#vehicleSelectorTable").css("display","none");
-	
 	$("#hideVehicleSelectorBtn").click(function(){
 		$("#vehicleSelectorTable").css("display","none");
 	});
-	
+<%
+	if(vehicle_select){
+%>
 	$("#vehicleString").click(function(){
 		$("#vehicleSelectorTable").css("display","inline");
 	});
-	
+<%
+	}
+%>	
 	$("#organizationId").change(function(){
 		var orgId = $("#organizationId").val();
 		selectOrganization(orgId);		
@@ -127,9 +136,11 @@ function setVehicleString(){
 	if($("#organizationId").val()){
 		$("#vehicleString").val(orgString);
 		if($("#userId").val()){
-			$("#vehicleString").val($("#vehicleString").val()+">"+userString);
+			//$("#vehicleString").val($("#vehicleString").val()+" "+userString);
+			$("#vehicleString").val(userString);
 			if($("#vehicleId").val()){
-				$("#vehicleString").val($("#vehicleString").val()+">"+vehicleString);
+				//$("#vehicleString").val($("#vehicleString").val()+" "+vehicleString);
+				$("#vehicleString").val(vehicleString);
 			}
 		}
 	}	
@@ -186,7 +197,7 @@ function selectUser(userId){
 	$("#vehicleId").change();
 }
 </script>
-<input type="text" id="vehicleString" readonly />
+<input type="text" id="vehicleString" readOnly value="" />
 <table id="vehicleSelectorTable" cellSpacing="0" cellpadding="0" border="0" style="display:none;width:100px;" class="vehicleSelectorTable" >
 	<tr>
 		<td align="left" ><select id="organizationId" name="organizationId" ></select></td>

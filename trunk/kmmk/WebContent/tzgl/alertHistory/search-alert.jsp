@@ -16,6 +16,7 @@ Util.setNull2DefaultValue(vb);
 
 AlertTypeDicBean vtb = new AlertTypeDicBean();
 List<AlertTypeDic> vts = vtb.getList();
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -130,9 +131,7 @@ function getUsersList(){
 <table cellSpacing="5" width="650px;">
 	<tr>
 		<td width="20%" align="right">车牌号：</td>
-		<td align="left"><%@ include file="/vehicle-selector.jsp"%>
-			<%--<select id="vehicleId" name="vehicleId" value=""></select>--%></td>
-		
+		<td align="left"><jsp:include page="/vehicle-selector.jsp" /></td>		
 		<td width="20%" align="right">违规类型：</td>
 		<td align="left"><select id="alertTypeId" name="alertTypeId" ></select></td>	
 	</tr>
