@@ -11,7 +11,7 @@ public class UnsupportedDevicePotocol extends RuntimeException {
 
 	public UnsupportedDevicePotocol(){
 		
-		super("ÔİÊ±²»Ö§³Ö¸ÃÀàÍ¨Ñ¶Ğ­Òé");
+		super("æš‚æ—¶ä¸æ”¯æŒè¯¥ç±»é€šè®¯åè®®ï¼");
 	}
 	
 }
