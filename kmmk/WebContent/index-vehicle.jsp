@@ -95,7 +95,7 @@
 </div>
  -->
 <div id="tabs-5">
-<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?vehicleId=<%=vehicleId%>" ></iframe>
+<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?vehicle_select=false&vehicleId=<%=vehicleId%>" ></iframe>
 </div>
 </div>
 </body>

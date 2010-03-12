@@ -73,7 +73,7 @@
 <iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="org-struc/organization/view-organization.jsp?organizationId=<%=organizationId%>" ></iframe>
 </div>
 <div id="tabs-2">
-<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?organizationId=<%=organizationId%>" ></iframe>
+<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?vehicle_select=false&organizationId=<%=organizationId%>" ></iframe>
 </div>
 </div>
 </body>
