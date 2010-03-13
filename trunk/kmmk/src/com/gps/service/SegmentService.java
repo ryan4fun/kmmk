@@ -112,7 +112,7 @@ public class SegmentService extends AbstractService {
 	private GPSPoint createGPSPoint(SegmentDetail point) {
 		GPSPoint result = new GPSPoint();
 		
-		result.setLongVal(point.getLatValue());
+		result.setLongVal(point.getLongValue());
 		result.setLatVal(point.getLatValue());
 		result.setCheckedState(CheckPoint_STATE_NEGETIVE);
 		
