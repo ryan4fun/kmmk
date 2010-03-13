@@ -40,7 +40,8 @@ public class SegmentSearchAjaxAction extends Action{
 					JSONObject pointJson = new JSONObject();
 					pointJson.put("lat", sd.getLatValue());
 					pointJson.put("lng", sd.getLongValue());
-					pointJson.put("tag", sd.getTag());
+//					null value will not put in json
+					pointJson.put("tag", String.valueOf(sd.getTag()==null ? 1 : sd.getTag()));
 					pointsJson.put(pointJson);
 				}
 				tmpJson.put("points", pointsJson);
