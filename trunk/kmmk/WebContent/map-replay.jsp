@@ -83,6 +83,7 @@
 	CheckPointControl.prototype = new GControl();
 	CheckPointControl.prototype.isShow = false;
 	CheckPointControl.prototype.segments = null;
+	CheckPointControl.prototype.checkPoints = null;
 	CheckPointControl.prototype.initialize = function(mapObj) {
     	var container = document.createElement("div");
     	var $controlDiv = $(container).width(80).append("<div>路线检查点</div>").children().addClass("mapLabel").addClass("mapLink");
@@ -95,6 +96,11 @@
             	for(var i=0;i<$button.length;i++){
               		cpc.segments[$button[i].id].line.hide();
                 }
+            	if( cpc.checkPoints && cpc.checkPoints.length>0 ){
+	    			for(var i=0;i<cpc.checkPoints.length;i++){
+	    				cpc.checkPoints[i].marker.hide();
+	    			}
+	    		}
             } else {
             	if( cpc.segments==null ){
                 	$.blockUI({
@@ -115,7 +121,9 @@
                 				var points = new Array();
                 				for(var j=0;j<segment.points.length;j++){
                 					var p = segment.points[j];
-                					if( p.lat && p.lng && p.lat>0 && p.lng>0 )
+                					//public final static byte SEGMENT_DETAIL_TYPE_ROAD_POINT = 1;
+                					//public final static byte SEGMENT_DETAIL_TYPE_CHECK_POINT = 2;
+                					if( p.lat && p.lng && p.lat>0 && p.lng>0 && p.tag && p.tag==1 )
                 						points.push(new GLatLng( Number(p.lat)+CN_OFFSET_LAT,Number(p.lng)+CN_OFFSET_LON ));
                 				}
                 				segment.line = new GPolyline(points, "#00ff00", 6);
@@ -129,7 +137,7 @@
                                    	+ segment.name 
                                    	+ "</span><br>");
                           		$controlDiv.next("span:first").children("input").click( function() {
-                          			cpc.doCheck(cpc.segments[this.id]);
+                          			cpc.doCheck(mapObj, cpc.segments[this.id]);
                           		}); 
                 			}
                 			$.unblockUI();
@@ -142,6 +150,11 @@
                 		}
                 	});
                 }
+            	if( cpc.checkPoints && cpc.checkPoints.length>0 ){
+	    			for(var i=0;i<cpc.checkPoints.length;i++){
+	    				cpc.checkPoints[i].marker.show();
+	    			}
+	    		}
             	$controlDiv.nextAll().show();
             }
             cpc.isShow = !cpc.isShow;
@@ -152,15 +165,11 @@
 	CheckPointControl.prototype.getDefaultPosition = function() {
       return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(560, 7));
     }
-	CheckPointControl.prototype.doCheck = function(segment) {
+	CheckPointControl.prototype.doCheck = function(mapObj, segment) {
 		if( this.startDate && this.startDate!=""
 				&& this.endDate && this.endDate!=""
 				&& this.vehicleId && this.vehicleId!=""
 				&& _replayLinePoints && _replayLinePoints.length>0 ){
-			//public final static byte SEGMENT_DETAIL_TYPE_ROAD_POINT = 1;
-			//public final static byte SEGMENT_DETAIL_TYPE_CHECK_POINT = 2;
-			//alert( this.$startDate.val() + this.$endDate.val() + this.$vehicleId.val() + segment.id );
-			throw 1;
 			$.blockUI({
 				message : "<label style='height:100px;'>路线检查中请稍候...</label>"
 			});
@@ -177,10 +186,22 @@
 	    		cache: false,
 	    		async: false,
 	    		success: function(json) {
-	    			cpc.segments = json ? json : {};
-	    			for(var p in cpc.segments){
-	    				segment.line.show();
+		    		if( this.checkPoints && this.checkPoints.length>0 ){
+		    			for(var i=0;i<this.checkPoints.length;i++){
+		    				mapObj.removeOverlay(this.checkPoints[i].marker);
+		    			}
+		    		}
+	    			this.checkPoints = json ? json : {};
+	    			for(var i=0;i<this.checkPoints.length;i++){
+	    				//public static short CheckPoint_STATE_POSITIVE = 1;
+	    				//public static short CheckPoint_STATE_NEGETIVE = 0;
+	    				var cp = this.checkPoints[i];
+	    				if( cp.lat && cp.lng && cp.lat>0 && cp.lng>0 ){
+	    					cp.marker = new DivImageMarker( new GLatLng(cp.lat,cp.lng), (cp.checkState && cp.checkState==1) ? "车辆经过改检查点" : "车辆未经过改检查点" );
+    						mapObj.addOverlay(cp.marker);
+	    				}
 	    			}
+	    			segment.line.show();
 	    			$.unblockUI();
 	    		},
 	    		error: function() {
