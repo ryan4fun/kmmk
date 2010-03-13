@@ -480,9 +480,9 @@ if( login.getMapType()==LoginInfo.MAPABC ){
     	var lac = this;
     	
         GEvent.addDomListener($controlDiv[0], "click", function() {
-            if(lac.isShow){
+        	var $checkBoxs = $controlDiv.nextAll("span").children("input");
+        	if(lac.isShow){
             	$controlDiv.nextAll().hide();
-            	var $checkBoxs = $controlDiv.nextAll("span").children("input");
                 for(var i=0;i<$checkBoxs.length;i++){
               		lac.limitAreas[$checkBoxs[i].id].polygon.hide();
                 }
@@ -537,7 +537,6 @@ if( login.getMapType()==LoginInfo.MAPABC ){
                 	});
                 }
             	$controlDiv.nextAll().show();
-            	var $checkBoxs = $controlDiv.nextAll("span").children("input");
                 for(var i=0;i<$checkBoxs.length;i++){
                     var cb = $checkBoxs[i];
                     if( cb.checked )
