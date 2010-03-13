@@ -98,7 +98,7 @@
                 }
             	if( cpc.checkPoints && cpc.checkPoints.length>0 ){
 	    			for(var i=0;i<cpc.checkPoints.length;i++){
-	    				cpc.checkPoints[i].marker.hide();
+	    				mapObj.removeOverlay(cpc.checkPoints[i].marker);
 	    			}
 	    		}
             } else {
@@ -128,6 +128,7 @@
                 				}
                 				segment.line = new GPolyline(points, "#00ff00", 6);
                 				mapObj.addOverlay(segment.line);
+                				segment.line.hide();
 
                 				$controlDiv.after(
                						"<span style='color:#0000cc;background:white;white-space:nowrap' >" 
@@ -150,11 +151,6 @@
                 		}
                 	});
                 }
-            	if( cpc.checkPoints && cpc.checkPoints.length>0 ){
-	    			for(var i=0;i<cpc.checkPoints.length;i++){
-	    				cpc.checkPoints[i].marker.show();
-	    			}
-	    		}
             	$controlDiv.nextAll().show();
             }
             cpc.isShow = !cpc.isShow;
@@ -197,7 +193,7 @@
 	    				//public static short CheckPoint_STATE_NEGETIVE = 0;
 	    				var cp = this.checkPoints[i];
 	    				if( cp.lat && cp.lng && cp.lat>0 && cp.lng>0 ){
-	    					cp.marker = new DivImageMarker( new GLatLng(cp.lat,cp.lng), (cp.checkState && cp.checkState==1) ? "车辆经过改检查点" : "车辆未经过改检查点" );
+	    					cp.marker = new DivImageMarker( new GLatLng( Number(cp.lat)+CN_OFFSET_LAT,Number(cp.lng)+CN_OFFSET_LON ), (cp.checkState && cp.checkState==1) ? "经过该检查点" : "未经过该检查点" );
     						mapObj.addOverlay(cp.marker);
 	    				}
 	    			}
