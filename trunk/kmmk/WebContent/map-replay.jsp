@@ -89,11 +89,11 @@
     	var cpc = this;
     	
         GEvent.addDomListener($controlDiv[0], "click", function() {
-        	var $checkBoxs = $controlDiv.nextAll("span").children("input");
+        	var $button = $controlDiv.nextAll("span").children("input");
         	if(cpc.isShow){
             	$controlDiv.nextAll().hide();
-                for(var i=0;i<$checkBoxs.length;i++){
-              		cpc.segments[$checkBoxs[i].id].line.hide();
+            	for(var i=0;i<$button.length;i++){
+              		cpc.segments[$button[i].id].line.hide();
                 }
             } else {
             	if( cpc.segments==null ){
@@ -143,9 +143,6 @@
                 	});
                 }
             	$controlDiv.nextAll().show();
-            	for(var i=0;i<$checkBoxs.length;i++){
-              		cpc.segments[$checkBoxs[i].id].line.show();
-                }
             }
             cpc.isShow = !cpc.isShow;
         });
@@ -156,14 +153,58 @@
       return new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(560, 7));
     }
 	CheckPointControl.prototype.doCheck = function(segment) {
-		//public final static byte SEGMENT_DETAIL_TYPE_ROAD_POINT = 1;
-		//public final static byte SEGMENT_DETAIL_TYPE_CHECK_POINT = 2;
-		alert( this.$startDate.val() + this.$endDate.val() + this.$vehicleId.val() + segment.id );
+		if( this.startDate && this.startDate!=""
+				&& this.endDate && this.endDate!=""
+				&& this.vehicleId && this.vehicleId!=""
+				&& _replayLinePoints && _replayLinePoints.length>0 ){
+			//public final static byte SEGMENT_DETAIL_TYPE_ROAD_POINT = 1;
+			//public final static byte SEGMENT_DETAIL_TYPE_CHECK_POINT = 2;
+			//alert( this.$startDate.val() + this.$endDate.val() + this.$vehicleId.val() + segment.id );
+			throw 1;
+			$.blockUI({
+				message : "<label style='height:100px;'>路线检查中请稍候...</label>"
+			});
+			$.ajax({
+	    		url: "mkgps.do",
+	    		data: {
+	    			action: "CheckSegmentAjaxAction",
+	    			startDate: this.startDate,
+	    			endDate: this.endDate,
+	    			vehicleId: this.vehicleId,
+	    			segmentId: segment.id
+	    		},
+	    		dataType: "json",
+	    		cache: false,
+	    		async: false,
+	    		success: function(json) {
+	    			cpc.segments = json ? json : {};
+	    			for(var p in cpc.segments){
+	    				segment.line.show();
+	    			}
+	    			$.unblockUI();
+	    		},
+	    		error: function() {
+	    			$.blockUI({
+						message : "<label>路线检查失败!</label>"
+					});
+					setTimeout('$.unblockUI()', 1000);
+	    		}
+	    	});
+		} else {
+			alert("请先查询轨迹！");
+		}
 	}
-	CheckPointControl.prototype.initCheckPoint = function( $vehicleId, $startDate, $endDate ) {
-		this.$vehicleId = $vehicleId;
-		this.$startDate = $startDate;
-		this.$endDate = $endDate;
+	CheckPointControl.prototype.initCheckPoint = function( vehicleId, startDate, endDate ) {
+		if( startDate && startDate!=""
+				&& endDate && endDate!=""
+				&& vehicleId && vehicleId!=""
+				&& _replayLinePoints && _replayLinePoints.length>0 ){
+			this.vehicleId = vehicleId;
+			this.startDate = startDate;
+			this.endDate = endDate;
+		} else {
+			mapObj.removeControl(this);
+		}
 	}
 </script>
 
