@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import com.gps.bean.SegmentBean;
 import com.gps.orm.Segment;
 import com.gps.orm.SegmentDetail;
-import com.gps.service.PrivateRulesService;
 import com.gps.service.SegmentService;
 
 public class SegmentSearchAjaxAction extends Action{
