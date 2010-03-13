@@ -37,7 +37,7 @@ List<Escorter> es = eb.getList();
 RulesBean rb = new RulesBean();
 List<Rules> rs = rb.getList();
 
-SegmentBean sb = new SegmentBean();
+SegmentBean sb = new SegmentBean(request);
 List<Segment> ss = sb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

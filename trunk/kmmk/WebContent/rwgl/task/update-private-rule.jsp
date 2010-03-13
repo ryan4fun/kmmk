@@ -30,7 +30,7 @@ if(c == null){
 TaskBean tb = new TaskBean();
 List<Task> ts = tb.getList();
 
-RegionBean rb = new RegionBean();
+RegionBean rb = new RegionBean(request);
 rb.setStateTag(RegionTypeDicService.REGION_TYPE_RECTANGLE);
 List<Region> rs = rb.getList();
 %>

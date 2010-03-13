@@ -30,9 +30,6 @@ public class SegmentBean extends AbstractBean {
 	private Date createTimeStart;
 	private Date createTimeEnd;
 	
-	public SegmentBean() {
-	}
-
 	public SegmentBean(HttpServletRequest request) {
 		super(request);
 	}

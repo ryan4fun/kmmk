@@ -6,7 +6,7 @@
 <%
 String idstr = request.getParameter("segmentId");
 Segment s = null;
-SegmentBean sb = new SegmentBean();
+SegmentBean sb = new SegmentBean(request);
 if(idstr!=null || !idstr.equals("")){
 	sb.setSegmentId(Integer.parseInt(idstr));
 	s =  sb.findById();
