@@ -66,6 +66,7 @@ function initVehicleSelector(){
 			},
 			dataType: "json",
 			cache: false,
+			async: false,
 			success: function(json) {
 				$("#organizationId").val(json.organizationId);
 				selectOrganization(json.organizationId);
@@ -85,6 +86,7 @@ function initVehicleSelector(){
 			},
 			dataType: "json",
 			cache: false,
+			async: false,
 			success: function(json) {
 				$("#organizationId").val(json.organizationId);
 				selectOrganization(json.organizationId);
