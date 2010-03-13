@@ -3,8 +3,11 @@ package com.gps.action;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.gps.bean.SegmentBean;
 import com.gps.orm.Segment;
 import com.gps.orm.SegmentDetail;
+import com.gps.service.PrivateRulesService;
+import com.gps.service.SegmentService;
 
 public class SegmentSearchAjaxAction extends Action{
 	@Override
@@ -25,6 +28,25 @@ public class SegmentSearchAjaxAction extends Action{
 			
 			json.put("segmentDetail", jsonArray);
 			json.put("segmentId", String.valueOf(s.getSegmentId()));
+		} else {
+			SegmentBean sb = new SegmentBean(request);
+			sb.setPagination(false);
+			sb.setState(String.valueOf(SegmentService.SEGMENT_NORM_STATE));
+			for(Segment s : sb.getList()){
+				JSONObject tmpJson = new JSONObject();
+				tmpJson.put("id", s.getSegmentId());
+				tmpJson.put("name", s.getSegName());
+				JSONArray pointsJson = new JSONArray();
+				for(SegmentDetail sd: s.getSegmentDetails()){
+					JSONObject pointJson = new JSONObject();
+					pointJson.put("lat", sd.getLatValue());
+					pointJson.put("lng", sd.getLongValue());
+					pointJson.put("tag", sd.getTag());
+					pointsJson.put(pointJson);
+				}
+				tmpJson.put("points", pointsJson);
+				json.put(String.valueOf(s.getSegmentId()), tmpJson);
+			}
 		}
 		response.getWriter().write(json.toString());
 	}
