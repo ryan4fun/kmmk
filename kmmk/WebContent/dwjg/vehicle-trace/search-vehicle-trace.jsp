@@ -288,6 +288,9 @@ function initialize() {
 			var rc = new ReplayControl();
 			mapObj.addControl(rc);
 			rc.initReplay( mapObj, points, new GPolyline(points, "#00ff00", 6), endMarker, stopMarkers );
+			var cpc = new CheckPointControl();
+			mapObj.addControl(cpc);
+			cpc.initCheckPoint( $("vehicleId"), $("recieveTimeStart"), $("recieveTimeEnd") );
 		<%}%>
     }
     <% } else {%>
