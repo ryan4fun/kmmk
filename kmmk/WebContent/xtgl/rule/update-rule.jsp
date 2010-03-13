@@ -24,7 +24,7 @@ if(c == null){
 //AlertTypeDicBean rtdb = new AlertTypeDicBean();
 //List<AlertTypeDic> rtds = rtdb.getList();
 
-RegionBean rb = new RegionBean();
+RegionBean rb = new RegionBean(request);
 rb.setStateTag(RegionTypeDicService.REGION_TYPE_RECTANGLE);
 List<Region> rs = rb.getList();
 %>

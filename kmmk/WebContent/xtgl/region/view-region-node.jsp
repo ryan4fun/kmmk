@@ -5,7 +5,7 @@
 <%
 String idstr = request.getParameter("regionId");
 Region c = null;
-RegionBean cb = new RegionBean();
+RegionBean cb = new RegionBean(request);
 if(idstr!=null && !idstr.equals("")){
 	cb.setRegionId(Integer.parseInt(idstr));
 	c =  cb.findById();

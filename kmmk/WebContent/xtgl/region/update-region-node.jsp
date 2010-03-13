@@ -5,7 +5,7 @@
 <%
 String idstr = request.getParameter("regionId");
 Region c = null;
-RegionBean cb = new RegionBean();
+RegionBean cb = new RegionBean(request);
 String actionName = "RegionAddAction";
 if(idstr==null || idstr.equals("")){
 	c = new Region();
