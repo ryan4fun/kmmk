@@ -21,8 +21,8 @@ public class SegmentService extends AbstractService {
 	public static short CheckPoint_STATE_POSITIVE = 1;
 	public static short CheckPoint_STATE_NEGETIVE = 0;
 	
-	public static double OFFSET = 0.0001;
-	
+	public static double OFFSET = 0.001;
+
 	public void addSegment(Segment u){		
 		try {
 			beginTransaction();
