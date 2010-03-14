@@ -87,13 +87,14 @@ public class TaskBean extends AbstractBean {
 			if (this.getTaskState() != null && this.taskState>0)
 				crit.add(Restrictions.eq("taskState", this.getTaskState()));
 			
-			crit.createAlias("users", "u");			
-			if (this.getUserId() != null && userId>0)
-				crit.add(Restrictions.eq("u.userId", this.getUserId()));
-			
-			crit.createAlias("users.organization", "o");			
-			if (this.getOrganizationId() != null && organizationId>0)
-				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
+//			can not query by user or org like this
+//			crit.createAlias("users", "u");
+//			if (this.getUserId() != null && userId>0)
+//				crit.add(Restrictions.eq("u.userId", this.getUserId()));
+//			
+//			crit.createAlias("users.organization", "o");
+//			if (this.getOrganizationId() != null && organizationId>0)
+//				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
 			
 			crit.createAlias("vehicle", "v");	
 			if (this.getVehicleId() != null && vehicleId>0)
