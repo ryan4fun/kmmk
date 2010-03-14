@@ -38,7 +38,7 @@
         <property name="figurType" type="java.lang.Short">
             <column name="figurType" />
         </property>
-        <set name="regionPointses" inverse="true" cascade="all-delete-orphan">
+        <set name="regionPointses" inverse="true" cascade="all-delete-orphan" order-by="pointId">
             <key>
                 <column name="regionID" />
             </key>
