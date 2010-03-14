@@ -95,7 +95,8 @@ var currentId;
 					tree.openAllItems(0);
 					tree.setSkin('dhx_skyblue');
 					tree.enableDragAndDrop(0);
-					tree.enableCheckBoxes(1);
+					if(role==1||role==2||role==11)
+						tree.enableCheckBoxes(1);
 					tree.enableThreeStateCheckboxes(true);					
 					tree.enableTreeLines(false);
 					tree.setImageArrays("plus", "", "", "", "plus.gif");
