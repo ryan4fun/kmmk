@@ -86,9 +86,9 @@
 			<Link url="xtgl/region/update-region-polygon.jsp" name="添加多边形区域" roles="1,2,3" />			
 			<Link url="xtgl/region/search-region.jsp" name="区域管理" roles="1,2,3" />
 		</Function>
-		<Function name="公用路线管理" roles="1,3">			
-			<Link url="xtgl/segment/search-segment-trace.jsp" name="添加路线" roles="1,3" />
-			<Link url="xtgl/segment/search-segment.jsp" name="路线管理" roles="1,3" />
+		<Function name="公用路线管理" roles="1,2,3">			
+			<Link url="xtgl/segment/search-segment-trace.jsp" name="添加路线" roles="1,2,3" />
+			<Link url="xtgl/segment/search-segment.jsp" name="路线管理" roles="1,2,3" />
 		</Function>		
 	</FunctionGroup>
 	<FunctionGroup folder="" name="报警框" roles="*">
