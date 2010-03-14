@@ -236,8 +236,8 @@ function doAction() {
 			f.append('<input type="hidden" id="latValue" name="latValue" />').children("input:last").val(cp.lnglat.latY);
 			f.append('<input type="hidden" id="longValue" name="longValue" />').children("input:last").val(cp.lnglat.lngX);
 		<%} else {%>
-			f.append('<input type="hidden" id="latValue" name="latValue" />').children("input:last").val(cp.getLatLng().lat());
-			f.append('<input type="hidden" id="longValue" name="longValue" />').children("input:last").val(cp.getLatLng().lng());
+			f.append('<input type="hidden" id="latValue" name="latValue" />').children("input:last").val(cp.getLatLng().lat()-CN_OFFSET_LAT);
+			f.append('<input type="hidden" id="longValue" name="longValue" />').children("input:last").val(cp.getLatLng().lng()-CN_OFFSET_LON);
 		<%}%>
 	}
 	f.submit();
