@@ -36,11 +36,13 @@
 	<FunctionGroup folder="rwgl" name="任务管理" roles="1,2,3,11">			
 		<Function name="任务管理" roles="1,2,3,11">			
 			<Link url="rwgl/task/update-task.jsp" name="新建任务" roles="1,2,3,11" />
+			<!--
 			<Link url="rwgl/task/search-task.jsp?taskState=1&amp;lockState=true" name="已分配的任务" roles="1,2,3,11" />
 			<Link url="rwgl/task/search-task.jsp?taskState=2&amp;lockState=true" name="进行中的任务" roles="1,2,3,11" />
 			<Link url="rwgl/task/search-task.jsp?taskState=3&amp;lockState=true" name="已完成的任务" roles="1,2,3,11" />
 			<Link url="rwgl/task/search-task.jsp?taskState=10&amp;lockState=true" name="已取消的任务" roles="1,2,3,11" />
 			<Link url="rwgl/task/search-task.jsp?taskState=11&amp;lockState=true" name="中途放弃的任务" roles="1,2,3,11" />
+			-->
 			<Link url="rwgl/task/search-task.jsp" name="综合任务管理" roles="1,2,3,11" />
 		</Function>		
 	</FunctionGroup>
