@@ -40,12 +40,22 @@ public class GetTreeAjax extends Action {
 					if (role == RoleService.ROLE_ORG_ADMIN) {
 						OrganizationBean osb = new OrganizationBean();
 						osb.setOrganizationId(login.getOrganizationId());
-						JSONArray jsonos = generateJsonTreeArray(osb.getList());
-
-						UsersBean usb = new UsersBean();
-						usb.setOrganizationId(login.getOrganizationId());
-
-						((JSONObject) jsonos.get(0)).put("item",generateJsonTreeArray(usb.getList()));
+						JSONArray jsonos = new JSONArray();
+						for(Organization o : osb.getList()){
+							JSONArray jsonus = new JSONArray();
+							for(Users u : o.getUserses()){
+								if(u.getUserState()==UsersService.USERS_DEL_STATE)
+									continue;
+								JSONArray jsonvs = new JSONArray();
+								for(Vehicle v : u.getVehicles()){
+									if(v.getVehicleState()==VehicleService.VEHICLE_DEL_STATE)
+										continue;
+									jsonvs.put(generateJsonTreeObj(v,null));
+								}
+								jsonus.put(generateJsonTreeObj(u,jsonvs));
+							}
+							jsonos.put(generateJsonTreeObj(o,jsonus));
+						}
 						json.put("item", jsonos);
 					} else if (role == RoleService.ROLE_VEHICLE_OWNER) {
 						OrganizationBean osb = new OrganizationBean();
@@ -59,8 +69,7 @@ public class GetTreeAjax extends Action {
 						VehicleBean vsb = new VehicleBean();
 						vsb.setUserId(login.getUserId());
 
-						((JSONObject) jsonus.get(0)).put("item",
-								generateJsonTreeArray(vsb.getList()));
+						((JSONObject) jsonus.get(0)).put("item",generateJsonTreeArray(vsb.getList()));
 						((JSONObject) jsonos.get(0)).put("item", jsonus);
 						json.put("item", jsonos);
 					} else {
