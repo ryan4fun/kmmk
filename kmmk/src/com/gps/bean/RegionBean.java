@@ -35,6 +35,10 @@ public class RegionBean extends AbstractBean {
 	
 	private List<Integer> idList;
 	
+	public RegionBean(int organizationId) {
+		this.organizationId = organizationId;
+	}
+	
 	public RegionBean(HttpServletRequest request) {
 		super(request);
 	}

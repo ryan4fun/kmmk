@@ -8,6 +8,7 @@ import com.gps.bean.RegionBean;
 import com.gps.bean.VehicleRuleBean;
 import com.gps.orm.Region;
 import com.gps.orm.Rules;
+import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleRule;
 import com.gps.service.PrivateRulesService;
 
@@ -24,36 +25,39 @@ public class LimitAreaSearchByVehicleAjaxAction extends Action {
 		} else if(id.indexOf("v_")==0){
 			vehicleId = Integer.parseInt(id.substring(2));
 		}
-		
-		VehicleRuleBean vrb = new VehicleRuleBean();
-		vrb.setPagination(false);
-		vrb.setVehicleId(vehicleId);
-		List<VehicleRule> vrs = vrb.getList();
-		int[] rIds = new int[vrs.size()];
-		int i=0;
-		for(VehicleRule vr : vrs){
-			Rules r = vr.getRules();
-			if(r.getAlertTypeDic().getAlertTypeId()==PrivateRulesService.RULE_TYPE_LIMITAREAALARM 
-					&& r.getRuleState() == PrivateRulesService.RULE_NORM_STATE
-					&& r.getIntParam1()!=null){
-				rIds[i++] = r.getIntParam1().intValue();
-			}
-		}
-		
-		RegionBean rgb = new RegionBean(request);
+		Vehicle v = getServiceLocator().getVehicleService().findById(vehicleId);
 		JSONObject json = new JSONObject();
-		for(Region r : rgb.getList()){
-			JSONObject tmpJson = new JSONObject();
-			tmpJson.put("id", r.getRegionId());
-			tmpJson.put("name", r.getName());
-			for(int rid: rIds){
-				if( rid == r.getRegionId()){
-					tmpJson.put("isExist", true);
-					break;
+		if(v != null){
+			VehicleRuleBean vrb = new VehicleRuleBean();
+			vrb.setPagination(false);
+			vrb.setVehicleId(vehicleId);
+			List<VehicleRule> vrs = vrb.getList();
+			int[] rIds = new int[vrs.size()];
+			int i=0;
+			for(VehicleRule vr : vrs){
+				Rules r = vr.getRules();
+				if(r.getAlertTypeDic().getAlertTypeId()==PrivateRulesService.RULE_TYPE_LIMITAREAALARM 
+						&& r.getRuleState() == PrivateRulesService.RULE_NORM_STATE
+						&& r.getIntParam1()!=null){
+					rIds[i++] = r.getIntParam1().intValue();
 				}
 			}
-			json.put(String.valueOf(r.getRegionId()), tmpJson);
+			
+			RegionBean rgb = new RegionBean(v.getUsers().getOrganization().getOrganizationId());
+			for(Region r : rgb.getList()){
+				JSONObject tmpJson = new JSONObject();
+				tmpJson.put("id", r.getRegionId());
+				tmpJson.put("name", r.getName());
+				for(int rid: rIds){
+					if( rid == r.getRegionId()){
+						tmpJson.put("isExist", true);
+						break;
+					}
+				}
+				json.put(String.valueOf(r.getRegionId()), tmpJson);
+			}
 		}
+		
 		response.getWriter().write(json.toString());
 	}
 }
