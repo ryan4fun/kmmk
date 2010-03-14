@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List,org.apache.commons.beanutils.PropertyUtils,java.text.*"%>
+<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List,org.apache.commons.beanutils.PropertyUtils"%>
 <%@ include file="/header.jsp"%>
 
 <%
@@ -31,9 +31,6 @@ if( tb.getQueryType()==null ) {
 
 List ts = tb.getList();
 Util.setNull2DefaultValue(tb);
-
-NumberFormat formatter =NumberFormat.getNumberInstance();
-formatter.setMaximumFractionDigits(2);//设置小数点后面尾数为2
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
