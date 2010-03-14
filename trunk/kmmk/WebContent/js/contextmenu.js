@@ -50,9 +50,9 @@ function treeContextMenu(obj, event) {
 				}
 				
 				div+='<a img="hprio_tsk.gif" class="{menu:\'sub_menu\'}">增改限制区域</a>';
-				$("#tree-div").block({
-					message : "<label>查询限制区域中！</label>"
-				});
+				//$("#tree-div").block({
+				//	message : "<label>查询限制区域中！</label>"
+				//});
 				$.ajax({
 					url : "mkgps.do",
 					dataType : "json",
@@ -84,14 +84,14 @@ function treeContextMenu(obj, event) {
 						}
 					},
 					error : function(xml, status, e){
-						$("#tree-div").block({
-							message : "<label>查询限制区域失败！</label>"
-						});
+						//$("#tree-div").block({
+						//	message : "<label>查询限制区域失败！</label>"
+						//});
 					},
 					complete : function(data){
-						setTimeout(function(){
-							$("#tree-div").unblock();
-						}, 500);
+						//setTimeout(function(){
+						//	$("#tree-div").unblock();
+						//}, 500);
 					}
 				});
 			} else if(currentId.indexOf("o_")==0){
