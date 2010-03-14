@@ -319,7 +319,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
         		msc.searchResultPoints = new Array();
         		msc.searchResultVehicles = new Array();
           		if( msc.localSearch == null ){
-          			$controlDiv.html("停止查询").after("<div id='nameDiv' style='width:99%;'/><div id='searcherCanvas' style='width:99%;'/>");
+          			$controlDiv.html("停止查询").after("<div id='nameDiv' style='width:150px;'/><div id='searcherCanvas' style='width:150px;'/>");
           			
           			msc.$resultDiv = $controlDiv.nextAll("div:last");
           			
