@@ -82,11 +82,11 @@ public class TrackBean extends AbstractBean {
 				else 
 					return new ArrayList(0);
 				if(t!=null && t.getActualStartTime() != null)
-					crit.add(Restrictions.ge("recieveTime", t.getActualStartTime()));
+					crit.add(Restrictions.ge("recieveTime", t.getPlanedStartDate()));
 				else 
 					return new ArrayList(0);
 				if(t.getActualFinishTime() != null)
-					crit.add(Restrictions.le("recieveTime", t.getActualFinishTime()));
+					crit.add(Restrictions.le("recieveTime", t.getPlanedEndDate()));
 			} else {
 				if (this.vehicleId != null && vehicleId>0)
 					crit.add(Restrictions.eq("vehicleId", this.vehicleId));
