@@ -181,7 +181,7 @@ function createMarker(latlng,icon,text) {
 		mapObj.addOverlay(marker,false);
 		return marker;
 	<% } else { %>
-		var marker = new DivImageMarker(latlng, text, icon);
+		var marker = new DivImageMarker(latlng, text);
 	    GEvent.addListener(marker.imgMarker_, "click", function() {
 			marker.imgMarker_.openInfoWindowHtml(
 				"<br><b>" + text +
