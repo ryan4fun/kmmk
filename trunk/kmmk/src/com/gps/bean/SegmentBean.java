@@ -30,6 +30,10 @@ public class SegmentBean extends AbstractBean {
 	private Date createTimeStart;
 	private Date createTimeEnd;
 	
+	public SegmentBean(int organizationId) {
+		this.organizationId = organizationId;
+	}
+	
 	public SegmentBean(HttpServletRequest request) {
 		super(request);
 	}
