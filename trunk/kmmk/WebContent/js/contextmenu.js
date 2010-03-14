@@ -70,15 +70,15 @@ function treeContextMenu(obj, event) {
 //		        					public final static short RULE_OP_OBEY = 1;
 //		        					public final static short RULE_OP_DISOBEY = 2;
 		        					if( limitArea.opType==1 ){
-		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">禁止进入' + limitArea.name + '</a>';
-		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">禁止离开' + limitArea.name + '</a>';
+		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">进入' + limitArea.name + '报警</a>';
+		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">离开' + limitArea.name + '报警</a>';
 		        					} else {
-		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
-		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">禁止离开' + limitArea.name + '</a>';
+		        						subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">进入' + limitArea.name + '报警</a>';
+		        						subDiv+='<a img="enabled_co(1).gif" class="{action: \'delLimitArea(' + limitArea.id + ')\'}">离开' + limitArea.name + '报警</a>';
 		        					}
 		        				} else {
-		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">禁止进入' + limitArea.name + '</a>';
-		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">禁止离开' + limitArea.name + '</a>';
+		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', true)\'}">进入' + limitArea.name + '报警</a>';
+		        					subDiv+='<a class="{action: \'addLimitArea(' + limitArea.id + ', false)\'}">离开' + limitArea.name + '报警</a>';
 		        				}
 							}
 						}
@@ -169,9 +169,9 @@ function addLimitArea( limitAreaId, isObey ){
 		},
 		cache : false,
 		success : function(json){
-			$("#tree-div").block({
-				message : "<label>添加限制区域成功！</label>"
-			});
+			//$("#tree-div").block({
+			//	message : "<label>添加限制区域成功！</label>"
+			//});
 		},
 		error : function(xml, status, e){
 			$("#tree-div").block({
