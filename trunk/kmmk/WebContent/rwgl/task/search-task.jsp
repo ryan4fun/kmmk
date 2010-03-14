@@ -18,8 +18,6 @@
 	if (request.getParameter("lockState") != null
 			&& request.getParameter("lockState").equals("true"))
 		isLockState = true;	
-	
-	
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -167,19 +165,12 @@ function changeTaskState(recID,taskState){
 <div style="padding:2px;overflow:visible">
 <form id="inputform" action="search-task.jsp" method="post">
 <input type="hidden" name="lockState" id="lockState" value="<%=isLockState ? "true":""%>"/>
-<input type="hidden" id="taskState" name="taskState" value="" />
 <table cellSpacing="5" width="650px;">
 	<tr>
 		<td align="right">任务车辆：</td>
 		<td><jsp:include page="/vehicle-selector.jsp" />
 			</td>
-		<td align="right">任务状态：</td>
-		<td>
-		<select id="_taskState" name="_taskState">
-		<%=Util.writeOptions(TaskService.taskStates, !isLockState? "所有":null) %>
-		</select>
-	
-		</td>
+		<td colspan=2>&nbsp;</td>
 	</tr>
 	<tr>
 		<td align="right">开始时间：</td>
@@ -209,7 +200,6 @@ function changeTaskState(recID,taskState){
 		<th width="8%">任务车辆</th>
 		<th width="20%">驾驶员</th>		
 		<th >任务时间</th>
-		<th width="6%">任务状态</th>
 		<th width="10%">操作</th>
 	</tr>
 	<%
@@ -226,14 +216,13 @@ function changeTaskState(recID,taskState){
 				
 	%>
 	<tr>
-		<td id="p_<%=t.getTaskId()%>" colspan="6">
+		<td id="p_<%=t.getTaskId()%>" colspan="5">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>
 				<td width="15%"><a href="javascript:href('view-task.jsp?taskId=<%=t.getTaskId()%>')" ><%=t.getTaskName()%></a></td>
 				<td width="8%"><a href="javascript:href('view-task.jsp?taskId=<%=t.getTaskId()%>')" ><%=t.getVehicle().getLicensPadNumber()%></a></td>
 				<td width="20%"><a href="javascript:href('view-task.jsp?taskId=<%=t.getTaskId()%>')" ><%=driverName%></a></td>
 				<td ><a href="javascript:href('view-task.jsp?taskId=<%=t.getTaskId()%>')" ><%=Util.FormatDateMid(t.getPlanedStartDate())%>&nbsp;~&nbsp;<%=Util.FormatDateMid(t.getPlanedEndDate())%></a></td>
-				<td width="6%"><a href="javascript:href('view-task.jsp?taskId=<%=t.getTaskId()%>')" ><%=TaskService.taskStates.get(t.getTaskState())%></a></td>
 				<td width="10%">
 					<a href="javascript:href('update-task.jsp?taskId=<%=t.getTaskId()%>')">修   改</a> | 
 					<a href="javascript:delOrg('<%=t.getTaskId()%>')">删   除</a>
