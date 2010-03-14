@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.*"%>
+<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List,org.apache.commons.beanutils.PropertyUtils"%>
 <%@ include file="/header.jsp"%><%
 String idstr = request.getParameter("taskId");
 Task t = null;
@@ -29,23 +29,15 @@ if(t == null){
 	}
 	escorterName = escorterName.length()>0?escorterName.substring(0,escorterName.length()-1):"&nbsp;";
 	
-	String segName = "";
-	if(t.getTaskSegments()!=null && !t.getTaskSegments().isEmpty()){
-		for(Iterator<TaskSegment> itr = t.getTaskSegments().iterator();itr.hasNext();){
-			Segment s = itr.next().getSegment();
-			segName += s.getSegName() + "，";
-		}
-	}
-	segName = segName.length()>0?segName.substring(0,segName.length()-1):"&nbsp;";
+	Vehicle v = t.getVehicle();
 	
-	String ruleName = "";
-	if(t.getTaskRules()!=null && !t.getTaskRules().isEmpty()){
-		for(Iterator<TaskRule> itr = t.getTaskRules().iterator();itr.hasNext();){
-			Rules r = itr.next().getRules();
-			ruleName += r.getRuleName() + "，";
-		}
-	}
-	ruleName = ruleName.length()>0?ruleName.substring(0,ruleName.length()-1):"&nbsp;";
+	TrackBean tcb = new TrackBean();
+	tcb.setPagination(false);
+	tcb.setQueryPrecision(TrackBean.QUERY_REALTIME);
+	tcb.setVehicleId(v.getVehicleId());
+	tcb.setRecieveTimeStart(t.getPlanedStartDate());
+	tcb.setRecieveTimeEnd(t.getPlanedEndDate());
+	List ts = tcb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -56,13 +48,13 @@ if(t == null){
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/jquery.alerts.css" />
+<%@ include file="/map-header.jsp"%>
+<%@ include file="/map-replay.jsp"%>
 <script type="text/javascript" src="<%=basePath %>js/mkgps.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.validate.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.pagination.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
 <style type="text/css">
@@ -70,6 +62,7 @@ if(t == null){
 </style>
 <script language="JavaScript">
 $(document).ready(function(){
+	initialize();
 	$("#search-div").accordion({
 		header:"h3",		
 		collapsible:false,
@@ -77,28 +70,279 @@ $(document).ready(function(){
 			
 		}
 	});
+	resize();
 });
 
-function changeTaskState(taskState){
-	jConfirm("确定执行该操作吗？", "警告", function(r){
-		if(r){
-			$("#taskState").val(taskState);
-			$("#inputform").submit();
-		}
-	});	
+function resize(){
+	$("#map_canvas").height($(window).height()-$("#search-div").height()-33);
+}
+
+var mapObj = null,tmpMarker = null,startMarker = null,endMarker = null;
+var startIcon = "<%=mapImagePath %>images/google_icon/start.png";
+var endIcon = "<%=mapImagePath %>images/google_icon/running.png";
+var stopIcon = "<%=mapImagePath %>images/google_icon/stop.png";
+function initialize() {
+	<% if(ts.size()>0){ %>
+    if (GBrowserIsCompatible()) {
+    	mapObj = createCommonMap("map_canvas");
+    	<%
+    	Double lat = null;
+      	Double lon = null;
+      	Date recieveTime = null;
+      	
+      	Object firstPoint = ts.get(0);
+		lat = (Double)PropertyUtils.getProperty(firstPoint,"latValue");
+		lon = (Double)PropertyUtils.getProperty(firstPoint,"longValue");
+		recieveTime = (Date)PropertyUtils.getProperty(firstPoint,"recieveTime");
+		
+		if( login.getMapType()==LoginInfo.MAPABC ){%>
+		    var startPoint = createCommonLatLng(<%=Util.CENTER_LAT%>, <%=Util.CENTER_LON%>);
+		    mapObj.setZoomAndCenter(10,startPoint);
+
+			<%
+			if(lat != null && lon != null){
+			%>
+				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), null, startIcon);
+	      	<%
+	      	}
+			if(ts.size()>1){
+				Object lastPoint = ts.get(ts.size()-1);
+				lat = (Double)PropertyUtils.getProperty(lastPoint,"latValue");
+				lon = (Double)PropertyUtils.getProperty(lastPoint,"longValue");
+				recieveTime = (Date)PropertyUtils.getProperty(lastPoint,"recieveTime");
+				if(lat != null && lon != null){
+	      	%>
+	      		endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), null, endIcon);
+	      	<%}
+			}%>
+
+	      	var points = new Array();
+			<%
+			Double tempValue = null;
+			int i = 0;
+			Short tag = 0;
+			for(Object trace:ts){
+				
+				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
+				if( tempValue == null )
+					continue;
+				if( tempValue.equals(lat) ) {
+					tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
+					if( tempValue == null || tempValue.equals(lon) )
+						continue;
+					else {
+						lon = tempValue;
+					}
+				} else {
+					lat = tempValue;
+					
+					tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
+					if( tempValue == null )
+						continue;
+					lon = tempValue;
+				}
+				
+				//for stop point marker add by Ryan
+				tag = (Short)PropertyUtils.getProperty(trace,"tag");
+				
+				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){
+					int tempIdx = i-1;
+					if(tempIdx < 0){
+						tempIdx=0;
+					}
+
+					//recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
+					Date nextRecieveTime;
+					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
+					if(tempIdx < ts.size()){
+						Object nextPoint = ts.get(tempIdx);
+						nextRecieveTime = (Date)PropertyUtils.getProperty(nextPoint,"recieveTime");
+					}else{
+						nextRecieveTime = recieveTime;
+					}
+					
+					long stopTime = recieveTime.getTime() -nextRecieveTime.getTime();
+					//double stopTimeInDouble = stopTime;
+					//double stopHours = stopTimeInDouble/(1000*60*60);
+					String stopTimeDisp = Util.formateLongToDays(stopTime);
+				
+					%>
+					
+					tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), "<%=stopTimeDisp%>", stopIcon);
+					<%
+				}
+				i++;
+				//----------Ryan end here
+				
+				if(lat != null && lon != null){
+				%>
+					points.push(new MLngLat(<%=lon%>, <%=lat%>));
+				<%
+				}
+			}
+			%>
+			var lineopt = new MLineOptions();
+			lineopt.canShowTip = false;
+		 	
+			polyShape = new MPolyline(points, lineopt);
+			polyShape.id="polyShape";
+			mapObj.addOverlay(polyShape, true);
+		<%} else {%>
+	      	<%
+			if( lat != null && lon != null ){
+			%>
+				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), null, startIcon);
+		    <%
+			}
+			if(ts.size()>1){
+				Object lastPoint = ts.get(ts.size()-1);
+				lat = (Double)PropertyUtils.getProperty(lastPoint,"latValue");
+				lon = (Double)PropertyUtils.getProperty(lastPoint,"longValue");
+				recieveTime = (Date)PropertyUtils.getProperty(lastPoint,"recieveTime");
+				if( lat != null && lon != null ){
+				%>
+					endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), null, endIcon);
+				<%
+				}
+			}
+			%>
+			var points = new Array();
+			var stopMarkers = new Array();
+			<%
+			Double tempValue = null;
+			Double minLat = Util.MAX_LAT;
+			Double minLon = Util.MAX_LON;
+			Double maxLat = Util.MIN_LAT;
+			Double maxLon = Util.MIN_LON;
+			
+			int i = 0;
+			Short tag = 0;
+			for(Object trace:ts){
+				
+				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
+				if( tempValue == null )
+					continue;
+				if( tempValue.equals(lat) ) {
+					tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
+					if( tempValue == null || tempValue.equals(lon) )
+						continue;
+					else {
+						lon = tempValue;
+						if(tempValue < minLon)
+							minLon = tempValue;
+						if(tempValue > maxLon)
+							maxLon = tempValue;
+					}
+				} else {
+					lat = tempValue;
+					if(tempValue < minLat)
+						minLat = tempValue;
+					if(tempValue > maxLat)
+						maxLat = tempValue;
+					
+					tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
+					if( tempValue == null )
+						continue;
+					lon = tempValue;
+					if(tempValue < minLon)
+						minLon = tempValue;
+					if(tempValue > maxLon)
+						maxLon = tempValue;
+				}
+				
+				//for stop point marker add by Ryan
+				tag = (Short)PropertyUtils.getProperty(trace,"tag");
+				
+				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){		
+					int tempIdx = i-1;
+					if(tempIdx < 0){
+						tempIdx =0;
+					}
+					Date nextRecieveTime;
+					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
+					if(tempIdx < ts.size()){
+						Object nextPoint = ts.get(tempIdx);
+						nextRecieveTime = (Date)PropertyUtils.getProperty(nextPoint,"recieveTime");
+					}else{
+						nextRecieveTime = recieveTime;
+					}
+					
+					long stopTime = recieveTime.getTime()- nextRecieveTime.getTime();
+					//double stopTimeInDouble = stopTime;
+					//double stopHours = stopTimeInDouble/(1000*60*60);
+					String stopTimeDisp = Util.formateLongToDays(stopTime);
+					%>
+					stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=stopTimeDisp%>",stopIcon));
+					<%
+				}
+				i++;
+				//----------Ryan end here
+				
+				if(lat != null && lon != null){
+					%>
+					points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));
+					<%
+				}
+			}
+			%>
+			setCenterByLatLngs(mapObj, <%=maxLat%>+CN_OFFSET_LAT, <%=maxLon%>+CN_OFFSET_LON, <%=minLat%>+CN_OFFSET_LAT, <%=minLon%>+CN_OFFSET_LON);
+			//mapObj.addOverlay(new GPolyline(points, "#00ff00", 6));
+			var rc = new ReplayControl();
+			mapObj.addControl(rc);
+			rc.initReplay( mapObj, points, new GPolyline(points, "#00ff00", 6), endMarker, stopMarkers );
+			var cpc = new CheckPointControl();
+			mapObj.addControl(cpc);
+			cpc.initCheckPoint( <%=v.getVehicleId()%>, "<%=t.getPlanedStartDate()%>", "<%=t.getPlanedEndDate()%>" );
+		<%}%>
+    }
+    <% } else {%>
+		$("#map_canvas").append("没有轨迹数据！");
+    <% } %>
+}
+
+function createMarker(rcvTime,latlng,stopTimeDisp,icon) {
+	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
+		var markerOption = new MMarkerOptions();
+		markerOption.canShowTip = true;
+		markerOption.isDraggable = false;
+		markerOption.imageAlign=5;
+		if(icon)
+			markerOption.imageUrl = icon;
+	
+		var tipOption = new MTipOptions();
+		tipOption.title="坐标";
+		tipOption.content = ( rcvTime ? "<br>接收时间: <b>" + rcvTime : "" )+ 
+			"</b><br>纬度: <b>" + latlng.latY + 
+			"</b><br>经度: <b>" + latlng.lngX + 
+			( stopTimeDisp ? "</b><br>停留时间: <b>" + stopTimeDisp   : "" );
+		markerOption.tipOption = tipOption;
+	
+		var marker = new MMarker(latlng,markerOption);
+		mapObj.addOverlay(marker,false);
+		return marker;
+	<% } else { %>
+		var marker = new GMarker(latlng);
+	    GEvent.addListener(marker, "click", function() {
+			marker.openInfoWindowHtml(
+					"接收时间: <b>" + rcvTime + 
+					"</b><br>纬度: <b>" + latlng.lat() + 
+					"</b><br>经度: <b>" + latlng.lng() +
+					( stopTimeDisp ? "</b><br>停留时间: <b>" + stopTimeDisp   : "" ) );
+		});
+	    mapObj.addOverlay(marker);
+	    if(icon)
+	    	marker.setImage(icon);
+	    return marker;
+    <% } %>
 }
 </script>
 </head>
 <body style="background:transparent;">
 <div id="search-div">
-<h3><a href="#">车辆任务信息</a></h3>
-<div style="padding:2px;overflow:visible">
-	<form id="inputform" action="mkgps.do" method="post">
-		<input type="hidden" name="taskId" value="<%=t.getTaskId()%>"/>
-		<input type="hidden" name="action" value="TaskStateChangeAction"/>
-		<input type="hidden" name="success" value="update-task-succ.jsp"/>
-		<input type="hidden" name="failed" value="update-task-faild.jsp"/>
-		<input type="hidden" id="taskState" name="taskState" value="9999"/>		
+	<h3><a href="#">车辆任务信息</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id="inputform" action="mkgps.do" method="post">
+			<input type="hidden" name="taskId" value="<%=t.getTaskId()%>"/>
 			<table cellSpacing="5" width="95%">
 				<tr>
 					<td width="20%" align="right">任务车辆：</td>
@@ -136,16 +380,6 @@ function changeTaskState(taskState){
 					<td width="20%" align="right">押运员：</td>
 					<td align="left"><%=escorterName%></td>
 				</tr>
-				<%--
-				<tr>
-					<td width="20%" align="right">任务路线：</td>
-					<td align="left"><%=segName%></td>
-				</tr>
-				<tr>
-					<td width="20%" align="right">任务规则：</td>
-					<td align="left"><%=ruleName%></td>
-				</tr>
-				--%>
 				<tr>
 					<td width="20%" align="right">任务描述：</td>
 					<td align="left">
@@ -159,57 +393,14 @@ function changeTaskState(taskState){
 					</td>
 				</tr>
 			</table>
-				<p align="center">
-				<%if(t.getTaskState() == TaskService.TASK_PLANED_STATE) {%>
-					<input type="button" style="width:100px;" value="修改" onclick="javascript:href('update-task.jsp?taskId=<%=t.getTaskId()%>')"/>
-					<input type="button" style="width:100px;" value="开始执行" onclick="javascript:changeTaskState('<%=TaskService.TASK_IN_PROGRESS_STATE%>')"/>
-				<%} else if (t.getTaskState() == TaskService.TASK_IN_PROGRESS_STATE) {%>
-					<input type="button" style="width:100px;" value="执行完成" onclick="javascript:changeTaskState('<%=TaskService.TASK_FINISH_STATE%>')"/>
-					<input type="button" style="width:100px;" value="放弃执行" onclick="javascript:changeTaskState('<%=TaskService.TASK_ABORTED_STATE%>')"/>
-				<%}%>
+			<p align="center">
+				<input type="button" style="width:100px;" value="修改" onclick="javascript:href('update-task.jsp?taskId=<%=t.getTaskId()%>')"/>
 				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>	
-				</p>		
-	</form>
+			</p>
+		</form>
+	</div>
 </div>
-<h3><a href="#">任务规则</a></h3>
-<div style="padding:2px;overflow:visible">
-<% if(t.getPrivateRuleses().size()>0){ %>
-<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
-	<tr>
-		<th width="30%">任务规则名</th>
-		<th width="40%">任务规则类型</th>
-		<%--<th width="20%">任务规则适用类型</th>
-		<th width="20%">报警提示类型</th>--%>
-		<th width="30%">操作</th>
-	</tr>
-<% 
-	for(PrivateRules o:t.getPrivateRuleses()){ 
-		Util.setNull2DefaultValue(o);
-%>
-	<tr>
-		<td id="p_<%=o.getRuleId()%>" colspan="99">
-		<table cellSpacing="0" width="100%" border="0" cellpadding="0">
-			<tr>
-				<td width="30%"><a href="javascript:href('view-private-rule.jsp?ruleId=<%=o.getRuleId()%>')" ><%=o.getRuleName()%></a></td>
-				<td width="40%"><a href="javascript:href('view-private-rule.jsp?ruleId=<%=o.getRuleId()%>')" ><%=PrivateRulesService.ruleTypes.get(o.getRuleType())%></a></td>
-				<%--<td width="20%"><a href="javascript:href('view-private-rule.jsp?ruleId=<%=o.getRuleId()%>')" ><%=PrivateRulesService.opTypes.get(o.getOpType())%></a></td>
-				<td width="20%"><a href="javascript:href('view-private-rule.jsp?ruleId=<%=o.getRuleId()%>')" ><%=o.getAlertTypeDic().getAlertTypeName()%></a></td>--%>
-				<td width="30%">
-					<% if(t.getTaskState() == TaskService.TASK_PLANED_STATE){ %>
-					<a href="javascript:href('update-private-rule.jsp?ruleId=<%=o.getRuleId()%>')">修   改</a> | <a href="javascript:delOrg('<%=o.getRuleId()%>')">删   除</a></td>&nbsp;
-					<% } %>
-			</tr>
-		</table>
-		</td>
-	</tr>
-<% } %>
-</table>
-<% } %>
-<p align="center">
-	<input type="button" value="添加任务规则" onclick="javascript:href('update-private-rule.jsp?taskId=<%=t.getTaskId()%>')"/>
-</p>
-</div>
-</div>
+<div id="map_canvas" style="width: 100%; height: 500px"></div>
 </body>
 </html>
 <%}%>
