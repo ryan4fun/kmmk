@@ -177,10 +177,10 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	}
 
 	function enlargeMapByLatLngs(mapObj, latLngs){
-		var minLat = mapObj.getBounds().getSouthWest().lat()
-		var minLng = mapObj.getBounds().getSouthWest().lng()
-		var maxLat = mapObj.getBounds().getNorthEast().lat()
-		var maxLng = mapObj.getBounds().getNorthEast().lng()
+		var minLat = mapObj.getBounds().getSouthWest().lat();
+		var minLng = mapObj.getBounds().getSouthWest().lng();
+		var maxLat = mapObj.getBounds().getNorthEast().lat();
+		var maxLng = mapObj.getBounds().getNorthEast().lng();
 		for ( var i = 0; i < latLngs.length; i++) {
 			var ll = latLngs[i];
 			var lat = ll.getLatLng().lat();
@@ -199,6 +199,22 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 		setCenterByLatLngs(mapObj, maxLat, maxLng, minLat, minLng);
 	}
 
+	function enlargeMapByOverlayObj(mapObj, overlayObj){
+		if(overlayObj.getBounds) {
+			setCenterByLatLngs(mapObj, 
+					Math.max(mapObj.getBounds().getNorthEast().lat(), overlayObj.getBounds().getNorthEast().lat()), 
+					Math.max(mapObj.getBounds().getNorthEast().lng(), overlayObj.getBounds().getNorthEast().lng()), 
+					Math.min(mapObj.getBounds().getSouthWest().lat(), overlayObj.getBounds().getSouthWest().lat()), 
+					Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getBounds().getSouthWest().lng()) );
+		} else if(overlayObj.getLatLng()) {
+			setCenterByLatLngs(mapObj, 
+					Math.max(mapObj.getBounds().getNorthEast().lat(), overlayObj.getLatLng().lat()), 
+					Math.max(mapObj.getBounds().getNorthEast().lng(), overlayObj.getLatLng().lng()), 
+					Math.min(mapObj.getBounds().getSouthWest().lat(), overlayObj.getLatLng().lat()), 
+					Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getLatLng().lng()) );
+		}
+	}
+	
 	//controls
 	function MeasureDistanceControl() {}
 	MeasureDistanceControl.prototype = new GControl();
