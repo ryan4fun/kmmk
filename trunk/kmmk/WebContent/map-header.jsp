@@ -153,15 +153,38 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 				);
 	}
 	
-	function setCenterByMarkers(mapObj, markers){
+	function setCenterByMarkers(mapObj, latLngs){
 		var minLat = <%=Util.MAX_LAT%>;
 		var minLng = <%=Util.MAX_LON%>;
 		var maxLat = <%=Util.MIN_LAT%>;
 		var maxLng = <%=Util.MIN_LON%>;
-		for ( var i = 0; i < markers.length; i++) {
-			var m = markers[i];
-			var lat = m.getLatLng().lat();
-			var lng = m.getLatLng().lng();
+		for ( var i = 0; i < latLngs.length; i++) {
+			var ll = latLngs[i];
+			var lat = ll.getLatLng().lat();
+			var lng = ll.getLatLng().lng();
+			
+			if( lat < minLat )
+				minLat = lat;
+			if( lat > maxLat )
+				maxLat = lat;
+			
+			if( lng < minLng )
+				minLng = lng;
+			if( lng > maxLng )
+				maxLng = lng;
+		}
+		setCenterByLatLngs(mapObj, maxLat, maxLng, minLat, minLng);
+	}
+
+	function enlargeMapByLatLngs(mapObj, latLngs){
+		var minLat = mapObj.getBounds().getSouthWest().lat()
+		var minLng = mapObj.getBounds().getSouthWest().lng()
+		var maxLat = mapObj.getBounds().getNorthEast().lat()
+		var maxLng = mapObj.getBounds().getNorthEast().lng()
+		for ( var i = 0; i < latLngs.length; i++) {
+			var ll = latLngs[i];
+			var lat = ll.getLatLng().lat();
+			var lng = ll.getLatLng().lng();
 			
 			if( lat < minLat )
 				minLat = lat;
