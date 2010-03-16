@@ -116,55 +116,55 @@ public class DataCaptureServer {
 	public void listenUDPSocket(final int port) {
 
 		
-		new Thread() {
-
-			public void run() {
-				
-				 try {
-					    DatagramSocket serverSocket = new DatagramSocket(port);
-					    udpServers.add(serverSocket);
-					    byte[] buff = new byte[1024];
-					    DatagramPacket dataPacket = new DatagramPacket(buff, buff.length);
-						
-					
-					logger.info("UDP server successfully started at port: "+ port);
-//					System.out.println("UDP Server Started at port : " + port);
-					
-					int receivCount = 0;
-					UDPClientHandler handler = new UDPClientHandler(serverSocket,DataCaptureServer.this);
-					while(!serverSocket.isClosed()){
-						
-						try {
-							
-							serverSocket.receive(dataPacket);
-							receivCount = dataPacket.getLength();
-							
-							if (receivCount > 0) {
-								
-								String str = new String(buff,0,receivCount);
-								System.out.println("Message Received from UDP server : " + str);
-								byte[] tempBuf = new byte[receivCount];
-								System.arraycopy(buff, 0, tempBuf, 0, receivCount);
-								handler.handleMessage(tempBuf);
-								
-							}else{
-								
-								//TODO later
-							}
-							
-							
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-
-					}
-				} catch (SocketException e) {
-	
-					logger.error("UDP server can't start at port: " + port , e);
-				}
-			}
-		}.start();
+//		new Thread() {
+//
+//			public void run() {
+//				
+//				 try {
+//					    DatagramSocket serverSocket = new DatagramSocket(port);
+//					    udpServers.add(serverSocket);
+//					    byte[] buff = new byte[1024];
+//					    DatagramPacket dataPacket = new DatagramPacket(buff, buff.length);
+//						
+//					
+//					logger.info("UDP server successfully started at port: "+ port);
+////					System.out.println("UDP Server Started at port : " + port);
+//					
+//					int receivCount = 0;
+//					UDPClientHandler handler = new UDPClientHandler(serverSocket,DataCaptureServer.this);
+//					while(!serverSocket.isClosed()){
+//						
+//						try {
+//							
+//							serverSocket.receive(dataPacket);
+//							receivCount = dataPacket.getLength();
+//							
+//							if (receivCount > 0) {
+//								
+//								String str = new String(buff,0,receivCount);
+//								System.out.println("Message Received from UDP server : " + str);
+//								byte[] tempBuf = new byte[receivCount];
+//								System.arraycopy(buff, 0, tempBuf, 0, receivCount);
+//								handler.handleMessage(tempBuf);
+//								
+//							}else{
+//								
+//								//TODO later
+//							}
+//							
+//							
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//
+//					}
+//				} catch (SocketException e) {
+//	
+//					logger.error("UDP server can't start at port: " + port , e);
+//				}
+//			}
+//		}.start();
 		
 		
 		UDPClientHandler handler = new UDPClientHandler(port,DataCaptureServer.this);
