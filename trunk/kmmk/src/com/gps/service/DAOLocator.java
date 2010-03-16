@@ -6,6 +6,16 @@ import com.gps.orm.AlertHistoryHome;
 import com.gps.orm.AlertTypeDicHome;
 import com.gps.orm.DriverHome;
 import com.gps.orm.EscorterHome;
+import com.gps.orm.FGasfeeHome;
+import com.gps.orm.FMaintainHome;
+import com.gps.orm.FMaterialKeepLogHome;
+import com.gps.orm.FRuningLogHome;
+import com.gps.orm.FToolsHome;
+import com.gps.orm.FToolsKeepLog;
+import com.gps.orm.FToolsKeepLogHome;
+import com.gps.orm.FTyresHome;
+import com.gps.orm.FVehicleBasicHome;
+import com.gps.orm.FVehicleMaterialHome;
 import com.gps.orm.GpsDeviceInstallationHome;
 import com.gps.orm.GpsfeeHome;
 import com.gps.orm.HourlyTrackHisHome;
@@ -78,9 +88,16 @@ public class DAOLocator {
 	private QualifiedCoordAreaHome qualifiedCoordAreaHome;
 	private VehicleRuleHome vehicleRuleHome;
 	
-
-
-
+	private FToolsHome fToolsHome;
+	private FGasfeeHome fGasfeeHome;
+	private FMaintainHome fMaintainHome;
+	private FVehicleBasicHome fVehicleBasicHome;
+	private FVehicleMaterialHome fVehicleMaterialHome;
+	private FTyresHome fTyresHome;
+	private FToolsKeepLogHome fToolsKeepLogHome;
+	private FRuningLogHome fRuningLogHome;
+	private FMaterialKeepLogHome fMaterialKeepLogHome;
+	
 
 	static DAOLocator daoLocator = null;
 
@@ -121,7 +138,18 @@ public class DAOLocator {
 		gpsfeeHome = new GpsfeeHome();
 		qualifiedCoordAreaHome = new QualifiedCoordAreaHome();
 		vehicleRuleHome = new VehicleRuleHome();
+		
+		fToolsHome = new FToolsHome();
+		fGasfeeHome = new FGasfeeHome();
+		fMaintainHome = new FMaintainHome();
+		fVehicleBasicHome = new FVehicleBasicHome();
+		fVehicleMaterialHome = new FVehicleMaterialHome();
+		fTyresHome = new FTyresHome();
+		fToolsKeepLogHome = new FToolsKeepLogHome();
+		fRuningLogHome = new FRuningLogHome();
+		fMaterialKeepLogHome = new FMaterialKeepLogHome();
 	}
+
 
 	public static DAOLocator getInstance() {
 		if (daoLocator == null) {
@@ -429,5 +457,76 @@ public class DAOLocator {
 	
 	public void setVehicleRuleHome(VehicleRuleHome home) {
 		this.vehicleRuleHome = home;
+	}
+	
+	public FToolsHome getFToolsHome() {
+		return fToolsHome;
+	}
+
+	public void setFToolsHome(FToolsHome toolsHome) {
+		fToolsHome = toolsHome;
+	}
+	public FGasfeeHome getFGasfeeHome() {
+		return fGasfeeHome;
+	}
+
+	public void setFGasfeeHome(FGasfeeHome gasfeeHome) {
+		fGasfeeHome = gasfeeHome;
+	}
+
+
+	public FMaintainHome getFMaintainHome() {
+		return fMaintainHome;
+	}
+
+	public void setFMaintainHome(FMaintainHome maintainHome) {
+		fMaintainHome = maintainHome;
+	}
+
+	public FVehicleBasicHome getFVehicleBasicHome() {
+		return fVehicleBasicHome;
+	}
+
+	public void setFVehicleBasicHome(FVehicleBasicHome vehicleBasicHome) {
+		fVehicleBasicHome = vehicleBasicHome;
+	}
+	
+	public FVehicleMaterialHome getFVehicleMaterialHome() {
+		return fVehicleMaterialHome;
+	}
+
+	public void setFVehicleMaterialHome(FVehicleMaterialHome vehicleMaterialHome) {
+		fVehicleMaterialHome = vehicleMaterialHome;
+	}
+	
+	public FTyresHome getFTyresHome() {
+		return fTyresHome;
+	}
+
+	public void setFTyresHome(FTyresHome tyresHome) {
+		fTyresHome = tyresHome;
+	}
+
+	public FToolsKeepLogHome getFToolsKeepLogHome() {
+		return fToolsKeepLogHome;
+	}
+
+	public void setFToolsKeepLogHome(FToolsKeepLogHome toolsKeepLogHome) {
+		fToolsKeepLogHome = toolsKeepLogHome;
+	}
+	
+	public FRuningLogHome getFRuningLogHome() {
+		return fRuningLogHome;
+	}
+	public void setFRuningLogHome(FRuningLogHome runingLogHome) {
+		fRuningLogHome = runingLogHome;
+	}
+	
+	public FMaterialKeepLogHome getFMaterialKeepLogHome() {
+		return fMaterialKeepLogHome;
+	}
+
+	public void setFMaterialKeepLogHome(FMaterialKeepLogHome materialKeepLogHome) {
+		fMaterialKeepLogHome = materialKeepLogHome;
 	}
 }
