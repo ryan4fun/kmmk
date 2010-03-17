@@ -67,9 +67,11 @@ public class MKgpsServlet extends HttpServlet {
 		WEB_CLASS_ABSOLUTE_PATH = WEB_ROOT_ABSOLUTE_PATH+"WEB-INF"+File.separator+"classes"+File.separator;
 
 		String rolePath = WEB_ROOT_ABSOLUTE_PATH+"WEB-INF/classes/role.xml";
+		String tzRolePath = WEB_ROOT_ABSOLUTE_PATH+"WEB-INF/classes/tz-role.xml";
 		
 		try {
 			RoleService.initRolePageMap(rolePath);
+			RoleService.initTzRolePageMap(tzRolePath);
 		} catch (DocumentException e) {
 			throw new ServletException(e);
 		}
