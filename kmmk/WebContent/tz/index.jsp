@@ -91,16 +91,11 @@
 <body style="margin:0px;background-color:#f3f3f3;">
 <table id="main-table" border="0" cellpadding="0" cellspacing="0" style="100%;height:100%;">	
 	<tr height="30">
-		<td colSpan="2" align="left">		
+		<td align="left">		
 			<jsp:include page="menu.jsp"></jsp:include>
 		</td>
 	</tr>
 	<tr>
-		<td style="">
-		<div style="width:10px;overflow:hidden;">
-		<input id="splitBtn" type="button" value="&gt" style="padding:0px;margin-left:-1px;width:12px;height:65px;" style="font-weight:bold;" onclick="collapse(this)" />
-		</div>
-		</td>
 		<td id="main-td" style="border:1px solid gray;border-top-width:0px;">
 			<div style="position:relative;">
 				<iframe id="main-frame" name="main" frameborder="0" scrolling="no" style="height:100%" src="" />
