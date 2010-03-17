@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%><%@ include file="/header.jsp" %><%
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %><%
     
 	String redirect = basePath+"index.jsp";
 	if(session.getAttribute("from") != null && !session.getAttribute("from").equals("")){
