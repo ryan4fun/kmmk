@@ -6,8 +6,9 @@
 	java.util.regex.Pattern,
 	java.util.regex.Matcher"
 %><%	
-	String  basePath = request.getScheme()+ "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/tz/";
-
+	String  basePath = request.getScheme()+ "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+	String  tzBasePath = basePath + "tz/";
+	
 	request.setCharacterEncoding("UTF-8");	
 	/*
 	response.setHeader("Pragma","No-Cache");
@@ -18,6 +19,4 @@
 	//String skin = "south-street";//redmond, blitzer, south-street, trontastic, ui-lightness
 	String skin = login.getSkin();
 	boolean isNewUI = login.isNewUI();
-	int intRole = login.getRoles().iterator().next();
-	String role = String.valueOf(intRole);	
 %>
