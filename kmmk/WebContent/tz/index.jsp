@@ -32,8 +32,6 @@
 <script type="text/javascript" src="<%=basePath %>js/dependency/dhtmlxtree_json.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/mkgps.js"></script>
 
-<script type="text/javascript" src="<%=basePath %>js/dependency/asd.js"></script>
-
 <style type="text/css">
     
 </style>
