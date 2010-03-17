@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
@@ -15,7 +14,9 @@ import org.dom4j.io.SAXReader;
 import org.hibernate.HibernateException;
 
 import com.gps.orm.Role;
-import com.gps.ui.*;
+import com.gps.ui.Accordion;
+import com.gps.ui.Link;
+import com.gps.ui.Tab;
 
 public class RoleService extends AbstractService {
 	static Logger logger = Logger.getLogger(RoleService.class);
@@ -37,8 +38,6 @@ public class RoleService extends AbstractService {
 //	����û�
 	public final static Integer ROLE_WATCHER = 12;
 	
-	public static Map<Integer,Set<String>> ROLE_PAGE_MAP;
-	
 	public static Map<Integer, String> roleNames = new HashMap<Integer, String>();
 	static {
 		roleNames.put(ROLE_SYS_ADMIN, "平台管理员");
@@ -51,6 +50,7 @@ public class RoleService extends AbstractService {
 	}
 	
 	static List<Tab> tabs;
+	static List<Tab> tzTabs;
 	
 	public static boolean isAllowed(String role, String roles){
 		if(roles.equals("*"))
@@ -66,43 +66,16 @@ public class RoleService extends AbstractService {
 		return false;
 	}
 	
-	
 	public static List<Tab> getTabs() {
 		return tabs;
 	}
-
+	
+	public static List<Tab> getTzTabs() {
+		return tzTabs;
+	}
+	
 	public static void initRolePageMap(String rolePath) throws DocumentException{
-		ROLE_PAGE_MAP = new HashMap<Integer,Set<String>>(7);
-		tabs = new ArrayList<Tab>();
-		
-		Document doc = loadDocument(rolePath);
-
-		List groups = doc.getRootElement().elements();
-		for(int i=0; i<groups.size(); i++){
-			Element group = (Element)groups.get(i);
-			String groupRoles = group.attributeValue("roles");
-			String gName = group.attributeValue("name");
-			String folder = group.attributeValue("folder");
-			Tab tab = new Tab(gName, folder, groupRoles);
-			tabs.add(tab);
-			List functions = group.elements();
-			for(int j=0; j<functions.size(); j++){
-				Element function = (Element)functions.get(j);
-				String functionRoles = function.attributeValue("roles");
-				String fName = function.attributeValue("name");
-				Accordion accordion = new Accordion(fName, functionRoles);
-				tab.accordions.add(accordion);
-				List links = function.elements();
-				for(int k=0; k<links.size(); k++){
-					Element _link = (Element)links.get(k);
-					String linkRoles = _link.attributeValue("roles");
-					String lName = _link.attributeValue("name");
-					String url = _link.attributeValue("url");
-					Link link = new Link(lName, url, linkRoles);
-					accordion.links.add(link);
-				}
-			}
-		}
+		tabs = parseRolePageMap(rolePath);
 	}
 
 	public void addRole(Role r){		
@@ -156,6 +129,42 @@ public class RoleService extends AbstractService {
 		}
 	}
 	
+	
+	public static void initTzRolePageMap(String rolePath) throws DocumentException{
+		tzTabs = parseRolePageMap(rolePath);
+	}
+
+	private static List<Tab> parseRolePageMap(String rolePath) throws DocumentException{
+		List<Tab> tabs = new ArrayList<Tab>();
+		Document doc = loadDocument(rolePath);
+		List groups = doc.getRootElement().elements();
+		for(int i=0; i<groups.size(); i++){
+			Element group = (Element)groups.get(i);
+			String groupRoles = group.attributeValue("roles");
+			String gName = group.attributeValue("name");
+			String folder = group.attributeValue("folder");
+			Tab tab = new Tab(gName, folder, groupRoles);
+			tabs.add(tab);
+			List functions = group.elements();
+			for(int j=0; j<functions.size(); j++){
+				Element function = (Element)functions.get(j);
+				String functionRoles = function.attributeValue("roles");
+				String fName = function.attributeValue("name");
+				Accordion accordion = new Accordion(fName, functionRoles);
+				tab.accordions.add(accordion);
+				List links = function.elements();
+				for(int k=0; k<links.size(); k++){
+					Element _link = (Element)links.get(k);
+					String linkRoles = _link.attributeValue("roles");
+					String lName = _link.attributeValue("name");
+					String url = _link.attributeValue("url");
+					Link link = new Link(lName, url, linkRoles);
+					accordion.links.add(link);
+				}
+			}
+		}
+		return tabs;
+	}
 	
 	private static Document loadDocument(String filePath) throws DocumentException {		
 		final SAXReader saxReader = new SAXReader();
