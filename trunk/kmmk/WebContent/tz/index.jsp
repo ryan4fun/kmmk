@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="com.gps.ui.*"	
-	%><%@ include file="header.jsp"%><%
+	%>
+<%@ include file="header.jsp"%>
+<%
 	response.setHeader("Pragma","No-Cache");
 	response.setHeader("Cache-Control","No-Cache");
 	response.setDateHeader("Expires", 0);
@@ -37,13 +39,7 @@
 </style>
   
 <script>
-	var role = <%=role%>;
-	$(window).resize(function(){
-		collapse();
-	});
-	var tree;
 	$(document).ready( function(){
-		collapse();		
 		// init menu
 		$(function(){
 			$("#menu-div").buildMenu({
