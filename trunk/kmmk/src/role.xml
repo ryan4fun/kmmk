@@ -28,7 +28,10 @@
 			<link url="tzgl/gpsFee/search-gpsfee.jsp" name="收费历史查询" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="dwjg" name="定位监管" roles="1,2,3,11,12">		
+	<FunctionGroup folder="dwjg" name="定位监管" roles="1,2,3,11,12">
+		<Function name="车辆基本运行状态管理" roles="1,2,3,11,12">			
+			<Link url="dwjg/vehicle-status/search-vehicle-status.jsp" name="车辆运行状态管理" roles="1,2,3,11,12" />
+		</Function>
 		<Function name="车辆违规信息管理" roles="1,2,4,11,12">			
 			<Link url="tzgl/alertHistory/search-alert.jsp" name="车辆违规信息管理" roles="1,2,4,11,12" />
 		</Function>		
@@ -43,7 +46,7 @@
 			<Link url="rwgl/task/search-task.jsp?taskState=10&amp;lockState=true" name="已取消的任务" roles="1,2,3,11" />
 			<Link url="rwgl/task/search-task.jsp?taskState=11&amp;lockState=true" name="中途放弃的任务" roles="1,2,3,11" />
 			-->
-			<Link url="rwgl/task/search-task.jsp" name="综合任务管理" roles="1,2,3,11" />
+			<Link url="rwgl/task/search-task.jsp" name="任务管理" roles="1,2,3,11" />
 		</Function>		
 	</FunctionGroup>
 	<FunctionGroup folder="fzcx" name="辅助查询" roles="1,2,3,11,12">			
