@@ -61,9 +61,9 @@ public class MKgpsFilter implements Filter {
 		if(_from.contains(NO_PERMISSION_PAGE))
 			requireLogin = false;
 		
-		if(req.getParameter("action")!=null && req.getParameter("action").equals("GetVarifyImgAction"))
-			requireLogin = false;
-		if(req.getParameter("action")!=null && req.getParameter("action").equals("LoginAction"))
+		String act = req.getParameter("action");
+		if( act!=null && 
+				( act.equals("GetVarifyImgAction") || act.equals("LoginAction") || act.equals("TzLoginAction") ) )
 			requireLogin = false;
 		
 		if (login == null && requireLogin) {
