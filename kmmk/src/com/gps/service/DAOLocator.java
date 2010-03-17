@@ -1,7 +1,5 @@
 package com.gps.service;
 
-import org.hibernate.Session;
-
 import com.gps.orm.AlertHistoryHome;
 import com.gps.orm.AlertTypeDicHome;
 import com.gps.orm.DriverHome;
@@ -11,7 +9,6 @@ import com.gps.orm.FMaintainHome;
 import com.gps.orm.FMaterialKeepLogHome;
 import com.gps.orm.FRuningLogHome;
 import com.gps.orm.FToolsHome;
-import com.gps.orm.FToolsKeepLog;
 import com.gps.orm.FToolsKeepLogHome;
 import com.gps.orm.FTyresHome;
 import com.gps.orm.FVehicleBasicHome;
@@ -42,6 +39,7 @@ import com.gps.orm.TaskRuleHome;
 import com.gps.orm.TaskSegmentHome;
 import com.gps.orm.TenMinTrackHisHome;
 import com.gps.orm.TenMinTrackHome;
+import com.gps.orm.TzUsersHome;
 import com.gps.orm.UserRoleHome;
 import com.gps.orm.UsersHome;
 import com.gps.orm.VehicleHome;
@@ -97,7 +95,7 @@ public class DAOLocator {
 	private FToolsKeepLogHome fToolsKeepLogHome;
 	private FRuningLogHome fRuningLogHome;
 	private FMaterialKeepLogHome fMaterialKeepLogHome;
-	
+	private TzUsersHome tzUsersHome;
 
 	static DAOLocator daoLocator = null;
 
@@ -148,6 +146,7 @@ public class DAOLocator {
 		fToolsKeepLogHome = new FToolsKeepLogHome();
 		fRuningLogHome = new FRuningLogHome();
 		fMaterialKeepLogHome = new FMaterialKeepLogHome();
+		tzUsersHome = new TzUsersHome();
 	}
 
 
@@ -528,5 +527,13 @@ public class DAOLocator {
 
 	public void setFMaterialKeepLogHome(FMaterialKeepLogHome materialKeepLogHome) {
 		fMaterialKeepLogHome = materialKeepLogHome;
+	}
+
+	public TzUsersHome getTzUsersHome() {
+		return tzUsersHome;
+	}
+
+	public void setTzUsersHome(TzUsersHome tzUsersHome) {
+		this.tzUsersHome = tzUsersHome;
 	}
 }
