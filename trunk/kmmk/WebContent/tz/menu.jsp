@@ -8,17 +8,8 @@
 	java.util.regex.Pattern,
 	java.util.regex.Matcher"
 %>
-	
+<%@ include file="header.jsp"%>
 <%
-	response.setHeader("Pragma","No-Cache");
-	response.setHeader("Cache-Control","No-Cache");
-	response.setDateHeader("Expires", 0);
-	String  basePath  =  request.getScheme()+ "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
-	
-	request.setCharacterEncoding("UTF-8");	
-	LoginInfo login = (LoginInfo)session.getAttribute("login");
-	boolean isNewUI = login.isNewUI();
-	
 	List<Tab> tabs = RoleService.getTzTabs();
 %>
 <div id="menu-div" style="width:100%;height:30px; border-bottom:1px solid gray; text-align: left;" class="myMenu">
