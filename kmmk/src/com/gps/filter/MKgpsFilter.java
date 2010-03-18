@@ -40,7 +40,7 @@ public class MKgpsFilter implements Filter {
 			_from += "?" + req.getQueryString();
 		
 		boolean requireLogin = true;
-		boolean isTz = _from.contains("tz");
+		boolean isTz = _from.contains("/tz/");
 		Object login = req.getSession().getAttribute("login");
 		if (login instanceof LoginInfo) {
 			if( ((LoginInfo)login).isTz() == isTz )
