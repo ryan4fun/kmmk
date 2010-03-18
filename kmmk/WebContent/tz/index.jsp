@@ -89,7 +89,7 @@
 
 </head>
 <body style="margin:0px;background-color:#f3f3f3;">
-<table id="main-table" border="0" cellpadding="0" cellspacing="0" style="100%;height:100%;">	
+<table id="main-table" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;">	
 	<tr height="30">
 		<td align="left">		
 			<jsp:include page="menu.jsp"></jsp:include>
