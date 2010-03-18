@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, March 07, 2010 22:50:12
+ * Date Created : Thursday, March 18, 2010 22:58:49
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -302,6 +302,34 @@ IF OBJECT_ID('f_tyres') IS NOT NULL
     PRINT '<<< CREATED TABLE f_tyres >>>'
 ELSE
     PRINT '<<< FAILED CREATING TABLE f_tyres >>>'
+go
+
+/* 
+ * TABLE: f_user 
+ */
+
+CREATE TABLE f_user(
+    userID            int             IDENTITY(1,1),
+    loginName         varchar(20)     NULL,
+    passwd            varchar(30)     NULL,
+    realName          varchar(50)     NULL,
+    description       varchar(100)    NULL,
+    registerDate      datetime        NULL,
+    lastLoginDate     datetime        NULL,
+    lastLoginIP       varchar(64)     NULL,
+    userState         smallint        NULL,
+    tel               varchar(20)     NULL,
+    organizationID    int             NULL,
+    CONSTRAINT PK16_1 PRIMARY KEY NONCLUSTERED (userID)
+)
+go
+
+
+
+IF OBJECT_ID('f_user') IS NOT NULL
+    PRINT '<<< CREATED TABLE f_user >>>'
+ELSE
+    PRINT '<<< FAILED CREATING TABLE f_user >>>'
 go
 
 /* 
@@ -1496,14 +1524,24 @@ go
  * TABLE: f_tyres 
  */
 
+ALTER TABLE f_tyres ADD CONSTRAINT Refvehicle89 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
+go
+
 ALTER TABLE f_tyres ADD CONSTRAINT Refusers92 
     FOREIGN KEY (operatorID)
     REFERENCES users(userID)
 go
 
-ALTER TABLE f_tyres ADD CONSTRAINT Refvehicle89 
-    FOREIGN KEY (vehicleID)
-    REFERENCES vehicle(vehicleID)
+
+/* 
+ * TABLE: f_user 
+ */
+
+ALTER TABLE f_user ADD CONSTRAINT Reforganization106 
+    FOREIGN KEY (organizationID)
+    REFERENCES organization(organizationID)
 go
 
 
@@ -1661,14 +1699,14 @@ go
  * TABLE: task 
  */
 
-ALTER TABLE task ADD CONSTRAINT Refvehicle27 
-    FOREIGN KEY (vehicleID)
-    REFERENCES vehicle(vehicleID)
-go
-
 ALTER TABLE task ADD CONSTRAINT Refusers60 
     FOREIGN KEY (assignerID)
     REFERENCES users(userID)
+go
+
+ALTER TABLE task ADD CONSTRAINT Refvehicle27 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
 go
 
 
@@ -1761,14 +1799,14 @@ go
  * TABLE: vehicle 
  */
 
-ALTER TABLE vehicle ADD CONSTRAINT Refusers41 
-    FOREIGN KEY (userID)
-    REFERENCES users(userID)
-go
-
 ALTER TABLE vehicle ADD CONSTRAINT RefvehicleTypeDic56 
     FOREIGN KEY (vehicleTypeID)
     REFERENCES vehicleTypeDic(vehicleTypeID)
+go
+
+ALTER TABLE vehicle ADD CONSTRAINT Refusers41 
+    FOREIGN KEY (userID)
+    REFERENCES users(userID)
 go
 
 
