@@ -7,40 +7,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-
 import com.gps.orm.Organization;
 
 public class LoginInfo {
-//	google map
+	// google map
 	public final static Integer GOOGLE_MAP = 0;
-//	google map cn
+	// google map cn
 	public final static Integer GOOGLE_MAP_CN = 1;
-//	mapabc
+	// mapabc
 	public final static Integer MAPABC = 2;
-//	map type
+	// map type
 	public static Map<Integer, String> mapTypes = new HashMap<Integer, String>();
 	static {
 		mapTypes.put(GOOGLE_MAP, "Google全球");
 		mapTypes.put(GOOGLE_MAP_CN, "Google中国");
 		mapTypes.put(MAPABC, "MapABC");
 	}
-	
+
 	public Date loginTime;
 	public Date lastLoginTime;
-	
+
 	private int userId;
 	private int organizationId;
-	
+
 	private boolean isNewUI = false;
-	
+	private boolean isTz = false;
+
 	private String passwd;
 	private String realName;
-//	private boolean useMapABC;
 	private int mapType;
-	
+
 	private String skin;
 	private String loginName;
-	
+
 	public boolean isNewUI() {
 		return isNewUI;
 	}
@@ -56,7 +55,7 @@ public class LoginInfo {
 	public void setSkin(String skin) {
 		this.skin = skin;
 	}
-	
+
 	public int getOrganizationId() {
 		return organizationId;
 	}
@@ -66,11 +65,11 @@ public class LoginInfo {
 	}
 
 	private Set<Integer> roles;
-	
-	public LoginInfo(){
+
+	public LoginInfo() {
 		roles = new HashSet<Integer>();
 	}
-	
+
 	public Set<Integer> getRoles() {
 		return roles;
 	}
@@ -102,7 +101,7 @@ public class LoginInfo {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
+
 	public String getLoginName() {
 		return loginName;
 	}
@@ -127,16 +126,7 @@ public class LoginInfo {
 		this.realName = realName;
 	}
 
-//	public boolean isUseMapABC() {
-//		return useMapABC;
-//	}
-//
-//	public void setUseMapABC(boolean useMapABC) {
-//		this.useMapABC = useMapABC;
-//	}
-
-	private void clear(){
-
+	private void clear() {
 	}
 
 	public int getMapType() {
@@ -145,5 +135,13 @@ public class LoginInfo {
 
 	public void setMapType(int mapType) {
 		this.mapType = mapType;
+	}
+
+	public boolean isTz() {
+		return isTz;
+	}
+
+	public void setTz(boolean isTz) {
+		this.isTz = isTz;
 	}
 }

@@ -60,7 +60,7 @@ public class MKgpsFilter implements Filter {
 				requireLogin = false;
 		}
 		
-		if (login == null && requireLogin) {
+		if ( (login == null && requireLogin) || (!login.isTz() && isTzLogin) ) {
 			if (_from != null && !_from.equals("")) {
 				req.getSession().setAttribute("from", _from);
 			}
@@ -71,7 +71,6 @@ public class MKgpsFilter implements Filter {
 				chain.doFilter(request, response);
 			} finally {
 				HibernateUtil.closeSession();
-
 			}
 		}
 	}
