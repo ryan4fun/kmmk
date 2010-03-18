@@ -3,10 +3,7 @@ package com.gps.service;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
-import com.gps.orm.FGasfee;
 import com.gps.orm.FRuningLog;
-import com.gps.orm.FTools;
-import com.gps.orm.Organization;
 
 public class FRuningLogService extends AbstractService {
 	static Logger logger = Logger.getLogger(FRuningLogService.class);

@@ -6,8 +6,6 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
-import com.gps.orm.AlertHistory;
-import com.gps.orm.Driver;
 import com.gps.orm.Gpsfee;
 
 public class GpsFeeService extends AbstractService {

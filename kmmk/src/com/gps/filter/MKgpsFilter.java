@@ -38,32 +38,36 @@ public class MKgpsFilter implements Filter {
 		String _from = req.getRequestURI();
 		if(req.getQueryString()!=null)
 			_from += "?" + req.getQueryString();
-
-		LoginInfo login = req.getSession().getAttribute("login") != null ? (LoginInfo) req
-				.getSession().getAttribute("login")
-				: null;
+		
 		boolean requireLogin = true;
 		boolean isTz = _from.contains("tz");
-		if(_from.contains("exit.jsp"))
-			requireLogin = false;
-		else if(_from.contains("login.jsp"))
-			requireLogin = false;
-		else if(_from.contains("login-faild.jsp"))
-			requireLogin = false;
-		else if(_from.contains("login-succ.jsp"))
-			requireLogin = false;
-		else if(_from.contains(NO_PERMISSION_PAGE))
-			requireLogin = false;
-		else {
-			String act = req.getParameter("action");
-			if( act!=null && (act.equals("GetVarifyImgAction") || act.equals("LoginAction") || act.equals("TzLoginAction")) )
+		Object login = req.getSession().getAttribute("login");
+		if (login instanceof LoginInfo) {
+			if( ((LoginInfo)login).isTz() == isTz ){
 				requireLogin = false;
+				req.getSession().removeAttribute("login");
+			}
+		} else {
+			if(_from.contains("exit.jsp"))
+				requireLogin = false;
+			else if(_from.contains("login.jsp"))
+				requireLogin = false;
+			else if(_from.contains("login-faild.jsp"))
+				requireLogin = false;
+			else if(_from.contains("login-succ.jsp"))
+				requireLogin = false;
+			else if(_from.contains(NO_PERMISSION_PAGE))
+				requireLogin = false;
+			else {
+				String act = req.getParameter("action");
+				if( act!=null && (act.equals("GetVarifyImgAction") || act.equals("LoginAction") || act.equals("TzLoginAction")) )
+					requireLogin = false;
+			}
 		}
 		
-		if ( (login == null && requireLogin) || (login.isTz() != isTz) ) {
-			if (_from != null && !_from.equals("")) {
+		if ( requireLogin ) {
+			if (_from != null && !_from.equals("")) 
 				req.getSession().setAttribute("from", _from);
-			}
 			resp.sendRedirect(req.getContextPath() + (isTz ? "/tz/" : "/") + NO_PERMISSION_PAGE);
 		} else {
 			try {

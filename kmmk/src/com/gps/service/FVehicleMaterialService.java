@@ -3,11 +3,7 @@ package com.gps.service;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
-import com.gps.orm.FGasfee;
-import com.gps.orm.FTools;
-import com.gps.orm.FVehicleBasic;
 import com.gps.orm.FVehicleMaterial;
-import com.gps.orm.Organization;
 
 public class FVehicleMaterialService extends AbstractService {
 	static Logger logger = Logger.getLogger(FVehicleMaterialService.class);
