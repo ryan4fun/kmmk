@@ -37,7 +37,6 @@ public class ServiceLocator {
 	private SegmentService segmentService;
 	private SegmentDetailService segmentDetailService;
 	private TaskSegmentService taskSegmentService;
-	
 	private DataCaptureServer dataCaptureService;
 	private StateManager stateManager;
 	private AlertHistoryService alertHistoryService;
@@ -45,6 +44,16 @@ public class ServiceLocator {
 	private QualifiedCoordAreaService qualifiedCoordAreaService;
 	private VehicleRuleService vehicleRuleService;
 	private TzUsersService tzUsersService;
+	
+	private FToolsService fToolsService;
+	private FGasfeeService fGasfeeService;
+	private FMaintainService fMaintainService;
+	private FVehicleBasicService fVehicleBasicService;
+	private FVehicleMaterialService fVehicleMaterialService;
+	private FTyresService fTyresService;
+	private FToolsKeepLogService fToolsKeepLogService;
+	private FRuningLogService fRuningLogService;
+	private FMaterialKeepLogService fMaterialKeepLogService;
 	
 	public static ServiceLocator getInstance(){
 		if(locator == null){
@@ -91,6 +100,16 @@ public class ServiceLocator {
 		qualifiedCoordAreaService = new QualifiedCoordAreaService();
 		tzUsersService = new TzUsersService();
 		setVehicleRuleService(new VehicleRuleService());
+		
+		fToolsService = new FToolsService();
+		fGasfeeService = new FGasfeeService();
+		fMaintainService = new FMaintainService();
+		fVehicleBasicService = new FVehicleBasicService();
+		fVehicleMaterialService = new FVehicleMaterialService();
+		fTyresService = new FTyresService();
+		fToolsKeepLogService = new FToolsKeepLogService();
+		fRuningLogService = new FRuningLogService();
+		fMaterialKeepLogService = new FMaterialKeepLogService();
 	}
 
 	public VehicleService getVehicleService() {
@@ -418,6 +437,80 @@ public class ServiceLocator {
 
 	public VehicleRuleService getVehicleRuleService() {
 		return vehicleRuleService;
+	}
+
+	public FToolsService getFToolsService() {
+		return fToolsService;
+	}
+
+	public void setFToolsService(FToolsService toolsService) {
+		fToolsService = toolsService;
+	}
+
+	public FGasfeeService getFGasfeeService() {
+		return fGasfeeService;
+	}
+
+	public void setFGasfeeService(FGasfeeService gasfeeService) {
+		fGasfeeService = gasfeeService;
+	}
+
+	public FMaintainService getFMaintainService() {
+		return fMaintainService;
+	}
+
+	public void setFMaintainService(FMaintainService maintainService) {
+		fMaintainService = maintainService;
+	}
+
+	public FVehicleBasicService getFVehicleBasicService() {
+		return fVehicleBasicService;
+	}
+
+	public void setFVehicleBasicService(FVehicleBasicService vehicleBasicService) {
+		fVehicleBasicService = vehicleBasicService;
+	}
+
+	public FVehicleMaterialService getFVehicleMaterialService() {
+		return fVehicleMaterialService;
+	}
+
+	public void setFVehicleMaterialService(
+			FVehicleMaterialService vehicleMaterialService) {
+		fVehicleMaterialService = vehicleMaterialService;
+	}
+
+	public FTyresService getFTyresService() {
+		return fTyresService;
+	}
+
+	public void setFTyresService(FTyresService tyresService) {
+		fTyresService = tyresService;
+	}
+
+	public FToolsKeepLogService getFToolsKeepLogService() {
+		return fToolsKeepLogService;
+	}
+
+	public void setFToolsKeepLogService(FToolsKeepLogService toolsKeepLogService) {
+		fToolsKeepLogService = toolsKeepLogService;
+	}
+
+	public FRuningLogService getFRuningLogService() {
+		return fRuningLogService;
+	}
+
+	public void setFRuningLogService(FRuningLogService runingLogService) {
+		fRuningLogService = runingLogService;
+	}
+
+	public FMaterialKeepLogService getFMaterialKeepLogService() {
+		return fMaterialKeepLogService;
+	}
+
+	public void setFMaterialKeepLogService(
+			FMaterialKeepLogService materialKeepLogService) {
+		fMaterialKeepLogService = materialKeepLogService;
 	}
 
 }
