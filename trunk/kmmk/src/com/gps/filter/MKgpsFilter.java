@@ -43,10 +43,10 @@ public class MKgpsFilter implements Filter {
 		boolean isTz = _from.contains("tz");
 		Object login = req.getSession().getAttribute("login");
 		if (login instanceof LoginInfo) {
-			if( ((LoginInfo)login).isTz() == isTz ){
+			if( ((LoginInfo)login).isTz() == isTz )
 				requireLogin = false;
+			else
 				req.getSession().removeAttribute("login");
-			}
 		} else {
 			if(_from.contains("exit.jsp"))
 				requireLogin = false;
