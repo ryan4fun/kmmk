@@ -33,7 +33,6 @@
         <mapping resource="com/gps/orm/VehicleStatus.hbm.xml" />
         <mapping resource="com/gps/orm/SegmentRules.hbm.xml" />
         <mapping resource="com/gps/orm/GpsDeviceInstallation.hbm.xml" />
-        <mapping resource="com/gps/orm/TzUsers.hbm.xml" />
         <mapping resource="com/gps/orm/FTyres.hbm.xml" />
         <mapping resource="com/gps/orm/RealtimeTrack.hbm.xml" />
         <mapping resource="com/gps/orm/MalfunctionDeviceLog.hbm.xml" />
@@ -62,6 +61,7 @@
         <mapping resource="com/gps/orm/FMaintain.hbm.xml" />
         <mapping resource="com/gps/orm/Organization.hbm.xml" />
         <mapping resource="com/gps/orm/FRuningLog.hbm.xml" />
+        <mapping resource="com/gps/orm/FUser.hbm.xml" />
         <mapping resource="com/gps/orm/FMaterialKeepLog.hbm.xml" />
         <mapping resource="com/gps/orm/UserRole.hbm.xml" />
         <mapping resource="com/gps/orm/Segment.hbm.xml" />
