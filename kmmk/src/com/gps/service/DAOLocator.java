@@ -85,6 +85,7 @@ public class DAOLocator {
 	private GpsfeeHome gpsfeeHome;
 	private QualifiedCoordAreaHome qualifiedCoordAreaHome;
 	private VehicleRuleHome vehicleRuleHome;
+	private TzUsersHome tzUsersHome;
 	
 	private FToolsHome fToolsHome;
 	private FGasfeeHome fGasfeeHome;
@@ -95,7 +96,6 @@ public class DAOLocator {
 	private FToolsKeepLogHome fToolsKeepLogHome;
 	private FRuningLogHome fRuningLogHome;
 	private FMaterialKeepLogHome fMaterialKeepLogHome;
-	private TzUsersHome tzUsersHome;
 
 	static DAOLocator daoLocator = null;
 
