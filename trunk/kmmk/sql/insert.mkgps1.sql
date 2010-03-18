@@ -521,6 +521,13 @@ INSERT INTO [vehicleStatus] ([currentLong],[currentLat],[licensPadNumber],[isRun
 INSERT INTO [vehicleStatus] ([currentLong],[currentLat],[licensPadNumber],[isRunning],[isOnline],[isAskHelp],[limitAreaAlarm],[overSpeed],[taskID],[tireDrive],[currentSpeed],[vehicleID]) VALUES(100.2292016667,24.65106,'云A71083',1,1,0,0,0,NULL,0,13.3,78)
 INSERT INTO [vehicleStatus] ([currentLong],[currentLat],[licensPadNumber],[isRunning],[isOnline],[isAskHelp],[limitAreaAlarm],[overSpeed],[taskID],[tireDrive],[currentSpeed],[vehicleID]) VALUES(102.6128433333,24.9939916667,'云AW1668',2,1,0,0,0,NULL,0,0,79)
 
+Print 'starting import users (1 records)'
+SET IDENTITY_INSERT [f_user] ON
+INSERT INTO [f_user] ([userID],[loginName],[passwd],[realName],[description],[registerDate],[lastLoginDate],[lastLoginIP],[userState],[tel]) VALUES(1,'admin','222222','台帐管理员','台帐管理员','2009-5-28 0:00:00','2010-3-7 21:35:18','220.163.61.102',1,NULL)
+SET IDENTITY_INSERT [f_user] OFF
+
+
+
 Print 'transaction finished'
 COMMIT TRANSACTION SUN_DATA_IMPORT_TRANS
 GO
