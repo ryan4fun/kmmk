@@ -43,7 +43,7 @@ public class MKgpsFilter implements Filter {
 				.getSession().getAttribute("login")
 				: null;
 		boolean requireLogin = true;
-		boolean isTzLogin = _from.contains("tz");
+		boolean isTz = _from.contains("tz");
 		if(_from.contains("exit.jsp"))
 			requireLogin = false;
 		else if(_from.contains("login.jsp"))
@@ -60,11 +60,11 @@ public class MKgpsFilter implements Filter {
 				requireLogin = false;
 		}
 		
-		if ( (login == null && requireLogin) || (!login.isTz() && isTzLogin) ) {
+		if ( (login == null && requireLogin) || (login.isTz() != isTz) ) {
 			if (_from != null && !_from.equals("")) {
 				req.getSession().setAttribute("from", _from);
 			}
-			resp.sendRedirect(req.getContextPath() + (isTzLogin ? "/tz/" : "/") + NO_PERMISSION_PAGE);
+			resp.sendRedirect(req.getContextPath() + (isTz ? "/tz/" : "/") + NO_PERMISSION_PAGE);
 		} else {
 			try {
 				HibernateUtil.getSession();
