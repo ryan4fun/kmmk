@@ -3,7 +3,6 @@ package com.gps.service;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
-import com.gps.orm.AlertTypeDic;
 import com.gps.orm.QualifiedCoordArea;
 
 public class QualifiedCoordAreaService extends AbstractService {

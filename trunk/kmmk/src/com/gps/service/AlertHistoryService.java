@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
 import com.gps.orm.AlertHistory;
-import com.gps.orm.Driver;
 
 public class AlertHistoryService extends AbstractService {
 	static Logger logger = Logger.getLogger(AlertHistoryService.class);

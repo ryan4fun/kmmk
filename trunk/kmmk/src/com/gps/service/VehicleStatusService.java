@@ -1,6 +1,5 @@
 package com.gps.service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +7,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.HibernateUtil;
-import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleStatus;
 
 public class VehicleStatusService extends AbstractService {

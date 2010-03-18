@@ -9,7 +9,6 @@ import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.HibernateUtil;
 import com.gps.orm.TaskRule;
-import com.gps.orm.Vehicle;
 
 public class TaskRuleService extends AbstractService {
 	static Logger logger = Logger.getLogger(TaskRuleService.class);

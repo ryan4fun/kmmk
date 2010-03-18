@@ -4,8 +4,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
 import com.gps.orm.FGasfee;
-import com.gps.orm.FTools;
-import com.gps.orm.Organization;
 
 public class FGasfeeService extends AbstractService {
 	static Logger logger = Logger.getLogger(FGasfeeService.class);
