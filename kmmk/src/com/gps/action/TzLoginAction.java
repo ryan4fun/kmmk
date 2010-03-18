@@ -34,6 +34,7 @@ public class TzLoginAction extends Action{
 			getServiceLocator().getTzUsersService().updateTzUsers(users);
 			
 			LoginInfo login = new LoginInfo();
+			login.setTz(true);
 			login.setLoginName(users.getLoginName());
 			login.setRealName(users.getRealName());
 			login.setUserId(users.getUserId());
