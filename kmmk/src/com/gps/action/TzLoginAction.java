@@ -38,9 +38,6 @@ public class TzLoginAction extends Action{
 			login.setLoginName(users.getLoginName());
 			login.setRealName(users.getRealName());
 			login.setUserId(users.getUserId());
-			if(users.getOrganization()!=null){
-				login.setOrganizationId(users.getOrganization().getOrganizationId());
-			}
 			
 			login.setLastLoginTime(Util.getCurrentDateTime());
 			login.setSkin(get("skin"));
