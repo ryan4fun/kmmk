@@ -68,12 +68,12 @@
 				$.ajax( {
 					url : "mkgps.do",
 					data : {
-						action : "LogoutAction"						
+						action : "LogoutAction"
 					},
 					cache : false,
 					success : function() {
 						jAlert("退出成功","信息", function(){
-							href("<%=basePath%>");
+							href("<%=tzBasePath%>");
 						});			
 					},
 					error : function(xml, status, e) {
