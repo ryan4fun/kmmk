@@ -319,7 +319,6 @@ CREATE TABLE f_user(
     lastLoginIP       varchar(64)     NULL,
     userState         smallint        NULL,
     tel               varchar(20)     NULL,
-    organizationID    int             NULL,
     CONSTRAINT PK16_1 PRIMARY KEY NONCLUSTERED (userID)
 )
 go
@@ -1535,14 +1534,7 @@ ALTER TABLE f_tyres ADD CONSTRAINT Refusers92
 go
 
 
-/* 
- * TABLE: f_user 
- */
 
-ALTER TABLE f_user ADD CONSTRAINT Reforganization106 
-    FOREIGN KEY (organizationID)
-    REFERENCES organization(organizationID)
-go
 
 
 /* 
