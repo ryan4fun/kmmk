@@ -61,7 +61,7 @@
 <h3><a href="#">请输入用户信息</a></h3>
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
-		<input type="hidden" name = "action" value="TzUsersChangePwdAction"/>
+		<input type="hidden" name = "action" value="FUserChangePwdAction"/>
 		<input type="hidden" name = "success" value="change-pwd-succ.jsp"/>
 		<input type="hidden" name = "failed" value="change-pwd-faild.jsp"/>
 		<input type="hidden" name = "userId" value="<%=login.getUserId()%>"/>		
