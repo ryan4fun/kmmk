@@ -7,12 +7,12 @@ import org.hibernate.criterion.Restrictions;
 
 import com.gps.Message;
 import com.gps.bean.LoginInfo;
+import com.gps.orm.FUser;
 import com.gps.orm.HibernateUtil;
-import com.gps.orm.TzUsers;
-import com.gps.service.TzUsersService;
+import com.gps.service.FUserService;
 import com.gps.util.Util;
 
-public class TzLoginAction extends Action{
+public class FLoginAction extends Action{
 
 	@Override
 	public void doAction() throws Exception{
@@ -21,17 +21,17 @@ public class TzLoginAction extends Action{
 			throw new Exception("校验码错误！");
 		}
 		
-		Criteria criteria = HibernateUtil.getSession().createCriteria(TzUsers.class);
+		Criteria criteria = HibernateUtil.getSession().createCriteria(FUser.class);
 		criteria.add(Restrictions.eq("loginName", get("loginName")));
 		criteria.add(Restrictions.eq("passwd", get("passwd")));
-		criteria.add(Restrictions.eq("userState", TzUsersService.TZUSERS_NORM_STATE));
+		criteria.add(Restrictions.eq("userState", FUserService.TZUSERS_NORM_STATE));
 		
-		List<TzUsers> us = criteria.list();
+		List<FUser> us = criteria.list();
 		if (us.size()>0){
-			TzUsers users = us.get(0);
+			FUser users = us.get(0);
 			users.setLastLoginDate(Util.getCurrentDateTime());
 			users.setLastLoginIp(request.getRemoteAddr());
-			getServiceLocator().getTzUsersService().updateTzUsers(users);
+			getServiceLocator().getFUserService().updateFUser(users);
 			
 			LoginInfo login = new LoginInfo();
 			login.setTz(true);
