@@ -11,6 +11,7 @@ import com.gps.orm.FRuningLogHome;
 import com.gps.orm.FToolsHome;
 import com.gps.orm.FToolsKeepLogHome;
 import com.gps.orm.FTyresHome;
+import com.gps.orm.FUserHome;
 import com.gps.orm.FVehicleBasicHome;
 import com.gps.orm.FVehicleMaterialHome;
 import com.gps.orm.GpsDeviceInstallationHome;
@@ -39,7 +40,6 @@ import com.gps.orm.TaskRuleHome;
 import com.gps.orm.TaskSegmentHome;
 import com.gps.orm.TenMinTrackHisHome;
 import com.gps.orm.TenMinTrackHome;
-import com.gps.orm.TzUsersHome;
 import com.gps.orm.UserRoleHome;
 import com.gps.orm.UsersHome;
 import com.gps.orm.VehicleHome;
@@ -85,7 +85,7 @@ public class DAOLocator {
 	private GpsfeeHome gpsfeeHome;
 	private QualifiedCoordAreaHome qualifiedCoordAreaHome;
 	private VehicleRuleHome vehicleRuleHome;
-	private TzUsersHome tzUsersHome;
+	private FUserHome fUserHome;
 	
 	private FToolsHome fToolsHome;
 	private FGasfeeHome fGasfeeHome;
@@ -146,7 +146,7 @@ public class DAOLocator {
 		fToolsKeepLogHome = new FToolsKeepLogHome();
 		fRuningLogHome = new FRuningLogHome();
 		fMaterialKeepLogHome = new FMaterialKeepLogHome();
-		tzUsersHome = new TzUsersHome();
+		fUserHome = new FUserHome();
 	}
 
 
@@ -529,11 +529,11 @@ public class DAOLocator {
 		fMaterialKeepLogHome = materialKeepLogHome;
 	}
 
-	public TzUsersHome getTzUsersHome() {
-		return tzUsersHome;
+	public FUserHome getFUserHome() {
+		return fUserHome;
 	}
 
-	public void setTzUsersHome(TzUsersHome tzUsersHome) {
-		this.tzUsersHome = tzUsersHome;
+	public void setFUserHome(FUserHome userHome) {
+		fUserHome = userHome;
 	}
 }

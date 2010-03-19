@@ -43,7 +43,7 @@ public class ServiceLocator {
 	private GpsFeeService gpsFeeService;
 	private QualifiedCoordAreaService qualifiedCoordAreaService;
 	private VehicleRuleService vehicleRuleService;
-	private TzUsersService tzUsersService;
+	private FUserService fUserService;
 	
 	private FToolsService fToolsService;
 	private FGasfeeService fGasfeeService;
@@ -98,7 +98,7 @@ public class ServiceLocator {
 		alertHistoryService = new AlertHistoryService();
 		setGpsFeeService(new GpsFeeService());
 		qualifiedCoordAreaService = new QualifiedCoordAreaService();
-		tzUsersService = new TzUsersService();
+		fUserService = new FUserService();
 		setVehicleRuleService(new VehicleRuleService());
 		
 		fToolsService = new FToolsService();
@@ -411,12 +411,12 @@ public class ServiceLocator {
 		return qualifiedCoordAreaService;
 	}
 
-	public TzUsersService getTzUsersService() {
-		return tzUsersService;
+	public FUserService getFUserService() {
+		return fUserService;
 	}
 
-	public void setTzUsersService(TzUsersService tzUsersService) {
-		this.tzUsersService = tzUsersService;
+	public void setFUserService(FUserService userService) {
+		fUserService = userService;
 	}
 
 	public RegionPointsService getRegionPointsService() {
