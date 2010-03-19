@@ -64,7 +64,7 @@
 <tr>
 <td>
 <FORM id="inputform" method="post" action="mkgps.do">
-	<input value="TzLoginAction" type="hidden" name="action" />
+	<input value="FLoginAction" type="hidden" name="action" />
 	<input value="login-succ.jsp" type="hidden" name="success" /> 
 	<input value="login-faild.jsp" type="hidden" name="failed" /> 
 	<br/>
