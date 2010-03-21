@@ -120,11 +120,6 @@ function pageSelectCallback(pageNumber){
 			<td align="left"><input type="text"
 				id="simCardNo" name="simCardNo" value="<%=vb.getSimCardNo()%>" /></td>
 		</tr>
-		<tr>
-			<td width="20%" align="right">GPS设备号：</td>
-			<td align="left" colSpan="3"><input type="text"
-				id="deviceId" name="deviceId" value="<%=vb.getDeviceId()%>" /></td>		
-		</tr>
 	</table>
 	<p align="center">
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
