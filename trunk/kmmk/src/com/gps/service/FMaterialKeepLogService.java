@@ -49,7 +49,7 @@ public class FMaterialKeepLogService extends AbstractService {
 		}
 	}
 	
-	public FMaterialKeepLog findById(FMaterialKeepLogId id){
+	public FMaterialKeepLog findById(long id){
 		try {
 //			beginTransaction();
 			FMaterialKeepLog o = getDAOLocator().getFMaterialKeepLogHome().findById(id);
