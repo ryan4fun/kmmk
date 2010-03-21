@@ -19,42 +19,41 @@
 	</FunctionGroup>
 	<FunctionGroup folder="tzgl" name="基础台帐" roles="1,2">	
 		<Function name="车辆基础台帐表" roles="1,2">
-			<Link url="tz/jctz/vehiclebasic/update-vehiclebasic.jsp" name="添加车辆基础台帐表" roles="1,2,11" />
-			<Link url="tz/jctz/vehiclebasic/search-vehiclebasic.jsp" name="车辆基础台帐表管理" roles="1,2,11" />
+			<Link url="tz/jctz/fVehicleBasic/search-vehicle-basic.jsp" name="车辆基础台帐表管理" roles="1,2,11" />
 		</Function>
 		<Function name="车辆资料保管领用表" roles="1,2">
-			<Link url="tz/jctz/vehiclebasic/update-vehiclebasic.jsp" name="添加车辆资料保管领用表" roles="1,2,11" />
-			<Link url="tz/jctz/vehiclebasic/search-vehiclebasic.jsp" name="车辆资料保管领用表管理" roles="1,2,11" />
+			<Link url="tz/jctz/fVehicleMaterial/update-vehicle-material.jsp" name="添加车辆资料保管领用表" roles="1,2,11" />
+			<Link url="tz/jctz/fVehicleMaterial/search-vehicle-material.jsp" name="车辆资料保管领用表管理" roles="1,2,11" />
 		</Function>
 		<Function name="车辆随车工具保管领用表" roles="1,2">
-			<Link url="tz/jctz/vehiclebasic/update-vehiclebasic.jsp" name="添加车辆随车工具保管领用表" roles="1,2,11" />
-			<Link url="tz/jctz/vehiclebasic/search-vehiclebasic.jsp" name="车辆随车工具保管领用表管理" roles="1,2,11" />
+			<Link url="tz/jctz/fTools/update-tools.jsp" name="添加车辆随车工具保管领用表" roles="1,2,11" />
+			<Link url="tz/jctz/fTools/search-tools.jsp" name="车辆随车工具保管领用表管理" roles="1,2,11" />
 		</Function>
 		<Function name="轮胎使用台帐" roles="1,2">
-			<Link url="tz/jctz/vehiclebasic/update-vehiclebasic.jsp" name="添加轮胎使用台帐" roles="1,2,11" />
-			<Link url="tz/jctz/vehiclebasic/search-vehiclebasic.jsp" name="轮胎使用台帐管理" roles="1,2,11" />
+			<Link url="tz/jctz/fTyres/update-tyres.jsp" name="添加轮胎使用台帐" roles="1,2,11" />
+			<Link url="tz/jctz/fTyres/search-tyres.jsp" name="轮胎使用台帐管理" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="dwjg" name="开支台帐" roles="1,2">
 		<Function name="加油开支明细帐" roles="1,2">
-			<Link url="tz/kztz/vehiclebasic/update-vehiclebasic.jsp" name="添加加油开支明细帐" roles="1,2,11" />
-			<Link url="tz/kztz/vehiclebasic/search-vehiclebasic.jsp" name="加油开支明细帐管理" roles="1,2,11" />
+			<Link url="tz/kztz/fGasfee/update-gasfee.jsp" name="添加加油开支明细帐" roles="1,2,11" />
+			<Link url="tz/kztz/fGasfee/search-gasfee.jsp" name="加油开支明细帐管理" roles="1,2,11" />
 		</Function>
 		<Function name="车辆维修明细台帐" roles="1,2">
-			<Link url="tz/kztz/vehiclebasic/update-vehiclebasic.jsp" name="添加车辆维修明细台帐" roles="1,2,11" />
-			<Link url="tz/kztz/vehiclebasic/search-vehiclebasic.jsp" name="车辆维修明细台帐管理" roles="1,2,11" />
+			<Link url="tz/kztz/fMaintain/update-maintain.jsp" name="添加车辆维修明细台帐" roles="1,2,11" />
+			<Link url="tz/kztz/fMaintain/search-maintain.jsp" name="车辆维修明细台帐管理" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="rwgl" name="经营台帐" roles="1,2">
 		<Function name="车辆经营收支明细台帐" roles="1,2">
-			<Link url="tz/jytz/vehiclebasic/update-vehiclebasic.jsp" name="添加车辆经营收支明细台帐" roles="1,2,11" />
-			<Link url="tz/jytz/vehiclebasic/search-vehiclebasic.jsp" name="车辆经营收支明细台帐管理" roles="1,2,11" />
+			<Link url="tz/jytz/fRuningLog/update-runing-log.jsp" name="添加车辆经营收支明细台帐" roles="1,2,11" />
+			<Link url="tz/jytz/fRuningLog/search-runing-log.jsp" name="车辆经营收支明细台帐管理" roles="1,2,11" />
 		</Function>		
 	</FunctionGroup>
 	<FunctionGroup folder="fzcx" name="统计台帐" roles="1,2">
 		<Function name="月统计报表" roles="1,2">
-			<Link url="tz/tjtz/vehiclebasic/update-vehiclebasic.jsp" name="添加月统计报表" roles="1,2,11" />
-			<Link url="tz/tjtz/vehiclebasic/search-vehiclebasic.jsp" name="月统计报表管理" roles="1,2,11" />
+			<Link url="tz/tjtz/vehicleStatistics/update-vehicle-statistics.jsp" name="添加月统计报表" roles="1,2,11" />
+			<Link url="tz/tjtz/vehicleStatistics/search-vehicle-statistics.jsp" name="月统计报表管理" roles="1,2,11" />
 		</Function>		
 	</FunctionGroup>
 	<FunctionGroup folder="help" name="帮助" roles="*">
