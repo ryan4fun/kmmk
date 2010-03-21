@@ -10,6 +10,7 @@ import java.util.Date;
 public class FUser implements java.io.Serializable {
 
 	private int userId;
+	private Organization organization;
 	private String loginName;
 	private String passwd;
 	private String realName;
@@ -27,10 +28,12 @@ public class FUser implements java.io.Serializable {
 		this.userId = userId;
 	}
 
-	public FUser(int userId, String loginName, String passwd, String realName,
-			String description, Date registerDate, Date lastLoginDate,
-			String lastLoginIp, Short userState, String tel) {
+	public FUser(int userId, Organization organization, String loginName,
+			String passwd, String realName, String description,
+			Date registerDate, Date lastLoginDate, String lastLoginIp,
+			Short userState, String tel) {
 		this.userId = userId;
+		this.organization = organization;
 		this.loginName = loginName;
 		this.passwd = passwd;
 		this.realName = realName;
@@ -48,6 +51,14 @@ public class FUser implements java.io.Serializable {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public Organization getOrganization() {
+		return this.organization;
+	}
+
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 	public String getLoginName() {

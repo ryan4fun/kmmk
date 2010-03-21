@@ -79,7 +79,7 @@ public class FMaterialKeepLogHome {
 		}
 	}
 
-	public FMaterialKeepLog findById(com.gps.orm.FMaterialKeepLogId id) {
+	public FMaterialKeepLog findById(long id) {
 		log.debug("getting FMaterialKeepLog instance with id: " + id);
 		try {
 			FMaterialKeepLog instance = (FMaterialKeepLog) getSession().get(
