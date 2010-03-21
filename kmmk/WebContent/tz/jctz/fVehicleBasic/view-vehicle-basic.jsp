@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="/tz/header.jsp"%>
 <%
 String idstr = request.getParameter("vehicleId");
 Vehicle v = null;
@@ -50,7 +50,7 @@ $(document).ready(function(){
 <div id="search-div">
 	<h3><a href="#">车辆信息</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="inputform" action="#" method="post">		
+		<form id="form1" action="#" method="post">		
 			<table cellSpacing="5" width="95%">
  				<tr>
  					<td width="20%" align="right">车牌号：</td>
@@ -62,9 +62,7 @@ $(document).ready(function(){
 				</tr>
 				<tr> 
  					<td width="20%" align="right">所属单位：</td>
-					<td align="left">
-					<%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%>
-					</td>
+					<td align="left"><%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%></td>
 				</tr>
 				<tr>
 					<td width="20%" align="right">车主：</td>
@@ -123,16 +121,48 @@ $(document).ready(function(){
 					<td align="left"><%=v.getVehicleState()%></td>
 				</tr>
 			</table>
-			<p align="center">
-				<% if(v.getFVehicleBasics().size()>0){ %>
-					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
-				<% } else {%>
-					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐</a>
-				<% } %>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
-			</p>
 		</form>
 	</div>
+	<% if( v.getFVehicleBasics().size()>0 ){ %>
+	<h3><a href="#">修改车辆基础台帐表</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id="form2" action="mkgps.do" method="post">
+			<table cellSpacing="5" width="95%">
+			<% for( FVehicleBasic fvb : v.getFVehicleBasics() ){
+					if( fvb.getFeeExpireDate()==null ){ %>
+				<tr>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+					<td align="left" colspan="3" >
+					<% if( fvb.getAmount()!=null ){ %>
+						<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" />
+					<% } else { %>
+						<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
+					<% } %>
+					</td>
+				</tr>
+			<% 		} else { %>
+				<tr>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+					<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+			<% 		}
+				}
+			%>
+			</table>
+		</form>
+	</div>
+	<p align="center">
+		<input type="button" style="width:100px;" value="修改车辆基础台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
+		<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+	</p>
+	<% } else { %>
+	<p align="center">
+		<input type="button" style="width:100px;" value="新增车辆基础台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
+		<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+	</p>
+	<% } %>
 </div>
 </body>
 </html>
