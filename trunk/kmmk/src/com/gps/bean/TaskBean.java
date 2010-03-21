@@ -53,12 +53,13 @@ public class TaskBean extends AbstractBean {
 	public TaskBean(HttpServletRequest request) {
 		super(request);
 		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
-		
-		int role = login.getRoles().iterator().next();
-		if(role == RoleService.ROLE_ORG_ADMIN){
-			setOrganizationId(login.getOrganizationId());
-		} else if(role == RoleService.ROLE_VEHICLE_OWNER){
-			setUserId(login.getUserId());
+		if( !login.isTz() ){
+			int role = login.getRoles().iterator().next();
+			if(role == RoleService.ROLE_ORG_ADMIN){
+				setOrganizationId(login.getOrganizationId());
+			} else if(role == RoleService.ROLE_VEHICLE_OWNER){
+				setUserId(login.getUserId());
+			}
 		}
 	}
 	public List<Task> getList(){
