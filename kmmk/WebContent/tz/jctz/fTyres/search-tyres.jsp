@@ -1,20 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="/tz/header.jsp"%>
 <%
 VehicleBean vb = new VehicleBean(request);
 List<Vehicle> vs = vb.getList();
 Util.setNull2DefaultValue(vb);
-
-VehicleTypeDicBean vtb = new VehicleTypeDicBean();
-List<VehicleTypeDic> vts = vtb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>车辆信息</title>
+<title>轮胎使用台帐</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -63,12 +60,9 @@ $(document).ready(function(){
 	$("#vehicleTypeId").val(["<%=vb.getVehicleTypeId()==null?"":vb.getVehicleTypeId()%>"]);
 
 	$("#annualCheckState").val(["<%=vb.getAnnualCheckState()==null?"":vb.getAnnualCheckState()%>"]);
-
+	
 	$("#inputform").submit(function(){
-		$("#userId").attr("disable", false);
 	});
-
-	initVehicleSelector();
 });
 
 function pageSelectCallback(pageNumber){
@@ -79,7 +73,7 @@ function pageSelectCallback(pageNumber){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('VehicleDelAction',id);
+			delSingleRec('tyresDelAction',id);
 		}
 	});
 }
@@ -89,61 +83,55 @@ function delOrg(id){
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="inputform" action="search-vehicle.jsp" method="post">
-<table cellSpacing="5" width="650px;">
-	<tr>
-		<td width="20%" align="right">车牌号：</td>
-		<td align="left" colSpan="3"><jsp:include page="/vehicle-selector.jsp" /></td>		
-	</tr>
-	<tr>
-		<td width="20%" align="right">车型：</td>
-		<td align="left"><select id="vehicleTypeId" name="vehicleTypeId" ></select></td>	
-		<td width="20%" align="right">核载：</td>
-		<td align="left"><input type="text"
-			id="capability" name="capability" value="<%=vb.getCapability()==null?"":vb.getCapability()%>" /></td>
-	</tr>
-	<tr>
-		<td width="20%" align="right">登记日期：</td>
-		<td align="left"><input type="text"
-			id="registerDate" name="registerDate" onclick="WdatePicker()"
-			value="<%=Util.FormatDateShort(vb.getRegisterDate())%>" /></td>	
-		<td width="20%" align="right">发证日期：</td>
-		<td align="left"><input type="text"
-			id="approvalDate" name="approvalDate" onclick="WdatePicker()"
-			value="<%=Util.FormatDateShort(vb.getApprovalDate())%>" /></td>
-	</tr>
-	<tr>
-		<td width="20%" align="right">年检状态：</td>
-		<td align="left"><select id="annualCheckState" name="annualCheckState" >
-					<%=Util.writeOptions(VehicleService.annualCheckStates, "请选择") %>
-					</select></td>	
-		<td width="20%" align="right">二级维护到期：</td>
-		<td align="left"><input type="text"
-			id="secondMaintainDate" name="secondMaintainDate" onclick="WdatePicker()"
-			value="<%=Util.FormatDateShort(vb.getSecondMaintainDate())%>" /></td>
-	</tr>
-	<tr>
-		<td width="20%" align="right">资产基数：</td>
-		<td align="left"><input type="text"
-			id="assetBaseValue" name="assetBaseValue"
-			value="<%=vb.getAssetBaseValue()==null?"":vb.getAssetBaseValue()%>" /></td>	
-		<td width="20%" align="right">SIM卡号：</td>
-		<td align="left"><input type="text"
-			id="simCardNo" name="simCardNo" value="<%=vb.getSimCardNo()%>" /></td>
-	</tr>
-	<tr>
-		<td width="20%" align="right">GPS设备号：</td>
-		<td align="left" colSpan="3"><input type="text"
-			id="deviceId" name="deviceId" value="<%=vb.getDeviceId()%>" /></td>		
-	</tr>
-</table>
-<p align="center">
-	<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
-	<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
-	<input type="submit" style="width: 100px;" value="查   询" />
-	<input type="button" value="查询所有" onclick="javascript:href('search-vehicle.jsp')"/>
+<form id="inputform" action="search-vehicle-basic.jsp" method="post">
+	<table cellSpacing="5" width="650px;">
+		<tr>
+			<td width="20%" align="right">车牌号：</td>
+			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=vb.getLicensPadNumber()==null?"":vb.getLicensPadNumber()%>" /></td>		
+		</tr>
+		<tr>
+			<td width="20%" align="right">车型：</td>
+			<td align="left"><select id="vehicleTypeId" name="vehicleTypeId" ></select></td>	
+			<td width="20%" align="right">核载：</td>
+			<td align="left"><input type="text"
+				id="capability" name="capability" value="<%=vb.getCapability()==null?"":vb.getCapability()%>" /></td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">登记日期：</td>
+			<td align="left"><input type="text"
+				id="registerDate" name="registerDate" onclick="WdatePicker()"
+				value="<%=Util.FormatDateShort(vb.getRegisterDate())%>" /></td>	
+			<td width="20%" align="right">发证日期：</td>
+			<td align="left"><input type="text"
+				id="approvalDate" name="approvalDate" onclick="WdatePicker()"
+				value="<%=Util.FormatDateShort(vb.getApprovalDate())%>" /></td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">年检状态：</td>
+			<td align="left"><select id="annualCheckState" name="annualCheckState" >
+						<%=Util.writeOptions(VehicleService.annualCheckStates, "请选择") %>
+						</select></td>	
+			<td width="20%" align="right">二级维护到期：</td>
+			<td align="left"><input type="text"
+				id="secondMaintainDate" name="secondMaintainDate" onclick="WdatePicker()"
+				value="<%=Util.FormatDateShort(vb.getSecondMaintainDate())%>" /></td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">资产基数：</td>
+			<td align="left"><input type="text"
+				id="assetBaseValue" name="assetBaseValue"
+				value="<%=vb.getAssetBaseValue()==null?"":vb.getAssetBaseValue()%>" /></td>	
+			<td width="20%" align="right">SIM卡号：</td>
+			<td align="left"><input type="text"
+				id="simCardNo" name="simCardNo" value="<%=vb.getSimCardNo()%>" /></td>
+		</tr>
+	</table>
+	<p align="center">
+		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
+		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
+		<input type="submit" style="width: 100px;" value="查   询" />
+		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp')"/>
 	<input type="reset" style="width: 100px;" value="重   置" /></p>
-
 </form>
 </div>
 </div>
@@ -176,7 +164,9 @@ function delOrg(id){
 				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
 				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
 				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-				<td width="10%"><a href="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')">修 改</a> | <a href="javascript:delOrg('<%=v.getVehicleId()%>')">删 除</a></td>
+				<td width="10%">
+					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=v.getVehicleId()%>')">删 除</a>
+				</td>
 			</tr>
 		</table>
 		</td>
