@@ -10,7 +10,7 @@ if(idstr!=null && !idstr.equals("")){
 	v = vb.findById();
 }
 if(v == null){
-	out.print("无法找到该车辆！");
+	out.print("无法找到该车辆基础台帐表！");
 } else {
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
