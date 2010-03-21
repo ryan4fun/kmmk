@@ -30,7 +30,7 @@ if(v == null){
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>车辆信息</title>
+<title>车辆基础台帐表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -58,7 +58,7 @@ if(v == null){
 			}
 		});
 		
-   		$("#inputform").validate({
+   		$("#form2").validate({
 			rules: {
 			
 			},
@@ -71,139 +71,108 @@ if(v == null){
 </head>
 <body style="background:transparent;">
 <div id="search-div">
-<h3><a href="#">修改车辆信息</a></h3>
-<div style="padding:2px;overflow:visible">
-	<form id="inputform" action="mkgps.do" method="post">
-		<input type="hidden" name = "action" value="<%=actionName%>"/>
-		<input type="hidden" name = "success" value="update-vehicle-basic-succ.jsp"/>
-		<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>
-		<input type="hidden" name = "vehicleId" value="<%=v.getVehicleId()%>"/>
+	<h3><a href="#">车辆信息</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id="form1" action="#" method="post">		
 			<table cellSpacing="5" width="95%">
  				<tr>
  					<td width="20%" align="right">车牌号：</td>
-					<td align="left">
-					<input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=v.getLicensPadNumber()%>" />
-					</td>
+					<td align="left"><%=v.getLicensPadNumber()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">自编号：</td>
-					<td align="left">
-					<input type="text" id="internalNumber" name="internalNumber" value="<%=v.getInternalNumber()%>" />
-					</td>
+					<td align="left"><%=v.getInternalNumber()%></td>
 				</tr>
-				<tr>
-					<td width="20%" align="right">所属单位：</td>
+				<tr> 
+ 					<td width="20%" align="right">所属单位：</td>
 					<td align="left">
-					<select id="organizationId" name="organizationId" ></select>
+					<%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%>
 					</td>
 				</tr>
 				<tr>
 					<td width="20%" align="right">车主：</td>
-					<td align="left">
-					<select id="userId" name="userId" ></select>
-					</td>
+					<td align="left"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">发动机号：</td>
-					<td align="left">
-					<input type="text" id="engineNumber" name = "engineNumber" value="<%=v.getEngineNumber()%>" />
-					</td>
+					<td align="left"><%=v.getEngineNumber()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">车架号：</td>
-					<td align="left">
-					<input type="text" id="frameNumber" name = "frameNumber" value="<%=v.getFrameNumber()%>" />
-					</td>
+					<td align="left"><%=v.getFrameNumber()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">车型：</td>
-					<td align="left">
-					<select id="vehicleTypeId" name="vehicleTypeId" ></select>
-					</td>
+					<td align="left"><%=v.getVehicleTypeDic().getVehicleTypeName()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">厂牌型号：</td>
-					<td align="left">
-					<input type="text" id="modelNumber" name = "modelNumber" value="<%=v.getModelNumber()%>" />
-					</td>
+					<td align="left"><%=v.getModelNumber()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">核载：</td>
-					<td align="left">
-					<input type="text" id="capability" name = "capability" value="<%=v.getCapability()==null?"":v.getCapability()%>" />
-					</td>
+					<td align="left"><%=v.getCapability()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">登记日期：</td>
-					<td align="left">
-					<input type="text" id="registerDate" name = "registerDate" value="<%=Util.FormatDateShort(v.getRegisterDate())%>" onclick="WdatePicker()"/>
-					</td>
+					<td align="left"><%=Util.FormatDateShort(v.getRegisterDate())%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">发证日期：</td>
-					<td align="left">
-					<input type="text" id="approvalDate" name = "approvalDate" value="<%=Util.FormatDateShort(v.getApprovalDate())%>" onclick="WdatePicker()"/>
-					</td>
-				</tr>				
+					<td align="left"><%=Util.FormatDateShort(v.getApprovalDate())%></td>
+				</tr>
 				<tr>
  					<td width="20%" align="right">年检状态：</td>
-					<td align="left">
-					<select id="annualCheckState" name="annualCheckState" >
-					<%=Util.writeOptions(VehicleService.annualCheckStates, "请选择") %>
-					</select>
-					</td>
-				</tr>				
+					<td align="left"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></td>
+				</tr>
 				<tr>
  					<td width="20%" align="right">二级维护到期时间：</td>
-					<td align="left">
-					<input type="text" id="secondMaintainDate" name = "secondMaintainDate" value="<%=Util.FormatDateShort(v.getSecondMaintainDate())%>" onclick="WdatePicker()"/>
-					</td>
+					<td align="left"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">资产基数：</td>
-					<td align="left">
-					<input type="text" id="assetBaseValue" name = "assetBaseValue" value="<%=v.getAssetBaseValue()==null?"":v.getAssetBaseValue()%>" />
-					</td>
+					<td align="left"><%=v.getAssetBaseValue()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">SIM卡号：</td>
-					<td align="left">
-					<input type="text" id="simCardNo" name = "simCardNo" value="<%=v.getSimCardNo()%>" />
-					</td>
+					<td align="left"><%=v.getSimCardNo()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">GPS设备号：</td>
-					<td align="left">
-					<input type="hidden" id="deviceIdOld" name = "deviceIdOld" value="<%=v.getDeviceId()%>" />
-					<input type="text" id="deviceId" name = "deviceId" value="<%=v.getDeviceId()%>" />
-					</td>
-				</tr>
-<%
-if(idstr==null || idstr.equals("")){
-%>
-				<tr>
- 					<td width="20%" align="right">GPS设备初始安装费用：</td>
-					<td align="left">
-					<input type="text" id="money" name = "money" value="" /> 元
-					</td>
+					<td align="left"><%=v.getDeviceId()%></td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">GPS设备初始服务到期时间：</td>
-					<td align="left">
-					<input type="text" id="dueDate" name = "dueDate" value="" onclick="WdatePicker()"/>
-					</td>
+ 					<td width="20%" align="right">车辆状态：</td>
+					<td align="left"><%=v.getVehicleState()%></td>
 				</tr>
-<%
-}
-%>
 			</table>
-			<p align="center">
-				<input type="submit" value="提交"/>
-				<input type="reset" value="重置"/>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
-			</p>
-	</form>
+		</form>
+	</div>
 </div>
+
+<div id="search-div">
+	<h3><a href="#">修改车辆基础台帐表</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id=form2 action="mkgps.do" method="post">
+			<input type="hidden" name = "action" value="<%=actionName%>"/>
+			<input type="hidden" name = "success" value="update-vehicle-basic-succ.jsp"/>
+			<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>
+			<input type="hidden" name = "vehicleId" value="<%=v.getVehicleId()%>"/>
+				<table cellSpacing="5" width="95%">
+	 				<tr>
+	 					<td width="20%" align="right">车牌号：</td>
+						<td align="left"><%=v.getLicensPadNumber()%></td>
+						<td width="20%" align="right">资产基数：</td>
+						<td align="left"><%=v.getAssetBaseValue()%></td>
+					</tr>
+				</table>
+				<p align="center">
+					<input type="submit" value="提交"/>
+					<input type="reset" value="重置"/>
+					<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+				</p>
+		</form>
+	</div>
 </div>
 </body>
 </html>

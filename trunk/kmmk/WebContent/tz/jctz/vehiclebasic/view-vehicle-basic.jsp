@@ -17,7 +17,7 @@ if(v == null){
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>车辆信息</title>
+<title>车辆基础台帐表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -48,9 +48,9 @@ $(document).ready(function(){
 </head>
 <body style="background:transparent;">
 <div id="search-div">
-<h3><a href="#">车辆信息</a></h3>
-<div style="padding:2px;overflow:visible">
-	<form id="inputform" action="#" method="post">		
+	<h3><a href="#">车辆信息</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id="inputform" action="#" method="post">		
 			<table cellSpacing="5" width="95%">
  				<tr>
  					<td width="20%" align="right">车牌号：</td>
@@ -131,8 +131,8 @@ $(document).ready(function(){
 				<% } %>
 				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
 			</p>
-	</form>
-</div>
+		</form>
+	</div>
 </div>
 </body>
 </html>
