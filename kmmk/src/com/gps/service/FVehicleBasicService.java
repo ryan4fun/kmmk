@@ -11,23 +11,23 @@ import com.gps.orm.FVehicleBasic;
 public class FVehicleBasicService extends AbstractService {
 	static Logger logger = Logger.getLogger(FVehicleBasicService.class);
 
-	public static Set<String> feeNames = new LinkedHashSet<String>();
-	static {
-		feeNames.add("车款");
-		feeNames.add("购置税");
-		feeNames.add("初始保险");
-		feeNames.add("初始意外险");
-		feeNames.add("GPS设备安装费");
-		feeNames.add("灯牌费");
-		feeNames.add("水箱费");
-		feeNames.add("轮胎费");
-		feeNames.add("初始罐检费");
-		feeNames.add("营管费");
-		feeNames.add("初始养路费");
-		
-		feeNames.add("预付资金");
-		feeNames.add("备注");
-	}
+//	public static Set<String> feeNames = new LinkedHashSet<String>();
+//	static {
+//		feeNames.add("车款");
+//		feeNames.add("购置税");
+//		feeNames.add("初始保险");
+//		feeNames.add("初始意外险");
+//		feeNames.add("GPS设备安装费");
+//		feeNames.add("灯牌费");
+//		feeNames.add("水箱费");
+//		feeNames.add("轮胎费");
+//		feeNames.add("初始罐检费");
+//		feeNames.add("营管费");
+//		feeNames.add("初始养路费");
+//		
+//		feeNames.add("预付资金");
+//		feeNames.add("备注");
+//	}
 	
 	public void addFVehicleBasic(FVehicleBasic c){		
 		try {
