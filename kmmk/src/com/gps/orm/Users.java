@@ -25,7 +25,6 @@ public class Users implements java.io.Serializable {
 	private Set<Gpsfee> gpsfees = new HashSet<Gpsfee>(0);
 	private Set<FMaintain> FMaintains = new HashSet<FMaintain>(0);
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>(0);
-	private Set<FTyres> FTyreses = new HashSet<FTyres>(0);
 	private Set<Driver> drivers = new HashSet<Driver>(0);
 	private Set<Escorter> escorters = new HashSet<Escorter>(0);
 	private Set<FToolsKeepLog> FToolsKeepLogs = new HashSet<FToolsKeepLog>(0);
@@ -48,7 +47,7 @@ public class Users implements java.io.Serializable {
 			Date registerDate, Date lastLoginDate, String lastLoginIp,
 			Short userState, String tel, Set<Gpsfee> gpsfees,
 			Set<FMaintain> FMaintains, Set<Vehicle> vehicles,
-			Set<FTyres> FTyreses, Set<Driver> drivers, Set<Escorter> escorters,
+			Set<Driver> drivers, Set<Escorter> escorters,
 			Set<FToolsKeepLog> FToolsKeepLogs,
 			Set<FMaterialKeepLog> FMaterialKeepLogs, Set<Task> tasks,
 			Set<UserRole> userRoles, Set<FVehicleMaterial> FVehicleMaterials) {
@@ -66,7 +65,6 @@ public class Users implements java.io.Serializable {
 		this.gpsfees = gpsfees;
 		this.FMaintains = FMaintains;
 		this.vehicles = vehicles;
-		this.FTyreses = FTyreses;
 		this.drivers = drivers;
 		this.escorters = escorters;
 		this.FToolsKeepLogs = FToolsKeepLogs;
@@ -186,14 +184,6 @@ public class Users implements java.io.Serializable {
 
 	public void setVehicles(Set<Vehicle> vehicles) {
 		this.vehicles = vehicles;
-	}
-
-	public Set<FTyres> getFTyreses() {
-		return this.FTyreses;
-	}
-
-	public void setFTyreses(Set<FTyres> FTyreses) {
-		this.FTyreses = FTyreses;
 	}
 
 	public Set<Driver> getDrivers() {
