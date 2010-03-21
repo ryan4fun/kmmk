@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, March 21, 2010 21:35:29
+ * Date Created : Sunday, March 21, 2010 21:44:04
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -292,7 +292,6 @@ CREATE TABLE f_tyres(
     disposeDistanceRec    double precision    NULL,
     usedDistance          double precision    NULL,
     price                 double precision    NULL,
-    operatorID            int                 NULL,
     CONSTRAINT PK68_1 PRIMARY KEY NONCLUSTERED (tyreId)
 )
 go
@@ -1530,11 +1529,6 @@ go
 ALTER TABLE f_tyres ADD CONSTRAINT Refvehicle89 
     FOREIGN KEY (vehicleID)
     REFERENCES vehicle(vehicleID)
-go
-
-ALTER TABLE f_tyres ADD CONSTRAINT Refusers92 
-    FOREIGN KEY (operatorID)
-    REFERENCES users(userID)
 go
 
 
