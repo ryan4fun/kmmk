@@ -34,20 +34,14 @@ public class FVehicleBasicBean extends AbstractBean {
 	private Date feeExpireDateStart;
 	private Date feeExpireDateEnd;
 
-
-
 	public FVehicleBasicBean(){
-		
 	}
 			
 	public FVehicleBasicBean(HttpServletRequest request) {
 		super(request);
-		
-//		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
-		
 	}
 
-	public List<Vehicle> getList(){
+	public List<FVehicleBasic> getList(){
 		try {
 			Criteria crit = HibernateUtil.getSession().createCriteria(FVehicleBasic.class);
 			crit.createAlias("vehicle", "v");
@@ -65,16 +59,15 @@ public class FVehicleBasicBean extends AbstractBean {
 				_crit.add(Restrictions.eq("feeName", this.getFeeName()));
 			}
 				
-			if (this.getFeeState() != null && feeState.intValue() > 0){
-				crit.add(Restrictions.eq("feeState", "%"+this.getFeeState()));
-				_crit.add(Restrictions.eq("feeState", "%"+this.getFeeState()));
-			}
+//			if (this.getFeeState() != null && feeState.intValue() > 0){
+//				crit.add(Restrictions.eq("feeState", "%"+this.getFeeState()));
+//				_crit.add(Restrictions.eq("feeState", "%"+this.getFeeState()));
+//			}
 				
 			if (this.getFeeExpireDate() != null ){
 				crit.add(Restrictions.eq("feeExpireDate", this.getFeeExpireDate()));
 				_crit.add(Restrictions.eq("feeExpireDate", this.getFeeExpireDate()));
 			}
-				
 			
 			if (this.getFeeExpireDateStart() != null){
 				crit.add(Restrictions.ge("feeExpireDate", this.getFeeExpireDateStart()));
@@ -86,10 +79,9 @@ public class FVehicleBasicBean extends AbstractBean {
 				_crit.add(Restrictions.le("feeExpireDate", this.getFeeExpireDateEnd()));
 			}	
 			
-			
 			crit.addOrder(Order.asc("id"));
-			addPagination(crit);
-			List<Vehicle> list = crit.list();	
+//			addPagination(crit);
+			List<FVehicleBasic> list = crit.list();
 			getTotalCount(_crit);
 			return list;
 		} catch (HibernateException e) {
@@ -172,5 +164,4 @@ public class FVehicleBasicBean extends AbstractBean {
 	public int getVehicleId() {
 		return this.vehicleId;
 	}
-	
 }
