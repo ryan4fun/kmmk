@@ -80,17 +80,16 @@
 	      name="loginName" /></TD></TR>
 	  <TR>
 	    <TD align="right"><span class="STYLE1">密码：</span></TD>
-	    <TD align="left"><input style="WIDTH: 150px" value="111111" type="password" 
-	      name="passwd" /></TD></TR>
+	    <TD align="left"><input style="WIDTH: 150px" value="222222" type="password" name="passwd" /></TD></TR>
 	  <TR>
 	    <TD align="right"><span class="STYLE1">校验码：</span></TD>
-	    <TD align="left"><input style="WIDTH: 150px" name="verifyCode" />     </TD></TR>
-	     <tr>
+	    <TD align="left"><input style="WIDTH: 150px" name="verifyCode" /></TD></TR>
+	  <tr>
 	     <td>&nbsp;</td><td><span style="float:left;">
 	     <img id="varifyImg" style="padding: 0px; margin: 0px;" vspace="0" src="mkgps.do?action=GetVarifyImgAction" />
 						&nbsp;&nbsp;<label style="cursor:pointer" onclick="regetVarifyImg()">看不清，换一张</label>
 	     </span></td>
-	     </tr>
+	  </tr>
 	  <TR>
 	    <TD width="20%" align="right"><span class="STYLE1">皮肤风格：</span></TD>
 	    <TD width="80%" align="left"><select style="WIDTH: 154px" id="skin" name="skin"> 

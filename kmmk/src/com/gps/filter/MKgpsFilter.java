@@ -60,7 +60,7 @@ public class MKgpsFilter implements Filter {
 				requireLogin = false;
 			else {
 				String act = req.getParameter("action");
-				if( act!=null && (act.equals("GetVarifyImgAction") || act.equals("LoginAction") || act.equals("TzLoginAction")) )
+				if( act!=null && (act.equals("GetVarifyImgAction") || act.equals("LoginAction") || act.equals("FLoginAction")) )
 					requireLogin = false;
 			}
 		}
