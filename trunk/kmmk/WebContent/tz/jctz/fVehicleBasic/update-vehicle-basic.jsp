@@ -80,9 +80,7 @@ if(v == null){
 				</tr>
 				<tr> 
  					<td width="20%" align="right">所属单位：</td>
-					<td align="left">
-					<%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%>
-					</td>
+					<td align="left"><%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%></td>
 				</tr>
 				<tr>
 					<td width="20%" align="right">车主：</td>
@@ -143,9 +141,7 @@ if(v == null){
 			</table>
 		</form>
 	</div>
-</div>
-
-<div id="search-div">
+	
 	<h3><a href="#">修改车辆基础台帐表</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<form id="form2" action="mkgps.do" method="post">
@@ -153,105 +149,105 @@ if(v == null){
 			<input type="hidden" name = "success" value="update-vehicle-basic-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>
 			<input type="hidden" name = "vehicleId" value="<%=v.getVehicleId()%>"/>
-				<table cellSpacing="5" width="95%">
-				<% if( v.getFVehicleBasics().size()>0 ){ 
-					for( FVehicleBasic fvb : v.getFVehicleBasics() ){
-						if( fvb.getFeeExpireDate()==null ){ %>
-					<tr>
-	 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
-						<td align="left" colspan="3" >
-						<% if( fvb.getAmount()!=null ){ %>
-							<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" />
-						<% } else { %>
-							<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
-						<% } %>
-						</td>
-					</tr>
-				<% 		} else { %>
-					<tr>
-	 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
-						<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" /></td>
-						<td width="20%" align="right">有效期：</td>
-						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
-					</tr>
-				<% 		}
-					}
-				} else { %>
-					<tr>
-	 					<td width="20%" align="right">总资产<input type="hidden" value="总资产" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-	 				<tr>
-	 					<td width="20%" align="right">车款<input type="hidden" value="车款" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">购置税<input type="hidden" value="购置税" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">初始保险<input type="hidden" value="初始保险" /></td>
-						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-						<td width="20%" align="right">有效期：</td>
-						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">初始意外险<input type="hidden" value="初始意外险" /></td>
-						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-						<td width="20%" align="right">有效期：</td>
-						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">GPS设备安装费<input type="hidden" value="GPS设备安装费" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">灯牌费<input type="hidden" value="灯牌费" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">水箱费<input type="hidden" value="水箱费" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">轮胎费<input type="hidden" value="轮胎费" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">初始罐检费<input type="hidden" value="初始罐检费" /></td>
-						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-						<td width="20%" align="right">有效期：</td>
-						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">落户费<input type="hidden" value="落户费" /></td>
-						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">营管费<input type="hidden" value="营管费" /></td>
-						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-						<td width="20%" align="right">有效期：</td>
-						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">初始养路费<input type="hidden" value="初始养路费" /></td>
-						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
-						<td width="20%" align="right">有效期：</td>
-						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
-					</tr>
-					<tr>
-	 					<td width="20%" align="right">备注<input type="hidden" value="备注" /></td>
-						<td align="left" colspan="3" ><textarea rows="3" id="comment" name = "comment"></textarea></td>
-					</tr>
-				<% } %>
-				</table>
-				<p align="center">
-					<input type="submit" value="提交"/>
-					<input type="reset" value="重置"/>
-					<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
-				</p>
+			<table cellSpacing="5" width="95%">
+			<% if( v.getFVehicleBasics().size()>0 ){ 
+				for( FVehicleBasic fvb : v.getFVehicleBasics() ){
+					if( fvb.getFeeExpireDate()==null ){ %>
+				<tr>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+					<td align="left" colspan="3" >
+					<% if( fvb.getAmount()!=null ){ %>
+						<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" />
+					<% } else { %>
+						<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
+					<% } %>
+					</td>
+				</tr>
+			<% 		} else { %>
+				<tr>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+					<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+			<% 		}
+				}
+			} else { %>
+				<tr>
+ 					<td width="20%" align="right">总资产<input type="hidden" value="总资产" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+ 				<tr>
+ 					<td width="20%" align="right">车款<input type="hidden" value="车款" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">购置税<input type="hidden" value="购置税" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">初始保险<input type="hidden" value="初始保险" /></td>
+					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">初始意外险<input type="hidden" value="初始意外险" /></td>
+					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">GPS设备安装费<input type="hidden" value="GPS设备安装费" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">灯牌费<input type="hidden" value="灯牌费" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">水箱费<input type="hidden" value="水箱费" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">轮胎费<input type="hidden" value="轮胎费" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">初始罐检费<input type="hidden" value="初始罐检费" /></td>
+					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">落户费<input type="hidden" value="落户费" /></td>
+					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">营管费<input type="hidden" value="营管费" /></td>
+					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">初始养路费<input type="hidden" value="初始养路费" /></td>
+					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					<td width="20%" align="right">有效期：</td>
+					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">备注<input type="hidden" value="备注" /></td>
+					<td align="left" colspan="3" ><textarea rows="3" id="comment" name = "comment"></textarea></td>
+				</tr>
+			<% } %>
+			</table>
 		</form>
 	</div>
+	<p align="center">
+		<input type="submit" value="提交"/>
+		<input type="reset" value="重置"/>
+		<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+	</p>
 </div>
 </body>
 </html>

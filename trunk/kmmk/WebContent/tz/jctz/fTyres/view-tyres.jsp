@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="/tz/header.jsp"%>
 <%
 String idstr = request.getParameter("tyreId");
 Vehicle v = null;
@@ -125,9 +125,9 @@ $(document).ready(function(){
 			</table>
 			<p align="center">
 				<% if(v.getFVehicleBasics().size()>0){ %>
-					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改轮胎使用台帐</a>
+					<input type="button" style="width:100px;" value="修改轮胎使用台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
 				<% } else {%>
-					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增轮胎使用台帐</a>
+					<input type="button" style="width:100px;" value="修改轮胎使用台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
 				<% } %>
 				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
 			</p>
