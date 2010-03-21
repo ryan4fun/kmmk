@@ -52,8 +52,8 @@
 	</FunctionGroup>
 	<FunctionGroup folder="fzcx" name="统计台帐" roles="1,2">
 		<Function name="月统计报表" roles="1,2">
-			<Link url="tz/tjtz/vehicleStatistics/update-vehicle-statistics.jsp" name="添加月统计报表" roles="1,2,11" />
-			<Link url="tz/tjtz/vehicleStatistics/search-vehicle-statistics.jsp" name="月统计报表管理" roles="1,2,11" />
+			<Link url="tz/tjtz/fVehicleStatistics/update-vehicle-statistics.jsp" name="添加月统计报表" roles="1,2,11" />
+			<Link url="tz/tjtz/fVehicleStatistics/search-vehicle-statistics.jsp" name="月统计报表管理" roles="1,2,11" />
 		</Function>		
 	</FunctionGroup>
 	<FunctionGroup folder="help" name="帮助" roles="*">
