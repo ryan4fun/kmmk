@@ -29,5 +29,8 @@
         <property name="comment" type="string">
             <column name="comment" length="100" />
         </property>
+        <property name="operator" type="string">
+            <column name="operator" length="20" />
+        </property>
     </class>
 </hibernate-mapping>

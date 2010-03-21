@@ -10,11 +10,11 @@ import java.util.Date;
 public class FToolsKeepLog implements java.io.Serializable {
 
 	private long id;
-	private Users users;
 	private FTools FTools;
 	private String keeper;
 	private Date occurDate;
 	private String comment;
+	private String operator;
 
 	public FToolsKeepLog() {
 	}
@@ -23,14 +23,14 @@ public class FToolsKeepLog implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public FToolsKeepLog(long id, Users users, FTools FTools, String keeper,
-			Date occurDate, String comment) {
+	public FToolsKeepLog(long id, FTools FTools, String keeper, Date occurDate,
+			String comment, String operator) {
 		this.id = id;
-		this.users = users;
 		this.FTools = FTools;
 		this.keeper = keeper;
 		this.occurDate = occurDate;
 		this.comment = comment;
+		this.operator = operator;
 	}
 
 	public long getId() {
@@ -39,14 +39,6 @@ public class FToolsKeepLog implements java.io.Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public FTools getFTools() {
@@ -79,6 +71,14 @@ public class FToolsKeepLog implements java.io.Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public String getOperator() {
+		return this.operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 }

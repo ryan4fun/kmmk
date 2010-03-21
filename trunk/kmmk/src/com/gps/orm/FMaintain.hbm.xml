@@ -8,9 +8,6 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
-            <column name="operatorID" />
-        </many-to-one>
         <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
             <column name="vehicleID" />
         </many-to-one>
@@ -37,6 +34,9 @@
         </property>
         <property name="studio" type="string">
             <column name="studio" length="100" />
+        </property>
+        <property name="operator" type="string">
+            <column name="operator" length="20" />
         </property>
     </class>
 </hibernate-mapping>

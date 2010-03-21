@@ -19,6 +19,7 @@ public class Organization implements java.io.Serializable {
 	private Set<Users> userses = new HashSet<Users>(0);
 	private Set<Segment> segments = new HashSet<Segment>(0);
 	private Set<Region> regions = new HashSet<Region>(0);
+	private Set<FUser> FUsers = new HashSet<FUser>(0);
 
 	public Organization() {
 	}
@@ -29,7 +30,8 @@ public class Organization implements java.io.Serializable {
 
 	public Organization(int organizationId, Short organizationState,
 			String name, String description, Date creationDate,
-			Set<Users> userses, Set<Segment> segments, Set<Region> regions) {
+			Set<Users> userses, Set<Segment> segments, Set<Region> regions,
+			Set<FUser> FUsers) {
 		this.organizationId = organizationId;
 		this.organizationState = organizationState;
 		this.name = name;
@@ -38,6 +40,7 @@ public class Organization implements java.io.Serializable {
 		this.userses = userses;
 		this.segments = segments;
 		this.regions = regions;
+		this.FUsers = FUsers;
 	}
 
 	public int getOrganizationId() {
@@ -102,6 +105,14 @@ public class Organization implements java.io.Serializable {
 
 	public void setRegions(Set<Region> regions) {
 		this.regions = regions;
+	}
+
+	public Set<FUser> getFUsers() {
+		return this.FUsers;
+	}
+
+	public void setFUsers(Set<FUser> FUsers) {
+		this.FUsers = FUsers;
 	}
 
 }

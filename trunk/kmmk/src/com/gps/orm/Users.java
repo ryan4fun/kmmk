@@ -23,13 +23,9 @@ public class Users implements java.io.Serializable {
 	private Short userState;
 	private String tel;
 	private Set<Gpsfee> gpsfees = new HashSet<Gpsfee>(0);
-	private Set<FMaintain> FMaintains = new HashSet<FMaintain>(0);
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>(0);
 	private Set<Driver> drivers = new HashSet<Driver>(0);
 	private Set<Escorter> escorters = new HashSet<Escorter>(0);
-	private Set<FToolsKeepLog> FToolsKeepLogs = new HashSet<FToolsKeepLog>(0);
-	private Set<FMaterialKeepLog> FMaterialKeepLogs = new HashSet<FMaterialKeepLog>(
-			0);
 	private Set<Task> tasks = new HashSet<Task>(0);
 	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
 	private Set<FVehicleMaterial> FVehicleMaterials = new HashSet<FVehicleMaterial>(
@@ -46,11 +42,9 @@ public class Users implements java.io.Serializable {
 			String passwd, String realName, String description,
 			Date registerDate, Date lastLoginDate, String lastLoginIp,
 			Short userState, String tel, Set<Gpsfee> gpsfees,
-			Set<FMaintain> FMaintains, Set<Vehicle> vehicles,
-			Set<Driver> drivers, Set<Escorter> escorters,
-			Set<FToolsKeepLog> FToolsKeepLogs,
-			Set<FMaterialKeepLog> FMaterialKeepLogs, Set<Task> tasks,
-			Set<UserRole> userRoles, Set<FVehicleMaterial> FVehicleMaterials) {
+			Set<Vehicle> vehicles, Set<Driver> drivers,
+			Set<Escorter> escorters, Set<Task> tasks, Set<UserRole> userRoles,
+			Set<FVehicleMaterial> FVehicleMaterials) {
 		this.userId = userId;
 		this.organization = organization;
 		this.loginName = loginName;
@@ -63,12 +57,9 @@ public class Users implements java.io.Serializable {
 		this.userState = userState;
 		this.tel = tel;
 		this.gpsfees = gpsfees;
-		this.FMaintains = FMaintains;
 		this.vehicles = vehicles;
 		this.drivers = drivers;
 		this.escorters = escorters;
-		this.FToolsKeepLogs = FToolsKeepLogs;
-		this.FMaterialKeepLogs = FMaterialKeepLogs;
 		this.tasks = tasks;
 		this.userRoles = userRoles;
 		this.FVehicleMaterials = FVehicleMaterials;
@@ -170,14 +161,6 @@ public class Users implements java.io.Serializable {
 		this.gpsfees = gpsfees;
 	}
 
-	public Set<FMaintain> getFMaintains() {
-		return this.FMaintains;
-	}
-
-	public void setFMaintains(Set<FMaintain> FMaintains) {
-		this.FMaintains = FMaintains;
-	}
-
 	public Set<Vehicle> getVehicles() {
 		return this.vehicles;
 	}
@@ -200,22 +183,6 @@ public class Users implements java.io.Serializable {
 
 	public void setEscorters(Set<Escorter> escorters) {
 		this.escorters = escorters;
-	}
-
-	public Set<FToolsKeepLog> getFToolsKeepLogs() {
-		return this.FToolsKeepLogs;
-	}
-
-	public void setFToolsKeepLogs(Set<FToolsKeepLog> FToolsKeepLogs) {
-		this.FToolsKeepLogs = FToolsKeepLogs;
-	}
-
-	public Set<FMaterialKeepLog> getFMaterialKeepLogs() {
-		return this.FMaterialKeepLogs;
-	}
-
-	public void setFMaterialKeepLogs(Set<FMaterialKeepLog> FMaterialKeepLogs) {
-		this.FMaterialKeepLogs = FMaterialKeepLogs;
 	}
 
 	public Set<Task> getTasks() {

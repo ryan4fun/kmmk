@@ -22,6 +22,7 @@ public class FTyres implements java.io.Serializable {
 	private Double disposeDistanceRec;
 	private Double usedDistance;
 	private Double price;
+	private String operator;
 
 	public FTyres() {
 	}
@@ -33,7 +34,8 @@ public class FTyres implements java.io.Serializable {
 	public FTyres(long tyreId, Vehicle vehicle, String tyreNo, String tyreName,
 			Short state, String comment, Date installDate,
 			Double installDistanceRec, Double usedPeriod, Date disposeDate,
-			Double disposeDistanceRec, Double usedDistance, Double price) {
+			Double disposeDistanceRec, Double usedDistance, Double price,
+			String operator) {
 		this.tyreId = tyreId;
 		this.vehicle = vehicle;
 		this.tyreNo = tyreNo;
@@ -47,6 +49,7 @@ public class FTyres implements java.io.Serializable {
 		this.disposeDistanceRec = disposeDistanceRec;
 		this.usedDistance = usedDistance;
 		this.price = price;
+		this.operator = operator;
 	}
 
 	public long getTyreId() {
@@ -151,6 +154,14 @@ public class FTyres implements java.io.Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public String getOperator() {
+		return this.operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 }

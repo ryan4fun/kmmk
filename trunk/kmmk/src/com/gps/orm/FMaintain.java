@@ -10,7 +10,6 @@ import java.util.Date;
 public class FMaintain implements java.io.Serializable {
 
 	private long id;
-	private Users users;
 	private Vehicle vehicle;
 	private Date maintainDate;
 	private String category;
@@ -20,6 +19,7 @@ public class FMaintain implements java.io.Serializable {
 	private String handler;
 	private String comment;
 	private String studio;
+	private String operator;
 
 	public FMaintain() {
 	}
@@ -28,11 +28,10 @@ public class FMaintain implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public FMaintain(long id, Users users, Vehicle vehicle, Date maintainDate,
+	public FMaintain(long id, Vehicle vehicle, Date maintainDate,
 			String category, String subCategory, Double cost, Integer quantity,
-			String handler, String comment, String studio) {
+			String handler, String comment, String studio, String operator) {
 		this.id = id;
-		this.users = users;
 		this.vehicle = vehicle;
 		this.maintainDate = maintainDate;
 		this.category = category;
@@ -42,6 +41,7 @@ public class FMaintain implements java.io.Serializable {
 		this.handler = handler;
 		this.comment = comment;
 		this.studio = studio;
+		this.operator = operator;
 	}
 
 	public long getId() {
@@ -50,14 +50,6 @@ public class FMaintain implements java.io.Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public Vehicle getVehicle() {
@@ -130,6 +122,14 @@ public class FMaintain implements java.io.Serializable {
 
 	public void setStudio(String studio) {
 		this.studio = studio;
+	}
+
+	public String getOperator() {
+		return this.operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 }
