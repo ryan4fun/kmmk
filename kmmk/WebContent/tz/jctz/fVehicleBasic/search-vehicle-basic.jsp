@@ -147,32 +147,32 @@ function pageSelectCallback(pageNumber){
 	<% for(Vehicle v:vs){ 
 		Util.setNull2DefaultValue(v);%>
 	<tr>
-		<td id="p_<%=v.getVehicleId()%>" colspan="17">
-		<table cellSpacing="0" width="100%" cellpadding="0">
-			<tr>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-				<td width="10%">
-					<% if(v.getFVehicleBasics().size()>0){ %>
-						<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
-					<% } else {%>
-						<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐</a>
-					<% } %>
-				</td>
-			</tr>
-		</table>
+		<td id="p_<%=v.getVehicleId()%>" colspan="10">
+			<table cellSpacing="0" width="100%" cellpadding="0">
+				<tr>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
+					<td width="10%"><a href="javascript:href('view-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
+					<td width="10%">
+						<% if(v.getFVehicleBasics().size()>0){ %>
+							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
+						<% } else {%>
+							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐</a>
+						<% } %>
+					</td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="10" align="center"></td>
 	</tr>
 </table>
 <% } %>

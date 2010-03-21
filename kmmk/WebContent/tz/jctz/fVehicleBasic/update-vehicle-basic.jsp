@@ -20,11 +20,6 @@ if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
-	VehicleTypeDicBean vtb = new VehicleTypeDicBean();
-	List<VehicleTypeDic> vts = vtb.getList();
-	OrganizationBean ob = new OrganizationBean();
-	//ob.setPagination(false);
-	List<Organization> os = ob.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -159,12 +154,96 @@ if(v == null){
 			<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>
 			<input type="hidden" name = "vehicleId" value="<%=v.getVehicleId()%>"/>
 				<table cellSpacing="5" width="95%">
-	 				<tr>
-	 					<td width="20%" align="right">车牌号：</td>
-						<td align="left"><%=v.getLicensPadNumber()%></td>
-						<td width="20%" align="right">资产基数：</td>
-						<td align="left"><%=v.getAssetBaseValue()%></td>
+				<% if( v.getFVehicleBasics().size()>0 ){ 
+					for( FVehicleBasic fvb : v.getFVehicleBasics() ){
+						if( fvb.getFeeExpireDate()==null ){ %>
+					<tr>
+	 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+						<td align="left" colspan="3" >
+						<% if( fvb.getAmount()!=null ){ %>
+							<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" />
+						<% } else { %>
+							<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
+						<% } %>
+						</td>
 					</tr>
+				<% 		} else { %>
+					<tr>
+	 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+						<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" /></td>
+						<td width="20%" align="right">有效期：</td>
+						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
+					</tr>
+				<% 		}
+					}
+				} else { %>
+					<tr>
+	 					<td width="20%" align="right">总资产<input type="hidden" value="总资产" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+	 				<tr>
+	 					<td width="20%" align="right">车款<input type="hidden" value="车款" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">购置税<input type="hidden" value="购置税" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">初始保险<input type="hidden" value="初始保险" /></td>
+						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+						<td width="20%" align="right">有效期：</td>
+						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">初始意外险<input type="hidden" value="初始意外险" /></td>
+						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+						<td width="20%" align="right">有效期：</td>
+						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">GPS设备安装费<input type="hidden" value="GPS设备安装费" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">灯牌费<input type="hidden" value="灯牌费" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">水箱费<input type="hidden" value="水箱费" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">轮胎费<input type="hidden" value="轮胎费" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">初始罐检费<input type="hidden" value="初始罐检费" /></td>
+						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+						<td width="20%" align="right">有效期：</td>
+						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">落户费<input type="hidden" value="落户费" /></td>
+						<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">营管费<input type="hidden" value="营管费" /></td>
+						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+						<td width="20%" align="right">有效期：</td>
+						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">初始养路费<input type="hidden" value="初始养路费" /></td>
+						<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+						<td width="20%" align="right">有效期：</td>
+						<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					</tr>
+					<tr>
+	 					<td width="20%" align="right">备注<input type="hidden" value="备注" /></td>
+						<td align="left" colspan="3" ><textarea rows="3" id="comment" name = "comment"></textarea></td>
+					</tr>
+				<% } %>
 				</table>
 				<p align="center">
 					<input type="submit" value="提交"/>
