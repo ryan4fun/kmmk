@@ -10,11 +10,11 @@ import java.util.Date;
 public class FMaterialKeepLog implements java.io.Serializable {
 
 	private long id;
-	private Users users;
 	private FVehicleMaterial FVehicleMaterial;
 	private String keeper;
 	private Date occurDate;
 	private String comment;
+	private String operator;
 
 	public FMaterialKeepLog() {
 	}
@@ -23,15 +23,14 @@ public class FMaterialKeepLog implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public FMaterialKeepLog(long id, Users users,
-			FVehicleMaterial FVehicleMaterial, String keeper, Date occurDate,
-			String comment) {
+	public FMaterialKeepLog(long id, FVehicleMaterial FVehicleMaterial,
+			String keeper, Date occurDate, String comment, String operator) {
 		this.id = id;
-		this.users = users;
 		this.FVehicleMaterial = FVehicleMaterial;
 		this.keeper = keeper;
 		this.occurDate = occurDate;
 		this.comment = comment;
+		this.operator = operator;
 	}
 
 	public long getId() {
@@ -40,14 +39,6 @@ public class FMaterialKeepLog implements java.io.Serializable {
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public FVehicleMaterial getFVehicleMaterial() {
@@ -80,6 +71,14 @@ public class FMaterialKeepLog implements java.io.Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public String getOperator() {
+		return this.operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 }

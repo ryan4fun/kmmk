@@ -38,5 +38,11 @@
             </key>
             <one-to-many class="com.gps.orm.Region" />
         </set>
+        <set name="FUsers" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="organizationID" />
+            </key>
+            <one-to-many class="com.gps.orm.FUser" />
+        </set>
     </class>
 </hibernate-mapping>

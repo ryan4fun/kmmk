@@ -44,12 +44,6 @@
             </key>
             <one-to-many class="com.gps.orm.Gpsfee" />
         </set>
-        <set name="FMaintains" inverse="true" cascade="all-delete-orphan">
-            <key>
-                <column name="operatorID" />
-            </key>
-            <one-to-many class="com.gps.orm.FMaintain" />
-        </set>
         <set name="vehicles" inverse="true" cascade="all-delete-orphan" order-by="internalNumber">
             <key>
                 <column name="userID" />
@@ -67,18 +61,6 @@
                 <column name="ownerID" />
             </key>
             <one-to-many class="com.gps.orm.Escorter" />
-        </set>
-        <set name="FToolsKeepLogs" inverse="true" cascade="all-delete-orphan">
-            <key>
-                <column name="operatorID" />
-            </key>
-            <one-to-many class="com.gps.orm.FToolsKeepLog" />
-        </set>
-        <set name="FMaterialKeepLogs" inverse="true" cascade="all-delete-orphan">
-            <key>
-                <column name="operatorID" />
-            </key>
-            <one-to-many class="com.gps.orm.FMaterialKeepLog" />
         </set>
         <set name="tasks" inverse="true" cascade="all-delete-orphan">
             <key>

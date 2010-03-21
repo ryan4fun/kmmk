@@ -29,6 +29,7 @@ public class FRuningLog implements java.io.Serializable {
 	private Date paymentReceiveDate;
 	private Short state;
 	private String comment;
+	private String operator;
 
 	public FRuningLog() {
 	}
@@ -43,7 +44,7 @@ public class FRuningLog implements java.io.Serializable {
 			Double startDisRecord, Double endDisRecord, String loadSite,
 			String unloadSite, String billTo, Double totalCost,
 			String paymentMethod, Date paymentReceiveDate, Short state,
-			String comment) {
+			String comment, String operator) {
 		this.id = id;
 		this.vehicle = vehicle;
 		this.startDate = startDate;
@@ -64,6 +65,7 @@ public class FRuningLog implements java.io.Serializable {
 		this.paymentReceiveDate = paymentReceiveDate;
 		this.state = state;
 		this.comment = comment;
+		this.operator = operator;
 	}
 
 	public long getId() {
@@ -224,6 +226,14 @@ public class FRuningLog implements java.io.Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public String getOperator() {
+		return this.operator;
+	}
+
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
 
 }
