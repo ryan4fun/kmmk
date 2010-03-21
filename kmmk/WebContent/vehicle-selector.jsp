@@ -15,15 +15,15 @@ if(__organizationId == null)
 	__organizationId = "";
 
 LoginInfo _login = (LoginInfo)session.getAttribute("login");
-int _intRole = _login.getRoles().iterator().next();
-
-if(_intRole==RoleService.ROLE_ORG_ADMIN){
-	VehicleBean _vb = new VehicleBean(request);
-	_vs = _vb.getList();
-} else {
-	_obs = _ob.getList();
+if( !_login.isTz() ){
+	int _intRole = _login.getRoles().iterator().next();
+	if(_intRole==RoleService.ROLE_ORG_ADMIN){
+		VehicleBean _vb = new VehicleBean(request);
+		_vs = _vb.getList();
+	} else {
+		_obs = _ob.getList();
+	}
 }
-
 
 boolean vehicle_select = true;
 if(request.getParameter("vehicle_select") != null && request.getParameter("vehicle_select").equals("false")){
