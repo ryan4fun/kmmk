@@ -21,9 +21,6 @@ if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
-	UsersBean ub = new UsersBean();
-//	ub.setPagination(false);
-	List<Users> us = ub.getList();
 	VehicleTypeDicBean vtb = new VehicleTypeDicBean();
 	List<VehicleTypeDic> vts = vtb.getList();
 	OrganizationBean ob = new OrganizationBean();

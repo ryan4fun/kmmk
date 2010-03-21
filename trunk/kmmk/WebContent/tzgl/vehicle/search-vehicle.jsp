@@ -7,17 +7,6 @@ VehicleBean vb = new VehicleBean(request);
 List<Vehicle> vs = vb.getList();
 Util.setNull2DefaultValue(vb);
 
-UsersBean ub = new UsersBean();
-if(intRole==RoleService.ROLE_VEHICLE_OWNER){
-	ub.setUserId(login.getUserId());
-} else if(intRole==RoleService.ROLE_ORG_ADMIN){
-	ub.setOrganizationId(login.getOrganizationId());
-}
-
-
-//ub.setPagination(false);
-List<Users> us = ub.getList();
-
 VehicleTypeDicBean vtb = new VehicleTypeDicBean();
 List<VehicleTypeDic> vts = vtb.getList();
 %>
@@ -96,35 +85,6 @@ function delOrg(id){
 		}
 	});
 }
-
-<%--
-var UsersList = null;
-function getUsersList(){
-	if(UsersList == null ){
-		$.ajax({
-			url: "mkgps.do",
-			data: {
-				action: "GetUsersListAction"
-			},
-			cache: false,
-			success: function(xml) {
-			   var json = eval('('+xml+')');
-			   if (json.isExist && json.isExist == "true"){
-			   		$("#userId").css("color","red");
-					$("#userId").html("该名称已被使用,请换个名称");						
-			   } else {
-			   		$("#userId").css("color","blue");
-			   		$("#userId").html("该名称可以使用");
-			   }
-			}
-		});	
-	}
-
-	if(UsersList != null ){
-		$("#userId").html("");
-	}
-}
---%>
 </script>
 </head>
 <body>
