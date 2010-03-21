@@ -14,6 +14,8 @@ public class FVehicleBasic implements java.io.Serializable {
 	private String feeName;
 	private Short feeState;
 	private Date feeExpireDate;
+	private Double amount;
+	private String comment;
 
 	public FVehicleBasic() {
 	}
@@ -23,12 +25,14 @@ public class FVehicleBasic implements java.io.Serializable {
 	}
 
 	public FVehicleBasic(long id, Vehicle vehicle, String feeName,
-			Short feeState, Date feeExpireDate) {
+			Short feeState, Date feeExpireDate, Double amount, String comment) {
 		this.id = id;
 		this.vehicle = vehicle;
 		this.feeName = feeName;
 		this.feeState = feeState;
 		this.feeExpireDate = feeExpireDate;
+		this.amount = amount;
+		this.comment = comment;
 	}
 
 	public long getId() {
@@ -69,6 +73,22 @@ public class FVehicleBasic implements java.io.Serializable {
 
 	public void setFeeExpireDate(Date feeExpireDate) {
 		this.feeExpireDate = feeExpireDate;
+	}
+
+	public Double getAmount() {
+		return this.amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
+	public String getComment() {
+		return this.comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 }

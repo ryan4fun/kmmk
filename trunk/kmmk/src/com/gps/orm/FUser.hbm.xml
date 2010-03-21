@@ -8,6 +8,9 @@
             <column name="userID" />
             <generator class="native" />
         </id>
+        <many-to-one name="organization" class="com.gps.orm.Organization" fetch="select">
+            <column name="organizationID" />
+        </many-to-one>
         <property name="loginName" type="string">
             <column name="loginName" length="20" />
         </property>

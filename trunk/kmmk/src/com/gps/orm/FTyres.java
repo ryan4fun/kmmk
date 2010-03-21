@@ -10,7 +10,6 @@ import java.util.Date;
 public class FTyres implements java.io.Serializable {
 
 	private long tyreId;
-	private Users users;
 	private Vehicle vehicle;
 	private String tyreNo;
 	private String tyreName;
@@ -31,12 +30,11 @@ public class FTyres implements java.io.Serializable {
 		this.tyreId = tyreId;
 	}
 
-	public FTyres(long tyreId, Users users, Vehicle vehicle, String tyreNo,
-			String tyreName, Short state, String comment, Date installDate,
+	public FTyres(long tyreId, Vehicle vehicle, String tyreNo, String tyreName,
+			Short state, String comment, Date installDate,
 			Double installDistanceRec, Double usedPeriod, Date disposeDate,
 			Double disposeDistanceRec, Double usedDistance, Double price) {
 		this.tyreId = tyreId;
-		this.users = users;
 		this.vehicle = vehicle;
 		this.tyreNo = tyreNo;
 		this.tyreName = tyreName;
@@ -57,14 +55,6 @@ public class FTyres implements java.io.Serializable {
 
 	public void setTyreId(long tyreId) {
 		this.tyreId = tyreId;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public Vehicle getVehicle() {
