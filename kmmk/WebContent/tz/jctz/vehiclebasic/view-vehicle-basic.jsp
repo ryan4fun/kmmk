@@ -129,7 +129,8 @@ $(document).ready(function(){
 				<% } else {%>
 					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐</a>
 				<% } %>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>	</p>
+				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+			</p>
 	</form>
 </div>
 </div>
