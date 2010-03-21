@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, March 21, 2010 21:44:04
+ * Date Created : Sunday, March 21, 2010 22:17:32
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -127,6 +127,7 @@ CREATE TABLE f_gasfee(
     balance        double precision    NULL,
     comment        varchar(100)        NULL,
     vehicleID      int                 NULL,
+    operator       varchar(20)         NULL,
     CONSTRAINT PK72 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -152,9 +153,9 @@ CREATE TABLE f_maintain(
     quantity        int                 NULL,
     handler         varchar(20)         NULL,
     vehicleID       int                 NULL,
-    operatorID      int                 NULL,
     comment         varchar(200)        NULL,
     studio          varchar(100)        NULL,
+    operator        varchar(20)         NULL,
     CONSTRAINT PK70 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -176,8 +177,8 @@ CREATE TABLE f_material_keep_log(
     materialId    bigint          NULL,
     keeper        varchar(25)     NULL,
     occurDate     datetime        NULL,
-    operatorID    int             NULL,
     comment       varchar(200)    NULL,
+    operator      varchar(20)     NULL,
     CONSTRAINT PK66 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -215,6 +216,7 @@ CREATE TABLE f_runingLog(
     state                 smallint            NULL,
     comment               varchar(200)        NULL,
     vehicleID             int                 NULL,
+    operator              varchar(20)         NULL,
     CONSTRAINT PK71 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -256,12 +258,12 @@ go
  */
 
 CREATE TABLE f_tools_keep_log(
-    ID            bigint          IDENTITY(1,1),
-    keeper        varchar(20)     NULL,
-    occurDate     datetime        NULL,
-    toolId        bigint          NULL,
-    operatorID    int             NULL,
-    comment       varchar(200)    NULL,
+    ID           bigint          IDENTITY(1,1),
+    keeper       varchar(20)     NULL,
+    occurDate    datetime        NULL,
+    toolId       bigint          NULL,
+    comment      varchar(200)    NULL,
+    operator     varchar(20)     NULL,
     CONSTRAINT PK67 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -292,6 +294,7 @@ CREATE TABLE f_tyres(
     disposeDistanceRec    double precision    NULL,
     usedDistance          double precision    NULL,
     price                 double precision    NULL,
+    operator              varchar(20)         NULL,
     CONSTRAINT PK68_1 PRIMARY KEY NONCLUSTERED (tyreId)
 )
 go
@@ -1416,14 +1419,14 @@ go
  * TABLE: alertHistory 
  */
 
-ALTER TABLE alertHistory ADD CONSTRAINT RefAlertTypeDic64 
-    FOREIGN KEY (AlertTypeID)
-    REFERENCES AlertTypeDic(AlertTypeID)
-go
-
 ALTER TABLE alertHistory ADD CONSTRAINT Refvehicle102 
     FOREIGN KEY (vehicleID)
     REFERENCES vehicle(vehicleID)
+go
+
+ALTER TABLE alertHistory ADD CONSTRAINT RefAlertTypeDic64 
+    FOREIGN KEY (AlertTypeID)
+    REFERENCES AlertTypeDic(AlertTypeID)
 go
 
 
@@ -1466,11 +1469,6 @@ ALTER TABLE f_maintain ADD CONSTRAINT Refvehicle90
     REFERENCES vehicle(vehicleID)
 go
 
-ALTER TABLE f_maintain ADD CONSTRAINT Refusers91 
-    FOREIGN KEY (operatorID)
-    REFERENCES users(userID)
-go
-
 
 /* 
  * TABLE: f_material_keep_log 
@@ -1479,11 +1477,6 @@ go
 ALTER TABLE f_material_keep_log ADD CONSTRAINT Reff_vehicle_material84 
     FOREIGN KEY (materialId)
     REFERENCES f_vehicle_material(materialId)
-go
-
-ALTER TABLE f_material_keep_log ADD CONSTRAINT Refusers85 
-    FOREIGN KEY (operatorID)
-    REFERENCES users(userID)
 go
 
 
@@ -1514,11 +1507,6 @@ go
 ALTER TABLE f_tools_keep_log ADD CONSTRAINT Reff_tools86 
     FOREIGN KEY (toolId)
     REFERENCES f_tools(toolId)
-go
-
-ALTER TABLE f_tools_keep_log ADD CONSTRAINT Refusers87 
-    FOREIGN KEY (operatorID)
-    REFERENCES users(userID)
 go
 
 
@@ -1611,14 +1599,14 @@ go
  * TABLE: region 
  */
 
-ALTER TABLE region ADD CONSTRAINT RefregionTypeDic57 
-    FOREIGN KEY (regionTypeID)
-    REFERENCES regionTypeDic(regionTypeID)
-go
-
 ALTER TABLE region ADD CONSTRAINT Reforganization101 
     FOREIGN KEY (organizationID)
     REFERENCES organization(organizationID)
+go
+
+ALTER TABLE region ADD CONSTRAINT RefregionTypeDic57 
+    FOREIGN KEY (regionTypeID)
+    REFERENCES regionTypeDic(regionTypeID)
 go
 
 
@@ -1696,14 +1684,14 @@ go
  * TABLE: task 
  */
 
-ALTER TABLE task ADD CONSTRAINT Refusers60 
-    FOREIGN KEY (assignerID)
-    REFERENCES users(userID)
-go
-
 ALTER TABLE task ADD CONSTRAINT Refvehicle27 
     FOREIGN KEY (vehicleID)
     REFERENCES vehicle(vehicleID)
+go
+
+ALTER TABLE task ADD CONSTRAINT Refusers60 
+    FOREIGN KEY (assignerID)
+    REFERENCES users(userID)
 go
 
 
@@ -1796,14 +1784,14 @@ go
  * TABLE: vehicle 
  */
 
-ALTER TABLE vehicle ADD CONSTRAINT RefvehicleTypeDic56 
-    FOREIGN KEY (vehicleTypeID)
-    REFERENCES vehicleTypeDic(vehicleTypeID)
-go
-
 ALTER TABLE vehicle ADD CONSTRAINT Refusers41 
     FOREIGN KEY (userID)
     REFERENCES users(userID)
+go
+
+ALTER TABLE vehicle ADD CONSTRAINT RefvehicleTypeDic56 
+    FOREIGN KEY (vehicleTypeID)
+    REFERENCES vehicleTypeDic(vehicleTypeID)
 go
 
 
