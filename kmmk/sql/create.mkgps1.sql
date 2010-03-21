@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Thursday, March 18, 2010 22:58:49
+ * Date Created : Sunday, March 21, 2010 21:29:11
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -319,6 +319,7 @@ CREATE TABLE f_user(
     lastLoginIP       varchar(64)     NULL,
     userState         smallint        NULL,
     tel               varchar(20)     NULL,
+    organizationID    int             NULL,
     CONSTRAINT PK16_1 PRIMARY KEY NONCLUSTERED (userID)
 )
 go
@@ -336,11 +337,13 @@ go
  */
 
 CREATE TABLE f_vehicle_basic(
-    ID               bigint         NOT NULL,
-    vehicleID        int            NULL,
-    feeName          varchar(25)    NULL,
-    feeState         smallint       NULL,
-    feeExpireDate    datetime       NULL,
+    ID               bigint              NOT NULL,
+    vehicleID        int                 NULL,
+    feeName          varchar(25)         NULL,
+    feeState         smallint            NULL,
+    feeExpireDate    datetime            NULL,
+    amount           double precision    NULL,
+    comment          varchar(100)        NULL,
     CONSTRAINT PK64 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -1534,7 +1537,14 @@ ALTER TABLE f_tyres ADD CONSTRAINT Refusers92
 go
 
 
+/* 
+ * TABLE: f_user 
+ */
 
+ALTER TABLE f_user ADD CONSTRAINT Reforganization106 
+    FOREIGN KEY (organizationID)
+    REFERENCES organization(organizationID)
+go
 
 
 /* 
