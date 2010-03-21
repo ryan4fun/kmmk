@@ -166,9 +166,9 @@ function pageSelectCallback(pageNumber){
 				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
 				<td width="10%">
 					<% if(v.getFVehicleBasics().size()>0){ %>
-					<a href="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐表</a>
+						<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
 					<% } else {%>
-					<a href="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐表</a>
+						<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐</a>
 					<% } %>
 				</td>
 			</tr>
