@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, March 21, 2010 21:29:11
+ * Date Created : Sunday, March 21, 2010 21:35:29
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -172,12 +172,13 @@ go
  */
 
 CREATE TABLE f_material_keep_log(
-    ID            bigint          NULL,
+    ID            bigint          IDENTITY(1,1),
     materialId    bigint          NULL,
     keeper        varchar(25)     NULL,
     occurDate     datetime        NULL,
     operatorID    int             NULL,
-    comment       varchar(200)    NULL
+    comment       varchar(200)    NULL,
+    CONSTRAINT PK66 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
 
