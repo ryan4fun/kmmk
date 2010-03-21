@@ -56,12 +56,6 @@
             </key>
             <one-to-many class="com.gps.orm.Vehicle" />
         </set>
-        <set name="FTyreses" inverse="true" cascade="all-delete-orphan">
-            <key>
-                <column name="operatorID" />
-            </key>
-            <one-to-many class="com.gps.orm.FTyres" />
-        </set>
         <set name="drivers" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="ownerID" />
