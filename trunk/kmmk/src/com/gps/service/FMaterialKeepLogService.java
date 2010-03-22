@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 
 import com.gps.orm.FMaterialKeepLog;
-import com.gps.orm.FMaterialKeepLogId;
 
 public class FMaterialKeepLogService extends AbstractService {
 	static Logger logger = Logger.getLogger(FMaterialKeepLogService.class);
