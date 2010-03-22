@@ -27,7 +27,7 @@ public class VehicleBasicUpdateAction extends Action{
 					&& names.length==feeExpireDates.length 
 					&& names.length==amounts.length
 					&& names.length==comments.length ) {
-				Set<FVehicleBasic> set = new HashSet<FVehicleBasic>(names.length);
+//				Set<FVehicleBasic> set = new HashSet<FVehicleBasic>(names.length);
 				for (int i=0;i<names.length;i++){
 					String name = names[i];
 					if(name!=null && !name.equals("")){
@@ -38,11 +38,11 @@ public class VehicleBasicUpdateAction extends Action{
 							fvb.setFeeExpireDate(Util.parseDate(feeExpireDates[i]));
 							fvb.setComment(comments[i]);
 //							fvb.setVehicle(v);
-							set.add(fvb);
+//							set.add(fvb);
 						}
 					}
 				}
-				v.setFVehicleBasics(set);
+//				v.setFVehicleBasics(set);
 			}
 			getServiceLocator().getVehicleService().updateVehicle(v);
 			request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));

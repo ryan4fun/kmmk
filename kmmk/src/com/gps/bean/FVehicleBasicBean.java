@@ -1,6 +1,5 @@
 package com.gps.bean;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,15 +9,11 @@ import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.FVehicleBasic;
 import com.gps.orm.HibernateUtil;
 import com.gps.orm.Vehicle;
-import com.gps.orm.VehicleStatus;
-import com.gps.service.RoleService;
-import com.gps.service.VehicleService;
 
 public class FVehicleBasicBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(FVehicleBasicBean.class);
@@ -26,7 +21,6 @@ public class FVehicleBasicBean extends AbstractBean {
 	private int id;
 	private int vehicleId;
 	private String feeName;
-
 
 	private Short feeState;
 	private Date feeExpireDate;
