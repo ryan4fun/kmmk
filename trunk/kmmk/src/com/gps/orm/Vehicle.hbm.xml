@@ -104,7 +104,7 @@
             </key>
             <one-to-many class="com.gps.orm.FMaintain" />
         </set>
-        <set name="FVehicleBasics" inverse="true" cascade="all-delete-orphan">
+        <set name="FVehicleBasics" inverse="true" cascade="all-delete-orphan" order-by="ID">
             <key>
                 <column name="vehicleID" />
             </key>

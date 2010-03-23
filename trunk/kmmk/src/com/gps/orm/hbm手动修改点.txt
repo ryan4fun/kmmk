@@ -18,3 +18,6 @@
 
 7. Region.hbm.xml 对 regionPointses 按照 pointId 进行排序：
 <set name="regionPointses" inverse="true" cascade="all-delete-orphan" order-by="pointId">
+
+8.Vehicle.hbm.xml 对 FVehicleBasics 按照 ID 进行排序：
+<set name="FVehicleBasics" inverse="true" cascade="all-delete-orphan" order-by="ID">
