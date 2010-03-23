@@ -70,7 +70,7 @@ public class RegionBean extends AbstractBean {
 			}
 			
 			if (name != null && name.length()>0)
-				crit.add(Restrictions.like("name", name));
+				crit.add(Restrictions.like("name", "%"+name+"%"));
 //			Criteria crit = HibernateUtil.getSession().createCriteria(Region.class);
 //			
 //			if (name != null && !name.equals(""))
