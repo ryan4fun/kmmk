@@ -21,7 +21,6 @@ public class VehicleBasicAddAction extends Action{
 					&& names.length==feeExpireDates.length 
 					&& names.length==amounts.length
 					&& names.length==comments.length ) {
-				Set<FVehicleBasic> set = new HashSet<FVehicleBasic>(names.length);
 				for (int i=0;i<names.length;i++){
 					String name = names[i];
 					if(name!=null && !name.equals("")){
@@ -34,15 +33,14 @@ public class VehicleBasicAddAction extends Action{
 						if(comments[i].length()>0)
 							fvb.setComment(comments[i]);
 						fvb.setVehicle(v);
-						set.add(fvb);
+						v.getFVehicleBasics().add(fvb);
 					}
 				}
-				v.setFVehicleBasics(set);
 			}
 			getServiceLocator().getVehicleService().updateVehicle(v);
-			request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
 		} else {
 			throw new Message("无法找到该车辆!");
 		}
+		request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
 	}
 }
