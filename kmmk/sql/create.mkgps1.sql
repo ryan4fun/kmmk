@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, March 21, 2010 22:17:32
+ * Date Created : Tuesday, March 23, 2010 22:36:30
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -340,7 +340,7 @@ go
  */
 
 CREATE TABLE f_vehicle_basic(
-    ID               bigint              NOT NULL,
+    ID               bigint              IDENTITY(1,1),
     vehicleID        int                 NULL,
     feeName          varchar(25)         NULL,
     feeState         smallint            NULL,
@@ -1559,14 +1559,14 @@ go
  * TABLE: GPSFee 
  */
 
-ALTER TABLE GPSFee ADD CONSTRAINT Refvehicle65 
-    FOREIGN KEY (vehicleID)
-    REFERENCES vehicle(vehicleID)
-go
-
 ALTER TABLE GPSFee ADD CONSTRAINT Refusers66 
     FOREIGN KEY (operatorID)
     REFERENCES users(userID)
+go
+
+ALTER TABLE GPSFee ADD CONSTRAINT Refvehicle65 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
 go
 
 
