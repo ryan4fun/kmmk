@@ -4,13 +4,12 @@
 
 <%
 String idstr = request.getParameter("vehicleId");
-if(idstr!=null && !idstr.equals("")){
-	out.print("无法找到该车辆！");
-	return;
-}
+Vehicle v = null;
 VehicleBean vb = new VehicleBean();
-vb.setVehicleId(Integer.parseInt(idstr));
-Vehicle v =  vb.findById();
+if(idstr!=null && !idstr.equals("")){
+	vb.setVehicleId(Integer.parseInt(idstr));
+	v = vb.findById();
+}
 if(v == null){
 	out.print("无法找到该车辆！");
 	return;

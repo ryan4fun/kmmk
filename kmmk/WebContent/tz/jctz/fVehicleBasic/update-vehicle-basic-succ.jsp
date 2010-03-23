@@ -17,7 +17,6 @@
 <script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
 
 <script language="JavaScript">
-	parent.parent.refreshTree();
 	function goedit(id){
 		href("view-vehicle-basic.jsp?vehicleId="+id);
 	}
