@@ -23,6 +23,7 @@ public class FVehicleBasicService extends AbstractService {
 //		feeNames.add("轮胎费");
 //		feeNames.add("初始罐检费");
 //		feeNames.add("营管费");
+//		feeNames.add("落户费");
 //		feeNames.add("初始养路费");
 //		
 //		feeNames.add("预付资金");
