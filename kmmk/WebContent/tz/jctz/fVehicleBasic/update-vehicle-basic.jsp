@@ -203,7 +203,7 @@ Util.setNull2DefaultValue(v);
 				</tr>
 				<tr>
  					<td width="20%" align="right">初始保险<input type="hidden" id="feeName" name="feeName" value="初始保险" /></td>
-					<td align="left" ><input type="text" id="engineNumber" name="engineNumber" value="" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
@@ -212,7 +212,7 @@ Util.setNull2DefaultValue(v);
 				</tr>
 				<tr>
  					<td width="20%" align="right">初始意外险<input type="hidden" id="feeName" name="feeName" value="初始意外险" /></td>
-					<td align="left" ><input type="text" id="engineNumber" name="engineNumber" value="" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
@@ -253,7 +253,7 @@ Util.setNull2DefaultValue(v);
 				</tr>
 				<tr>
  					<td width="20%" align="right">初始罐检费<input type="hidden" id="feeName" name="feeName" value="初始罐检费" /></td>
-					<td align="left" ><input type="text" id="engineNumber" name="engineNumber" value="" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
@@ -270,7 +270,7 @@ Util.setNull2DefaultValue(v);
 				</tr>
 				<tr>
  					<td width="20%" align="right">营管费<input type="hidden" id="feeName" name="feeName" value="营管费" /></td>
-					<td align="left" ><input type="text" id="engineNumber" name="engineNumber" value="" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
@@ -279,7 +279,7 @@ Util.setNull2DefaultValue(v);
 				</tr>
 				<tr>
  					<td width="20%" align="right">初始养路费<input type="hidden" id="feeName" name="feeName" value="初始养路费" /></td>
-					<td align="left" ><input type="text" id="engineNumber" name="engineNumber" value="" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
