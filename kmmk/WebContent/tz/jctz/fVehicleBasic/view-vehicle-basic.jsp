@@ -132,21 +132,21 @@ $(document).ready(function(){
 					Util.setNull2DefaultValue(fvb);
 					if( fvb.getFeeExpireDate()==null ){ %>
 				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%></td>
 					<td align="left" colspan="3" >
 					<% if( fvb.getFeeName().equals("备注") ){ %>
-						<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
+						<%=fvb.getComment()%>
 					<% } else { %>
-						<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" />
+						<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>
 					<% } %>
 					</td>
 				</tr>
 			<% 		} else { %>
 				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
-					<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" /></td>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%></td>
+					<td align="left" ><%=fvb.getAmount()==null?"":fvb.getAmount()==null%></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" ><%=Util.FormatDateShort(fvb.getFeeExpireDate())%></td>
 				</tr>
 			<% 		}
 				}
