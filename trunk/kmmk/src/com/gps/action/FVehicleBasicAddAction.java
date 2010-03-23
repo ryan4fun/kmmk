@@ -1,14 +1,11 @@
 package com.gps.action;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import com.gps.Message;
 import com.gps.orm.FVehicleBasic;
 import com.gps.orm.Vehicle;
 import com.gps.util.Util;
 
-public class VehicleBasicAddAction extends Action{
+public class FVehicleBasicAddAction extends Action{
 	@Override
 	public void doAction() throws Exception{
 		Vehicle v = getServiceLocator().getVehicleService().findById(getInteger("vehicleId"));
