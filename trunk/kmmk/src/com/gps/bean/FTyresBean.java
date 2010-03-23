@@ -31,6 +31,8 @@ public class FTyresBean extends AbstractBean {
 	private Double price;
 	private String operator;
 	
+	private String licensPadNumber;
+	
 	public FTyresBean(){
 	}
 			
@@ -48,6 +50,11 @@ public class FTyresBean extends AbstractBean {
 			if (this.vehicleId != null && vehicleId > 0){
 				crit.add(Restrictions.eq("v.vehicleId", vehicleId));
 				_crit.add(Restrictions.eq("v.vehicleId", vehicleId));
+			}
+			
+			if (this.licensPadNumber != null && licensPadNumber.length()>0){
+				crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
+				_crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
 			}
 			
 			crit.addOrder(Order.desc("occurDate"));
