@@ -27,9 +27,12 @@ public class VehicleBasicAddAction extends Action{
 					if(name!=null && !name.equals("")){
 						FVehicleBasic fvb = new FVehicleBasic();
 						fvb.setFeeName(name);
-						fvb.setAmount(Double.parseDouble(amounts[i]));
-						fvb.setFeeExpireDate(Util.parseDate(feeExpireDates[i]));
-						fvb.setComment(comments[i]);
+						if(amounts[i].length()>0)
+							fvb.setAmount(Double.parseDouble(amounts[i]));
+						if(feeExpireDates[i].length()>0)
+							fvb.setFeeExpireDate(Util.parseDate(feeExpireDates[i]));
+						if(comments[i].length()>0)
+							fvb.setComment(comments[i]);
 						fvb.setVehicle(v);
 						set.add(fvb);
 					}
