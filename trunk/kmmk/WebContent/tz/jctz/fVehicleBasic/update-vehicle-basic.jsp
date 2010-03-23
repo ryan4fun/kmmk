@@ -66,7 +66,7 @@ Util.setNull2DefaultValue(v);
 <div id="search-div">
 	<h3><a href="#">车辆信息</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="form1" action="#" method="post">		
+		<form id="form1" action="#" method="post">
 			<table cellSpacing="5" width="95%">
  				<tr>
  					<td width="20%" align="right">车牌号：</td>
@@ -150,24 +150,25 @@ Util.setNull2DefaultValue(v);
 			<table cellSpacing="5" width="95%">
 			<% if( v.getFVehicleBasics().size()>0 ){ 
 				for( FVehicleBasic fvb : v.getFVehicleBasics() ){
+					Util.setNull2DefaultValue(fvb);
 					if( fvb.getFeeExpireDate()==null ){ %>
 				<tr>
  					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" id="feeName" name="feeName" value="<%=fvb.getFeeName()%>" /></td>
 					<td align="left" colspan="3" >
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
-					<% if( fvb.getAmount()!=null ){ %>
-						<input type="text" id="amount" name="amount" value="<%=fvb.getAmount()%>" />
-						<input type="hidden" id="comment" name="comment" value="" />
-					<% } else { %>
+					<% if( fvb.getFeeName().equals("备注") ){ %>
 						<input type="hidden" id="amount" name="amount" value="" />
 						<textarea rows="3" id="comment" name="comment"><%=fvb.getComment()%></textarea>
+					<% } else { %>
+						<input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" />
+						<input type="hidden" id="comment" name="comment" value="" />
 					<% } %>
 					</td>
 				</tr>
 			<% 		} else { %>
 				<tr>
  					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" id="feeName" name="feeName" value="<%=fvb.getFeeName()%>" /></td>
-					<td align="left" ><input type="text" id="amount" name="amount" value="<%=fvb.getAmount()%>" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/>
