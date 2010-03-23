@@ -158,7 +158,9 @@ if(v == null){
 					<td align="left" colspan="3" >
 					<% if( fvb.getAmount()!=null ){ %>
 						<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" />
+						<input type="hidden" id="comment" name = "comment" value="" />
 					<% } else { %>
+						<input type="hidden" id="amount" name = "amount" value="" />
 						<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
 					<% } %>
 					</td>
@@ -168,76 +170,130 @@ if(v == null){
  					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
 					<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" /></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" >
+						<input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/>
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 			<% 		}
 				}
 			} else { %>
 				<tr>
- 					<td width="20%" align="right">总资产<input type="hidden" value="总资产" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">总资产<input type="hidden" id="feeName" value="总资产" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
  				<tr>
- 					<td width="20%" align="right">车款<input type="hidden" value="车款" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">车款<input type="hidden" id="feeName" value="车款" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">购置税<input type="hidden" value="购置税" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">购置税<input type="hidden" id="feeName" value="购置税" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">初始保险<input type="hidden" value="初始保险" /></td>
+ 					<td width="20%" align="right">初始保险<input type="hidden" id="feeName" value="初始保险" /></td>
 					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" >
+						<input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">初始意外险<input type="hidden" value="初始意外险" /></td>
+ 					<td width="20%" align="right">初始意外险<input type="hidden" id="feeName" value="初始意外险" /></td>
 					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" >
+						<input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">GPS设备安装费<input type="hidden" value="GPS设备安装费" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">GPS设备安装费<input type="hidden" id="feeName" value="GPS设备安装费" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">灯牌费<input type="hidden" value="灯牌费" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">灯牌费<input type="hidden" id="feeName" value="灯牌费" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">水箱费<input type="hidden" value="水箱费" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">水箱费<input type="hidden" id="feeName" value="水箱费" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">轮胎费<input type="hidden" value="轮胎费" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">轮胎费<input type="hidden" id="feeName" value="轮胎费" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">初始罐检费<input type="hidden" value="初始罐检费" /></td>
+ 					<td width="20%" align="right">初始罐检费<input type="hidden" id="feeName" value="初始罐检费" /></td>
 					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" >
+						<input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">落户费<input type="hidden" value="落户费" /></td>
-					<td align="left" colspan="3" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
+ 					<td width="20%" align="right">落户费<input type="hidden" id="feeName" value="落户费" /></td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">营管费<input type="hidden" value="营管费" /></td>
+ 					<td width="20%" align="right">营管费<input type="hidden" id="feeName" value="营管费" /></td>
 					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" >
+						<input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">初始养路费<input type="hidden" value="初始养路费" /></td>
+ 					<td width="20%" align="right">初始养路费<input type="hidden" id="feeName" value="初始养路费" /></td>
 					<td align="left" ><input type="text" id="engineNumber" name = "engineNumber" value="" /></td>
 					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/></td>
+					<td align="left" >
+						<input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
+						<input type="hidden" id="comment" name = "comment" value="" />
+					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">备注<input type="hidden" value="备注" /></td>
-					<td align="left" colspan="3" ><textarea rows="3" id="comment" name = "comment"></textarea></td>
+ 					<td width="20%" align="right">备注<input type="hidden" id="feeName" value="备注" /></td>
+ 					<td align="left" colspan="3" >
+						<input type="hidden" id="amount" name = "amount" value="" />
+						<input type="hidden" id="feeExpireDate" name = "feeExpireDate" value="" />
+						<textarea rows="3" id="comment" name = "comment"></textarea>
+					</td>
 				</tr>
 			<% } %>
 			</table>
