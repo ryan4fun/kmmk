@@ -129,21 +129,22 @@ $(document).ready(function(){
 		<form id="form2" action="mkgps.do" method="post">
 			<table cellSpacing="5" width="95%">
 			<% for( FVehicleBasic fvb : v.getFVehicleBasics() ){
+					Util.setNull2DefaultValue(fvb);
 					if( fvb.getFeeExpireDate()==null ){ %>
 				<tr>
  					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
 					<td align="left" colspan="3" >
-					<% if( fvb.getAmount()!=null ){ %>
-						<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" />
-					<% } else { %>
+					<% if( fvb.getFeeName().equals("备注") ){ %>
 						<textarea rows="3" id="comment" name = "comment"><%=fvb.getComment()%></textarea>
+					<% } else { %>
+						<input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" />
 					<% } %>
 					</td>
 				</tr>
 			<% 		} else { %>
 				<tr>
  					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" value="<%=fvb.getFeeName()%>" /></td>
-					<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()%>" /></td>
+					<td align="left" ><input type="text" id="amount" name = "amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" ><input type="text" id="feeExpireDate" name = "feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/></td>
 				</tr>
