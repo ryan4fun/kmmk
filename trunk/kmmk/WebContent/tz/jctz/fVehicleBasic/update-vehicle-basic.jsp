@@ -14,9 +14,9 @@ if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
-String actionName = "VehicleBasicAddAction";
+String actionName = "FVehicleBasicAddAction";
 if(v.getFVehicleBasics().size()>0)
-	actionName = "VehicleBasicUpdateAction";
+	actionName = "FVehicleBasicUpdateAction";
 Util.setNull2DefaultValue(v);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
