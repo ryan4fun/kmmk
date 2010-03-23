@@ -4,22 +4,21 @@
 
 <%
 String idstr = request.getParameter("vehicleId");
-Vehicle v = null;
-VehicleBean vb = new VehicleBean();
-String actionName = "VehicleBasicAddAction";
-if(idstr==null || idstr.equals("")){
-	v = new Vehicle();
-	Util.setNull2DefaultValue(v);
-} else {
-	vb.setVehicleId(Integer.parseInt(idstr));
-	v =  vb.findById();
-	Util.setNull2DefaultValue(v);
-	actionName = "VehicleBasicUpdateAction";
+if(idstr!=null && !idstr.equals("")){
+	out.print("无法找到该车辆！");
+	return;
 }
+VehicleBean vb = new VehicleBean();
+vb.setVehicleId(Integer.parseInt(idstr));
+Vehicle v =  vb.findById();
 if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
+String actionName = "VehicleBasicAddAction";
+if(v.getFVehicleBasics().size()>0)
+	actionName = "VehicleBasicUpdateAction";
+Util.setNull2DefaultValue(v);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -297,13 +296,13 @@ if(v == null){
 				</tr>
 			<% } %>
 			</table>
+			<p align="center">
+				<input type="submit" value="提交"/>
+				<input type="reset" value="重置"/>
+				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+			</p>
 		</form>
 	</div>
-	<p align="center">
-		<input type="submit" value="提交"/>
-		<input type="reset" value="重置"/>
-		<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
-	</p>
 </div>
 </body>
 </html>

@@ -11,7 +11,7 @@ import com.gps.util.Util;
 public class VehicleBasicAddAction extends Action{
 	@Override
 	public void doAction() throws Exception{
-		Vehicle v = getServiceLocator().getVehicleService().findById(getInteger("recID"));
+		Vehicle v = getServiceLocator().getVehicleService().findById(getInteger("vehicleId"));
 		if (v != null) {
 			String[] names = getArray("feeName");
 			String[] feeExpireDates = getArray("feeExpireDate");

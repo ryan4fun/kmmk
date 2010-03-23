@@ -13,7 +13,7 @@ import com.gps.util.Util;
 public class VehicleBasicUpdateAction extends Action{
 	@Override
 	public void doAction() throws Exception{
-		Vehicle v = getServiceLocator().getVehicleService().findById(getInteger("recID"));
+		Vehicle v = getServiceLocator().getVehicleService().findById(getInteger("vehicleId"));
 		if (v != null) {
 			Map<String, FVehicleBasic> map = new HashMap<String, FVehicleBasic>();
 			for(FVehicleBasic fvb : v.getFVehicleBasics()){
