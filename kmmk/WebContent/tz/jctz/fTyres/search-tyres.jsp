@@ -115,11 +115,14 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">轮胎品牌：</td>
-			<td align="left">
-				<input type="text" id="tyreName" name="tyreName" value="<%=ftb.getTyreName()%>" /></td>
+			<td align="left" colSpan="3">
+				<input type="text" id="tyreName" name="tyreName" value="<%=ftb.getTyreName()%>" /></td>			
+		</tr>
+		<tr>
 			<td width="20%" align="right">胎号：</td>
-			<td align="left">
-				<input type="text" id="tyreNo" name="tyreNo" value="<%=ftb.getTyreNo()%>" /></td>
+			<td align="left" colSpan="3">
+				<input type="text" id="tyreNo" name="tyreNo" value="<%=ftb.getTyreNo()%>" />
+			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">价格：</td>
