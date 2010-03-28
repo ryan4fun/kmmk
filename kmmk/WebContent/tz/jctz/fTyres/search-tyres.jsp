@@ -218,33 +218,35 @@ function delOrg(id){
 <% if(fts.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="10%">车牌号</th>
-		<th width="10%">轮胎品牌</th>
-		<th width="10%">胎号</th>
-		<th width="10%">装胎时间</th>
-		<th width="10%">报废时间</th>
-		<th width="10%">装胎里程</th>
-		<th width="10%">报废里程</th>
-		<th width="10%">使用时间</th>
-		<th width="10%">使用里程</th>
-		<th width="10%">操作</th>
+		<th width="9%">车牌号</th>
+		<th width="9%">轮胎品牌</th>
+		<th width="9%">胎号</th>
+		<th width="9%">价格</th>
+		<th width="9%">装胎时间</th>
+		<th width="9%">报废时间</th>
+		<th width="9%">装胎里程</th>
+		<th width="9%">报废里程</th>
+		<th width="9%">使用时间</th>
+		<th width="9%">使用里程</th>
+		<th width="9%">操作</th>
 	</tr>
 	<% for(FTyres ft:fts){ 
 		Util.setNull2DefaultValue(ft);%>
 	<tr>
-		<td id="p_<%=ft.getTyreId()%>" colspan="17">
+		<td id="p_<%=ft.getTyreId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getTyreName()%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getTyreNo()%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=Util.FormatDateShort(ft.getInstallDate())%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=Util.FormatDateShort(ft.getDisposeDate())%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getInstallDistanceRec()==null?"":ft.getInstallDistanceRec()+"公里"%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getDisposeDistanceRec()==null?"":ft.getDisposeDistanceRec()+"公里"%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getUsedPeriod()==null?"":ft.getUsedPeriod()+"月"%></a></td>
-					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getUsedDistance()==null?"":ft.getUsedDistance()+"公里"%></a></td>
-					<td width="10%">
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getTyreName()%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getTyreNo()%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getPrice()==null?"":ft.getPrice()%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=Util.FormatDateShort(ft.getInstallDate())%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=Util.FormatDateShort(ft.getDisposeDate())%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getInstallDistanceRec()==null?"":ft.getInstallDistanceRec()+"公里"%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getDisposeDistanceRec()==null?"":ft.getDisposeDistanceRec()+"公里"%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getUsedPeriod()==null?"":ft.getUsedPeriod()+"月"%></a></td>
+					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getUsedDistance()==null?"":ft.getUsedDistance()+"公里"%></a></td>
+					<td width="9%">
 						<a href="javascript:href('update-tyres.jsp?tyreId=<%=ft.getTyreId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=ft.getTyreId()%>')">删 除</a>
 					</td>
 				</tr>
