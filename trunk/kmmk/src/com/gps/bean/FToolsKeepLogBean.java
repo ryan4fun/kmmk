@@ -71,7 +71,7 @@ public class FToolsKeepLogBean extends AbstractBean {
 	}
 	
 	public FToolsKeepLog findById(){
-		if(toolId!=null && toolId.intValue()>0)
+		if(id!=null && id.intValue()>0)
 			return getServiceLocator().getFToolsKeepLogService().findById(id);
 		else
 			return new FToolsKeepLog();
