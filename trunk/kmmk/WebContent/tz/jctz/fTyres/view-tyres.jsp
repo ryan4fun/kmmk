@@ -5,13 +5,9 @@
 String idstr = request.getParameter("tyreId");
 FTyres f = null;
 FTyresBean ftb = new FTyresBean();
-String actionName = "FTyresAddAction";
-if(idstr==null || idstr.equals("")){
-	f = new FTyres();
-} else {
+if(idstr!=null && !idstr.equals("")){
 	ftb.setTyreId(Integer.parseInt(idstr));
 	f =  ftb.findById();
-	actionName = "FTyresUpdateAction";
 }
 if(f == null){
 	out.print("无法找到该轮胎使用台帐！");
