@@ -102,10 +102,6 @@ $(document).ready(function(){
 					<td align="left"><%=%></td>
 				</tr>
 				--%>
-				<tr>
- 					<td width="20%" align="right">单胎成本：</td>
-					<td align="left"><%=f.getPrice()==null?"":f.getPrice()%></td>
-				</tr>
 			</table>
 			<p align="center">
 				<input type="button" style="width:100px;" value="修改轮胎使用台帐" onclick="javascript:href('update-tyres.jsp?tyreId=<%=f.getTyreId()%>')"/>

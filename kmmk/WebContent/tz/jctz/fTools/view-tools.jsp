@@ -6,7 +6,7 @@ String idstr = request.getParameter("toolId");
 FTools f = null;
 FToolsBean ftb = new FToolsBean();
 if(idstr!=null && !idstr.equals("")){
-	ftb.setTyreId(Integer.parseInt(idstr));
+	ftb.setToolId(Integer.parseInt(idstr));
 	f =  ftb.findById();
 }
 if(f == null){
@@ -49,66 +49,20 @@ $(document).ready(function(){
 		<form id="inputform" action="#" method="post">		
 			<table cellSpacing="5" width="95%">
  				<tr>
- 					<td width="20%" align="right">装胎车辆：</td>
+ 					<td width="20%" align="right">所属车辆：</td>
 					<td align="left"><%=f.getVehicle().getLicensPadNumber()%></td>
 				</tr>
  				<tr>
- 					<td width="20%" align="right">轮胎品牌：</td>
-					<td align="left"><%=f.getTyreName()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">胎号：</td>
-					<td align="left"><%=f.getTyreNo()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">价格：</td>
-					<td align="left"><%=f.getPrice()==null?"":f.getPrice()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">装胎时间：</td>
- 					<td align="left"><%=Util.FormatDateShort(f.getInstallDate())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">报废时间：</td>
-					<td align="left"><%=Util.FormatDateShort(f.getDisposeDate())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">装胎里程（公里）：</td>
-					<td align="left"><%=f.getInstallDistanceRec()==null?"":f.getInstallDistanceRec()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">报废里程（卸胎里程）：</td>
-					<td align="left"><%=f.getDisposeDistanceRec()==null?"":f.getDisposeDistanceRec()%></td>
+ 					<td width="20%" align="right">工具名称：</td>
+					<td align="left"><%=f.getToolName()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">备注：</td>
 					<td align="left"><%=f.getComment()%></td>
 				</tr>
-				<tr>
- 					<td width="20%" align="right">使用时间：</td>
-					<td align="left"><%=f.getUsedPeriod()==null?"":f.getUsedPeriod()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">使用里程：</td>
-					<td align="left"><%=f.getUsedDistance()==null?"":f.getUsedDistance()%></td>
-				</tr>
-				<%--
-				<tr>
- 					<td width="20%" align="right">平均每公里轮胎损耗成本：</td>
-					<td align="left"><%=%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">平均每月轮胎损耗成本：</td>
-					<td align="left"><%=%></td>
-				</tr>
-				--%>
-				<tr>
- 					<td width="20%" align="right">单胎成本：</td>
-					<td align="left"><%=f.getPrice()==null?"":f.getPrice()%></td>
-				</tr>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="修改轮胎使用台帐" onclick="javascript:href('update-tools.jsp?toolId=<%=f.getToolId()%>')"/>
+				<input type="button" style="width:100px;" value="修改随车工具" onclick="javascript:href('update-tools.jsp?toolId=<%=f.getToolId()%>')"/>
 				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
 			</p>
 		</form>

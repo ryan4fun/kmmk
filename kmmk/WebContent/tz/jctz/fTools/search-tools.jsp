@@ -38,7 +38,7 @@ $(document).ready(function(){
 	});
 	
 	<%if(fts!=null && fts.size()>0){%>
-	$("#__pagination").pagination(
+		$("#__pagination").pagination(
 			<%=ftb.getMaxRecord()%>,
 			{
 				current_page:<%=ftb.getPageNumber()%>,
