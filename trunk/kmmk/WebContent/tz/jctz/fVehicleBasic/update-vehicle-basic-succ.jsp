@@ -19,11 +19,7 @@
 <script language="JavaScript">
 	function goedit(id){
 		href("view-vehicle-basic.jsp?vehicleId="+id);
-	}
-
-	function golist(){
-		href("search-vehicle-basic.jsp");
-	}
+	}	
 </script>
 </head>
 <body>
@@ -31,7 +27,6 @@
 <p align="center">增改车辆基础台帐表成功</p><br />
 <p align="center">
 <input type="button" value="跳转到该车辆基础台帐表" onclick="goedit('<%=recID %>')" /> 
-<input type="button" value="跳转到列表" onclick="golist()" />
 </p>	
 </div>
 </body>
