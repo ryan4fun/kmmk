@@ -133,16 +133,16 @@ function pageSelectCallback(pageNumber){
 <% if(vs.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="10%">车牌号</th>
-		<th width="10%">自编号</th>
-		<th width="10%">车主</th>
-		<th width="10%">车型</th>
-		<th width="10%">核载</th>
-		<th width="10%">登记日期</th>
-		<th width="10%">发证日期</th>
-		<th width="10%">年检状态</th>
-		<th width="10%">二级维护到期时间</th>
-		<th width="10%">操作</th>
+		<th width="8%">车牌号</th>
+		<th width="8%">自编号</th>
+		<th width="8%">车主</th>
+		<th width="8%">车型</th>
+		<th width="8%">核载</th>
+		<th width="12%">登记日期</th>
+		<th width="12%">发证日期</th>
+		<th width="8%">年检状态</th>
+		<th width="12%">二级维护到期时间</th>
+		<th width="14%">操作</th>
 	</tr>
 	<% for(Vehicle v:vs){ 
 		Util.setNull2DefaultValue(v);%>
@@ -150,22 +150,24 @@ function pageSelectCallback(pageNumber){
 		<td id="p_<%=v.getVehicleId()%>" colspan="10">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
-					<td width="10%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-					<td width="10%">
+					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
+					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
+					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
+					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
+					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
+					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
+					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
+					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
+					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
+					<td width="16%">
+					<!-- 
 						<% if(v.getFVehicleBasics().size()>0){ %>
 							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
 						<% } else {%>
-							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">新增车辆基础台帐</a>
+							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">补全车辆基础台帐</a>
 						<% } %>
-					</td>
+					 -->
+					</td>					
 				</tr>
 			</table>
 		</td>
