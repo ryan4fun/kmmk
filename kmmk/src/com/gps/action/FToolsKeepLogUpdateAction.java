@@ -14,7 +14,7 @@ public class FToolsKeepLogUpdateAction extends Action{
 		if(ft == null)
 			throw new Message("无法找到该工具!");
 		
-		generateAllSimpleProp(ft);
+		generateAllSimpleProp(ftkl);
 		ftkl.setFTools(ft);
 		getServiceLocator().getFToolsKeepLogService().updateFToolsKeepLog(ftkl);
 		request.setAttribute("toolId", String.valueOf(ft.getToolId()));
