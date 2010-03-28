@@ -23,7 +23,7 @@ Util.setNull2DefaultValue(ftb);
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.pagination.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
 
 <style type="text/css">
 </style>
@@ -53,28 +53,28 @@ $(document).ready(function(){
 	$("#form1").validate({
 		rules: {
 			installDistanceRecStart: {
-				digits: true
+				number: true
 			},
 			installDistanceRecEnd: {
-				digits: true
+				number: true
 			},
 			disposeDistanceRecStart: {
-				digits: true
+				number: true
 			},
 			disposeDistanceRecEnd: {
-				digits: true
+				number: true
 			},
 			usedPeriodStart: {
-				digits: true
+				number: true
 			},
 			usedPeriodEnd: {
-				digits: true
+				number: true
 			},
 			usedDistanceStart: {
-				digits: true
+				number: true
 			},
 			usedDistanceEnd: {
-				digits: true
+				number: true
 			},
 			priceStart: {
 				number: true
