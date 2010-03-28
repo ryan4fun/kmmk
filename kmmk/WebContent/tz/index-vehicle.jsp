@@ -75,7 +75,7 @@ Util.setNull2DefaultValue(v);
 	<li><a href="#tabs-8"><span>统计报表</span></a></li>
 </ul>
 <div id="tabs-0">
-<iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr%>" ></iframe>
+<iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp?vehicleId=<%=idstr%>" ></iframe>
 </div>
 <div id="tabs-1">
 <iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr%>&queryType=1" ></iframe>
