@@ -22,7 +22,7 @@ public class FGasfeeService extends AbstractService {
 		}
 	}
 	
-	public void deleteFTools(FGasfee o){		
+	public void deleteFGasFee(FGasfee o){		
 		try {
 			beginTransaction();
 			getDAOLocator().getFGasfeeHome().delete(o);
@@ -58,6 +58,11 @@ public class FGasfeeService extends AbstractService {
 			logger.error(e);
 			throw e;
 		}
+	}
+
+	public FGasfee findByVehicleId(int vehicleId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
