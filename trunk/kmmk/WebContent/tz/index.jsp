@@ -98,7 +98,7 @@
 	<tr>
 		<td id="main-td" style="border:1px solid gray;border-top-width:0px;">
 			<div style="position:relative;">
-				<iframe id="main-frame" name="main" frameborder="0" scrolling="no" style="width:100%;height:100%" src="" />
+				<iframe id="main-frame" name="main" frameborder="0" scrolling="no" style="width:100%;height:100%" src="jctz/fVehicleBasic/search-vehicle-basic.jsp" />
 			</div>
 		</td>
 	</tr>
