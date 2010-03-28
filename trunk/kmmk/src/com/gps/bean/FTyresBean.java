@@ -38,6 +38,8 @@ public class FTyresBean extends AbstractBean {
 	private Double installDistanceRecEnd;
 	private Double disposeDistanceRecStart;
 	private Double disposeDistanceRecEnd;
+	private Double usedPeriodStart;
+	private Double usedPeriodEnd;
 	private Double usedDistanceStart;
 	private Double usedDistanceEnd;
 	
@@ -108,6 +110,16 @@ public class FTyresBean extends AbstractBean {
 			if (this.disposeDistanceRecEnd != null){
 				crit.add(Restrictions.le("disposeDistanceRec", this.disposeDistanceRecEnd));
 				_crit.add(Restrictions.le("disposeDistanceRec", this.disposeDistanceRecEnd));
+			}
+			
+			if (this.usedPeriodStart != null){
+				crit.add(Restrictions.ge("usedPeriod", this.usedPeriodStart));
+				_crit.add(Restrictions.ge("usedPeriod", this.usedPeriodStart));
+			}
+				
+			if (this.usedPeriodEnd != null){
+				crit.add(Restrictions.le("usedPeriod", this.usedPeriodEnd));
+				_crit.add(Restrictions.le("usedPeriod", this.usedPeriodEnd));
 			}
 			
 			if (this.usedDistanceStart != null){
@@ -313,6 +325,22 @@ public class FTyresBean extends AbstractBean {
 
 	public void setUsedDistanceEnd(Double usedDistanceEnd) {
 		this.usedDistanceEnd = usedDistanceEnd;
+	}
+
+	public Double getUsedPeriodStart() {
+		return usedPeriodStart;
+	}
+
+	public void setUsedPeriodStart(Double usedPeriodStart) {
+		this.usedPeriodStart = usedPeriodStart;
+	}
+
+	public Double getUsedPeriodEnd() {
+		return usedPeriodEnd;
+	}
+
+	public void setUsedPeriodEnd(Double usedPeriodEnd) {
+		this.usedPeriodEnd = usedPeriodEnd;
 	}
 	
 }
