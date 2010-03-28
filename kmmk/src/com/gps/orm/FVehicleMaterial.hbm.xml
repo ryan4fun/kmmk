@@ -29,7 +29,7 @@
         <property name="comment" type="string">
             <column name="comment" length="200" />
         </property>
-        <set name="FMaterialKeepLogs" inverse="true" cascade="all-delete-orphan">
+        <set name="FMaterialKeepLogs" inverse="true" cascade="all-delete-orphan" order-by="occurDate desc">
             <key>
                 <column name="materialId" />
             </key>
