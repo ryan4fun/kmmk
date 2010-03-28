@@ -30,7 +30,7 @@
 <div id="success">
 <p align="center">增改随车工具保管领用表成功</p><br />
 <p align="center">
-<input type="button" value="跳转到该随车工具保管领用表" onclick="goedit('<%=recID %>')" /> 
+<input type="button" value="跳转到该随车工具" onclick="goedit('<%=recID %>')" /> 
 <input type="button" value="跳转到列表" onclick="golist()" />
 </p>	
 </div>
