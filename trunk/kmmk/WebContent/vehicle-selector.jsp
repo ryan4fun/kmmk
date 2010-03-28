@@ -23,6 +23,8 @@ if( !_login.isTz() ){
 	} else {
 		_obs = _ob.getList();
 	}
+} else {
+	_obs = _ob.getList();
 }
 
 boolean vehicle_select = true;
