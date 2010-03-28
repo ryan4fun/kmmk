@@ -85,12 +85,12 @@ Util.setNull2DefaultValue(f);
 	<div style="padding:2px;overflow:visible">
 		<form id="form1" action="mkgps.do" method="post">
 			<input type="hidden" name = "action" value="<%=actionName%>"/>
-			<input type="hidden" name = "success" value="update-vehicle-basic-succ.jsp"/>
-			<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>
+			<input type="hidden" name = "success" value="update-tyres-succ.jsp"/>
+			<input type="hidden" name = "failed" value="update-tyres-faild.jsp"/>
 			<input type="hidden" name = "tyreId" value="<%=f.getTyreId()%>"/>
 				<table cellSpacing="5" width="95%">
  				<tr>
- 					<td width="20%" align="right">轮胎品牌名称：</td>
+ 					<td width="20%" align="right">轮胎品牌：</td>
 					<td align="left"><input type="text" id="tyreName" name="tyreName" value="<%=f.getTyreName()%>" /></td>
 				</tr>
 				<tr>
