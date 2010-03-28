@@ -127,7 +127,7 @@ function delOrg(id){
 					<td width="20%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=Util.FormatDateShort(ft.getLastChangeDate())%></a></td>
 					<td width="20%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getLastKeeper()==null?"":ft.getLastKeeper()%></a></td>
 					<td width="20%">
-						<a href="javascript:href('update-tools.jsp?toolId=<%=ft.getToolId()%>')">修改随车工具</a> | <a href="javascript:delOrg('<%=ft.getToolId()%>')">删 除</a>
+						<a href="javascript:href('update-tools-keep-log.jsp?toolId=<%=ft.getToolId()%>')">交接随车工具</a> | <a href="javascript:href('update-tools.jsp?toolId=<%=ft.getToolId()%>')">修改随车工具</a> | <a href="javascript:delOrg('<%=ft.getToolId()%>')">删 除</a>
 					</td>
 				</tr>
 			</table>
