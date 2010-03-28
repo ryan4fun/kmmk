@@ -234,5 +234,85 @@ public class FTyresBean extends AbstractBean {
 	public void setLicensPadNumber(String licensPadNumber) {
 		this.licensPadNumber = licensPadNumber;
 	}
+
+	public Date getInstallDateStart() {
+		return installDateStart;
+	}
+
+	public void setInstallDateStart(Date installDateStart) {
+		this.installDateStart = installDateStart;
+	}
+
+	public Date getInstallDateEnd() {
+		return installDateEnd;
+	}
+
+	public void setInstallDateEnd(Date installDateEnd) {
+		this.installDateEnd = installDateEnd;
+	}
+
+	public Date getDisposeDateStart() {
+		return disposeDateStart;
+	}
+
+	public void setDisposeDateStart(Date disposeDateStart) {
+		this.disposeDateStart = disposeDateStart;
+	}
+
+	public Date getDisposeDateEnd() {
+		return disposeDateEnd;
+	}
+
+	public void setDisposeDateEnd(Date disposeDateEnd) {
+		this.disposeDateEnd = disposeDateEnd;
+	}
+
+	public Double getInstallDistanceRecStart() {
+		return installDistanceRecStart;
+	}
+
+	public void setInstallDistanceRecStart(Double installDistanceRecStart) {
+		this.installDistanceRecStart = installDistanceRecStart;
+	}
+
+	public Double getInstallDistanceRecEnd() {
+		return installDistanceRecEnd;
+	}
+
+	public void setInstallDistanceRecEnd(Double installDistanceRecEnd) {
+		this.installDistanceRecEnd = installDistanceRecEnd;
+	}
+
+	public Double getDisposeDistanceRecStart() {
+		return disposeDistanceRecStart;
+	}
+
+	public void setDisposeDistanceRecStart(Double disposeDistanceRecStart) {
+		this.disposeDistanceRecStart = disposeDistanceRecStart;
+	}
+
+	public Double getDisposeDistanceRecEnd() {
+		return disposeDistanceRecEnd;
+	}
+
+	public void setDisposeDistanceRecEnd(Double disposeDistanceRecEnd) {
+		this.disposeDistanceRecEnd = disposeDistanceRecEnd;
+	}
+
+	public Double getUsedDistanceStart() {
+		return usedDistanceStart;
+	}
+
+	public void setUsedDistanceStart(Double usedDistanceStart) {
+		this.usedDistanceStart = usedDistanceStart;
+	}
+
+	public Double getUsedDistanceEnd() {
+		return usedDistanceEnd;
+	}
+
+	public void setUsedDistanceEnd(Double usedDistanceEnd) {
+		this.usedDistanceEnd = usedDistanceEnd;
+	}
 	
 }
