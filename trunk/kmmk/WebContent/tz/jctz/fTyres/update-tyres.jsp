@@ -95,7 +95,11 @@ Util.setNull2DefaultValue(f);
 			<table cellSpacing="5" width="95%">
 				<tr>
  					<td width="20%" align="right">装胎车辆：</td>
-					<td align="left"><jsp:include page="/vehicle-selector.jsp" /></td>
+					<td align="left">
+						<jsp:include page="/vehicle-selector.jsp" >
+							<jsp:param name="vehicleId" value="<%=f.getVehicle().getVehicleId()%>"/>
+						</jsp:include>
+					</td>
 				</tr>
  				<tr>
  					<td width="20%" align="right">轮胎品牌：</td>
