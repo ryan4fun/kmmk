@@ -52,28 +52,28 @@ $(document).ready(function(){
 
 	$("#form1").validate({
 		installDistanceRecStart: {
-			digit: true
+			digits: true
 		},
 		installDistanceRecEnd: {
-			digit: true
+			digits: true
 		},
 		disposeDistanceRecStart: {
-			digit: true
+			digits: true
 		},
 		disposeDistanceRecEnd: {
-			digit: true
+			digits: true
 		},
 		usedPeriodStart: {
-			digit: true
+			digits: true
 		},
 		usedPeriodEnd: {
-			digit: true
+			digits: true
 		},
 		usedDistanceStart: {
-			digit: true
+			digits: true
 		},
 		usedDistanceEnd: {
-			digit: true
+			digits: true
 		}
 	});
 });
