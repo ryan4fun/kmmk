@@ -21,3 +21,9 @@
 
 8.Vehicle.hbm.xml 对 FVehicleBasics 按照 ID 进行排序：
 <set name="FVehicleBasics" inverse="true" cascade="all-delete-orphan" order-by="ID">
+
+9.FTools.hbm.xml 对 FToolsKeepLogs 按照 occurDate 进行降序排序：
+<set name="FToolsKeepLogs" inverse="true" cascade="all-delete-orphan" order-by="occurDate desc">
+
+10.FVehicleMaterial.hbm.xml 对 FMaterialKeepLogs 按照 occurDate 进行降序排序：
+<set name="FMaterialKeepLogs" inverse="true" cascade="all-delete-orphan" order-by="occurDate desc">
