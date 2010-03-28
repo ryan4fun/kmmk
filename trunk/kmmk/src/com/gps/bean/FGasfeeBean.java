@@ -12,6 +12,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.FGasfee;
+import com.gps.orm.FVehicleBasic;
+import com.gps.orm.Vehicle;
 
 import com.gps.orm.HibernateUtil;
 
@@ -94,6 +96,18 @@ public class FGasfeeBean extends AbstractBean {
 		}
 	}
 
+	
+	public FGasfee findById(){
+		if(id >0)
+			return getServiceLocator().getFGasfeeService().findById(id);
+		else
+			return new FGasfee();
+	}
+	
+	public static FGasfee findById(int vehicleId){
+		return getServiceLocator().getFGasfeeService().findByVehicleId(vehicleId);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
