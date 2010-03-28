@@ -59,7 +59,7 @@ function pageSelectCallback(pageNumber){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('TyresDelAction',id);
+			delSingleRec('FToolsDelAction',id);
 		}
 	});
 }

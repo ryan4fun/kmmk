@@ -3,7 +3,7 @@
 <%@ include file="/tz/header.jsp"%>
 
 <%
-String actionName = "FToolsAddAction";
+String actionName = "FToolsKeepLogAddAction";
 String idstr = request.getParameter("id");
 FToolsKeepLog ftkl = null;
 if(idstr==null || idstr.equals("")){
@@ -14,18 +14,12 @@ if(idstr==null || idstr.equals("")){
 		ftb.setToolId(Integer.parseInt(idstr));
 		f =  ftb.findById();
 		if(f!=null){
-			 Set<FToolsKeepLog> set = f.getFToolsKeepLogs();
-			 if(set.size()>0){
-				actionName = "FToolsUpdateAction";
-				ftkl = f.getFToolsKeepLogs().iterator().next();
-			 } else {
-				ftkl = new FToolsKeepLog();
-				ftkl.setFTools(f);
-			 }
+			ftkl = new FToolsKeepLog();
+			ftkl.setFTools(f);
 		}
 	}
 } else {
-	actionName = "FToolsUpdateAction";
+	actionName = "FToolsKeepLogUpdateAction";
 	FToolsKeepLogBean ftklb = new FToolsKeepLogBean();
 	ftklb.setId(Integer.parseInt(idstr));
 	ftkl =  ftklb.findById();
@@ -66,12 +60,13 @@ Util.setNull2DefaultValue(ftkl);
 			}
 		});
 
-		initVehicleSelector();
-		
    		$("#form1").validate({
 			rules: {
-   				toolName: {
+   				keeper: {
    					required: true
+				},
+				occurDate: {
+					required: true
 				}
 			},
 			messages: {
@@ -91,6 +86,7 @@ Util.setNull2DefaultValue(ftkl);
 			<input type="hidden" name = "success" value="update-tools-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-tools-faild.jsp"/>
 			<input type="hidden" name = "toolId" value="<%=ftkl.getFTools().getToolId()%>"/>
+			<input type="hidden" name = "id" value="<%=ftkl.getId()%>"/>
 			<table cellSpacing="5" width="95%">
 				<tr>
  					<td width="20%" align="right">领用人：</td>

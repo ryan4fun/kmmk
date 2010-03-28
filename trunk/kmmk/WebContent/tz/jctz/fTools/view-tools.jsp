@@ -10,7 +10,7 @@ if(idstr!=null && !idstr.equals("")){
 	f =  ftb.findById();
 }
 if(f == null){
-	out.print("无法找到该轮胎使用台帐！");
+	out.print("无法找到该随车工具保管领用表！");
 	return;
 }
 Util.setNull2DefaultValue(f);
@@ -40,6 +40,14 @@ $(document).ready(function(){
 		}
 	});
 });
+
+function delOrg(id){
+	jConfirm("确定要删除吗？", "警告", function(r){			
+		if(r){
+			delSingleRec('FToolsKeepLogDelAction',id);
+		}
+	});
+}
 </script>
 </head>
 <body style="background:transparent;">
