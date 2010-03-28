@@ -65,10 +65,10 @@ Util.setNull2DefaultValue(f);
 				},
 				installDistanceRec: {
    					required: true,
-					number: true
+   					digit: true
 				},
 				disposeDistanceRec: {
-					number: true
+					digit: true
 				}
 			},
 			messages: {
@@ -106,7 +106,7 @@ Util.setNull2DefaultValue(f);
 					<td align="left"><input type="text" id="disposeDate" name="disposeDate" value="<%=Util.FormatDateShort(f.getDisposeDate())%>" onclick="WdatePicker()" /></td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">装胎里程：</td>
+ 					<td width="20%" align="right">装胎里程（公里）：</td>
 					<td align="left"><input type="text" id="installDistanceRec" name="installDistanceRec" value="<%=f.getInstallDistanceRec()==null?"":f.getInstallDistanceRec()%>" /></td>
 				</tr>
 				<tr>
