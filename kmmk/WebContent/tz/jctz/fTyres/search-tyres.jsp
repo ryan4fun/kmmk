@@ -49,7 +49,33 @@ $(document).ready(function(){
 			}
 		);
 	<%}%>
-	
+
+	$("#form1").validate({
+		installDistanceRecStart: {
+			digit: true
+		},
+		installDistanceRecEnd: {
+			digit: true
+		},
+		disposeDistanceRecStart: {
+			digit: true
+		},
+		disposeDistanceRecEnd: {
+			digit: true
+		},
+		usedPeriodStart: {
+			digit: true
+		},
+		usedPeriodEnd: {
+			digit: true
+		},
+		usedDistanceStart: {
+			digit: true
+		},
+		usedDistanceEnd: {
+			digit: true
+		}
+	});
 });
 
 function pageSelectCallback(pageNumber){
@@ -70,7 +96,7 @@ function delOrg(id){
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="inputform" action="search-vehicle-basic.jsp" method="post">
+<form id="form1" action="search-tyres.jsp" method="post">
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
@@ -109,51 +135,51 @@ function delOrg(id){
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">装胎里程：</td>
+			<td width="20%" align="right">装胎里程（公里）：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
-					id=""installDistanceRecStart"" name="installDistanceRecStart" 
-					value="<%=ftb.getInstallDistanceRecStart()%>" />
+					id="installDistanceRecStart" name="installDistanceRecStart" 
+					value="<%=ftb.getInstallDistanceRecStart()==null?"":ftb.getInstallDistanceRecStart()%>" />
 				至
 				<input type="text"
 					id="installDistanceRecEnd" name="installDistanceRecEnd" 
-					value="<%=ftb.getInstallDistanceRecEnd()%>" />
+					value="<%=ftb.getInstallDistanceRecEnd()==null?"":ftb.getInstallDistanceRecEnd()%>" />
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">报废里程：</td>
+			<td width="20%" align="right">报废里程（公里）：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
 					id="disposeDistanceRecStart" name="disposeDistanceRecStart" 
-					value="<%=ftb.getDisposeDistanceRecStart()%>" />
+					value="<%=ftb.getDisposeDistanceRecStart()==null?"":ftb.getDisposeDistanceRecStart()%>" />
 				至
 				<input type="text"
 					id="disposeDistanceRecEnd" name="disposeDistanceRecEnd" 
-					value="<%=ftb.getDisposeDistanceRecEnd()%>" />
+					value="<%=ftb.getDisposeDistanceRecEnd()==null?"":ftb.getDisposeDistanceRecEnd()%>" />
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">使用时间：</td>
+			<td width="20%" align="right">使用时间（月）：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
 					id="usedPeriodStart" name="usedPeriodStart" 
-					value="<%=ftb.getUsedPeriodStart()%>" />
+					value="<%=ftb.getUsedPeriodStart()==null?"":ftb.getUsedPeriodStart()%>" />
 				至
 				<input type="text"
 					id="usedPeriodEnd" name="usedPeriodEnd" 
-					value="<%=ftb.getUsedPeriodEnd()%>" />
+					value="<%=ftb.getUsedPeriodEnd()==null?"":ftb.getUsedPeriodEnd()%>" />
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">使用里程：</td>
+			<td width="20%" align="right">使用里程（公里）：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
 					id="usedDistanceStart" name="usedDistanceStart" 
-					value="<%=ftb.getUsedDistanceStart()%>" />
+					value="<%=ftb.getUsedDistanceStart()==null?"":ftb.getUsedDistanceStart()%>" />
 				至
 				<input type="text"
 					id="usedDistanceEnd" name="usedDistanceEnd" 
-					value="<%=ftb.getUsedDistanceEnd()%>" />
+					value="<%=ftb.getUsedDistanceEnd()==null?"":ftb.getUsedDistanceEnd()%>" />
 			</td>
 		</tr>
 	</table>
@@ -161,8 +187,8 @@ function delOrg(id){
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=ftb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=ftb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp')"/>
-	<input type="reset" style="width: 100px;" value="重   置" /></p>
+		<input type="button" value="查询所有" onclick="javascript:href('search-tyres.jsp')"/>
+		<input type="reset" style="width: 100px;" value="重   置" /></p>
 </form>
 </div>
 </div>
@@ -178,9 +204,9 @@ function delOrg(id){
 		<td id="p_<%=ft.getTyreId()%>" colspan="17">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=ft.getVehicle().getLicensPadNumber()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="10%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getVehicle().getLicensPadNumber()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
 					<td width="10%">
-						<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=ft.getTyreId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=ft.getTyreId()%>')">删 除</a>
+						<a href="javascript:href('update-tyres.jsp?tyreId=<%=ft.getTyreId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=ft.getTyreId()%>')">删 除</a>
 					</td>
 				</tr>
 			</table>
