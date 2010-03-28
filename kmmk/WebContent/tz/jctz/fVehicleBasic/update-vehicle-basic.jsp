@@ -85,7 +85,7 @@ Util.setNull2DefaultValue(v);
 						<input type="hidden" id="amount" name="amount" value="" />
 						<textarea rows="3" id="comment" name="comment"><%=fvb.getComment()%></textarea>
 					<% } else { %>
-						<input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" />
+						<input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()%>" />
 						<input type="hidden" id="comment" name="comment" value="" />
 					<% } %>
 					</td>
@@ -93,7 +93,7 @@ Util.setNull2DefaultValue(v);
 			<% 		} else { %>
 				<tr>
  					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" id="feeName" name="feeName" value="<%=fvb.getFeeName()%>" /></td>
-					<td align="left" ><input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()==null%>" /></td>
+					<td align="left" ><input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()%>" /></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
 						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/>
