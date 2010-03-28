@@ -78,12 +78,29 @@ Util.setNull2DefaultValue(v);
 <iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp?vehicleId=<%=idstr%>" ></iframe>
 </div>
 <div id="tabs-1">
-<iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr%>&queryType=1" ></iframe>
+<iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr%>" ></iframe>
 </div>
 <div id="tabs-2">
-<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/search-vehicle-trace.jsp?vehicleId=<%=idstr%>&queryType=2" ></iframe>
+<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
 </div>
-
+<div id="tabs-3">
+<iframe id="main-frame-3" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+</div>
+<div id="tabs-4">
+<iframe id="main-frame-4" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTyres/search-tyres.jsp?vehicleId=<%=idstr%>" ></iframe>
+</div>
+<div id="tabs-5">
+<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+</div>
+<div id="tabs-6">
+<iframe id="main-frame-6" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+</div>
+<div id="tabs-7">
+<iframe id="main-frame-7" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+</div>
+<div id="tabs-8">
+<iframe id="main-frame-8" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+</div>
 </div>
 </body>
 </html>
