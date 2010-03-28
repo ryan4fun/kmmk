@@ -4,22 +4,21 @@
 
 <%
 String idstr = request.getParameter("tyreId");
-FTyres v = null;
+FTyres f = null;
 FTyresBean ftb = new FTyresBean();
 String actionName = "FTyresBasicAddAction";
 if(idstr==null || idstr.equals("")){
-	t = new FTyres();
-	Util.setNull2DefaultValue(v);
+	f = new FTyres();
 } else {
-	ftb.setFTyresId(Integer.parseInt(idstr));
+	ftb.setTyreId(Integer.parseInt(idstr));
 	f =  ftb.findById();
-	Util.setNull2DefaultValue(v);
 	actionName = "FTyresBasicUpdateAction";
 }
 if(f == null){
 	out.print("无法找到该轮胎使用台帐！");
 	return;
 }
+Util.setNull2DefaultValue(f);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -34,10 +33,10 @@ if(f == null){
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.validate.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.pagination.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
 
 <style type="text/css">
 
@@ -55,7 +54,22 @@ if(f == null){
 		
    		$("#form1").validate({
 			rules: {
-			
+   				tyreNo: {
+   					required: true
+				},
+				tyreName: {
+   					required: true
+				},
+				installDate: {
+   					required: true
+				},
+				installDistanceRec: {
+   					required: true,
+					number: true
+				},
+				disposeDistanceRec: {
+					number: true
+				}
 			},
 			messages: {
 
@@ -64,6 +78,8 @@ if(f == null){
 	});
 </script>
 </head>
+
+<body style="background:transparent;">
 <div id="search-div">
 	<h3><a href="#">修改轮胎使用台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
@@ -71,72 +87,58 @@ if(f == null){
 			<input type="hidden" name = "action" value="<%=actionName%>"/>
 			<input type="hidden" name = "success" value="update-vehicle-basic-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>
-			<input type="hidden" name = "vehicleId" value="<%=v.getVehicleId()%>"/>
+			<input type="hidden" name = "tyreId" value="<%=f.getTyreId()%>"/>
 				<table cellSpacing="5" width="95%">
  				<tr>
  					<td width="20%" align="right">轮胎品牌名称：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id="tyreName" name="tyreName" value="<%=f.getTyreName()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">胎号：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id="tyreNo" name="tyreNo" value="<%=f.getTyreNo()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">装胎时间：</td>
-					<td align="left"><%=Util.FormatDateShort(t.)%></td>
+ 					<td align="left"><input type="text" id="installDate" name="installDate" value="<%=Util.FormatDateShort(f.getInstallDate())%>" onclick="WdatePicker()" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">报废时间：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id="disposeDate" name="disposeDate" value="<%=Util.FormatDateShort(f.getDisposeDate())%>" onclick="WdatePicker()" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">装胎里程：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id="installDistanceRec" name="installDistanceRec" value="<%=f.getInstallDistanceRec()==null?"":f.getInstallDistanceRec()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">报废里程（卸胎里程）：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id="disposeDistanceRec" name="disposeDistanceRec" value="<%=f.getDisposeDistanceRec()==null?"":f.getDisposeDistanceRec()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">备注：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><textarea rows="3" id="comment" name="comment"><%=f.getComment()%></textarea></td>
 				</tr>
+				<%--
 				<tr>
  					<td width="20%" align="right">使用时间：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id=""usedPeriod"" name="usedPeriod" value="<%=f.getUsedPeriod()==null?"":f.getUsedPeriod()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">使用里程：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><input type="text" id="usedDistance" name="usedDistance" value="<%=f.getUsedDistance()==null?"":f.getUsedDistance()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">平均每公里轮胎损耗成本：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><%=%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">平均每月轮胎损耗成本：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><%=%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">单胎成本：</td>
-					<td align="left"><%=t)%></td>
+					<td align="left"><%=%></td>
 				</tr>
-				<tr>
-					<td width="20%" align="right">车主：</td>
-					<td align="left"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">车型：</td>
-					<td align="left"><%=v.getVehicleTypeDic().getVehicleTypeName()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">登记日期：</td>
-					<td align="left"><%=Util.FormatDateShort(v.getRegisterDate())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">年检状态：</td>
-					<td align="left"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></td>
-				</tr>
+				--%>
 			</table>
 				<p align="center">
 					<input type="submit" value="提交"/>
