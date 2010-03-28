@@ -6,13 +6,13 @@
 String idstr = request.getParameter("tyreId");
 FTyres f = null;
 FTyresBean ftb = new FTyresBean();
-String actionName = "FTyresBasicAddAction";
+String actionName = "FTyresAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FTyres();
 } else {
 	ftb.setTyreId(Integer.parseInt(idstr));
 	f =  ftb.findById();
-	actionName = "FTyresBasicUpdateAction";
+	actionName = "FTyresUpdateAction";
 }
 if(f == null){
 	out.print("无法找到该轮胎使用台帐！");
@@ -51,6 +51,8 @@ Util.setNull2DefaultValue(f);
 				
 			}
 		});
+
+		initVehicleSelector();
 		
    		$("#form1").validate({
 			rules: {
@@ -65,10 +67,10 @@ Util.setNull2DefaultValue(f);
 				},
 				installDistanceRec: {
    					required: true,
-   					digit: true
+   					digits: true
 				},
 				disposeDistanceRec: {
-					digit: true
+					digits: true
 				}
 			},
 			messages: {
@@ -89,6 +91,10 @@ Util.setNull2DefaultValue(f);
 			<input type="hidden" name = "failed" value="update-tyres-faild.jsp"/>
 			<input type="hidden" name = "tyreId" value="<%=f.getTyreId()%>"/>
 				<table cellSpacing="5" width="95%">
+				<tr>
+ 					<td width="20%" align="right">装胎车辆：</td>
+					<td align="left"><jsp:include page="/vehicle-selector.jsp" /></td>
+				</tr>
  				<tr>
  					<td width="20%" align="right">轮胎品牌：</td>
 					<td align="left"><input type="text" id="tyreName" name="tyreName" value="<%=f.getTyreName()%>" /></td>
