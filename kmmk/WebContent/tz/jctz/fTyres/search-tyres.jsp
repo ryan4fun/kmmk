@@ -212,6 +212,7 @@ function delOrg(id){
 		<input type="submit" style="width: 100px;" value="查   询" />
 		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-tyres.jsp')"/>
 		<input type="reset" style="width: 100px;" value="重   置" /></p>
+		<input type="button" style="width: 100px;" value="新增轮胎" onclick="javascript:href('update-tyres.jsp')"/>
 </form>
 </div>
 </div>
