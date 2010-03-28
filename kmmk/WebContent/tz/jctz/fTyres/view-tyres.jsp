@@ -27,11 +27,7 @@ Util.setNull2DefaultValue(f);
 <script type="text/javascript" src="<%=basePath %>js/mkgps.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.validate.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.pagination.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
 <style type="text/css">
 
