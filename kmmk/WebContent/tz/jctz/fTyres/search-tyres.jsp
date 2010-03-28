@@ -3,9 +3,9 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
-VehicleBean vb = new VehicleBean(request);
-List<Vehicle> vs = vb.getList();
-Util.setNull2DefaultValue(vb);
+FTyresBean ftb = new FTyresBean(request);
+List<FTyres> fts = ftb.getList();
+Util.setNull2DefaultValue(ftb);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -37,32 +37,19 @@ $(document).ready(function(){
 		}
 	});
 	
-	<%if(vs!=null && vs.size()>0){%>
+	<%if(fts!=null && fts.size()>0){%>
 	$("#__pagination").pagination(
-			<%=vb.getMaxRecord()%>,
+			<%=ftb.getMaxRecord()%>,
 			{
-				current_page:<%=vb.getPageNumber()%>,
-				items_per_page:<%=vb.getRowsPerPage()%>,
+				current_page:<%=ftb.getPageNumber()%>,
+				items_per_page:<%=ftb.getRowsPerPage()%>,
 				num_edge_entries:2,
 				num_display_entries:5,
 				callback:pageSelectCallback
 			}
 		);
-	<%}%>	
-
-	$("#vehicleTypeId")[0].options.add(new Option("所有车型",""));
-	<%if(vts != null){
-		for(VehicleTypeDic vt:vts){ 
-	%>
-	$("#vehicleTypeId")[0].options.add(new Option("<%=vt.getVehicleTypeName()%>","<%=vt.getVehicleTypeId()%>"));
-	<%}
-	}%>
-	$("#vehicleTypeId").val(["<%=vb.getVehicleTypeId()==null?"":vb.getVehicleTypeId()%>"]);
-
-	$("#annualCheckState").val(["<%=vb.getAnnualCheckState()==null?"":vb.getAnnualCheckState()%>"]);
+	<%}%>
 	
-	$("#inputform").submit(function(){
-	});
 });
 
 function pageSelectCallback(pageNumber){
@@ -73,7 +60,7 @@ function pageSelectCallback(pageNumber){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('tyresDelAction',id);
+			delSingleRec('TyresDelAction',id);
 		}
 	});
 }
@@ -87,88 +74,116 @@ function delOrg(id){
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
-			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=vb.getLicensPadNumber()==null?"":vb.getLicensPadNumber()%>" /></td>		
+			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=ftb.getLicensPadNumber()==null?"":ftb.getLicensPadNumber()%>" /></td>		
 		</tr>
 		<tr>
-			<td width="20%" align="right">车型：</td>
-			<td align="left"><select id="vehicleTypeId" name="vehicleTypeId" ></select></td>	
-			<td width="20%" align="right">核载：</td>
-			<td align="left"><input type="text"
-				id="capability" name="capability" value="<%=vb.getCapability()==null?"":vb.getCapability()%>" /></td>
+			<td width="20%" align="right">轮胎品牌：</td>
+			<td align="left">
+				<input type="text" id="tyreName" name="tyreName" value="<%=ftb.getTyreName()%>" /></td>
+			<td width="20%" align="right">胎号：</td>
+			<td align="left">
+				<input type="text" id="tyreNo" name="tyreNo" value="<%=ftb.getTyreNo()%>" /></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">登记日期：</td>
-			<td align="left"><input type="text"
-				id="registerDate" name="registerDate" onclick="WdatePicker()"
-				value="<%=Util.FormatDateShort(vb.getRegisterDate())%>" /></td>	
-			<td width="20%" align="right">发证日期：</td>
-			<td align="left"><input type="text"
-				id="approvalDate" name="approvalDate" onclick="WdatePicker()"
-				value="<%=Util.FormatDateShort(vb.getApprovalDate())%>" /></td>
+			<td width="20%" align="right">装胎时间：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="installDateStart" name="installDateStart" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(ftb.getInstallDateStart())%>" />
+				至
+				<input type="text"
+					id="installDateEnd" name="installDateEnd" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(ftb.getInstallDateEnd())%>" />
+			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">年检状态：</td>
-			<td align="left"><select id="annualCheckState" name="annualCheckState" >
-						<%=Util.writeOptions(VehicleService.annualCheckStates, "请选择") %>
-						</select></td>	
-			<td width="20%" align="right">二级维护到期：</td>
-			<td align="left"><input type="text"
-				id="secondMaintainDate" name="secondMaintainDate" onclick="WdatePicker()"
-				value="<%=Util.FormatDateShort(vb.getSecondMaintainDate())%>" /></td>
+			<td width="20%" align="right">报废时间：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="disposeDateStart" name="disposeDateStart" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(ftb.getDisposeDateStart())%>" />
+				至
+				<input type="text"
+					id="disposeDateEnd" name="disposeDateEnd" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(ftb.getDisposeDateEnd())%>" />
+			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">资产基数：</td>
-			<td align="left"><input type="text"
-				id="assetBaseValue" name="assetBaseValue"
-				value="<%=vb.getAssetBaseValue()==null?"":vb.getAssetBaseValue()%>" /></td>	
-			<td width="20%" align="right">SIM卡号：</td>
-			<td align="left"><input type="text"
-				id="simCardNo" name="simCardNo" value="<%=vb.getSimCardNo()%>" /></td>
+			<td width="20%" align="right">装胎里程：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id=""installDistanceRecStart"" name="installDistanceRecStart" 
+					value="<%=ftb.getInstallDistanceRecStart()%>" />
+				至
+				<input type="text"
+					id="installDistanceRecEnd" name="installDistanceRecEnd" 
+					value="<%=ftb.getInstallDistanceRecEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">报废里程：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="disposeDistanceRecStart" name="disposeDistanceRecStart" 
+					value="<%=ftb.getDisposeDistanceRecStart()%>" />
+				至
+				<input type="text"
+					id="disposeDistanceRecEnd" name="disposeDistanceRecEnd" 
+					value="<%=ftb.getDisposeDistanceRecEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">使用时间：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="usedPeriodStart" name="usedPeriodStart" 
+					value="<%=ftb.getUsedPeriodStart()%>" />
+				至
+				<input type="text"
+					id="usedPeriodEnd" name="usedPeriodEnd" 
+					value="<%=ftb.getUsedPeriodEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">使用里程：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="usedDistanceStart" name="usedDistanceStart" 
+					value="<%=ftb.getUsedDistanceStart()%>" />
+				至
+				<input type="text"
+					id="usedDistanceEnd" name="usedDistanceEnd" 
+					value="<%=ftb.getUsedDistanceEnd()%>" />
+			</td>
 		</tr>
 	</table>
 	<p align="center">
-		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
-		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
+		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=ftb.getPageNumber()%>" />
+		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=ftb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
 		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp')"/>
 	<input type="reset" style="width: 100px;" value="重   置" /></p>
 </form>
 </div>
 </div>
-<% if(vs.size()>0){ %>
+<% if(fts.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
 		<th width="10%">车牌号</th>
-		<th width="10%">自编号</th>
-		<th width="10%">车主</th>
-		<th width="10%">车型</th>
-		<th width="10%">核载</th>
-		<th width="10%">登记日期</th>
-		<th width="10%">发证日期</th>
-		<th width="10%">年检状态</th>
-		<th width="10%">二级维护到期时间</th>
 		<th width="10%">操作</th>
 	</tr>
-	<% for(Vehicle v:vs){ 
-		Util.setNull2DefaultValue(v);%>
+	<% for(FTyres ft:fts){ 
+		Util.setNull2DefaultValue(ft);%>
 	<tr>
-		<td id="p_<%=v.getVehicleId()%>" colspan="17">
-		<table cellSpacing="0" width="100%" cellpadding="0">
-			<tr>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
-				<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-				<td width="10%">
-					<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=v.getVehicleId()%>')">删 除</a>
-				</td>
-			</tr>
-		</table>
+		<td id="p_<%=ft.getTyreId()%>" colspan="17">
+			<table cellSpacing="0" width="100%" cellpadding="0">
+				<tr>
+					<td width="10%"><a href="javascript:href('view-vehicle.jsp?vehicleId=<%=ft.getVehicle().getLicensPadNumber()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="10%">
+						<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=ft.getTyreId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=ft.getTyreId()%>')">删 除</a>
+					</td>
+				</tr>
+			</table>
 		</td>
 	</tr>
 	<% } %>
