@@ -75,6 +75,12 @@ $(document).ready(function(){
 			},
 			usedDistanceEnd: {
 				digits: true
+			},
+			priceStart: {
+				number: true
+			},
+			priceEnd: {
+				number: true
 			}
 		},
 		messages: {
@@ -114,6 +120,18 @@ function delOrg(id){
 			<td width="20%" align="right">胎号：</td>
 			<td align="left">
 				<input type="text" id="tyreNo" name="tyreNo" value="<%=ftb.getTyreNo()%>" /></td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">价格：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="installDistanceRecStart" name="installDistanceRecStart" 
+					value="<%=ftb.getPriceStart()==null?"":ftb.getPriceStart()%>" />
+				至
+				<input type="text"
+					id="installDistanceRecEnd" name="installDistanceRecEnd" 
+					value="<%=ftb.getPriceEnd()==null?"":ftb.getPriceEnd()%>" />
+			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">装胎时间：</td>

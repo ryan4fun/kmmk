@@ -71,6 +71,9 @@ Util.setNull2DefaultValue(f);
 				},
 				disposeDistanceRec: {
 					digits: true
+				},
+				price: {
+					number: true
 				}
 			},
 			messages: {
@@ -102,6 +105,10 @@ Util.setNull2DefaultValue(f);
 				<tr>
  					<td width="20%" align="right">胎号：</td>
 					<td align="left"><input type="text" id="tyreNo" name="tyreNo" value="<%=f.getTyreNo()%>" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">价格：</td>
+					<td align="left"><input type="text" id="price" name="price" value="<%=f.getPrice()==null?"":f.getPrice()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">装胎时间：</td>

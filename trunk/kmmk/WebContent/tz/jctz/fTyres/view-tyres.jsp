@@ -67,6 +67,10 @@ $(document).ready(function(){
 					<td align="left"><%=f.getTyreNo()%></td>
 				</tr>
 				<tr>
+ 					<td width="20%" align="right">价格：</td>
+					<td align="left"><%=f.getPrice()==null?"":f.getPrice()%></td>
+				</tr>
+				<tr>
  					<td width="20%" align="right">装胎时间：</td>
  					<td align="left"><%=Util.FormatDateShort(f.getInstallDate())%></td>
 				</tr>
