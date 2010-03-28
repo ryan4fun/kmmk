@@ -110,11 +110,11 @@ function delOrg(id){
 <% if(fts.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="9%">车牌号</th>
-		<th width="9%">随车工具名称</th>
-		<th width="9%">最后领用时间</th>
-		<th width="9%">最后领用人</th>
-		<th width="9%">操作</th>
+		<th width="20%">车牌号</th>
+		<th width="20%">随车工具名称</th>
+		<th width="20%">最后领用时间</th>
+		<th width="20%">最后领用人</th>
+		<th width="20%">操作</th>
 	</tr>
 	<% for(FTools ft:fts){ 
 		Util.setNull2DefaultValue(ft);%>
@@ -122,11 +122,11 @@ function delOrg(id){
 		<td id="p_<%=ft.getToolId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="9%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="9%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getToolName()%></a></td>
-					<td width="9%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=Util.FormatDateShort(ft.getLastChangeDate())%></a></td>
-					<td width="9%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getLastKeeper()==null?"":ft.getLastKeeper()%></a></td>
-					<td width="9%">
+					<td width="20%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="20%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getToolName()%></a></td>
+					<td width="20%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=Util.FormatDateShort(ft.getLastChangeDate())%></a></td>
+					<td width="20%"><a href="javascript:href('view-tools.jsp?toolId=<%=ft.getToolId()%>')"><%=ft.getLastKeeper()==null?"":ft.getLastKeeper()%></a></td>
+					<td width="20%">
 						<a href="javascript:href('update-tools.jsp?toolId=<%=ft.getToolId()%>')">修改随车工具</a> | <a href="javascript:delOrg('<%=ft.getToolId()%>')">删 除</a>
 					</td>
 				</tr>
