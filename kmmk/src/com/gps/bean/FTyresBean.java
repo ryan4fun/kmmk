@@ -42,6 +42,8 @@ public class FTyresBean extends AbstractBean {
 	private Double usedPeriodEnd;
 	private Double usedDistanceStart;
 	private Double usedDistanceEnd;
+	private Double priceStart;
+	private Double priceEnd;
 	
 	public FTyresBean(){
 	}
@@ -130,6 +132,16 @@ public class FTyresBean extends AbstractBean {
 			if (this.usedDistanceEnd != null){
 				crit.add(Restrictions.le("usedDistance", this.usedDistanceEnd));
 				_crit.add(Restrictions.le("usedDistance", this.usedDistanceEnd));
+			}
+			
+			if (this.priceStart != null){
+				crit.add(Restrictions.ge("price", this.priceStart));
+				_crit.add(Restrictions.ge("price", this.priceStart));
+			}
+				
+			if (this.priceEnd != null){
+				crit.add(Restrictions.le("price", this.priceEnd));
+				_crit.add(Restrictions.le("price", this.priceEnd));
 			}
 			
 //			crit.addOrder(Order.desc("occurDate"));
@@ -341,6 +353,22 @@ public class FTyresBean extends AbstractBean {
 
 	public void setUsedPeriodEnd(Double usedPeriodEnd) {
 		this.usedPeriodEnd = usedPeriodEnd;
+	}
+
+	public Double getPriceStart() {
+		return priceStart;
+	}
+
+	public void setPriceStart(Double priceStart) {
+		this.priceStart = priceStart;
+	}
+
+	public Double getPriceEnd() {
+		return priceEnd;
+	}
+
+	public void setPriceEnd(Double priceEnd) {
+		this.priceEnd = priceEnd;
 	}
 	
 }

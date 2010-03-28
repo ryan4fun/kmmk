@@ -28,9 +28,6 @@ public class FTyresUpdateAction extends Action{
 		if(ft.getDisposeDistanceRec()!=null){
 			ft.setUsedDistance(ft.getDisposeDistanceRec()-ft.getInstallDistanceRec());
 		}
-		if(ft.getUsedPeriod()!=null && ft.getUsedDistance()!=null){
-			ft.setPrice(ft.getUsedDistance()/ft.getUsedPeriod());
-		}
 		getServiceLocator().getFTyresService().updateFTyres(ft);
 		request.setAttribute("tyreId", String.valueOf(ft.getTyreId()));
 	}
