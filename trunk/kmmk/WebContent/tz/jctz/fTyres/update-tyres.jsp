@@ -90,7 +90,7 @@ Util.setNull2DefaultValue(f);
 			<input type="hidden" name = "success" value="update-tyres-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-tyres-faild.jsp"/>
 			<input type="hidden" name = "tyreId" value="<%=f.getTyreId()%>"/>
-				<table cellSpacing="5" width="95%">
+			<table cellSpacing="5" width="95%">
 				<tr>
  					<td width="20%" align="right">装胎车辆：</td>
 					<td align="left"><jsp:include page="/vehicle-selector.jsp" /></td>
