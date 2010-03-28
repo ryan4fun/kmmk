@@ -18,7 +18,6 @@ public class FTyresBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(FTyresBean.class);
 	
 	private Integer tyreId;
-	private Integer vehicleId;
 	private String tyreNo;
 	private String tyreName;
 	private Short state;
@@ -29,9 +28,18 @@ public class FTyresBean extends AbstractBean {
 	private Double disposeDistanceRec;
 	private Double usedDistance;
 	private Double price;
-	private String operator;
 	
 	private String licensPadNumber;
+	private Date installDateStart;
+	private Date installDateEnd;
+	private Date disposeDateStart;
+	private Date disposeDateEnd;
+	private Double installDistanceRecStart;
+	private Double installDistanceRecEnd;
+	private Double disposeDistanceRecStart;
+	private Double disposeDistanceRecEnd;
+	private Double usedDistanceStart;
+	private Double usedDistanceEnd;
 	
 	public FTyresBean(){
 	}
@@ -47,17 +55,72 @@ public class FTyresBean extends AbstractBean {
 			Criteria _crit = HibernateUtil.getSession().createCriteria(FTyres.class);			
 			_crit.createAlias("vehicle", "v");
 			
-			if (this.vehicleId != null && vehicleId > 0){
-				crit.add(Restrictions.eq("v.vehicleId", vehicleId));
-				_crit.add(Restrictions.eq("v.vehicleId", vehicleId));
-			}
-			
 			if (this.licensPadNumber != null && licensPadNumber.length()>0){
 				crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
 				_crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
 			}
 			
-			crit.addOrder(Order.desc("occurDate"));
+			if (this.tyreNo != null && tyreNo.length()>0){
+				crit.add(Restrictions.like("tyreNo", "%"+tyreNo+"%"));
+				_crit.add(Restrictions.like("tyreNo", "%"+tyreNo+"%"));
+			}
+			
+			if (this.tyreName != null && tyreName.length()>0){
+				crit.add(Restrictions.like("tyreName", "%"+tyreName+"%"));
+				_crit.add(Restrictions.like("tyreName", "%"+tyreName+"%"));
+			}
+			
+			if (this.installDateStart != null){
+				crit.add(Restrictions.ge("installDate", this.installDateStart));
+				_crit.add(Restrictions.ge("installDate", this.installDateStart));
+			}
+				
+			if (this.installDateEnd != null){
+				crit.add(Restrictions.le("installDate", this.installDateEnd));
+				_crit.add(Restrictions.le("installDate", this.installDateEnd));
+			}
+			
+			if (this.disposeDateStart != null){
+				crit.add(Restrictions.ge("disposeDate", this.disposeDateStart));
+				_crit.add(Restrictions.ge("disposeDate", this.disposeDateStart));
+			}
+				
+			if (this.disposeDateEnd != null){
+				crit.add(Restrictions.le("disposeDate", this.disposeDateEnd));
+				_crit.add(Restrictions.le("disposeDate", this.disposeDateEnd));
+			}
+			
+			if (this.installDistanceRecStart != null){
+				crit.add(Restrictions.ge("installDistanceRec", this.installDistanceRecStart));
+				_crit.add(Restrictions.ge("installDistanceRec", this.installDistanceRecStart));
+			}
+				
+			if (this.installDistanceRecEnd != null){
+				crit.add(Restrictions.le("installDistanceRec", this.installDistanceRecEnd));
+				_crit.add(Restrictions.le("installDistanceRec", this.installDistanceRecEnd));
+			}
+			
+			if (this.disposeDistanceRecStart != null){
+				crit.add(Restrictions.ge("disposeDistanceRec", this.disposeDistanceRecStart));
+				_crit.add(Restrictions.ge("disposeDistanceRec", this.disposeDistanceRecStart));
+			}
+				
+			if (this.disposeDistanceRecEnd != null){
+				crit.add(Restrictions.le("disposeDistanceRec", this.disposeDistanceRecEnd));
+				_crit.add(Restrictions.le("disposeDistanceRec", this.disposeDistanceRecEnd));
+			}
+			
+			if (this.usedDistanceStart != null){
+				crit.add(Restrictions.ge("usedDistance", this.usedDistanceStart));
+				_crit.add(Restrictions.ge("usedDistance", this.usedDistanceStart));
+			}
+				
+			if (this.usedDistanceEnd != null){
+				crit.add(Restrictions.le("usedDistance", this.usedDistanceEnd));
+				_crit.add(Restrictions.le("usedDistance", this.usedDistanceEnd));
+			}
+			
+//			crit.addOrder(Order.desc("occurDate"));
 			addPagination(crit);
 			List<FTyres> list = crit.list();
 			
@@ -82,14 +145,6 @@ public class FTyresBean extends AbstractBean {
 
 	public void setTyreId(Integer tyreId) {
 		this.tyreId = tyreId;
-	}
-
-	public Integer getVehicleId() {
-		return vehicleId;
-	}
-
-	public void setVehicleId(Integer vehicleId) {
-		this.vehicleId = vehicleId;
 	}
 
 	public String getTyreNo() {
@@ -172,11 +227,12 @@ public class FTyresBean extends AbstractBean {
 		this.price = price;
 	}
 
-	public String getOperator() {
-		return operator;
+	public String getLicensPadNumber() {
+		return licensPadNumber;
 	}
 
-	public void setOperator(String operator) {
-		this.operator = operator;
+	public void setLicensPadNumber(String licensPadNumber) {
+		this.licensPadNumber = licensPadNumber;
 	}
+	
 }
