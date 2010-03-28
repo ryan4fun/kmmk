@@ -2,9 +2,9 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
-String idstr = request.getParameter("tyreId");
-FTyres f = null;
-FTyresBean ftb = new FTyresBean();
+String idstr = request.getParameter("toolId");
+FTools f = null;
+FToolsBean ftb = new FToolsBean();
 if(idstr!=null && !idstr.equals("")){
 	ftb.setTyreId(Integer.parseInt(idstr));
 	f =  ftb.findById();
@@ -19,7 +19,7 @@ Util.setNull2DefaultValue(f);
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>轮胎使用台帐</title>
+<title>随车工具保管领用表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -44,7 +44,7 @@ $(document).ready(function(){
 </head>
 <body style="background:transparent;">
 <div id="search-div">
-	<h3><a href="#">轮胎使用台帐</a></h3>
+	<h3><a href="#">随车工具保管领用表</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<form id="inputform" action="#" method="post">		
 			<table cellSpacing="5" width="95%">
@@ -108,7 +108,7 @@ $(document).ready(function(){
 				</tr>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="修改轮胎使用台帐" onclick="javascript:href('update-tyres.jsp?tyreId=<%=f.getTyreId()%>')"/>
+				<input type="button" style="width:100px;" value="修改轮胎使用台帐" onclick="javascript:href('update-tools.jsp?toolId=<%=f.getToolId()%>')"/>
 				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
 			</p>
 		</form>
