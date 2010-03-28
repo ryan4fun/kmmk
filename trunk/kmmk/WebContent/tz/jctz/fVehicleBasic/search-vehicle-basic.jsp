@@ -125,7 +125,7 @@ function pageSelectCallback(pageNumber){
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp')"/>
+		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp')"/>
 	<input type="reset" style="width: 100px;" value="重   置" /></p>
 </form>
 </div>
