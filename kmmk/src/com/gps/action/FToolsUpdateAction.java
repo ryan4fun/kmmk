@@ -17,6 +17,6 @@ public class FToolsUpdateAction extends Action{
 		generateAllSimpleProp(ft);
 		ft.setVehicle(v);
 		getServiceLocator().getFToolsService().updateFTools(ft);
-		request.setAttribute("tyreId", String.valueOf(ft.getToolId()));
+		request.setAttribute("toolId", String.valueOf(ft.getToolId()));
 	}
 }

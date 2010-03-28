@@ -16,6 +16,6 @@ public class FToolsAddAction extends Action{
 		} else {
 			throw new Message("无法找到该车辆!");
 		}
-		request.setAttribute("tyreId", String.valueOf(ft.getToolId()));
+		request.setAttribute("toolId", String.valueOf(ft.getToolId()));
 	}
 }
