@@ -24,9 +24,6 @@ public class FTyresAddAction extends Action{
 			if(ft.getDisposeDistanceRec()!=null){
 				ft.setUsedDistance(ft.getDisposeDistanceRec()-ft.getInstallDistanceRec());
 			}
-			if(ft.getUsedPeriod()!=null && ft.getUsedDistance()!=null){
-				ft.setPrice(ft.getUsedDistance()/ft.getUsedPeriod());
-			}
 			getServiceLocator().getFTyresService().addFTyres(ft);
 		} else {
 			throw new Message("无法找到该车辆!");
