@@ -51,29 +51,34 @@ $(document).ready(function(){
 	<%}%>
 
 	$("#form1").validate({
-		installDistanceRecStart: {
-			digits: true
+		rules: {
+			installDistanceRecStart: {
+				digits: true
+			},
+			installDistanceRecEnd: {
+				digits: true
+			},
+			disposeDistanceRecStart: {
+				digits: true
+			},
+			disposeDistanceRecEnd: {
+				digits: true
+			},
+			usedPeriodStart: {
+				digits: true
+			},
+			usedPeriodEnd: {
+				digits: true
+			},
+			usedDistanceStart: {
+				digits: true
+			},
+			usedDistanceEnd: {
+				digits: true
+			}
 		},
-		installDistanceRecEnd: {
-			digits: true
-		},
-		disposeDistanceRecStart: {
-			digits: true
-		},
-		disposeDistanceRecEnd: {
-			digits: true
-		},
-		usedPeriodStart: {
-			digits: true
-		},
-		usedPeriodEnd: {
-			digits: true
-		},
-		usedDistanceStart: {
-			digits: true
-		},
-		usedDistanceEnd: {
-			digits: true
+		messages: {
+
 		}
 	});
 });
