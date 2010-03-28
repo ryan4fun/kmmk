@@ -26,7 +26,7 @@
 <div id="success">
 <p align="center">增改车辆基础台帐表成功</p><br />
 <p align="center">
-<input type="button" value="跳转到该车辆基础台帐表" onclick="goedit('<%=recID %>')" /> 
+<input type="button" value="确 定" onclick="goedit('<%=recID %>')" /> 
 </p>	
 </div>
 </body>
