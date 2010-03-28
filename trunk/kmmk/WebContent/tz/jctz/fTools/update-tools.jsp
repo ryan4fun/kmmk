@@ -15,7 +15,7 @@ if(idstr==null || idstr.equals("")){
 	actionName = "FToolsUpdateAction";
 }
 if(f == null){
-	out.print("无法找到该随车工具保管领用表！");
+	out.print("无法找到该随车工具！");
 	return;
 }
 Util.setNull2DefaultValue(f);
@@ -24,7 +24,7 @@ Util.setNull2DefaultValue(f);
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>修改随车工具保管领用表</title>
+<title>修改随车工具</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -54,24 +54,8 @@ Util.setNull2DefaultValue(f);
 		
    		$("#form1").validate({
 			rules: {
-   				tyreNo: {
+   				toolName: {
    					required: true
-				},
-				tyreName: {
-   					required: true
-				},
-				installDate: {
-   					required: true
-				},
-				installDistanceRec: {
-   					required: true,
-   					number: true
-				},
-				disposeDistanceRec: {
-					number: true
-				},
-				price: {
-					number: true
 				}
 			},
 			messages: {
@@ -84,7 +68,7 @@ Util.setNull2DefaultValue(f);
 
 <body style="background:transparent;">
 <div id="search-div">
-	<h3><a href="#">修改随车工具保管领用表</a></h3>
+	<h3><a href="#">修改随车工具</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<form id="form1" action="mkgps.do" method="post">
 			<input type="hidden" name = "action" value="<%=actionName%>"/>
@@ -93,7 +77,7 @@ Util.setNull2DefaultValue(f);
 			<input type="hidden" name = "toolId" value="<%=f.getToolId()%>"/>
 			<table cellSpacing="5" width="95%">
 				<tr>
- 					<td width="20%" align="right">装胎车辆：</td>
+ 					<td width="20%" align="right">所属车辆：</td>
 					<td align="left">
 						<jsp:include page="/vehicle-selector.jsp" >
 							<jsp:param name="vehicleId" value="<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>"/>
@@ -101,32 +85,8 @@ Util.setNull2DefaultValue(f);
 					</td>
 				</tr>
  				<tr>
- 					<td width="20%" align="right">轮胎品牌：</td>
-					<td align="left"><input type="text" id="tyreName" name="tyreName" value="<%=f.getTyreName()%>" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">胎号：</td>
-					<td align="left"><input type="text" id="tyreNo" name="tyreNo" value="<%=f.getTyreNo()%>" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">价格：</td>
-					<td align="left"><input type="text" id="price" name="price" value="<%=f.getPrice()==null?"":f.getPrice()%>" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">装胎时间：</td>
- 					<td align="left"><input type="text" id="installDate" name="installDate" value="<%=Util.FormatDateShort(f.getInstallDate())%>" onclick="WdatePicker()" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">报废时间：</td>
-					<td align="left"><input type="text" id="disposeDate" name="disposeDate" value="<%=Util.FormatDateShort(f.getDisposeDate())%>" onclick="WdatePicker()" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">装胎里程（公里）：</td>
-					<td align="left"><input type="text" id="installDistanceRec" name="installDistanceRec" value="<%=f.getInstallDistanceRec()==null?"":f.getInstallDistanceRec()%>" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">报废里程（卸胎里程）：</td>
-					<td align="left"><input type="text" id="disposeDistanceRec" name="disposeDistanceRec" value="<%=f.getDisposeDistanceRec()==null?"":f.getDisposeDistanceRec()%>" /></td>
+ 					<td width="20%" align="right">工具名称：</td>
+					<td align="left"><input type="text" id="toolName" name="toolName" value="<%=f.getToolName()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">备注：</td>
