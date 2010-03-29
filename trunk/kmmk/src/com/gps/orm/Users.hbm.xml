@@ -74,11 +74,5 @@
             </key>
             <one-to-many class="com.gps.orm.UserRole" />
         </set>
-        <set name="FVehicleMaterials" inverse="true" cascade="all-delete-orphan">
-            <key>
-                <column name="lastOperatorID" />
-            </key>
-            <one-to-many class="com.gps.orm.FVehicleMaterial" />
-        </set>
     </class>
 </hibernate-mapping>
