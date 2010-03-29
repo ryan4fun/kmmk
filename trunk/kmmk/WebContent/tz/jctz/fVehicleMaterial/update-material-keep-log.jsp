@@ -3,9 +3,9 @@
 <%@ include file="/tz/header.jsp"%>
 
 <%
-String actionName = "FVehicleMaterialKeepLogAddAction";
+String actionName = "FMaterialKeepLogAddAction";
 String idstr = request.getParameter("id");
-FVehicleMaterialKeepLog ftkl = null;
+FMaterialKeepLog ftkl = null;
 if(idstr==null || idstr.equals("")){
 	idstr = request.getParameter("materialId");
 	if(idstr!=null && !idstr.equals("")){
@@ -14,13 +14,13 @@ if(idstr==null || idstr.equals("")){
 		ftb.setMaterialId(Integer.parseInt(idstr));
 		f =  ftb.findById();
 		if(f!=null){
-			ftkl = new FVehicleMaterialKeepLog();
+			ftkl = new FMaterialKeepLog();
 			ftkl.setFVehicleMaterial(f);
 		}
 	}
 } else {
-	actionName = "FVehicleMaterialKeepLogUpdateAction";
-	FVehicleMaterialKeepLogBean ftklb = new FVehicleMaterialKeepLogBean();
+	actionName = "FMaterialKeepLogUpdateAction";
+	FMaterialKeepLogBean ftklb = new FMaterialKeepLogBean();
 	ftklb.setId(Integer.parseInt(idstr));
 	ftkl =  ftklb.findById();
 }

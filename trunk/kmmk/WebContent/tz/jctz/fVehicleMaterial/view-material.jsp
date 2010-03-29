@@ -63,8 +63,8 @@ function delOrg(id){
 				<td align="left"><%=f.getVehicle().getLicensPadNumber()%></td>
 			</tr>
 				<tr>
-					<td width="20%" align="right">工具名称：</td>
-				<td align="left"><%=f.getToolName()%></td>
+					<td width="20%" align="right">资料名称：</td>
+				<td align="left"><%=f.getName()%></td>
 			</tr>
 			<tr>
 					<td width="20%" align="right">备注：</td>
@@ -72,7 +72,7 @@ function delOrg(id){
 			</tr>
 		</table>
 	</div>
-	<% if(f.getFVehicleMaterialKeepLogs().size()>0){ %>
+	<% if(f.getFMaterialKeepLogs().size()>0){ %>
 	<h3><a href="#">车辆资料保管领用表</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
@@ -82,7 +82,7 @@ function delOrg(id){
 				<th >备注</th>
 				<th width="20%">操作</th>
 			</tr>
-		<% for(FVehicleMaterialKeepLog ftkl:f.getFVehicleMaterialKeepLogs()){
+		<% for(FMaterialKeepLog ftkl:f.getFMaterialKeepLogs()){
 			Util.setNull2DefaultValue(ftkl);%>
 			<tr>
 				<td id="p_<%=ftkl.getId()%>" colspan="99">
