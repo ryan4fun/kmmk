@@ -9,7 +9,7 @@ public class FVehicleMaterialService extends AbstractService {
 	static Logger logger = Logger.getLogger(FVehicleMaterialService.class);
 
 	
-	public void addFVehicleBasic(FVehicleMaterial c){		
+	public void addFVehicleMaterial(FVehicleMaterial c){		
 		try {
 			beginTransaction();
 			getDAOLocator().getFVehicleMaterialHome().persist(c);
