@@ -8,23 +8,24 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.FVehicleMaterial;
 import com.gps.orm.HibernateUtil;
-import com.gps.orm.Users;
 
 public class FVehicleMaterialBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(FVehicleMaterialBean.class);
 	
 	private Integer materialId;
-	private Integer vehicleId;
-	private Users users;
 	private String name;
 	private String lastKeeper;
 	private Date lastChangeDate;
 	private Short state;
+	
+	private Integer vehicleId;
+	private String licensPadNumber;
+	private Date lastChangeDateStart;
+	private Date lastChangeDateEnd;
 	
 	public FVehicleMaterialBean(){
 	}
@@ -40,12 +41,37 @@ public class FVehicleMaterialBean extends AbstractBean {
 			Criteria _crit = HibernateUtil.getSession().createCriteria(FVehicleMaterial.class);			
 			_crit.createAlias("vehicle", "v");
 			
-			if (this.vehicleId != null && vehicleId > 0){
+			if (vehicleId != null && vehicleId>0){
 				crit.add(Restrictions.eq("v.vehicleId", vehicleId));
 				_crit.add(Restrictions.eq("v.vehicleId", vehicleId));
 			}
 			
-			crit.addOrder(Order.desc("occurDate"));
+			if (this.licensPadNumber != null && licensPadNumber.length()>0){
+				crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
+				_crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
+			}
+			
+			if (this.name != null && name.length()>0){
+				crit.add(Restrictions.like("name", "%"+name+"%"));
+				_crit.add(Restrictions.like("name", "%"+name+"%"));
+			}
+			
+			if (this.lastKeeper != null && lastKeeper.length()>0){
+				crit.add(Restrictions.like("lastKeeper", "%"+lastKeeper+"%"));
+				_crit.add(Restrictions.like("lastKeeper", "%"+lastKeeper+"%"));
+			}
+			
+			if (this.lastChangeDateStart != null){
+				crit.add(Restrictions.ge("lastChangeDate", this.lastChangeDateStart));
+				_crit.add(Restrictions.ge("lastChangeDate", this.lastChangeDateStart));
+			}
+				
+			if (this.lastChangeDateEnd != null){
+				crit.add(Restrictions.le("lastChangeDate", this.lastChangeDateEnd));
+				_crit.add(Restrictions.le("lastChangeDate", this.lastChangeDateEnd));
+			}
+			
+//			crit.addOrder(Order.desc("occurDate"));
 			addPagination(crit);
 			List<FVehicleMaterial> list = crit.list();
 			
@@ -80,14 +106,6 @@ public class FVehicleMaterialBean extends AbstractBean {
 		this.vehicleId = vehicleId;
 	}
 
-	public Users getUsers() {
-		return users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -119,4 +137,29 @@ public class FVehicleMaterialBean extends AbstractBean {
 	public void setState(Short state) {
 		this.state = state;
 	}
+
+	public String getLicensPadNumber() {
+		return licensPadNumber;
+	}
+
+	public void setLicensPadNumber(String licensPadNumber) {
+		this.licensPadNumber = licensPadNumber;
+	}
+
+	public Date getLastChangeDateStart() {
+		return lastChangeDateStart;
+	}
+
+	public void setLastChangeDateStart(Date lastChangeDateStart) {
+		this.lastChangeDateStart = lastChangeDateStart;
+	}
+
+	public Date getLastChangeDateEnd() {
+		return lastChangeDateEnd;
+	}
+
+	public void setLastChangeDateEnd(Date lastChangeDateEnd) {
+		this.lastChangeDateEnd = lastChangeDateEnd;
+	}
+	
 }
