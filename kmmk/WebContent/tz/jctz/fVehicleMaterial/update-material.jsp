@@ -54,7 +54,7 @@ Util.setNull2DefaultValue(f);
 		
    		$("#form1").validate({
 			rules: {
-   				toolName: {
+   				name: {
    					required: true
 				}
 			},
@@ -85,8 +85,8 @@ Util.setNull2DefaultValue(f);
 					</td>
 				</tr>
  				<tr>
- 					<td width="20%" align="right">工具名称：</td>
-					<td align="left"><input type="text" id="toolName" name="toolName" value="<%=f.getToolName()%>" /></td>
+ 					<td width="20%" align="right">资料名称：</td>
+					<td align="left"><input type="text" id="name" name="name" value="<%=f.getName()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">备注：</td>
