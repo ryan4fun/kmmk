@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.FTyres;
@@ -29,6 +28,7 @@ public class FTyresBean extends AbstractBean {
 	private Double usedDistance;
 	private Double price;
 	
+	private Integer vehicleId;
 	private String licensPadNumber;
 	private Date installDateStart;
 	private Date installDateEnd;
@@ -58,6 +58,11 @@ public class FTyresBean extends AbstractBean {
 			crit.createAlias("vehicle", "v");
 			Criteria _crit = HibernateUtil.getSession().createCriteria(FTyres.class);			
 			_crit.createAlias("vehicle", "v");
+			
+			if (vehicleId != null && vehicleId>0){
+				crit.add(Restrictions.eq("v.vehicleId", vehicleId));
+				_crit.add(Restrictions.eq("v.vehicleId", vehicleId));
+			}
 			
 			if (this.licensPadNumber != null && licensPadNumber.length()>0){
 				crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
@@ -369,6 +374,14 @@ public class FTyresBean extends AbstractBean {
 
 	public void setPriceEnd(Double priceEnd) {
 		this.priceEnd = priceEnd;
+	}
+
+	public Integer getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(Integer vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 	
 }
