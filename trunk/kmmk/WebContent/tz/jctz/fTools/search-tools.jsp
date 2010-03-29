@@ -79,20 +79,20 @@ function delOrg(id){
 		<tr>
 			<td width="20%" align="right">随车工具名称：</td>
 			<td align="left">
-				<input type="text" id="tyreName" name="tyreName" value="<%=ftb.getToolName()%>" /></td>
+				<input type="text" id="toolName" name="toolName" value="<%=ftb.getToolName()%>" /></td>
 			<td width="20%" align="right">最后领用人：</td>
 			<td align="left">
-				<input type="text" id="tyreName" name="tyreName" value="<%=ftb.getLastKeeper()%>" /></td>	
+				<input type="text" id="lastKeeper" name="lastKeeper" value="<%=ftb.getLastKeeper()%>" /></td>	
 		</tr>
 		<tr>
 			<td width="20%" align="right">最后领用时间：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
-					id="installDateStart" name="installDateStart" onclick="WdatePicker()"
+					id="lastChangeDateStart" name="lastChangeDateStart" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(ftb.getLastChangeDateStart())%>" />
 				至
 				<input type="text"
-					id="installDateEnd" name="installDateEnd" onclick="WdatePicker()"
+					id="lastChangeDateEnd" name="lastChangeDateEnd" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(ftb.getLastChangeDateEnd())%>" />
 			</td>
 		</tr>
