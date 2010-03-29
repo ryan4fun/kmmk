@@ -17,6 +17,13 @@ public class FToolsKeepLogUpdateAction extends Action{
 		generateAllSimpleProp(ftkl);
 		ftkl.setFTools(ft);
 		getServiceLocator().getFToolsKeepLogService().updateFToolsKeepLog(ftkl);
+		
+		if(ft.getLastChangeDate()==null || ft.getLastChangeDate().before(ftkl.getOccurDate())){
+			ft.setLastChangeDate(ftkl.getOccurDate());
+			ft.setLastKeeper(ftkl.getKeeper());
+			getServiceLocator().getFToolsService().updateFTools(ft);
+		}
+		
 		request.setAttribute("toolId", String.valueOf(ft.getToolId()));
 	}
 }
