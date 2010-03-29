@@ -22,6 +22,7 @@ public class FToolsBean extends AbstractBean {
 	private Date lastChangeDate;
 	private Short state;
 	
+	private Integer vehicleId;
 	private String licensPadNumber;
 	private Date lastChangeDateStart;
 	private Date lastChangeDateEnd;
@@ -40,6 +41,11 @@ public class FToolsBean extends AbstractBean {
 			Criteria _crit = HibernateUtil.getSession().createCriteria(FTools.class);			
 			_crit.createAlias("vehicle", "v");
 			
+			if (vehicleId != null && vehicleId>0){
+				crit.add(Restrictions.eq("v.vehicleId", vehicleId));
+				_crit.add(Restrictions.eq("v.vehicleId", vehicleId));
+			}
+			
 			if (this.licensPadNumber != null && licensPadNumber.length()>0){
 				crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
 				_crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
@@ -48,6 +54,11 @@ public class FToolsBean extends AbstractBean {
 			if (this.toolName != null && toolName.length()>0){
 				crit.add(Restrictions.like("toolName", "%"+toolName+"%"));
 				_crit.add(Restrictions.like("toolName", "%"+toolName+"%"));
+			}
+			
+			if (this.lastKeeper != null && lastKeeper.length()>0){
+				crit.add(Restrictions.like("lastKeeper", "%"+lastKeeper+"%"));
+				_crit.add(Restrictions.like("lastKeeper", "%"+lastKeeper+"%"));
 			}
 			
 			if (this.lastChangeDateStart != null){
@@ -141,6 +152,14 @@ public class FToolsBean extends AbstractBean {
 
 	public void setLastChangeDateEnd(Date lastChangeDateEnd) {
 		this.lastChangeDateEnd = lastChangeDateEnd;
+	}
+
+	public int getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(int vehicleId) {
+		this.vehicleId = vehicleId;
 	}
 	
 }
