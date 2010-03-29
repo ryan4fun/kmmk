@@ -11,9 +11,6 @@
         <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
             <column name="vehicleID" />
         </many-to-one>
-        <many-to-one name="users" class="com.gps.orm.Users" fetch="select">
-            <column name="lastOperatorID" />
-        </many-to-one>
         <property name="name" type="string">
             <column name="name" length="50" />
         </property>
