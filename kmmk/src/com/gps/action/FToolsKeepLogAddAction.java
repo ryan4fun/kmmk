@@ -9,13 +9,18 @@ public class FToolsKeepLogAddAction extends Action{
 	public void doAction() throws Exception{
 		FToolsKeepLog ftkl = new FToolsKeepLog();
 		FTools ft = getServiceLocator().getFToolsService().findById(getInteger("toolId"));
-		if (ft != null) {
-			generateAllSimpleProp(ftkl);
-			ftkl.setFTools(ft);
-			getServiceLocator().getFToolsKeepLogService().addFToolsKeepLog(ftkl);
-		} else {
+		if (ft == null)
 			throw new Message("无法找到该工具!");
+		generateAllSimpleProp(ftkl);
+		ftkl.setFTools(ft);
+		getServiceLocator().getFToolsKeepLogService().addFToolsKeepLog(ftkl);
+		
+		if(ft.getLastChangeDate()==null || ft.getLastChangeDate().before(ftkl.getOccurDate())){
+			ft.setLastChangeDate(ftkl.getOccurDate());
+			ft.setLastKeeper(ftkl.getKeeper());
+			getServiceLocator().getFToolsService().updateFTools(ft);
 		}
+		
 		request.setAttribute("toolId", String.valueOf(ft.getToolId()));
 	}
 }
