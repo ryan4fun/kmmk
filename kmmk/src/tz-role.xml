@@ -22,12 +22,12 @@
 			<Link url="tz/jctz/fVehicleBasic/search-vehicle-basic.jsp" name="车辆基础台帐表管理" roles="1,2,11" />
 		</Function>
 		<Function name="车辆资料保管领用表" roles="1,2">
-			<Link url="tz/jctz/fVehicleMaterial/update-vehicle-material.jsp" name="添加车辆资料保管领用表" roles="1,2,11" />
-			<Link url="tz/jctz/fVehicleMaterial/search-vehicle-material.jsp" name="车辆资料保管领用表管理" roles="1,2,11" />
+			<Link url="tz/jctz/fVehicleMaterial/update-material.jsp" name="添加车辆资料保管领用表" roles="1,2,11" />
+			<Link url="tz/jctz/fVehicleMaterial/search-material.jsp" name="车辆资料保管领用表管理" roles="1,2,11" />
 		</Function>
 		<Function name="车辆随车工具保管领用表" roles="1,2">
-			<Link url="tz/jctz/fTools/update-tools.jsp" name="添加车辆随车工具保管领用表" roles="1,2,11" />
-			<Link url="tz/jctz/fTools/search-tools.jsp" name="车辆随车工具保管领用表管理" roles="1,2,11" />
+			<Link url="tz/jctz/fTools/update-tools.jsp" name="添加随车工具保管领用表" roles="1,2,11" />
+			<Link url="tz/jctz/fTools/search-tools.jsp" name="随车工具保管领用表管理" roles="1,2,11" />
 		</Function>
 		<Function name="轮胎使用台帐" roles="1,2">
 			<Link url="tz/jctz/fTyres/update-tyres.jsp" name="添加轮胎使用台帐" roles="1,2,11" />
