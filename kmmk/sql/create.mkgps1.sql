@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Tuesday, March 23, 2010 22:36:30
+ * Date Created : Monday, March 29, 2010 23:27:43
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -369,7 +369,6 @@ CREATE TABLE f_vehicle_material(
     lastKeeper        varchar(25)     NULL,
     lastChangeDate    datetime        NULL,
     vehicleID         int             NULL,
-    lastOperatorID    int             NULL,
     state             smallint        NULL,
     comment           varchar(200)    NULL,
     CONSTRAINT PK65 PRIMARY KEY NONCLUSTERED (materialId)
@@ -1547,11 +1546,6 @@ go
 ALTER TABLE f_vehicle_material ADD CONSTRAINT Refvehicle82 
     FOREIGN KEY (vehicleID)
     REFERENCES vehicle(vehicleID)
-go
-
-ALTER TABLE f_vehicle_material ADD CONSTRAINT Refusers83 
-    FOREIGN KEY (lastOperatorID)
-    REFERENCES users(userID)
 go
 
 
