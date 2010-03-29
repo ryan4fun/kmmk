@@ -7,7 +7,7 @@ public class FToolsKeepLogDelAction extends Action {
 
 	@Override
 	public void doAction() throws Message{
-		FToolsKeepLog ftkl = getServiceLocator().getFToolsKeepLogService().findById(getInteger("id"));
+		FToolsKeepLog ftkl = getServiceLocator().getFToolsKeepLogService().findById(getInteger("recID"));
 		if (ftkl == null)
 			throw new Message("无法找到该工具保管领用表!");
 		getServiceLocator().getFToolsKeepLogService().deleteFToolsKeepLog(ftkl);
