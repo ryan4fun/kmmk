@@ -28,8 +28,6 @@ public class Users implements java.io.Serializable {
 	private Set<Escorter> escorters = new HashSet<Escorter>(0);
 	private Set<Task> tasks = new HashSet<Task>(0);
 	private Set<UserRole> userRoles = new HashSet<UserRole>(0);
-	private Set<FVehicleMaterial> FVehicleMaterials = new HashSet<FVehicleMaterial>(
-			0);
 
 	public Users() {
 	}
@@ -43,8 +41,7 @@ public class Users implements java.io.Serializable {
 			Date registerDate, Date lastLoginDate, String lastLoginIp,
 			Short userState, String tel, Set<Gpsfee> gpsfees,
 			Set<Vehicle> vehicles, Set<Driver> drivers,
-			Set<Escorter> escorters, Set<Task> tasks, Set<UserRole> userRoles,
-			Set<FVehicleMaterial> FVehicleMaterials) {
+			Set<Escorter> escorters, Set<Task> tasks, Set<UserRole> userRoles) {
 		this.userId = userId;
 		this.organization = organization;
 		this.loginName = loginName;
@@ -62,7 +59,6 @@ public class Users implements java.io.Serializable {
 		this.escorters = escorters;
 		this.tasks = tasks;
 		this.userRoles = userRoles;
-		this.FVehicleMaterials = FVehicleMaterials;
 	}
 
 	public int getUserId() {
@@ -199,14 +195,6 @@ public class Users implements java.io.Serializable {
 
 	public void setUserRoles(Set<UserRole> userRoles) {
 		this.userRoles = userRoles;
-	}
-
-	public Set<FVehicleMaterial> getFVehicleMaterials() {
-		return this.FVehicleMaterials;
-	}
-
-	public void setFVehicleMaterials(Set<FVehicleMaterial> FVehicleMaterials) {
-		this.FVehicleMaterials = FVehicleMaterials;
 	}
 
 }
