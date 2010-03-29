@@ -47,7 +47,7 @@ $(document).ready(function(){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('FVehicleMaterialKeepLogDelAction',id);
+			delSingleRec('FMaterialKeepLogDelAction',id);
 		}
 	});
 }

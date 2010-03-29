@@ -81,7 +81,7 @@ Util.setNull2DefaultValue(v);
 <iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr%>" ></iframe>
 </div>
 <div id="tabs-2">
-<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleMaterial/search-material.jsp?vehicleId=<%=idstr%>"></iframe>
 </div>
 <div id="tabs-3">
 <iframe id="main-frame-3" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTools/search-tools.jsp?vehicleId=<%=idstr%>"></iframe>
