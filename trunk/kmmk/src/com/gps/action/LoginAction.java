@@ -17,10 +17,10 @@ public class LoginAction extends Action{
 
 	@Override
 	public void doAction() throws Exception{
-		String verifyCode = (String)request.getSession().getAttribute("verifyCode");
-		if(!get("verifyCode").toLowerCase().equals(verifyCode.toLowerCase())){
-			throw new Exception("校验码错误！");
-		}
+//		String verifyCode = (String)request.getSession().getAttribute("verifyCode");
+//		if(!get("verifyCode").toLowerCase().equals(verifyCode.toLowerCase())){
+//			throw new Exception("校验码错误！");
+//		}
 		
 		
 		Criteria criteria = HibernateUtil.getSession().createCriteria(Users.class);
