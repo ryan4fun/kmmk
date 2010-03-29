@@ -24,6 +24,7 @@ Util.setNull2DefaultValue(ftb);
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
 <style type="text/css">
 </style>
