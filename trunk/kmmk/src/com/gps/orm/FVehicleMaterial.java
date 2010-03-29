@@ -13,7 +13,6 @@ public class FVehicleMaterial implements java.io.Serializable {
 
 	private long materialId;
 	private Vehicle vehicle;
-	private Users users;
 	private String name;
 	private String lastKeeper;
 	private Date lastChangeDate;
@@ -29,12 +28,11 @@ public class FVehicleMaterial implements java.io.Serializable {
 		this.materialId = materialId;
 	}
 
-	public FVehicleMaterial(long materialId, Vehicle vehicle, Users users,
-			String name, String lastKeeper, Date lastChangeDate, Short state,
+	public FVehicleMaterial(long materialId, Vehicle vehicle, String name,
+			String lastKeeper, Date lastChangeDate, Short state,
 			String comment, Set<FMaterialKeepLog> FMaterialKeepLogs) {
 		this.materialId = materialId;
 		this.vehicle = vehicle;
-		this.users = users;
 		this.name = name;
 		this.lastKeeper = lastKeeper;
 		this.lastChangeDate = lastChangeDate;
@@ -57,14 +55,6 @@ public class FVehicleMaterial implements java.io.Serializable {
 
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
-	}
-
-	public Users getUsers() {
-		return this.users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public String getName() {
