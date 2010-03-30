@@ -4,10 +4,10 @@
 <%
 String idstr = request.getParameter("id");
 FMaintain f = null;
-FMaintainBean ftb = new FMaintainBean();
+FMaintainBean fmb = new FMaintainBean();
 if(idstr!=null && !idstr.equals("")){
-	ftb.setId(Integer.parseInt(idstr));
-	f =  ftb.findById();
+	fmb.setId(Integer.parseInt(idstr));
+	f =  fmb.findById();
 }
 if(f == null){
 	out.print("无法找到该车辆维修明细台帐！");
@@ -44,13 +44,6 @@ $(document).ready(function(){
 	});
 });
 
-function delOrg(id){
-	jConfirm("确定要删除吗？", "警告", function(r){			
-		if(r){
-			delSingleRec('FMaintainKeepLogDelAction',id);
-		}
-	});
-}
 </script>
 </head>
 <body style="background:transparent;">
@@ -58,17 +51,45 @@ function delOrg(id){
 	<h3><a href="#">车辆维修明细台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<table cellSpacing="5" width="95%">
-				<tr>
-					<td width="20%" align="right">所属车辆：</td>
+			<tr>
+				<td width="20%" align="right">所属车辆：</td>
 				<td align="left"><%=f.getVehicle().getLicensPadNumber()%></td>
 			</tr>
+			<tr>
+					<td width="20%" align="right">报修时间：</td>
+					<td align="left"><%=Util.FormatDateShort(f.getMaintainDate())%></td>
+			</tr>
 				<tr>
-					<td width="20%" align="right">工具名称：</td>
-				<td align="left"><%=f.getToolName()%></td>
+					<td width="20%" align="right">报修项目：</td>
+				<td align="left"><%=f.getCategory()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">更换零件：</td>
+				<td align="left"><%=f.getSubCategory()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">数量：</td>
+				<td align="left"><%=f.getQuantity()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">维修金额：</td>
+				<td align="left"><%=f.getCost()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">经办人：</td>
+				<td align="left"><%=f.getHandler()%></td>
 			</tr>
 			<tr>
 					<td width="20%" align="right">备注：</td>
 				<td align="left"><%=f.getComment()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">修理厂：</td>
+				<td align="left"><%=f.getStudio()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">修理人：</td>
+				<td align="left"><input type="text" id="operator" name="operator" value="<%=f.getOperator()%>" /></td>
 			</tr>
 		</table>
 	</div>

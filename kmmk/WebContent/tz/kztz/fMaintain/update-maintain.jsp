@@ -5,13 +5,13 @@
 <%
 String idstr = request.getParameter("id");
 FMaintain f = null;
-FMaintainBean ftb = new FMaintainBean();
+FMaintainBean fmb = new FMaintainBean();
 String actionName = "FMaintainAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FMaintain();
 } else {
-	ftb.setId(Integer.parseInt(idstr));
-	f =  ftb.findById();
+	fmb.setId(Integer.parseInt(idstr));
+	f =  fmb.findById();
 	actionName = "FMaintainUpdateAction";
 }
 if(f == null){
@@ -54,7 +54,21 @@ Util.setNull2DefaultValue(f);
 		
    		$("#form1").validate({
 			rules: {
-   				toolName: {
+   				maintainDate: {
+   					required: true
+				},
+				category: {
+   					required: true
+				},
+				quantity: {
+   					required: true,
+   					digit: true
+				},
+				cost: {
+   					required: true,
+   					number: true
+				},
+				handler: {
    					required: true
 				}
 			},
@@ -77,20 +91,48 @@ Util.setNull2DefaultValue(f);
 			<input type="hidden" name = "id" value="<%=f.getId()%>"/>
 			<table cellSpacing="5" width="95%">
 				<tr>
- 					<td width="20%" align="right">所属车辆：</td>
+ 					<td width="20%" align="right">报修车辆：</td>
 					<td align="left">
 						<jsp:include page="/vehicle-selector.jsp" >
 							<jsp:param name="vehicleId" value="<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>"/>
 						</jsp:include>
 					</td>
 				</tr>
+				<tr>
+ 					<td width="20%" align="right">报修时间：</td>
+ 					<td align="left"><input type="text" id="maintainDate" name="maintainDate" value="<%=Util.FormatDateShort(f.getMaintainDate())%>" onclick="WdatePicker()" /></td>
+				</tr>
  				<tr>
- 					<td width="20%" align="right">工具名称：</td>
-					<td align="left"><input type="text" id="toolName" name="toolName" value="<%=f.getToolName()%>" /></td>
+ 					<td width="20%" align="right">报修项目：</td>
+					<td align="left"><input type="text" id="category" name="category" value="<%=f.getCategory()%>" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">更换零件：</td>
+					<td align="left"><input type="text" id="subCategory" name="subCategory" value="<%=f.getSubCategory()%>" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">数量：</td>
+					<td align="left"><input type="text" id="quantity" name="quantity" value="<%=f.getQuantity()%>" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">维修金额：</td>
+					<td align="left"><input type="text" id="cost" name="cost" value="<%=f.getCost()%>" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">经办人：</td>
+					<td align="left"><input type="text" id="handler" name="handler" value="<%=f.getHandler()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">备注：</td>
 					<td align="left"><textarea rows="3" id="comment" name="comment"><%=f.getComment()%></textarea></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">修理厂：</td>
+					<td align="left"><input type="text" id="studio" name="studio" value="<%=f.getStudio()%>" /></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">修理人：</td>
+					<td align="left"><input type="text" id="operator" name="operator" value="<%=f.getOperator()%>" /></td>
 				</tr>
 			</table>
 				<p align="center">
