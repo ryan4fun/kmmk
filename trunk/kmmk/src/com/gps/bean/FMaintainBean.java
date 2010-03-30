@@ -12,36 +12,32 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.FMaintain;
-import com.gps.orm.FTools;
 import com.gps.orm.HibernateUtil;
-import com.gps.orm.Vehicle;
 
 public class FMaintainBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(FMaintainBean.class);
 	
 	private Integer id;
-	private Integer vehicleId;
 	private Date maintainDate;
 	private String category;
-	private String subCategory;
 	private Double cost;
-	private Integer quantity;
 	private String handler;
-	private String comment;
 	private String studio;
 	private String operator;
 	
+	private Integer vehicleId;
+	private String licensPadNumber;
 	private Date maintainDateStart;
 	private Date maintainDateEnd;
+	private Double costStart;
+	private Double costEnd;
 	
-	public static Logger getLogger() {
-		return logger;
+	public FMaintainBean(){
 	}
-
-	public static void setLogger(Logger logger) {
-		FMaintainBean.logger = logger;
+			
+	public FMaintainBean(HttpServletRequest request) {
+		super(request);
 	}
-
 
 	public List<FMaintain> getList(){
 		try {
@@ -55,40 +51,49 @@ public class FMaintainBean extends AbstractBean {
 				_crit.add(Restrictions.eq("v.vehicleId", vehicleId));
 			}
 			
-			if (this.category != null && category.trim().length() > 0){
-				crit.add(Restrictions.eq("category", category));
-				_crit.add(Restrictions.eq("category", category));
+			if (this.licensPadNumber != null && licensPadNumber.length()>0){
+				crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
+				_crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
 			}
 			
-			if (this.subCategory != null && subCategory.trim().length() > 0){
-				crit.add(Restrictions.eq("subCategory", subCategory));
-				_crit.add(Restrictions.eq("subCategory", subCategory));
+			if (this.handler != null && handler.length()>0){
+				crit.add(Restrictions.like("handler", "%"+handler+"%"));
+				_crit.add(Restrictions.like("handler", "%"+handler+"%"));
 			}
 			
-			if (this.operator != null && operator.trim().length() > 0){
-				crit.add(Restrictions.eq("operator", operator));
-				_crit.add(Restrictions.eq("operator", operator));
+			if (this.category != null && category.length()>0){
+				crit.add(Restrictions.like("category", "%"+category+"%"));
+				_crit.add(Restrictions.like("category", "%"+category+"%"));
 			}
 			
-			if (this.studio != null && studio.trim().length() > 0){
-				crit.add(Restrictions.eq("studio", studio));
-				_crit.add(Restrictions.eq("studio", studio));
+			if (this.studio != null && studio.length()>0){
+				crit.add(Restrictions.like("studio", "%"+studio+"%"));
+				_crit.add(Restrictions.like("studio", "%"+studio+"%"));
 			}
 			
-			
-			if (this.maintainDate != null ){
-				crit.add(Restrictions.eq("maintainDate", this.getMaintainDate()));
-				_crit.add(Restrictions.eq("maintainDate", this.getMaintainDate()));
+			if (this.operator != null && operator.length()>0){
+				crit.add(Restrictions.like("operator", "%"+operator+"%"));
+				_crit.add(Restrictions.like("operator", "%"+operator+"%"));
 			}
 			
 			if (this.maintainDateStart != null){
-				crit.add(Restrictions.ge("maintainDate", this.getMaintainDateStart()));
-				_crit.add(Restrictions.ge("maintainDate", this.getMaintainDateStart()));
+				crit.add(Restrictions.ge("maintainDate", this.maintainDateStart));
+				_crit.add(Restrictions.ge("maintainDate", this.maintainDateStart));
 			}
 				
 			if (this.maintainDateEnd != null){
-				crit.add(Restrictions.le("maintainDate", this.getMaintainDateEnd()));
-				_crit.add(Restrictions.le("maintainDate", this.getMaintainDateEnd()));
+				crit.add(Restrictions.le("maintainDate", this.maintainDateEnd));
+				_crit.add(Restrictions.le("maintainDate", this.maintainDateEnd));
+			}
+			
+			if (this.costStart != null){
+				crit.add(Restrictions.ge("cost", this.costStart));
+				_crit.add(Restrictions.ge("cost", this.costStart));
+			}
+				
+			if (this.costEnd != null){
+				crit.add(Restrictions.le("cost", this.costEnd));
+				_crit.add(Restrictions.le("cost", this.costEnd));
 			}
 			
 			crit.addOrder(Order.desc("maintainDate"));
@@ -103,6 +108,12 @@ public class FMaintainBean extends AbstractBean {
 		}
 	}
 	
+	public FMaintain findById(){
+		if(id!=null && id.intValue()>0)
+			return getServiceLocator().getFMaintainService().findById(id);
+		else
+			return new FMaintain();
+	}
 	
 	public Integer getId() {
 		return id;
@@ -136,14 +147,6 @@ public class FMaintainBean extends AbstractBean {
 		this.category = category;
 	}
 
-	public String getSubCategory() {
-		return subCategory;
-	}
-
-	public void setSubCategory(String subCategory) {
-		this.subCategory = subCategory;
-	}
-
 	public Double getCost() {
 		return cost;
 	}
@@ -152,28 +155,12 @@ public class FMaintainBean extends AbstractBean {
 		this.cost = cost;
 	}
 
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
 	public String getHandler() {
 		return handler;
 	}
 
 	public void setHandler(String handler) {
 		this.handler = handler;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 
 	public String getStudio() {
@@ -192,6 +179,22 @@ public class FMaintainBean extends AbstractBean {
 		this.operator = operator;
 	}
 
+	public Integer getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(Integer vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	public String getLicensPadNumber() {
+		return licensPadNumber;
+	}
+
+	public void setLicensPadNumber(String licensPadNumber) {
+		this.licensPadNumber = licensPadNumber;
+	}
+
 	public Date getMaintainDateStart() {
 		return maintainDateStart;
 	}
@@ -208,12 +211,20 @@ public class FMaintainBean extends AbstractBean {
 		this.maintainDateEnd = maintainDateEnd;
 	}
 
-	public FMaintainBean(){
-	}
-			
-	public FMaintainBean(HttpServletRequest request) {
-		super(request);
+	public Double getCostStart() {
+		return costStart;
 	}
 
+	public void setCostStart(Double costStart) {
+		this.costStart = costStart;
+	}
+
+	public Double getCostEnd() {
+		return costEnd;
+	}
+
+	public void setCostEnd(Double costEnd) {
+		this.costEnd = costEnd;
+	}
 
 }
