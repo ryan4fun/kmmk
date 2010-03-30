@@ -129,14 +129,14 @@ function delOrg(id){
 <% if(fms.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="15%">车牌号</th>
-		<th width="15%">报修时间</th>
-		<th width="15%">报修项目</th>
-		<th width="15%">更换零件</th>
-		<th width="15%">数量</th>
-		<th width="15%">维修金额</th>
-		<th width="15%">经办人</th>
-		<th width="15%">操作</th>
+		<th width="12%">车牌号</th>
+		<th width="12%">报修时间</th>
+		<th width="12%">报修项目</th>
+		<th width="12%">更换零件</th>
+		<th width="12%">数量</th>
+		<th width="12%">维修金额</th>
+		<th width="12%">经办人</th>
+		<th width="16%">操作</th>
 	</tr>
 	<% for(FMaintain fm:fms){ 
 		Util.setNull2DefaultValue(fm);%>
@@ -144,14 +144,14 @@ function delOrg(id){
 		<td id="p_<%=fm.getId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=Util.FormatDateShort(fm.getMaintainDate())%></a></td>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getCategory()%></a></td>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getSubCategory()%></a></td>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getQuantity()==null?"":fm.getQuantity()%></a></td>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getCost()==null?"":fm.getCost()%></a></td>
-					<td width="15%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getHandler()==null?"":fm.getHandler()%></a></td>
-					<td width="15%">
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=Util.FormatDateShort(fm.getMaintainDate())%></a></td>
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getCategory()%></a></td>
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getSubCategory()%></a></td>
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getQuantity()==null?"":fm.getQuantity()%></a></td>
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getCost()==null?"":fm.getCost()%></a></td>
+					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getHandler()==null?"":fm.getHandler()%></a></td>
+					<td width="16%">
 						<a href="javascript:href('update-maintain.jsp?id=<%=fm.getId()%>')">修改车辆维修明细台帐</a> | <a href="javascript:delOrg('<%=fm.getId()%>')">删 除</a>
 					</td>
 				</tr>
