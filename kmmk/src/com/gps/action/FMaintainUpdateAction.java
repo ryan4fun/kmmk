@@ -7,7 +7,7 @@ import com.gps.orm.Vehicle;
 public class FMaintainUpdateAction extends Action{
 	@Override
 	public void doAction() throws Exception{
-		FMaintain ft = getServiceLocator().getFMaintainService().findById(getInteger("toolId"));
+		FMaintain ft = getServiceLocator().getFMaintainService().findById(getInteger("id"));
 		if (ft == null)
 			throw new Message("无法找到该工具!");
 		Vehicle v = getServiceLocator().getVehicleService().findById(this.getInteger("vehicleId"));
