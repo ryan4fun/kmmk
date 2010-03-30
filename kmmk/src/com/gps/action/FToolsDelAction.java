@@ -9,7 +9,7 @@ public class FToolsDelAction extends Action {
 	public void doAction() throws Message{
 		FTools ft = getServiceLocator().getFToolsService().findById(getInteger("recID"));
 		if (ft == null)
-			throw new Message("无法找到该轮胎!");
+			throw new Message("无法找到该工具!");
 		getServiceLocator().getFToolsService().deleteFTools(ft);
 	}
 }
