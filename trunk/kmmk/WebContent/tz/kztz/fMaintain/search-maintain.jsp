@@ -77,7 +77,7 @@ function delOrg(id){
 			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=fmb.getLicensPadNumber()==null?"":fmb.getLicensPadNumber()%>" /></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">维修时间：</td>
+			<td width="20%" align="right">报修时间：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
 					id="maintainDateStart" name="maintainDateStart" onclick="WdatePicker()"
@@ -99,7 +99,7 @@ function delOrg(id){
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">维修项目：</td>
+			<td width="20%" align="right">报修项目：</td>
 			<td align="left">
 				<input type="text" id="category" name="category" value="<%=fmb.getCategory()%>" /></td>
 			<td width="20%" align="right">经办人：</td>

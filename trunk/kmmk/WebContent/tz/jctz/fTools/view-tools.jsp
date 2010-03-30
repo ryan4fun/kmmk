@@ -58,16 +58,16 @@ function delOrg(id){
 	<h3><a href="#">随车工具</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<table cellSpacing="5" width="95%">
-				<tr>
-					<td width="20%" align="right">所属车辆：</td>
+			<tr>
+				<td width="20%" align="right">所属车辆：</td>
 				<td align="left"><%=f.getVehicle().getLicensPadNumber()%></td>
 			</tr>
-				<tr>
-					<td width="20%" align="right">工具名称：</td>
+			<tr>
+				<td width="20%" align="right">工具名称：</td>
 				<td align="left"><%=f.getToolName()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">备注：</td>
+				<td width="20%" align="right">备注：</td>
 				<td align="left"><%=f.getComment()%></td>
 			</tr>
 		</table>
