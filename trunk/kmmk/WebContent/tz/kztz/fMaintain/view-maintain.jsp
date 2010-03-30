@@ -69,11 +69,11 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 					<td width="20%" align="right">数量：</td>
-				<td align="left"><%=f.getQuantity()%></td>
+				<td align="left"><%=f.getQuantity()==null?"":f.getQuantity()%></td>
 			</tr>
 			<tr>
 					<td width="20%" align="right">维修金额：</td>
-				<td align="left"><%=f.getCost()%></td>
+				<td align="left"><%=f.getCost()==null?"":f.getCost()%></td>
 			</tr>
 			<tr>
 					<td width="20%" align="right">经办人：</td>
@@ -89,7 +89,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 					<td width="20%" align="right">修理人：</td>
-				<td align="left"><input type="text" id="operator" name="operator" value="<%=f.getOperator()%>" /></td>
+				<td align="left"><%=f.getOperator()%></td>
 			</tr>
 		</table>
 	</div>
