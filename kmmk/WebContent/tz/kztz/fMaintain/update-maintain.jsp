@@ -62,7 +62,7 @@ Util.setNull2DefaultValue(f);
 				},
 				quantity: {
    					required: true,
-   					digit: true
+   					digits: true
 				},
 				cost: {
    					required: true,
@@ -112,11 +112,11 @@ Util.setNull2DefaultValue(f);
 				</tr>
 				<tr>
  					<td width="20%" align="right">数量：</td>
-					<td align="left"><input type="text" id="quantity" name="quantity" value="<%=f.getQuantity()%>" /></td>
+					<td align="left"><input type="text" id="quantity" name="quantity" value="<%=f.getQuantity()==null?"":f.getQuantity()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">维修金额：</td>
-					<td align="left"><input type="text" id="cost" name="cost" value="<%=f.getCost()%>" /></td>
+					<td align="left"><input type="text" id="cost" name="cost" value="<%=f.getCost()==null?"":f.getCost()%>" /></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">经办人：</td>

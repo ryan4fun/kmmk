@@ -92,10 +92,10 @@ function delOrg(id){
 			<td width="20%" align="right">维修金额：</td>
 			<td align="left" colSpan="3">
 				<input type="text" id="costStart" name="costStart" 
-					value="<%=fmb.getCostStart()%>" />
+					value="<%=fmb.getCostStart()==null?"":fmb.getCostStart()%>" />
 				至
 				<input type="text" id="costEnd" name="costEnd" 
-					value="<%=fmb.getCostEnd()%>" />
+					value="<%=fmb.getCostEnd()==null?"":fmb.getCostEnd()%>" />
 			</td>
 		</tr>
 		<tr>
