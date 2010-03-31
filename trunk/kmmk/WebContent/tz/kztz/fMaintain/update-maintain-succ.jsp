@@ -30,7 +30,7 @@
 <div id="success">
 <p align="center">增改车辆维修明细台帐成功</p><br />
 <p align="center">
-<input type="button" value="跳转到该随车工具" onclick="goedit('<%=recID %>')" /> 
+<input type="button" value="跳转到该车辆维修明细台帐" onclick="goedit('<%=recID %>')" /> 
 <input type="button" value="跳转到列表" onclick="golist()" />
 </p>	
 </div>
