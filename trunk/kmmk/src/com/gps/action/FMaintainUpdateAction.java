@@ -9,7 +9,7 @@ public class FMaintainUpdateAction extends Action{
 	public void doAction() throws Exception{
 		FMaintain ft = getServiceLocator().getFMaintainService().findById(getInteger("id"));
 		if (ft == null)
-			throw new Message("无法找到该工具!");
+			throw new Message("无法找到该车辆维修明细台帐!");
 		Vehicle v = getServiceLocator().getVehicleService().findById(this.getInteger("vehicleId"));
 		if(v == null)
 			throw new Message("无法找到该车辆!");

@@ -9,7 +9,7 @@ public class FMaintainDelAction extends Action {
 	public void doAction() throws Message{
 		FMaintain ft = getServiceLocator().getFMaintainService().findById(getInteger("recID"));
 		if (ft == null)
-			throw new Message("无法找到该工具!");
+			throw new Message("无法找到该车辆维修明细台帐!");
 		getServiceLocator().getFMaintainService().deleteFMaintain(ft);
 	}
 }
