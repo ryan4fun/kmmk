@@ -86,6 +86,12 @@
             </key>
             <one-to-many class="com.gps.orm.FTyres" />
         </set>
+        <set name="FMonthlyReports" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FMonthlyReport" />
+        </set>
         <set name="alertHistories" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="vehicleID" />
@@ -116,6 +122,12 @@
             </key>
             <one-to-many class="com.gps.orm.FVehicleMaterial" />
         </set>
+        <set name="FExpenseLogs" inverse="true" cascade="all-delete-orphan">
+            <key>
+                <column name="vehicleID" />
+            </key>
+            <one-to-many class="com.gps.orm.FExpenseLog" />
+        </set>
         <set name="FGasfees" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="vehicleID" />
@@ -135,13 +147,13 @@
             <one-to-many class="com.gps.orm.Gpsfee" />
         </set>
         <one-to-one name="vehicleStatus" class="com.gps.orm.VehicleStatus"></one-to-one>
-        <one-to-one name="stateHelper" class="com.gps.orm.StateHelper"></one-to-one>
         <set name="tasks" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="vehicleID" not-null="true" />
             </key>
             <one-to-many class="com.gps.orm.Task" />
         </set>
+        <one-to-one name="stateHelper" class="com.gps.orm.StateHelper"></one-to-one>
         <set name="vehicleAssociationses" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="vehicleID" />
