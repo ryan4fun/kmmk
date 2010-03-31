@@ -35,18 +35,20 @@ public class Vehicle implements java.io.Serializable {
 	private Set<FTools> FToolses = new HashSet<FTools>(0);
 	private Set<VehicleRule> vehicleRules = new HashSet<VehicleRule>(0);
 	private Set<FTyres> FTyreses = new HashSet<FTyres>(0);
+	private Set<FMonthlyReport> FMonthlyReports = new HashSet<FMonthlyReport>(0);
 	private Set<AlertHistory> alertHistories = new HashSet<AlertHistory>(0);
 	private Set<FRuningLog> FRuningLogs = new HashSet<FRuningLog>(0);
 	private Set<FMaintain> FMaintains = new HashSet<FMaintain>(0);
 	private Set<FVehicleBasic> FVehicleBasics = new HashSet<FVehicleBasic>(0);
 	private Set<FVehicleMaterial> FVehicleMaterials = new HashSet<FVehicleMaterial>(
 			0);
+	private Set<FExpenseLog> FExpenseLogs = new HashSet<FExpenseLog>(0);
 	private Set<FGasfee> FGasfees = new HashSet<FGasfee>(0);
 	private Set<VehiclePic> vehiclePics = new HashSet<VehiclePic>(0);
 	private Set<Gpsfee> gpsfees = new HashSet<Gpsfee>(0);
 	private VehicleStatus vehicleStatus;
-	private StateHelper stateHelper;
 	private Set<Task> tasks = new HashSet<Task>(0);
+	private StateHelper stateHelper;
 	private Set<VehicleAssociations> vehicleAssociationses = new HashSet<VehicleAssociations>(
 			0);
 	private Set<MalfunctionDeviceLog> malfunctionDeviceLogs = new HashSet<MalfunctionDeviceLog>(
@@ -68,12 +70,15 @@ public class Vehicle implements java.io.Serializable {
 			Date serviceExpireDate, Short msgIntervel, Short monitLevel,
 			Double speedLimitation, Set<FTools> FToolses,
 			Set<VehicleRule> vehicleRules, Set<FTyres> FTyreses,
+			Set<FMonthlyReport> FMonthlyReports,
 			Set<AlertHistory> alertHistories, Set<FRuningLog> FRuningLogs,
 			Set<FMaintain> FMaintains, Set<FVehicleBasic> FVehicleBasics,
-			Set<FVehicleMaterial> FVehicleMaterials, Set<FGasfee> FGasfees,
+			Set<FVehicleMaterial> FVehicleMaterials,
+			Set<FExpenseLog> FExpenseLogs, Set<FGasfee> FGasfees,
 			Set<VehiclePic> vehiclePics, Set<Gpsfee> gpsfees,
-			VehicleStatus vehicleStatus, StateHelper stateHelper,
-			Set<Task> tasks, Set<VehicleAssociations> vehicleAssociationses,
+			VehicleStatus vehicleStatus, Set<Task> tasks,
+			StateHelper stateHelper,
+			Set<VehicleAssociations> vehicleAssociationses,
 			Set<MalfunctionDeviceLog> malfunctionDeviceLogs) {
 		this.vehicleId = vehicleId;
 		this.users = users;
@@ -99,17 +104,19 @@ public class Vehicle implements java.io.Serializable {
 		this.FToolses = FToolses;
 		this.vehicleRules = vehicleRules;
 		this.FTyreses = FTyreses;
+		this.FMonthlyReports = FMonthlyReports;
 		this.alertHistories = alertHistories;
 		this.FRuningLogs = FRuningLogs;
 		this.FMaintains = FMaintains;
 		this.FVehicleBasics = FVehicleBasics;
 		this.FVehicleMaterials = FVehicleMaterials;
+		this.FExpenseLogs = FExpenseLogs;
 		this.FGasfees = FGasfees;
 		this.vehiclePics = vehiclePics;
 		this.gpsfees = gpsfees;
 		this.vehicleStatus = vehicleStatus;
-		this.stateHelper = stateHelper;
 		this.tasks = tasks;
+		this.stateHelper = stateHelper;
 		this.vehicleAssociationses = vehicleAssociationses;
 		this.malfunctionDeviceLogs = malfunctionDeviceLogs;
 	}
@@ -306,6 +313,14 @@ public class Vehicle implements java.io.Serializable {
 		this.FTyreses = FTyreses;
 	}
 
+	public Set<FMonthlyReport> getFMonthlyReports() {
+		return this.FMonthlyReports;
+	}
+
+	public void setFMonthlyReports(Set<FMonthlyReport> FMonthlyReports) {
+		this.FMonthlyReports = FMonthlyReports;
+	}
+
 	public Set<AlertHistory> getAlertHistories() {
 		return this.alertHistories;
 	}
@@ -346,6 +361,14 @@ public class Vehicle implements java.io.Serializable {
 		this.FVehicleMaterials = FVehicleMaterials;
 	}
 
+	public Set<FExpenseLog> getFExpenseLogs() {
+		return this.FExpenseLogs;
+	}
+
+	public void setFExpenseLogs(Set<FExpenseLog> FExpenseLogs) {
+		this.FExpenseLogs = FExpenseLogs;
+	}
+
 	public Set<FGasfee> getFGasfees() {
 		return this.FGasfees;
 	}
@@ -378,20 +401,20 @@ public class Vehicle implements java.io.Serializable {
 		this.vehicleStatus = vehicleStatus;
 	}
 
-	public StateHelper getStateHelper() {
-		return this.stateHelper;
-	}
-
-	public void setStateHelper(StateHelper stateHelper) {
-		this.stateHelper = stateHelper;
-	}
-
 	public Set<Task> getTasks() {
 		return this.tasks;
 	}
 
 	public void setTasks(Set<Task> tasks) {
 		this.tasks = tasks;
+	}
+
+	public StateHelper getStateHelper() {
+		return this.stateHelper;
+	}
+
+	public void setStateHelper(StateHelper stateHelper) {
+		this.stateHelper = stateHelper;
 	}
 
 	public Set<VehicleAssociations> getVehicleAssociationses() {
