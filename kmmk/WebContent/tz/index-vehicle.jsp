@@ -90,7 +90,7 @@ Util.setNull2DefaultValue(v);
 <iframe id="main-frame-4" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTyres/search-tyres.jsp?vehicleId=<%=idstr%>" ></iframe>
 </div>
 <div id="tabs-5">
-<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="kztz/fGasfee/search-gasfee.jsp?vehicleId=<%=idstr%>""></iframe>
 </div>
 <div id="tabs-6">
 <iframe id="main-frame-6" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="kztz/fMaintain/search-maintain.jsp?vehicleId=<%=idstr%>"></iframe>
