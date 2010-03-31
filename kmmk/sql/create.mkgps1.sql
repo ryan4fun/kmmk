@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Monday, March 29, 2010 23:27:43
+ * Date Created : Wednesday, March 31, 2010 22:51:42
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -115,6 +115,32 @@ ELSE
 go
 
 /* 
+ * TABLE: f_expense_log 
+ */
+
+CREATE TABLE f_expense_log(
+    id           bigint              IDENTITY(1,1),
+    category1    char(10)            NULL,
+    category2    char(10)            NULL,
+    type         smallint            NULL,
+    amount       double precision    NULL,
+    yearMonth    varchar(10)         NULL,
+    comment1     varchar(100)        NULL,
+    comment2     varchar(200)        NULL,
+    vehicleID    int                 NULL,
+    CONSTRAINT PK76 PRIMARY KEY NONCLUSTERED (id)
+)
+go
+
+
+
+IF OBJECT_ID('f_expense_log') IS NOT NULL
+    PRINT '<<< CREATED TABLE f_expense_log >>>'
+ELSE
+    PRINT '<<< FAILED CREATING TABLE f_expense_log >>>'
+go
+
+/* 
  * TABLE: f_gasfee 
  */
 
@@ -189,6 +215,33 @@ IF OBJECT_ID('f_material_keep_log') IS NOT NULL
     PRINT '<<< CREATED TABLE f_material_keep_log >>>'
 ELSE
     PRINT '<<< FAILED CREATING TABLE f_material_keep_log >>>'
+go
+
+/* 
+ * TABLE: f_monthly_report 
+ */
+
+CREATE TABLE f_monthly_report(
+    id           int                 IDENTITY(1,1),
+    yearMonth    varchar(10)         NULL,
+    income       double precision    NULL,
+    costs        double precision    NULL,
+    note1        varchar(200)        NULL,
+    note2        varchar(200)        NULL,
+    note3        varchar(200)        NULL,
+    note4        varchar(200)        NULL,
+    note5        varchar(200)        NULL,
+    vehicleID    int                 NULL,
+    CONSTRAINT PK77 PRIMARY KEY NONCLUSTERED (id)
+)
+go
+
+
+
+IF OBJECT_ID('f_monthly_report') IS NOT NULL
+    PRINT '<<< CREATED TABLE f_monthly_report >>>'
+ELSE
+    PRINT '<<< FAILED CREATING TABLE f_monthly_report >>>'
 go
 
 /* 
@@ -1450,6 +1503,16 @@ go
 
 
 /* 
+ * TABLE: f_expense_log 
+ */
+
+ALTER TABLE f_expense_log ADD CONSTRAINT Refvehicle107 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
+go
+
+
+/* 
  * TABLE: f_gasfee 
  */
 
@@ -1476,6 +1539,16 @@ go
 ALTER TABLE f_material_keep_log ADD CONSTRAINT Reff_vehicle_material84 
     FOREIGN KEY (materialId)
     REFERENCES f_vehicle_material(materialId)
+go
+
+
+/* 
+ * TABLE: f_monthly_report 
+ */
+
+ALTER TABLE f_monthly_report ADD CONSTRAINT Refvehicle108 
+    FOREIGN KEY (vehicleID)
+    REFERENCES vehicle(vehicleID)
 go
 
 
@@ -1553,14 +1626,14 @@ go
  * TABLE: GPSFee 
  */
 
-ALTER TABLE GPSFee ADD CONSTRAINT Refusers66 
-    FOREIGN KEY (operatorID)
-    REFERENCES users(userID)
-go
-
 ALTER TABLE GPSFee ADD CONSTRAINT Refvehicle65 
     FOREIGN KEY (vehicleID)
     REFERENCES vehicle(vehicleID)
+go
+
+ALTER TABLE GPSFee ADD CONSTRAINT Refusers66 
+    FOREIGN KEY (operatorID)
+    REFERENCES users(userID)
 go
 
 
