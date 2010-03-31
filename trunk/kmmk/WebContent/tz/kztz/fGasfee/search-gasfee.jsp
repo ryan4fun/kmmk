@@ -4,14 +4,14 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 FGasfeeBean fgb = new FGasfeeBean(request);
-List<FGasfee> gfs = fgb.getList();
+List<FGasfee> fgs = fgb.getList();
 Util.setNull2DefaultValue(fgb);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>加油台帐</title>
+<title>加油开支明细帐</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -23,6 +23,7 @@ Util.setNull2DefaultValue(fgb);
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.pagination.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
 <style type="text/css">
@@ -37,8 +38,8 @@ $(document).ready(function(){
 		}
 	});
 	
-	<%if(gfs!=null && gfs.size()>0){%>
-	$("#__pagination").pagination(
+	<%if(fgs!=null && fgs.size()>0){%>
+		$("#__pagination").pagination(
 			<%=fgb.getMaxRecord()%>,
 			{
 				current_page:<%=fgb.getPageNumber()%>,
@@ -49,38 +50,6 @@ $(document).ready(function(){
 			}
 		);
 	<%}%>
-
-	$("#form1").validate({
-		rules: {
-			installDistanceRecStart: {
-				digits: true
-			},
-			installDistanceRecEnd: {
-				digits: true
-			},
-			disposeDistanceRecStart: {
-				digits: true
-			},
-			disposeDistanceRecEnd: {
-				digits: true
-			},
-			usedPeriodStart: {
-				digits: true
-			},
-			usedPeriodEnd: {
-				digits: true
-			},
-			usedDistanceStart: {
-				digits: true
-			},
-			usedDistanceEnd: {
-				digits: true
-			}
-		},
-		messages: {
-
-		}
-	});
 });
 
 function pageSelectCallback(pageNumber){
@@ -91,7 +60,7 @@ function pageSelectCallback(pageNumber){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('TyresDelAction',id);
+			delSingleRec('FGasfeeDelAction',id);
 		}
 	});
 }
@@ -101,15 +70,14 @@ function delOrg(id){
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="form1" action="search-tyres.jsp" method="post">
+<form id="form1" action="search-gasfee.jsp" method="post">
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
-			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=ftb.getLicensPadNumber()==null?"":ftb.getLicensPadNumber()%>" /></td>		
+			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=fgb.getLicensPadNumber()==null?"":fgb.getLicensPadNumber()%>" /></td>
 		</tr>
-		
 		<tr>
-			<td width="20%" align="right">时间：</td>
+			<td width="20%" align="right">加油时间：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
 					id="occurDateStart" name="occurDateStart" onclick="WdatePicker()"
@@ -120,45 +88,84 @@ function delOrg(id){
 					value="<%=Util.FormatDateShort(fgb.getOccurDateEnd())%>" />
 			</td>
 		</tr>
-		
-
+		<tr>
+			<td width="20%" align="right">充值金额：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="depositStart" name="depositStart" 
+					value="<%=fgb.getDepositStart()==null?"":fgb.getDepositStart()%>" />
+				至
+				<input type="text" id="depositEnd" name="depositEnd" 
+					value="<%=fgb.getDepositEnd()==null?"":fgb.getDepositEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">加油量：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="refillStart" name="refillStart" 
+					value="<%=fgb.getRefillStart()==null?"":fgb.getRefillStart()%>" />
+				至
+				<input type="text" id="refillEnd" name="refillEnd" 
+					value="<%=fgb.getRefillEnd()==null?"":fgb.getRefillEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">加油金额：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="refillMoneyStart" name="refillMoneyStart" 
+					value="<%=fgb.getRefillMoneyStart()==null?"":fgb.getRefillMoneyStart()%>" />
+				至
+				<input type="text" id="refillMoneyEnd" name="refillMoneyEnd" 
+					value="<%=fgb.getRefillMoneyEnd()==null?"":fgb.getRefillMoneyEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">余额：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="balanceStart" name="balanceStart" 
+					value="<%=fgb.getBalanceStart()==null?"":fgb.getBalanceStart()%>" />
+				至
+				<input type="text" id="balanceEnd" name="balanceEnd" 
+					value="<%=fgb.getBalanceEnd()==null?"":fgb.getBalanceEnd()%>" />
+			</td>
+		</tr>
 	</table>
 	<p align="center">
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=fgb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=fgb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" value="查询所有" onclick="javascript:href('search-gasfee.jsp')"/>
-		<input type="reset" style="width: 100px;" value="重   置" /></p>
+		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-gasfee.jsp')"/>
+		<input type="reset" style="width: 100px;" value="重   置" />
+		<input type="button" style="width: 100px;" value="新增加油开支明细帐" onclick="javascript:href('update-gasfee.jsp')"/>
+	</p>
 </form>
 </div>
 </div>
-<% if(gfs.size()>0){ %>
+<% if(fgs.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="10%">车牌号</th>
-		<th width="10%">冲值</th>
-		<th width="10%">加油量</th>
-		<th width="10%">加油金额</th>
-		<th width="10%">余额</th>
-		<th width="10%">备注</th>
-
-		<th width="10%">操作</th>
+		<th width="12%">车牌号</th>
+		<th width="12%">加油时间</th>
+		<th width="12%">充值金额</th>
+		<th width="12%">加油量</th>
+		<th width="12%">加油金额</th>
+		<th width="12%">余额</th>
+		<th width="16%">操作</th>
 	</tr>
-	<% for(FGasfee ft:gfs){ 
-		Util.setNull2DefaultValue(ft);%>
+	<% for(FGasfee fg:fgs){ 
+		Util.setNull2DefaultValue(fg);%>
 	<tr>
-		<td id="p_<%=ft.getId()%>" colspan="17">
+		<td id="p_<%=fg.getId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="10%"><a href="javascript:href('view-gasfee.jsp?recId=<%=ft.getId()%>')"><%=ft.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="10%"><a href="javascript:href('view-gasfee.jsp?recId=<%=ft.getId()%>')"><%=ft.getDeposit()%></a></td>
-					<td width="10%"><a href="javascript:href('view-gasfee.jsp?recId=<%=ft.getId()%>')"><%=ft.getRefill()%></a></td>
-					<td width="10%"><a href="javascript:href('view-gasfee.jsp?recId=<%=ft.getId()%>')"><%=ft.getRefillMoney()%></a></td>
-					<td width="10%"><a href="javascript:href('view-gasfee.jsp?recId=<%=ft.getId()%>')"><%=ft.getBalance()%></a></td>
-					<td width="10%"><a href="javascript:href('view-gasfee.jsp?recId=<%=ft.getId()%>')"><%=ft.getComment()%></a></td>
-
-					<td width="10%">
-						<a href="javascript:href('update-gasfee.jsp?recId=<%=ft.getId()%>')">修改备注</a> 
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=Util.FormatDateShort(fg.getOccurDate())%></a></td>
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getDeposit()==null?"":fg.getDeposit()%></a></td>
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefill()==null?"":fg.getRefill()%></a></td>
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefillMoney()==null?"":fg.getRefillMoney()%></a></td>
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>
+					<td width="16%">
+						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改加油开支明细帐</a> | <a href="javascript:delOrg('<%=fg.getId()%>')">删 除</a>
+					</td>
 				</tr>
 			</table>
 		</td>
