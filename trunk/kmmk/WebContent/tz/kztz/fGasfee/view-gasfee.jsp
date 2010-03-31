@@ -77,7 +77,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 					<td width="20%" align="right">备注：</td>
-				<td align="left"><textarea rows="3" id="comment" name="comment"><%=f.getComment()%></textarea></td>
+				<td align="left"><%=f.getComment()%></td>
 			</tr>
 		</table>
 	</div>
