@@ -43,6 +43,7 @@
         <mapping resource="com/gps/orm/Gpsfee.hbm.xml" />
         <mapping resource="com/gps/orm/FVehicleMaterial.hbm.xml" />
         <mapping resource="com/gps/orm/TaskRealtimeTrackHis.hbm.xml" />
+        <mapping resource="com/gps/orm/FMonthlyReport.hbm.xml" />
         <mapping resource="com/gps/orm/HourlyTrack.hbm.xml" />
         <mapping resource="com/gps/orm/PrivateRules.hbm.xml" />
         <mapping resource="com/gps/orm/SegmentDetail.hbm.xml" />
@@ -73,6 +74,7 @@
         <mapping resource="com/gps/orm/Rules.hbm.xml" />
         <mapping resource="com/gps/orm/TaskRealtimeTrack.hbm.xml" />
         <mapping resource="com/gps/orm/Task.hbm.xml" />
+        <mapping resource="com/gps/orm/FExpenseLog.hbm.xml" />
         <mapping resource="com/gps/orm/PictureStore.hbm.xml" />
         <mapping resource="com/gps/orm/Users.hbm.xml" />
     </session-factory>
