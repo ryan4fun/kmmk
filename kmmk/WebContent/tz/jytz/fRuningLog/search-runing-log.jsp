@@ -183,7 +183,7 @@ function delOrg(id){
 				<input type="text" id="unloadSite" name="unloadSite" value="<%=frb.getUnloadSite()%>" /></td>	
 		</tr>
 		<tr>
-			<td width="20%" align="right">实际运费：</td>
+			<td width="20%" align="right">运费合计：</td>
 			<td align="left" colSpan="3">
 				<input type="text" id="totalCostStart" name="totalCostStart" 
 					value="<%=frb.getTotalCostStart()==null?"":frb.getTotalCostStart()%>" />
@@ -229,24 +229,24 @@ function delOrg(id){
 	<tr>
 		<th width="12%">车牌号</th>
 		<th width="12%">出车日期</th>
-		<th width="12%">收车日期</th>
 		<th width="12%">驾驶员</th>
-		<th width="12%">押运员</th>
 		<th width="12%">货物名称</th>
-		<th width="12%">运价</th>
-		
-		<th width="12%">经办人</th>
+		<th width="12%">装货重量</th>
+		<th width="12%">出车里程</th>
+		<th width="12%">装货地点</th>
+		<th width="12%">付款单位</th>
+		<th width="12%">回款方式</th>
 		<th width="16%">操作</th>
 	</tr>
 	<tr>
-		<th width="12%">车牌号</th>
-		<th width="12%">出车日期</th>
 		<th width="12%">收车日期</th>
-		<th width="12%">驾驶员</th>
 		<th width="12%">押运员</th>
-		<th width="12%">货物名称</th>
 		<th width="12%">运价</th>
-		
+		<th width="12%">卸货重量</th>
+		<th width="12%">收车里程</th>
+		<th width="12%">卸货地点</th>
+		<th width="12%">运费合计</th>
+		<th width="12%">回款时间</th>
 		<th width="12%">经办人</th>
 		<th width="16%">操作</th>
 	</tr>
