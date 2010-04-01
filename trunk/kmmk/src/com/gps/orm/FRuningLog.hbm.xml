@@ -11,17 +11,20 @@
         <many-to-one name="vehicle" class="com.gps.orm.Vehicle" fetch="select">
             <column name="vehicleID" />
         </many-to-one>
+        <property name="ticketNo" type="string">
+            <column name="ticketNo" length="30" />
+        </property>
         <property name="startDate" type="timestamp">
             <column name="startDate" length="23" />
         </property>
         <property name="endDate" type="timestamp">
             <column name="endDate" length="23" />
         </property>
-        <property name="driverId" type="java.lang.Integer">
-            <column name="driverID" />
+        <property name="driver" type="string">
+            <column name="driver" length="20" />
         </property>
-        <property name="escorterId" type="java.lang.Integer">
-            <column name="escorterID" />
+        <property name="escorterId" type="string">
+            <column name="escorterID" length="20" />
         </property>
         <property name="goodsName" type="string">
             <column name="goodsName" length="30" />
@@ -67,6 +70,9 @@
         </property>
         <property name="operator" type="string">
             <column name="operator" length="20" />
+        </property>
+        <property name="governmentRecordNo" type="string">
+            <column name="governmentRecordNo" length="50" />
         </property>
     </class>
 </hibernate-mapping>
