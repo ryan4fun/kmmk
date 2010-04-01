@@ -18,10 +18,12 @@ public class FRuningLogBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(FRuningLogBean.class);
 	
 	private Integer id;
+	private String ticketNo;
+	private String governmentRecordNo;
 	private Date startDate;
 	private Date endDate;
-	private Integer driverId;
-	private Integer escorterId;
+	private String driver;
+	private String escorter;
 	private String goodsName;
 	private Double shipPrice;
 	private Double loadWeight;
@@ -84,6 +86,16 @@ public class FRuningLogBean extends AbstractBean {
 				_crit.add(Restrictions.like("v.licensPadNumber", "%"+licensPadNumber+"%"));
 			}
 			
+			if (this.ticketNo != null && ticketNo.length()>0){
+				crit.add(Restrictions.like("ticketNo", "%"+ticketNo+"%"));
+				_crit.add(Restrictions.like("ticketNo", "%"+ticketNo+"%"));
+			}
+			
+			if (this.governmentRecordNo != null && governmentRecordNo.length()>0){
+				crit.add(Restrictions.like("governmentRecordNo", "%"+governmentRecordNo+"%"));
+				_crit.add(Restrictions.like("governmentRecordNo", "%"+governmentRecordNo+"%"));
+			}
+			
 			if (this.goodsName != null && goodsName.length()>0){
 				crit.add(Restrictions.like("goodsName", "%"+goodsName+"%"));
 				_crit.add(Restrictions.like("goodsName", "%"+goodsName+"%"));
@@ -109,14 +121,14 @@ public class FRuningLogBean extends AbstractBean {
 				_crit.add(Restrictions.like("operator", "%"+operator+"%"));
 			}
 			
-			if (this.driverId != null && driverId > 0){
-				crit.add(Restrictions.eq("driverId", driverId));
-				_crit.add(Restrictions.eq("driverId", driverId));
+			if (this.driver != null && driver.length()>0){
+				crit.add(Restrictions.like("driver", "%"+driver+"%"));
+				_crit.add(Restrictions.like("driver", "%"+driver+"%"));
 			}
 			
-			if (this.escorterId != null && escorterId > 0){
-				crit.add(Restrictions.eq("escorterId", escorterId));
-				_crit.add(Restrictions.eq("escorterId", escorterId));
+			if (this.escorter != null && escorter.length()>0){
+				crit.add(Restrictions.like("escorterId", "%"+escorter+"%"));
+				_crit.add(Restrictions.like("escorterId", "%"+escorter+"%"));
 			}
 			
 			if (this.state != null && state > 0){
@@ -265,22 +277,6 @@ public class FRuningLogBean extends AbstractBean {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public Integer getDriverId() {
-		return driverId;
-	}
-
-	public void setDriverId(Integer driverId) {
-		this.driverId = driverId;
-	}
-
-	public Integer getEscorterId() {
-		return escorterId;
-	}
-
-	public void setEscorterId(Integer escorterId) {
-		this.escorterId = escorterId;
 	}
 
 	public String getGoodsName() {
@@ -546,4 +542,37 @@ public class FRuningLogBean extends AbstractBean {
 	public void setTotalCostEnd(Double totalCostEnd) {
 		this.totalCostEnd = totalCostEnd;
 	}
+
+	public String getTicketNo() {
+		return ticketNo;
+	}
+
+	public void setTicketNo(String ticketNo) {
+		this.ticketNo = ticketNo;
+	}
+
+	public String getGovernmentRecordNo() {
+		return governmentRecordNo;
+	}
+
+	public void setGovernmentRecordNo(String governmentRecordNo) {
+		this.governmentRecordNo = governmentRecordNo;
+	}
+
+	public String getDriver() {
+		return driver;
+	}
+
+	public void setDriver(String driver) {
+		this.driver = driver;
+	}
+
+	public String getEscorter() {
+		return escorter;
+	}
+
+	public void setEscorter(String escorter) {
+		this.escorter = escorter;
+	}
+	
 }
