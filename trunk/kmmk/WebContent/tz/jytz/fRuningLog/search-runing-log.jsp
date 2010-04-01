@@ -77,42 +77,120 @@ function delOrg(id){
 			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=frb.getLicensPadNumber()==null?"":frb.getLicensPadNumber()%>" /></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">报修时间：</td>
+			<td width="20%" align="right">出车日期：</td>
 			<td align="left" colSpan="3">
 				<input type="text"
-					id="runing-logDateStart" name="runing-logDateStart" onclick="WdatePicker()"
-					value="<%=Util.FormatDateShort(frb.getMaintainDateStart())%>" />
+					id="startDateStart" name="startDateStart" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(frb.getStartDateStart())%>" />
 				至
 				<input type="text"
-					id="runing-logDateEnd" name="runing-logDateEnd" onclick="WdatePicker()"
-					value="<%=Util.FormatDateShort(frb.getMaintainDateEnd())%>" />
+					id="startDateEnd" name="startDateEnd" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(frb.getStartDateEnd())%>" />
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">维修金额：</td>
+			<td width="20%" align="right">收车日期：</td>
 			<td align="left" colSpan="3">
-				<input type="text" id="costStart" name="costStart" 
-					value="<%=frb.getCostStart()==null?"":frb.getCostStart()%>" />
+				<input type="text"
+					id="endDateStart" name="endDateStart" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(frb.getEndDateStart())%>" />
 				至
-				<input type="text" id="costEnd" name="costEnd" 
-					value="<%=frb.getCostEnd()==null?"":frb.getCostEnd()%>" />
+				<input type="text"
+					id="endDateEnd" name="endDateEnd" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(frb.getEndDateEnd())%>" />
 			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">报修项目：</td>
-			<td align="left">
-				<input type="text" id="category" name="category" value="<%=frb.getCategory()%>" /></td>
-			<td width="20%" align="right">经办人：</td>
-			<td align="left">
-				<input type="text" id="handler" name="handler" value="<%=frb.getHandler()%>" /></td>	
+			<td width="20%" align="right">货物名称：</td>
+			<td align="left" colSpan="3"><input type="text" id="goodsName" name="goodsName" value="<%=frb.getGoodsName()%>" /></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">修理厂：</td>
+			<td width="20%" align="right">运价：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="shipPriceStart" name="shipPriceStart" 
+					value="<%=frb.getShipPriceStart()==null?"":frb.getShipPriceStart()%>" />
+				至
+				<input type="text" id="shipPriceEnd" name="shipPriceEnd" 
+					value="<%=frb.getShipPriceEnd()==null?"":frb.getShipPriceEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">装货重量：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="loadWeightStart" name="loadWeightStart" 
+					value="<%=frb.getLoadWeightStart()==null?"":frb.getLoadWeightStart()%>" />
+				至
+				<input type="text" id="loadWeightEnd" name="loadWeightEnd" 
+					value="<%=frb.getLoadWeightEnd()==null?"":frb.getLoadWeightEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">卸货重量：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="unloadWeightStart" name="unloadWeightStart" 
+					value="<%=frb.getUnloadWeightStart()==null?"":frb.getUnloadWeightStart()%>" />
+				至
+				<input type="text" id="unloadWeightEnd" name="unloadWeightEnd" 
+					value="<%=frb.getUnloadWeightEnd()==null?"":frb.getUnloadWeightEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">出车里程：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="startDisRecordStart" name="startDisRecordStart" 
+					value="<%=frb.getStartDisRecordStart()==null?"":frb.getStartDisRecordStart()%>" />
+				至
+				<input type="text" id="startDisRecordEnd" name="startDisRecordEnd" 
+					value="<%=frb.getStartDisRecordEnd()==null?"":frb.getStartDisRecordEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">收车里程：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="endDisRecordStart" name="endDisRecordStart" 
+					value="<%=frb.getEndDisRecordStart()==null?"":frb.getEndDisRecordStart()%>" />
+				至
+				<input type="text" id="endDisRecordEnd" name="endDisRecordEnd" 
+					value="<%=frb.getEndDisRecordEnd()==null?"":frb.getEndDisRecordEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">装货地点：</td>
 			<td align="left">
-				<input type="text" id="studio" name="studio" value="<%=frb.getStudio()%>" /></td>
-			<td width="20%" align="right">修理人：</td>
+				<input type="text" id="loadSite" name="loadSite" value="<%=frb.getLoadSite()%>" /></td>
+			<td width="20%" align="right">卸货地点：</td>
 			<td align="left">
-				<input type="text" id="operator" name="operator" value="<%=frb.getOperator()%>" /></td>	
+				<input type="text" id="unloadSite" name="unloadSite" value="<%=frb.getUnloadSite()%>" /></td>	
+		</tr>
+		<tr>
+			<td width="20%" align="right">实际运费：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="totalCostStart" name="totalCostStart" 
+					value="<%=frb.getTotalCostStart()==null?"":frb.getTotalCostStart()%>" />
+				至
+				<input type="text" id="totalCostEnd" name="totalCostEnd" 
+					value="<%=frb.getTotalCostEnd()==null?"":frb.getTotalCostEnd()%>" />
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" align="right">付款单位：</td>
+			<td align="left">
+				<input type="text" id="billTo" name="billTo" value="<%=frb.getBillTo()%>" /></td>
+			<td width="20%" align="right">回款方式：</td>
+			<td align="left">
+				<input type="text" id="paymentMethod" name="paymentMethod" value="<%=frb.getPaymentMethod()%>" /></td>	
+		</tr>
+		<tr>
+			<td width="20%" align="right">回款时间：</td>
+			<td align="left" colSpan="3">
+				<input type="text"
+					id="paymentReceiveDateStart" name="paymentReceiveDateStart" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(frb.getPaymentReceiveDateStart())%>" />
+				至
+				<input type="text"
+					id="paymentReceiveDateEnd" name="paymentReceiveDateEnd" onclick="WdatePicker()"
+					value="<%=Util.FormatDateShort(frb.getPaymentReceiveDateEnd())%>" />
+			</td>
 		</tr>
 	</table>
 	<p align="center">
