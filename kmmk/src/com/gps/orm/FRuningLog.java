@@ -11,10 +11,11 @@ public class FRuningLog implements java.io.Serializable {
 
 	private long id;
 	private Vehicle vehicle;
+	private String ticketNo;
 	private Date startDate;
 	private Date endDate;
-	private Integer driverId;
-	private Integer escorterId;
+	private String driver;
+	private String escorterId;
 	private String goodsName;
 	private Double shipPrice;
 	private Double loadWeight;
@@ -30,6 +31,7 @@ public class FRuningLog implements java.io.Serializable {
 	private Short state;
 	private String comment;
 	private String operator;
+	private String governmentRecordNo;
 
 	public FRuningLog() {
 	}
@@ -38,18 +40,20 @@ public class FRuningLog implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public FRuningLog(long id, Vehicle vehicle, Date startDate, Date endDate,
-			Integer driverId, Integer escorterId, String goodsName,
-			Double shipPrice, Double loadWeight, Double unloadWeight,
-			Double startDisRecord, Double endDisRecord, String loadSite,
-			String unloadSite, String billTo, Double totalCost,
-			String paymentMethod, Date paymentReceiveDate, Short state,
-			String comment, String operator) {
+	public FRuningLog(long id, Vehicle vehicle, String ticketNo,
+			Date startDate, Date endDate, String driver, String escorterId,
+			String goodsName, Double shipPrice, Double loadWeight,
+			Double unloadWeight, Double startDisRecord, Double endDisRecord,
+			String loadSite, String unloadSite, String billTo,
+			Double totalCost, String paymentMethod, Date paymentReceiveDate,
+			Short state, String comment, String operator,
+			String governmentRecordNo) {
 		this.id = id;
 		this.vehicle = vehicle;
+		this.ticketNo = ticketNo;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.driverId = driverId;
+		this.driver = driver;
 		this.escorterId = escorterId;
 		this.goodsName = goodsName;
 		this.shipPrice = shipPrice;
@@ -66,6 +70,7 @@ public class FRuningLog implements java.io.Serializable {
 		this.state = state;
 		this.comment = comment;
 		this.operator = operator;
+		this.governmentRecordNo = governmentRecordNo;
 	}
 
 	public long getId() {
@@ -84,6 +89,14 @@ public class FRuningLog implements java.io.Serializable {
 		this.vehicle = vehicle;
 	}
 
+	public String getTicketNo() {
+		return this.ticketNo;
+	}
+
+	public void setTicketNo(String ticketNo) {
+		this.ticketNo = ticketNo;
+	}
+
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -100,19 +113,19 @@ public class FRuningLog implements java.io.Serializable {
 		this.endDate = endDate;
 	}
 
-	public Integer getDriverId() {
-		return this.driverId;
+	public String getDriver() {
+		return this.driver;
 	}
 
-	public void setDriverId(Integer driverId) {
-		this.driverId = driverId;
+	public void setDriver(String driver) {
+		this.driver = driver;
 	}
 
-	public Integer getEscorterId() {
+	public String getEscorterId() {
 		return this.escorterId;
 	}
 
-	public void setEscorterId(Integer escorterId) {
+	public void setEscorterId(String escorterId) {
 		this.escorterId = escorterId;
 	}
 
@@ -234,6 +247,14 @@ public class FRuningLog implements java.io.Serializable {
 
 	public void setOperator(String operator) {
 		this.operator = operator;
+	}
+
+	public String getGovernmentRecordNo() {
+		return this.governmentRecordNo;
+	}
+
+	public void setGovernmentRecordNo(String governmentRecordNo) {
+		this.governmentRecordNo = governmentRecordNo;
 	}
 
 }
