@@ -101,8 +101,28 @@ function delOrg(id){
 			</td>
 		</tr>
 		<tr>
+			<td width="20%" align="right">派车单号：</td>
+			<td align="left">
+				<input type="text" id="ticketNo" name="ticketNo" value="<%=frb.getTicketNo()%>" /></td>
+			<td width="20%" align="right">运输备案号：</td>
+			<td align="left">
+				<input type="text" id="governmentRecordNo" name="governmentRecordNo" value="<%=frb.getGovernmentRecordNo()%>" /></td>	
+		</tr>
+		<tr>
+			<td width="20%" align="right">驾驶员：</td>
+			<td align="left">
+				<input type="text" id="driver" name="driver" value="<%=frb.getDriver()%>" /></td>
+			<td width="20%" align="right">押运员：</td>
+			<td align="left">
+				<input type="text" id="escorter" name="escorter" value="<%=frb.getEscorter()%>" /></td>	
+		</tr>
+		<tr>
 			<td width="20%" align="right">货物名称：</td>
-			<td align="left" colSpan="3"><input type="text" id="goodsName" name="goodsName" value="<%=frb.getGoodsName()%>" /></td>
+			<td align="left">
+				<input type="text" id="goodsName" name="goodsName" value="<%=frb.getGoodsName()%>" /></td>
+			<td width="20%" align="right">经办人：</td>
+			<td align="left">
+				<input type="text" id="operator" name="operator" value="<%=frb.getOperator()%>" /></td>	
 		</tr>
 		<tr>
 			<td width="20%" align="right">运价：</td>
@@ -208,14 +228,29 @@ function delOrg(id){
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
 		<th width="12%">车牌号</th>
-		<th width="12%">报修时间</th>
-		<th width="12%">报修项目</th>
-		<th width="12%">更换零件</th>
-		<th width="12%">数量</th>
-		<th width="12%">维修金额</th>
+		<th width="12%">出车日期</th>
+		<th width="12%">收车日期</th>
+		<th width="12%">驾驶员</th>
+		<th width="12%">押运员</th>
+		<th width="12%">货物名称</th>
+		<th width="12%">运价</th>
+		
 		<th width="12%">经办人</th>
 		<th width="16%">操作</th>
 	</tr>
+	<tr>
+		<th width="12%">车牌号</th>
+		<th width="12%">出车日期</th>
+		<th width="12%">收车日期</th>
+		<th width="12%">驾驶员</th>
+		<th width="12%">押运员</th>
+		<th width="12%">货物名称</th>
+		<th width="12%">运价</th>
+		
+		<th width="12%">经办人</th>
+		<th width="16%">操作</th>
+	</tr>
+	
 	<% for(FRuningLog fr:frs){ 
 		Util.setNull2DefaultValue(fr);%>
 	<tr>
