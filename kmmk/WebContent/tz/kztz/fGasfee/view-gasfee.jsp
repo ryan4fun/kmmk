@@ -71,12 +71,10 @@ $(document).ready(function(){
 					<td width="20%" align="right">加油金额：</td>
 				<td align="left"><%=f.getRefillMoney()==null?"":f.getRefillMoney()%></td>
 			</tr>
-			<%--
 			<tr>
 					<td width="20%" align="right">余额：</td>
 				<td align="left"><%=f.getBalance()==null?"":f.getBalance()%></td>
 			</tr>
-			--%>
 			<tr>
 					<td width="20%" align="right">备注：</td>
 				<td align="left"><%=f.getComment()%></td>

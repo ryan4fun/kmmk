@@ -60,7 +60,7 @@ function pageSelectCallback(pageNumber){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('FGasfeeDelAction',id);
+			//delSingleRec('FGasfeeDelAction',id);
 		}
 	});
 }
@@ -118,7 +118,6 @@ function delOrg(id){
 					value="<%=fgb.getRefillMoneyEnd()==null?"":fgb.getRefillMoneyEnd()%>" />
 			</td>
 		</tr>
-		<%--
 		<tr>
 			<td width="20%" align="right">余额：</td>
 			<td align="left" colSpan="3">
@@ -129,7 +128,6 @@ function delOrg(id){
 					value="<%=fgb.getBalanceEnd()==null?"":fgb.getBalanceEnd()%>" />
 			</td>
 		</tr>
-		--%>
 	</table>
 	<p align="center">
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=fgb.getPageNumber()%>" />
@@ -150,7 +148,7 @@ function delOrg(id){
 		<th width="12%">充值金额</th>
 		<th width="12%">加油量</th>
 		<th width="12%">加油金额</th>
-		<%--<th width="12%">余额</th>--%>
+		<th width="12%">余额</th>
 		<th width="16%">操作</th>
 	</tr>
 	<% for(FGasfee fg:fgs){ 
@@ -164,9 +162,9 @@ function delOrg(id){
 					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getDeposit()==null?"":fg.getDeposit()%></a></td>
 					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefill()==null?"":fg.getRefill()%></a></td>
 					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefillMoney()==null?"":fg.getRefillMoney()%></a></td>
-					<%--<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>--%>
+					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>
 					<td width="16%">
-						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改加油开支明细帐</a> | <a href="javascript:delOrg('<%=fg.getId()%>')">删 除</a>
+						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改加油开支明细帐</a>
 					</td>
 				</tr>
 			</table>
