@@ -143,12 +143,12 @@ function delOrg(id){
 <% if(fgs.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="12%">车牌号</th>
-		<th width="12%">加油时间</th>
-		<th width="12%">充值金额</th>
-		<th width="12%">加油量</th>
-		<th width="12%">加油金额</th>
-		<th width="12%">余额</th>
+		<th width="14%">车牌号</th>
+		<th width="14%">加油时间</th>
+		<th width="14%">充值金额</th>
+		<th width="14%">加油量</th>
+		<th width="14%">加油金额</th>
+		<th width="14%">余额</th>
 		<th width="16%">操作</th>
 	</tr>
 	<% for(FGasfee fg:fgs){ 
@@ -157,12 +157,12 @@ function delOrg(id){
 		<td id="p_<%=fg.getId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=Util.FormatDateShort(fg.getOccurDate())%></a></td>
-					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getDeposit()==null?"":fg.getDeposit()%></a></td>
-					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefill()==null?"":fg.getRefill()%></a></td>
-					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefillMoney()==null?"":fg.getRefillMoney()%></a></td>
-					<td width="12%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=Util.FormatDateShort(fg.getOccurDate())%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getDeposit()==null?"":fg.getDeposit()%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefill()==null?"":fg.getRefill()%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefillMoney()==null?"":fg.getRefillMoney()%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>
 					<td width="16%">
 						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改加油开支明细帐</a>
 					</td>
@@ -172,7 +172,7 @@ function delOrg(id){
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="99" align="center"></td>
 	</tr>
 </table>
 <% } %>
