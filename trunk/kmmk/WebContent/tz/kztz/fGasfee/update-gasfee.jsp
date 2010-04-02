@@ -88,6 +88,7 @@ Util.setNull2DefaultValue(f);
 			<input type="hidden" name = "failed" value="update-gasfee-faild.jsp"/>
 			<input type="hidden" name = "id" value="<%=f.getId()%>"/>
 			<table cellSpacing="5" width="95%">
+				<%--
 				<tr>
  					<td width="20%" align="right">报修车辆：</td>
 					<td align="left">
@@ -112,7 +113,6 @@ Util.setNull2DefaultValue(f);
  					<td width="20%" align="right">加油金额：</td>
 					<td align="left"><input type="text" id="refillMoney" name="refillMoney" value="<%=f.getRefillMoney()==null?"":f.getRefillMoney()%>" /></td>
 				</tr>
-				<%--
 				<tr>
  					<td width="20%" align="right">余额：</td>
 					<td align="left"><%=f.getBalance()==null?"":f.getBalance()%></td>
