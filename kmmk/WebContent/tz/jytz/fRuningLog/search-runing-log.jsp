@@ -227,28 +227,29 @@ function delOrg(id){
 <% if(frs.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="12%">车牌号</th>
-		<th width="12%">出车日期</th>
-		<th width="12%">驾驶员</th>
-		<th width="12%">货物名称</th>
-		<th width="12%">装货重量</th>
-		<th width="12%">出车里程</th>
-		<th width="12%">装货地点</th>
-		<th width="12%">付款单位</th>
-		<th width="12%">回款方式</th>
-		<th width="16%">操作</th>
+		<th width="9%" rowspan="2">车牌号</th>
+		<th width="9%">出车单号</th>
+		<th width="9%">出车日期</th>
+		<th width="9%">驾驶员</th>
+		<th width="9%">货物名称</th>
+		<th width="9%">装货重量</th>
+		<th width="9%">出车里程</th>
+		<th width="9%">装货地点</th>
+		<th width="9%">付款单位</th>
+		<th width="9%">回款方式</th>
+		<th width="10%">经办人</th>
 	</tr>
 	<tr>
-		<th width="12%">收车日期</th>
-		<th width="12%">押运员</th>
-		<th width="12%">运价</th>
-		<th width="12%">卸货重量</th>
-		<th width="12%">收车里程</th>
-		<th width="12%">卸货地点</th>
-		<th width="12%">运费合计</th>
-		<th width="12%">回款时间</th>
-		<th width="12%">经办人</th>
-		<th width="16%">操作</th>
+		<th width="9%">收车日期</th>
+		<th width="9%">运输备案号</th>
+		<th width="9%">押运员</th>
+		<th width="9%">运价</th>
+		<th width="9%">卸货重量</th>
+		<th width="9%">收车里程</th>
+		<th width="9%">卸货地点</th>
+		<th width="9%">运费合计</th>
+		<th width="9%">回款时间</th>
+		<th width="10%">操作</th>
 	</tr>
 	
 	<% for(FRuningLog fr:frs){ 
@@ -257,14 +258,29 @@ function delOrg(id){
 		<td id="p_<%=fr.getId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getMaintainDate())%></a></td>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getCategory()%></a></td>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getSubCategory()%></a></td>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getQuantity()==null?"":fr.getQuantity()%></a></td>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getCost()==null?"":fr.getCost()%></a></td>
-					<td width="12%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getHandler()==null?"":fr.getHandler()%></a></td>
-					<td width="16%">
+					<td width="9%" rowspan="2"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTicketNo()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getStartDate())%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getDriver()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getGoodsName()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getLoadWeight()==null?"":fr.getLoadWeight()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getStartDisRecord()==null?"":fr.getStartDisRecord()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getLoadSite()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getBillTo()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getPaymentMethod()%></a></td>
+					<td width="10%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getOperator()%></a></td>
+				</tr>
+				<tr>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getEndDate())%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getGovernmentRecordNo()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getEscorterId()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getShipPrice()==null?"":fr.getShipPrice()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getUnloadWeight()==null?"":fr.getUnloadWeight()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getEndDisRecord()==null?"":fr.getEndDisRecord()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getUnloadSite()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTotalCost()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getPaymentReceiveDate())%></a></td>
+					<td width="10%">
 						<a href="javascript:href('update-runing-log.jsp?id=<%=fr.getId()%>')">修改车辆经营收支明细台帐</a> | <a href="javascript:delOrg('<%=fr.getId()%>')">删 除</a>
 					</td>
 				</tr>
@@ -273,7 +289,7 @@ function delOrg(id){
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="99" align="center"></td>
 	</tr>
 </table>
 <% } %>
