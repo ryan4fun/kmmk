@@ -228,8 +228,8 @@ function delOrg(id){
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
 		<th width="9%" rowspan="2">车牌号</th>
-		<th width="9%">出车单号</th>
 		<th width="9%">出车日期</th>
+		<th width="9%">出车单号</th>
 		<th width="9%">驾驶员</th>
 		<th width="9%">货物名称</th>
 		<th width="9%">装货重量</th>
