@@ -60,23 +60,23 @@ $(document).ready(function(){
 				<td align="left"><%=Util.FormatDateShort(f.getOccurDate())%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">充值金额：</td>
+				<td width="20%" align="right">充值金额：</td>
 				<td align="left"><%=f.getDeposit()==null?"":f.getDeposit()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">加油量：</td>
+				<td width="20%" align="right">加油量：</td>
 				<td align="left"><%=f.getRefill()==null?"":f.getRefill()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">加油金额：</td>
+				<td width="20%" align="right">加油金额：</td>
 				<td align="left"><%=f.getRefillMoney()==null?"":f.getRefillMoney()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">余额：</td>
+				<td width="20%" align="right">余额：</td>
 				<td align="left"><%=f.getBalance()==null?"":f.getBalance()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">备注：</td>
+				<td width="20%" align="right">备注：</td>
 				<td align="left"><%=f.getComment()%></td>
 			</tr>
 		</table>

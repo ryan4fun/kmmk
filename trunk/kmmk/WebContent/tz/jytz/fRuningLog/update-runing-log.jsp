@@ -54,9 +54,6 @@ Util.setNull2DefaultValue(f);
 		
    		$("#form1").validate({
 			rules: {
-   				runing-logDate: {
-   					required: true
-				},
 				category: {
    					required: true
 				},
@@ -107,14 +104,6 @@ Util.setNull2DefaultValue(f);
 					<td align="left"><input type="text" id="category" name="category" value="<%=f.getCategory()%>" /></td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">更换零件：</td>
-					<td align="left"><input type="text" id="subCategory" name="subCategory" value="<%=f.getSubCategory()%>" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">数量：</td>
-					<td align="left"><input type="text" id="quantity" name="quantity" value="<%=f.getQuantity()==null?"":f.getQuantity()%>" /></td>
-				</tr>
-				<tr>
  					<td width="20%" align="right">维修金额：</td>
 					<td align="left"><input type="text" id="cost" name="cost" value="<%=f.getCost()==null?"":f.getCost()%>" /></td>
 				</tr>
@@ -125,14 +114,6 @@ Util.setNull2DefaultValue(f);
 				<tr>
  					<td width="20%" align="right">备注：</td>
 					<td align="left"><textarea rows="3" id="comment" name="comment"><%=f.getComment()%></textarea></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">修理厂：</td>
-					<td align="left"><input type="text" id="studio" name="studio" value="<%=f.getStudio()%>" /></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">修理人：</td>
-					<td align="left"><input type="text" id="operator" name="operator" value="<%=f.getOperator()%>" /></td>
 				</tr>
 			</table>
 				<p align="center">
