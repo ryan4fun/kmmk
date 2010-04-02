@@ -56,39 +56,39 @@ $(document).ready(function(){
 				<td align="left"><%=f.getVehicle().getLicensPadNumber()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">报修时间：</td>
-					<td align="left"><%=Util.FormatDateShort(f.getMaintainDate())%></td>
+				<td width="20%" align="right">报修时间：</td>
+				<td align="left"><%=Util.FormatDateShort(f.getMaintainDate())%></td>
 			</tr>
-				<tr>
-					<td width="20%" align="right">报修项目：</td>
+			<tr>
+				<td width="20%" align="right">报修项目：</td>
 				<td align="left"><%=f.getCategory()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">更换零件：</td>
+				<td width="20%" align="right">更换零件：</td>
 				<td align="left"><%=f.getSubCategory()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">数量：</td>
+				<td width="20%" align="right">数量：</td>
 				<td align="left"><%=f.getQuantity()==null?"":f.getQuantity()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">维修金额：</td>
+				<td width="20%" align="right">维修金额：</td>
 				<td align="left"><%=f.getCost()==null?"":f.getCost()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">经办人：</td>
+				<td width="20%" align="right">经办人：</td>
 				<td align="left"><%=f.getHandler()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">备注：</td>
+				<td width="20%" align="right">备注：</td>
 				<td align="left"><%=f.getComment()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">修理厂：</td>
+				<td width="20%" align="right">修理厂：</td>
 				<td align="left"><%=f.getStudio()%></td>
 			</tr>
 			<tr>
-					<td width="20%" align="right">修理人：</td>
+				<td width="20%" align="right">修理人：</td>
 				<td align="left"><%=f.getOperator()%></td>
 			</tr>
 		</table>

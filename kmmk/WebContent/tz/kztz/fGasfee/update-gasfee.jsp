@@ -54,6 +54,7 @@ Util.setNull2DefaultValue(f);
 		
    		$("#form1").validate({
 			rules: {
+   				<%--
    				occurDate: {
    					required: true
 				},
@@ -68,6 +69,10 @@ Util.setNull2DefaultValue(f);
 				refillMoney: {
    					required: true,
    					number: true
+				}
+				--%>
+				comment: {
+   					required: true
 				}
 			},
 			messages: {
