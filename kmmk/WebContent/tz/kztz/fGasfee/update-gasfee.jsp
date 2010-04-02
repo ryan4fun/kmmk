@@ -49,12 +49,12 @@ Util.setNull2DefaultValue(f);
 				
 			}
 		});
-
+		<%if(actionName.equals("FGasfeeAddAction")){%>
 		initVehicleSelector();
 		
    		$("#form1").validate({
 			rules: {
-   				<%if(actionName.equals("FGasfeeAddAction")){%>
+   				
    				occurDate: {
    					required: true
 				},
@@ -69,8 +69,15 @@ Util.setNull2DefaultValue(f);
 				refillMoney: {
    					required: true,
    					number: true
-				},
-				<%}%>
+				}
+			},
+			messages: {
+
+			}
+		});
+   		<%} else {%>
+   		$("#form1").validate({
+			rules: {
 				comment: {
    					required: true
 				}
@@ -79,6 +86,7 @@ Util.setNull2DefaultValue(f);
 
 			}
 		});
+   		<%}%>
 	});
 </script>
 </head>
