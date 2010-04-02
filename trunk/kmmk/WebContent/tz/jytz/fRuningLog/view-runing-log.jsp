@@ -125,7 +125,7 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td width="20%" align="right">回款时间：</td>
-				<td align="left"><%=Util.FormatDateShort(f.getPaymentReceiveDate())%>" onclick="WdatePicker()</td>
+				<td align="left"><%=Util.FormatDateShort(f.getPaymentReceiveDate())%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">经办人：</td>
