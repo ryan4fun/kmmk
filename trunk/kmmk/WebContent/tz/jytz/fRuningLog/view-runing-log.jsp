@@ -57,83 +57,83 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车日期：</td>
-				<td align="left"><input type="text" id="startDate" name="startDate" value="<%=Util.FormatDateShort(f.getStartDate())%>" onclick="WdatePicker()" /></td>
+				<td align="left"><%=Util.FormatDateShort(f.getStartDate())%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">收车日期：</td>
-				<td align="left"><input type="text" id="endDate" name="endDate" value="<%=Util.FormatDateShort(f.getEndDate())%>" onclick="WdatePicker()" /></td>
+				<td align="left"><%=Util.FormatDateShort(f.getEndDate())%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车单号：</td>
-				<td align="left"><input type="text" id="ticketNo" name="ticketNo" value="<%=f.getTicketNo()%>" /></td>
+				<td align="left"><%=f.getTicketNo()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">运输备案号：</td>
-				<td align="left"><input type="text" id="governmentRecordNo" name="governmentRecordNo" value="<%=f.getGovernmentRecordNo()%>" /></td>
+				<td align="left"><%=f.getGovernmentRecordNo()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">驾驶员：</td>
-				<td align="left"><input type="text" id="driver" name="driver" value="<%=f.getDriver()%>" /></td>
+				<td align="left"><%=f.getDriver()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">押运员：</td>
-				<td align="left"><input type="text" id="escorterId" name="escorterId" value="<%=f.getEscorterId()%>" /></td>
+				<td align="left"><%=f.getEscorterId()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">货物名称：</td>
-				<td align="left"><input type="text" id="goodsName" name="goodsName" value="<%=f.getGoodsName()%>" /></td>
+				<td align="left"><%=f.getGoodsName()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">运价：</td>
-				<td align="left"><input type="text" id="shipPrice" name="shipPrice" value="<%=f.getShipPrice()==null?"":f.getShipPrice()%>" /></td>
+				<td align="left"><%=f.getShipPrice()==null?"":f.getShipPrice()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">装货重量：</td>
-				<td align="left"><input type="text" id="loadWeight" name="loadWeight" value="<%=f.getLoadWeight()==null?"":f.getLoadWeight()%>" /></td>
+				<td align="left"><%=f.getLoadWeight()==null?"":f.getLoadWeight()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">卸货重量：</td>
-				<td align="left"><input type="text" id="unloadWeight" name="unloadWeight" value="<%=f.getUnloadWeight()==null?"":f.getUnloadWeight()%>" /></td>
+				<td align="left"><%=f.getUnloadWeight()==null?"":f.getUnloadWeight()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车里程：</td>
-				<td align="left"><input type="text" id="startDisRecord" name="startDisRecord" value="<%=f.getStartDisRecord()==null?"":f.getStartDisRecord()%>" /></td>
+				<td align="left"><%=f.getStartDisRecord()==null?"":f.getStartDisRecord()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">收车里程：</td>
-				<td align="left"><input type="text" id="endDisRecord" name="endDisRecord" value="<%=f.getEndDisRecord()==null?"":f.getEndDisRecord()%>" /></td>
+				<td align="left"><%=f.getEndDisRecord()==null?"":f.getEndDisRecord()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">装货地点：</td>
-				<td align="left"><input type="text" id="loadSite" name="loadSite" value="<%=f.getLoadSite()%>" /></td>
+				<td align="left"><%=f.getLoadSite()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">卸货地点：</td>
-				<td align="left"><input type="text" id="unloadSite" name="unloadSite" value="<%=f.getUnloadSite()%>" /></td>
+				<td align="left"><%=f.getUnloadSite()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">付款单位：</td>
-				<td align="left"><input type="text" id="billTo" name="billTo" value="<%=f.getBillTo()%>" /></td>
+				<td align="left"><%=f.getBillTo()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">运费合计：</td>
-				<td align="left"><input type="text" id="totalCost" name="totalCost" value="<%=f.getTotalCost()==null?"":f.getTotalCost()%>" /></td>
+				<td align="left"><%=f.getTotalCost()==null?"":f.getTotalCost()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">回款方式：</td>
-				<td align="left"><input type="text" id="paymentMethod" name="paymentMethod" value="<%=f.getPaymentMethod()%>" /></td>
+				<td align="left"><%=f.getPaymentMethod()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">回款时间：</td>
-				<td align="left"><input type="text" id="paymentReceiveDate" name="paymentReceiveDate" value="<%=Util.FormatDateShort(f.getPaymentReceiveDate())%>" onclick="WdatePicker()" /></td>
+				<td align="left"><%=Util.FormatDateShort(f.getPaymentReceiveDate())%>" onclick="WdatePicker()</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">经办人：</td>
-				<td align="left"><input type="text" id="operator" name="operator" value="<%=f.getOperator()%>" /></td>
+				<td align="left"><%=f.getOperator()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">备注：</td>
-				<td align="left"><textarea rows="3" id="comment" name="comment"><%=f.getComment()%></textarea></td>
+				<td align="left"><%=f.getComment()%></td>
 			</tr>
 		</table>
 	</div>
