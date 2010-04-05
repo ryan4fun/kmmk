@@ -9,6 +9,8 @@ FToolsBean ftb = new FToolsBean();
 String actionName = "FToolsAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FTools();
+	VehicleBean vb = new VehicleBean(request);
+	f.setVehicle(vb.findById());
 } else {
 	ftb.setToolId(Integer.parseInt(idstr));
 	f =  ftb.findById();
