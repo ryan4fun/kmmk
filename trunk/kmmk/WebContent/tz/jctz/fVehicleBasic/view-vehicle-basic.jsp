@@ -78,11 +78,11 @@ $(document).ready(function(){
 			%>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="修改基础台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>		
+				<input type="button" value="修改基础台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>		
 			</p>
 			<% } else { %>
 			<p align="center">
-				<input type="button" style="width:100px;" value="补全基础台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>		
+				<input type="button" value="补全基础台帐" onclick="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')"/>		
 			</p>
 		</form>
 	</div>

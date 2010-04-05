@@ -94,8 +94,8 @@ $(document).ready(function(){
 		</table>
 	</div>
 	<p align="center">
-		<input type="button" style="width:100px;" value="修改车辆维修明细台帐" onclick="javascript:href('update-maintain.jsp?id=<%=f.getId()%>')"/>
-		<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+		<input type="button" value="修改车辆维修明细台帐" onclick="javascript:href('update-maintain.jsp?id=<%=f.getId()%>')"/>
+		<input type="button" value="返回" onclick="javascript:history.back()"/>
 	</p>
 </div>
 </body>

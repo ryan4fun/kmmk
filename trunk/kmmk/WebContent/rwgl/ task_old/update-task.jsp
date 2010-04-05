@@ -70,7 +70,7 @@ $(document).ready(function(){
 		}
 	});
 	
-  	$("#form1").validate({
+  	$("#inputform").validate({
 		rules: {
   			taskName: {
 				required: true
@@ -401,7 +401,7 @@ function checkName(newName){
 <div id="search-div">
 <h3><a href="#">车辆任务信息</a></h3>
 <div style="padding:2px;overflow:visible">
-	<form id="form1" action="mkgps.do" method="post">
+	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
 		<input type="hidden" name = "success" value="update-task-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-task-faild.jsp"/>

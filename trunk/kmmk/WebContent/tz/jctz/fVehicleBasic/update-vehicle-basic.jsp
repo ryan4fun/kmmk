@@ -225,7 +225,7 @@ Util.setNull2DefaultValue(v);
 			<p align="center">
 				<input type="submit" value="提交"/>
 				<input type="reset" value="重置"/>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+				<input type="button" value="返回" onclick="javascript:history.back()"/>
 			</p>
 		</form>
 	</div>

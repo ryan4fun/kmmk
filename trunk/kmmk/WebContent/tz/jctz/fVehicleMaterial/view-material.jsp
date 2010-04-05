@@ -103,9 +103,9 @@ function delOrg(id){
 	</div>
 	<% } %>
 	<p align="center">
-		<input type="button" style="width:100px;" value="交接车辆资料" onclick="javascript:href('update-material-keep-log.jsp?materialId=<%=f.getMaterialId()%>')"/>
-		<input type="button" style="width:100px;" value="修改车辆资料" onclick="javascript:href('update-material.jsp?materialId=<%=f.getMaterialId()%>')"/>
-		<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+		<input type="button" value="交接车辆资料" onclick="javascript:href('update-material-keep-log.jsp?materialId=<%=f.getMaterialId()%>')"/>
+		<input type="button" value="修改车辆资料" onclick="javascript:href('update-material.jsp?materialId=<%=f.getMaterialId()%>')"/>
+		<input type="button" value="返回" onclick="javascript:history.back()"/>
 	</p>
 </div>
 </body>

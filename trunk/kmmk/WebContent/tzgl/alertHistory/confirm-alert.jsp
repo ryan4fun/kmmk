@@ -44,7 +44,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#form1").validate({
+	$("#inputform").validate({
 		rules: {
 			accComment: {
 				required: true
@@ -64,7 +64,7 @@ $(document).ready(function(){
 	<div id="search-div">
 		<h3><a href="#">违规报警确认</a></h3>
 		<div style="padding:2px;overflow:visible">
-			<form id="form1" action="mkgps.do" method="post">
+			<form id="inputform" action="mkgps.do" method="post">
 				<input type="hidden" name="alertId" value="<%=ah.getAlertId()%>"/>
 				<input type="hidden" name="action" value="AlertHistoryUpdateAction"/>
 				<input type="hidden" name="success" value="update-alert-history-succ.jsp"/>
@@ -94,7 +94,7 @@ $(document).ready(function(){
 				</table>
 				<p align="center">
 					<input type="submit" style="" value="提交"/>
-					<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/></p>	
+					<input type="button" value="返回" onclick="javascript:history.back()"/></p>	
 			</form>
 		</div>
 	</div>

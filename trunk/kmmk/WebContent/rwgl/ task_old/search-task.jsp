@@ -96,7 +96,7 @@ function changeTaskState(recID,taskState){
 		jConfirm("确定执行该操作吗？", "警告", function(r){
 			if(r){
 				var m = '<p align="center">';
-				m += '<input type="button" style="width:100px;" value="确定" onclick="$(divId).unblock();">';
+				m += '<input type="button" value="确定" onclick="$(divId).unblock();">';
 				m += '</p>';
 				divId = "#p_" + recID;
 				$(divId).block( {
