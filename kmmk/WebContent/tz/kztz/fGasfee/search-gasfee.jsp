@@ -132,10 +132,10 @@ function delOrg(id){
 	<p align="center">
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=fgb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=fgb.getRowsPerPage()%>" />
-		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-gasfee.jsp')"/>
-		<input type="reset" style="width: 100px;" value="重   置" />
-		<input type="button" style="width: 100px;" value="新增加油记录" onclick="javascript:href('update-gasfee.jsp')"/>
+		<input type="submit" style="width:100px;" value="查   询" />
+		<input type="button" style="width:100px;" value="查询所有" onclick="javascript:href('search-gasfee.jsp')"/>
+		<input type="reset" style="width:100px;" value="重   置" />
+		<input type="button" style="width:100px;" value="新增加油" onclick="javascript:href('update-gasfee.jsp')"/>
 	</p>
 </form>
 </div>
