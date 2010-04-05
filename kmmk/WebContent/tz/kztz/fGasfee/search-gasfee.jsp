@@ -135,7 +135,7 @@ function delOrg(id){
 		<input type="submit" style="width: 100px;" value="查   询" />
 		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-gasfee.jsp')"/>
 		<input type="reset" style="width: 100px;" value="重   置" />
-		<input type="button" style="width: 100px;" value="新增加油开支明细帐" onclick="javascript:href('update-gasfee.jsp')"/>
+		<input type="button" style="width: 100px;" value="新增加油记录" onclick="javascript:href('update-gasfee.jsp')"/>
 	</p>
 </form>
 </div>
