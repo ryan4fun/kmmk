@@ -94,7 +94,7 @@ Util.setNull2DefaultValue(f);
  					<td width="20%" align="right">报修车辆：</td>
 					<td align="left">
 						<jsp:include page="/vehicle-selector.jsp" >
-							<jsp:param name="vehicleId" value="<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>"/>
+							<jsp:param name="vehicleId" value='<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>' />
 						</jsp:include>
 					</td>
 				</tr>
