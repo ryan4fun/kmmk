@@ -61,7 +61,7 @@ public class DriverBean extends AbstractBean {
 		if(driverId!=null && driverId.intValue()>0)
 			return getServiceLocator().getDriverService().findById(driverId);
 		else
-			return new Driver();
+			return null;
 	}
 
 	public List<Driver> getList(){

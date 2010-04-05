@@ -51,7 +51,7 @@ public class RoleBean extends AbstractBean {
 		if(roleId!=null && roleId.intValue()>0)
 			return getServiceLocator().getRoleService().findById(roleId);
 		else
-			return new Role();
+			return null;
 	}
 
 	public Integer getRoleId() {

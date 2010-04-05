@@ -65,7 +65,7 @@ public class RulesBean extends AbstractBean {
 		if(ruleId!=null && ruleId.intValue()>0)
 			return getServiceLocator().getRulesService().findById(ruleId);
 		else
-			return new Rules();
+			return null;
 	}
 
 	public Integer getRuleId() {

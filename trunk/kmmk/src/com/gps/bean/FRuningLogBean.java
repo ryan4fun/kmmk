@@ -244,7 +244,7 @@ public class FRuningLogBean extends AbstractBean {
 		if(id!=null && id.intValue()>0)
 			return getServiceLocator().getFRuningLogService().findById(id);
 		else
-			return new FRuningLog();
+			return null;
 	}
 	
 	public Integer getId() {

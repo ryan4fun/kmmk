@@ -60,7 +60,7 @@ public class PrivateRulesBean extends AbstractBean {
 		if(ruleId!=null && ruleId.intValue()>0)
 			return getServiceLocator().getPrivateRulesService().findById(ruleId);
 		else
-			return new PrivateRules();
+			return null;
 	}
 
 	public Integer getRuleId() {

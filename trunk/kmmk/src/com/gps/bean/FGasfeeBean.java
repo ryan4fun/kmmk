@@ -135,7 +135,7 @@ public class FGasfeeBean extends AbstractBean {
 		if(id >0)
 			return getServiceLocator().getFGasfeeService().findById(id);
 		else
-			return new FGasfee();
+			return null;
 	}
 	
 	public static FGasfee findById(int vehicleId){

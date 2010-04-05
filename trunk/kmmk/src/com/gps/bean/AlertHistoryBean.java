@@ -163,7 +163,7 @@ public class AlertHistoryBean extends AbstractBean {
 		if(alertId!=null && alertId.intValue()>0)
 			return getServiceLocator().getAlertHistoryService().findById(alertId);
 		else
-			return new AlertHistory();
+			return null;
 	}
 
 	public void setAcctime(Date acctime) {

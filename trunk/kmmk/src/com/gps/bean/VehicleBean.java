@@ -208,7 +208,7 @@ public class VehicleBean extends AbstractBean {
 		if(vehicleId!=null && vehicleId.intValue()>0)
 			return getServiceLocator().getVehicleService().findById(vehicleId);
 		else
-			return new Vehicle();
+			return null;
 	}
 	
 	public static Vehicle findById(int vehicleId){

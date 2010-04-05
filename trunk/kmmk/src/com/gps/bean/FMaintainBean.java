@@ -112,7 +112,7 @@ public class FMaintainBean extends AbstractBean {
 		if(id!=null && id.intValue()>0)
 			return getServiceLocator().getFMaintainService().findById(id);
 		else
-			return new FMaintain();
+			return null;
 	}
 	
 	public Integer getId() {

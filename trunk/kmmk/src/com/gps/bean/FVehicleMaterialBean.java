@@ -87,7 +87,7 @@ public class FVehicleMaterialBean extends AbstractBean {
 		if(materialId!=null && materialId.intValue()>0)
 			return getServiceLocator().getFVehicleMaterialService().findById(materialId);
 		else
-			return new FVehicleMaterial();
+			return null;
 	}
 
 	public Integer getMaterialId() {

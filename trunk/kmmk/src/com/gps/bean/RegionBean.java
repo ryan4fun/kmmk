@@ -114,7 +114,7 @@ public class RegionBean extends AbstractBean {
 		if(regionId!=null && regionId.intValue()>0)
 			return getServiceLocator().getRegionService().findById(regionId);
 		else
-			return new Region();
+			return null;
 	}
 
 	public Integer getRegionId() {

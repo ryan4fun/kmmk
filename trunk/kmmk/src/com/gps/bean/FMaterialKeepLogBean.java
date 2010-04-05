@@ -74,7 +74,7 @@ public class FMaterialKeepLogBean extends AbstractBean {
 		if(id!=null && id.intValue()>0)
 			return getServiceLocator().getFMaterialKeepLogService().findById(id);
 		else
-			return new FMaterialKeepLog();
+			return null;
 	}
 
 	public Integer getId() {

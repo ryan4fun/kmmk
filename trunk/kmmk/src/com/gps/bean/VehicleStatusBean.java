@@ -140,7 +140,7 @@ public class VehicleStatusBean extends AbstractBean {
 		if(vehicleId!=null && vehicleId.intValue()>0)
 			return getServiceLocator().getVehicleStatusService().findById(vehicleId);
 		else
-			return new VehicleStatus();
+			return null;
 	}
 
 	public Integer getVehicleId() {
