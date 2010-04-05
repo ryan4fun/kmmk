@@ -70,7 +70,7 @@ function delOrg(id){
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="form1" action="search-tools.jsp" method="post">
+<form id="inputform" action="search-tools.jsp" method="post">
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
@@ -100,10 +100,10 @@ function delOrg(id){
 	<p align="center">
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=ftb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=ftb.getRowsPerPage()%>" />
-		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-tools.jsp')"/>
-		<input type="reset" style="width: 100px;" value="重   置" />
-		<input type="button" style="width: 100px;" value="新增随车工具" onclick="javascript:href('update-tools.jsp')"/>
+		<input type="submit" value="查   询" />
+		<input type="button" value="查询所有" onclick="javascript:href('search-tools.jsp')"/>
+		<input type="reset" value="重   置" />
+		<input type="button" value="新增随车工具" onclick="javascript:href('update-tools.jsp')"/>
 	</p>
 </form>
 </div>

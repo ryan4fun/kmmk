@@ -161,13 +161,13 @@ function changeTaskState(taskState){
 			</table>
 				<p align="center">
 				<%if(t.getTaskState() == TaskService.TASK_PLANED_STATE) {%>
-					<input type="button" style="width:100px;" value="修改" onclick="javascript:href('update-task.jsp?taskId=<%=t.getTaskId()%>')"/>
-					<input type="button" style="width:100px;" value="开始执行" onclick="javascript:changeTaskState('<%=TaskService.TASK_IN_PROGRESS_STATE%>')"/>
+					<input type="button" value="修改" onclick="javascript:href('update-task.jsp?taskId=<%=t.getTaskId()%>')"/>
+					<input type="button" value="开始执行" onclick="javascript:changeTaskState('<%=TaskService.TASK_IN_PROGRESS_STATE%>')"/>
 				<%} else if (t.getTaskState() == TaskService.TASK_IN_PROGRESS_STATE) {%>
-					<input type="button" style="width:100px;" value="执行完成" onclick="javascript:changeTaskState('<%=TaskService.TASK_FINISH_STATE%>')"/>
-					<input type="button" style="width:100px;" value="放弃执行" onclick="javascript:changeTaskState('<%=TaskService.TASK_ABORTED_STATE%>')"/>
+					<input type="button" value="执行完成" onclick="javascript:changeTaskState('<%=TaskService.TASK_FINISH_STATE%>')"/>
+					<input type="button" value="放弃执行" onclick="javascript:changeTaskState('<%=TaskService.TASK_ABORTED_STATE%>')"/>
 				<%}%>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>	
+				<input type="button" value="返回" onclick="javascript:history.back()"/>	
 				</p>		
 	</form>
 </div>

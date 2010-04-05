@@ -150,8 +150,8 @@ function getUsersList(){
 <p align="center">
 	<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
 	<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
-	<input type="submit" style="width: 100px;" value="查   询" />
-	<input type="reset" style="width: 100px;" value="重   置" /></p>
+	<input type="submit" value="查   询" />
+	<input type="reset" value="重   置" /></p>
 
 </form>
 </div>

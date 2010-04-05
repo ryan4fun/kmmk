@@ -54,7 +54,7 @@ Util.setNull2DefaultValue(f);
 
 		initVehicleSelector();
 		
-   		$("#form1").validate({
+   		$("#inputform").validate({
 			rules: {
    				maintainDate: {
    					required: true
@@ -86,7 +86,7 @@ Util.setNull2DefaultValue(f);
 <div id="search-div">
 	<h3><a href="#">修改车辆维修明细台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="form1" action="mkgps.do" method="post">
+		<form id="inputform" action="mkgps.do" method="post">
 			<input type="hidden" name = "action" value="<%=actionName%>"/>
 			<input type="hidden" name = "success" value="update-maintain-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-maintain-faild.jsp"/>
@@ -140,7 +140,7 @@ Util.setNull2DefaultValue(f);
 				<p align="center">
 					<input type="submit" value="提交"/>
 					<input type="reset" value="重置"/>
-					<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+					<input type="button" value="返回" onclick="javascript:history.back()"/>
 				</p>
 		</form>
 	</div>

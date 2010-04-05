@@ -124,8 +124,8 @@ $(document).ready(function(){
 				</tr>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="修改" onclick="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>	</p>
+				<input type="button" value="修改" onclick="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
+				<input type="button" value="返回" onclick="javascript:history.back()"/>	</p>
 
 	</form>
 </div>

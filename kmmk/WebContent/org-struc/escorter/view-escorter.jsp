@@ -100,8 +100,8 @@ if(d == null){
 				</tr>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="修改" onclick="javascript:href('update-escorter.jsp?escorterId=<%=d.getEscorterId()%>')"/>
-				<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()"/>
+				<input type="button" value="修改" onclick="javascript:href('update-escorter.jsp?escorterId=<%=d.getEscorterId()%>')"/>
+				<input type="button" value="返回" onclick="javascript:history.back()"/>
 			</p>
 
 	</form>

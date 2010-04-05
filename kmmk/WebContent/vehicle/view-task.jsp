@@ -372,7 +372,7 @@ function createMarker(rcvTime,latlng,icon) {
 				</tr>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="返 回" onclick="javascript:history.back()"/>	</p>
+				<input type="button" value="返 回" onclick="javascript:history.back()"/>	</p>
 	</form>
 </div>
 </div>

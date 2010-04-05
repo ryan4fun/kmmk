@@ -63,7 +63,7 @@ $(document).ready(function(){
 		}
 	});
 	
-  	$("#form1").validate({
+  	$("#inputform").validate({
 		rules: {
   			taskName: {
 				required: true
@@ -149,7 +149,7 @@ $(document).ready(function(){
 <div id="search-div">
 <h3><a href="#">车辆任务信息</a></h3>
 <div style="padding:2px;overflow:visible">
-	<form id="form1" action="mkgps.do" method="post">
+	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
 		<input type="hidden" name = "success" value="update-task-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-task-faild.jsp"/>
@@ -196,7 +196,7 @@ $(document).ready(function(){
 				<td colSpan="4" align="center"">
 					<input type="submit" value="提 交"/>
 					<input type="reset" value="重 置"/>
-					<input type="button" style="width:100px;" value="返回" onclick="javascript:history.back()" />	</td>
+					<input type="button" value="返回" onclick="javascript:history.back()" />	</td>
 			</tr>
 		</table>
 	</form>
