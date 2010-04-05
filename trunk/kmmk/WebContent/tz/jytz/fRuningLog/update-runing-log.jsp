@@ -9,6 +9,8 @@ FRuningLogBean frb = new FRuningLogBean();
 String actionName = "FRuningLogAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FRuningLog();
+	VehicleBean vb = new VehicleBean(request);
+	f.setVehicle(vb.findById());
 } else {
 	frb.setId(Integer.parseInt(idstr));
 	f =  frb.findById();

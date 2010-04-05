@@ -9,6 +9,8 @@ FVehicleMaterialBean ftb = new FVehicleMaterialBean();
 String actionName = "FVehicleMaterialAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FVehicleMaterial();
+	VehicleBean vb = new VehicleBean(request);
+	f.setVehicle(vb.findById());
 } else {
 	ftb.setMaterialId(Integer.parseInt(idstr));
 	f =  ftb.findById();

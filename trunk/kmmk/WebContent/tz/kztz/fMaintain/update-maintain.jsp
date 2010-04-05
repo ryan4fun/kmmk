@@ -9,6 +9,8 @@ FMaintainBean fmb = new FMaintainBean();
 String actionName = "FMaintainAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FMaintain();
+	VehicleBean vb = new VehicleBean(request);
+	f.setVehicle(vb.findById());
 } else {
 	fmb.setId(Integer.parseInt(idstr));
 	f =  fmb.findById();
