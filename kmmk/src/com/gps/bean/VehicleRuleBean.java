@@ -51,7 +51,7 @@ public class VehicleRuleBean extends AbstractBean {
 		if(id!=null && id.intValue()>0)
 			return getServiceLocator().getVehicleRuleService().findById(id);
 		else
-			return new VehicleRule();
+			return null;
 	}
 
 	public Integer getId() {

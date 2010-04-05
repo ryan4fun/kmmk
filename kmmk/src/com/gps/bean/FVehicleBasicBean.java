@@ -88,7 +88,7 @@ public class FVehicleBasicBean extends AbstractBean {
 		if(id >0)
 			return getServiceLocator().getFVehicleBasicService().findById(id);
 		else
-			return new FVehicleBasic();
+			return null;
 	}
 	
 	public static Vehicle findById(int vehicleId){

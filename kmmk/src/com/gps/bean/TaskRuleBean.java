@@ -51,7 +51,7 @@ public class TaskRuleBean extends AbstractBean {
 		if(id!=null && id.intValue()>0)
 			return getServiceLocator().getTaskRuleService().findById(id);
 		else
-			return new TaskRule();
+			return null;
 	}
 
 	public Integer getId() {

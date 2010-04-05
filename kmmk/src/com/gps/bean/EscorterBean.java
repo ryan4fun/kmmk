@@ -94,7 +94,7 @@ public class EscorterBean extends AbstractBean {
 		if(escorterId!=null && escorterId.intValue()>0)
 			return getServiceLocator().getEscorterService().findById(escorterId);
 		else
-			return new Escorter();
+			return null;
 	}
 
 	public Integer getEscorterId() {

@@ -136,7 +136,7 @@ public class TaskBean extends AbstractBean {
 		if(taskId!=null && taskId.intValue()>0)
 			return getServiceLocator().getTaskService().findById(taskId);
 		else
-			return new Task();
+			return null;
 	}
 
 	public Integer getTaskId() {

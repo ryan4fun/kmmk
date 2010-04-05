@@ -87,7 +87,7 @@ public class FToolsBean extends AbstractBean {
 		if(toolId!=null && toolId.intValue()>0)
 			return getServiceLocator().getFToolsService().findById(toolId);
 		else
-			return new FTools();
+			return null;
 	}
 
 	public Integer getToolId() {

@@ -101,7 +101,7 @@ public class GpsFeeBean extends AbstractBean {
 		if(feeId!=null && feeId.longValue()>0)
 			return getServiceLocator().getGpsFeeService().findById(feeId);
 		else
-			return new Gpsfee();
+			return null;
 	}
 
 	public long getFeeId() {

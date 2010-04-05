@@ -91,7 +91,7 @@ public class StateHelperBean extends AbstractBean {
 		if(vehicleId!=null && vehicleId.intValue()>0)
 			return getServiceLocator().getStateHelperService().findById(vehicleId);
 		else
-			return new StateHelper();
+			return null;
 	}
 
 	public Integer getVehicleId() {

@@ -165,7 +165,7 @@ public class FTyresBean extends AbstractBean {
 		if(tyreId!=null && tyreId.intValue()>0)
 			return getServiceLocator().getFTyresService().findById(tyreId);
 		else
-			return new FTyres();
+			return null;
 	}
 
 	public Integer getTyreId() {
