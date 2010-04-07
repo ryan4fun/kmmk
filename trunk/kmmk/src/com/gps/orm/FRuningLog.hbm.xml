@@ -74,5 +74,41 @@
         <property name="governmentRecordNo" type="string">
             <column name="governmentRecordNo" length="50" />
         </property>
+        <property name="planedDistance" type="java.lang.Double">
+            <column name="planedDistance" precision="53" scale="0" />
+        </property>
+        <property name="actualDistance" type="java.lang.Double">
+            <column name="actualDistance" precision="53" scale="0" />
+        </property>
+        <property name="planedGas" type="java.lang.Double">
+            <column name="planedGas" precision="53" scale="0" />
+        </property>
+        <property name="actualGas" type="java.lang.Double">
+            <column name="actualGas" precision="53" scale="0" />
+        </property>
+        <property name="gasByCash" type="java.lang.Double">
+            <column name="GasByCash" precision="53" scale="0" />
+        </property>
+        <property name="gasByCard" type="java.lang.Double">
+            <column name="GasByCard" precision="53" scale="0" />
+        </property>
+        <property name="gasByCashCost" type="java.lang.Double">
+            <column name="gasByCashCost" precision="53" scale="0" />
+        </property>
+        <property name="gasByCardCost" type="java.lang.Double">
+            <column name="gasByCardCost" precision="53" scale="0" />
+        </property>
+        <property name="planedRoadFee" type="java.lang.Double">
+            <column name="planedRoadFee" precision="53" scale="0" />
+        </property>
+        <property name="actualRoadFee" type="java.lang.Double">
+            <column name="actualRoadFee" precision="53" scale="0" />
+        </property>
+        <property name="managementFee" type="java.lang.Double">
+            <column name="managementFee" precision="53" scale="0" />
+        </property>
+        <property name="overLimitFee" type="java.lang.Double">
+            <column name="overLimitFee" precision="53" scale="0" />
+        </property>
     </class>
 </hibernate-mapping>
