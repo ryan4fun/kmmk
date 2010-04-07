@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Saturday, April 03, 2010 12:07:46
+ * Date Created : Wednesday, April 07, 2010 22:42:13
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -272,6 +272,18 @@ CREATE TABLE f_runingLog(
     vehicleID             int                 NULL,
     operator              varchar(20)         NULL,
     governmentRecordNo    varchar(50)         NULL,
+    planedDistance        double precision    NULL,
+    actualDistance        double precision    NULL,
+    planedGas             double precision    NULL,
+    actualGas             double precision    NULL,
+    GasByCash             double precision    NULL,
+    GasByCard             double precision    NULL,
+    gasByCashCost         double precision    NULL,
+    gasByCardCost         double precision    NULL,
+    planedRoadFee         double precision    NULL,
+    actualRoadFee         double precision    NULL,
+    managementFee         double precision    NULL,
+    overLimitFee          double precision    NULL,
     CONSTRAINT PK71 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
