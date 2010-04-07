@@ -32,6 +32,18 @@ public class FRuningLog implements java.io.Serializable {
 	private String comment;
 	private String operator;
 	private String governmentRecordNo;
+	private Double planedDistance;
+	private Double actualDistance;
+	private Double planedGas;
+	private Double actualGas;
+	private Double gasByCash;
+	private Double gasByCard;
+	private Double gasByCashCost;
+	private Double gasByCardCost;
+	private Double planedRoadFee;
+	private Double actualRoadFee;
+	private Double managementFee;
+	private Double overLimitFee;
 
 	public FRuningLog() {
 	}
@@ -47,7 +59,11 @@ public class FRuningLog implements java.io.Serializable {
 			String loadSite, String unloadSite, String billTo,
 			Double totalCost, String paymentMethod, Date paymentReceiveDate,
 			Short state, String comment, String operator,
-			String governmentRecordNo) {
+			String governmentRecordNo, Double planedDistance,
+			Double actualDistance, Double planedGas, Double actualGas,
+			Double gasByCash, Double gasByCard, Double gasByCashCost,
+			Double gasByCardCost, Double planedRoadFee, Double actualRoadFee,
+			Double managementFee, Double overLimitFee) {
 		this.id = id;
 		this.vehicle = vehicle;
 		this.ticketNo = ticketNo;
@@ -71,6 +87,18 @@ public class FRuningLog implements java.io.Serializable {
 		this.comment = comment;
 		this.operator = operator;
 		this.governmentRecordNo = governmentRecordNo;
+		this.planedDistance = planedDistance;
+		this.actualDistance = actualDistance;
+		this.planedGas = planedGas;
+		this.actualGas = actualGas;
+		this.gasByCash = gasByCash;
+		this.gasByCard = gasByCard;
+		this.gasByCashCost = gasByCashCost;
+		this.gasByCardCost = gasByCardCost;
+		this.planedRoadFee = planedRoadFee;
+		this.actualRoadFee = actualRoadFee;
+		this.managementFee = managementFee;
+		this.overLimitFee = overLimitFee;
 	}
 
 	public long getId() {
@@ -255,6 +283,102 @@ public class FRuningLog implements java.io.Serializable {
 
 	public void setGovernmentRecordNo(String governmentRecordNo) {
 		this.governmentRecordNo = governmentRecordNo;
+	}
+
+	public Double getPlanedDistance() {
+		return this.planedDistance;
+	}
+
+	public void setPlanedDistance(Double planedDistance) {
+		this.planedDistance = planedDistance;
+	}
+
+	public Double getActualDistance() {
+		return this.actualDistance;
+	}
+
+	public void setActualDistance(Double actualDistance) {
+		this.actualDistance = actualDistance;
+	}
+
+	public Double getPlanedGas() {
+		return this.planedGas;
+	}
+
+	public void setPlanedGas(Double planedGas) {
+		this.planedGas = planedGas;
+	}
+
+	public Double getActualGas() {
+		return this.actualGas;
+	}
+
+	public void setActualGas(Double actualGas) {
+		this.actualGas = actualGas;
+	}
+
+	public Double getGasByCash() {
+		return this.gasByCash;
+	}
+
+	public void setGasByCash(Double gasByCash) {
+		this.gasByCash = gasByCash;
+	}
+
+	public Double getGasByCard() {
+		return this.gasByCard;
+	}
+
+	public void setGasByCard(Double gasByCard) {
+		this.gasByCard = gasByCard;
+	}
+
+	public Double getGasByCashCost() {
+		return this.gasByCashCost;
+	}
+
+	public void setGasByCashCost(Double gasByCashCost) {
+		this.gasByCashCost = gasByCashCost;
+	}
+
+	public Double getGasByCardCost() {
+		return this.gasByCardCost;
+	}
+
+	public void setGasByCardCost(Double gasByCardCost) {
+		this.gasByCardCost = gasByCardCost;
+	}
+
+	public Double getPlanedRoadFee() {
+		return this.planedRoadFee;
+	}
+
+	public void setPlanedRoadFee(Double planedRoadFee) {
+		this.planedRoadFee = planedRoadFee;
+	}
+
+	public Double getActualRoadFee() {
+		return this.actualRoadFee;
+	}
+
+	public void setActualRoadFee(Double actualRoadFee) {
+		this.actualRoadFee = actualRoadFee;
+	}
+
+	public Double getManagementFee() {
+		return this.managementFee;
+	}
+
+	public void setManagementFee(Double managementFee) {
+		this.managementFee = managementFee;
+	}
+
+	public Double getOverLimitFee() {
+		return this.overLimitFee;
+	}
+
+	public void setOverLimitFee(Double overLimitFee) {
+		this.overLimitFee = overLimitFee;
 	}
 
 }
