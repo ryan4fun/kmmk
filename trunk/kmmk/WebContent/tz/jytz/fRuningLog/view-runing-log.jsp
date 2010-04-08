@@ -53,87 +53,105 @@ $(document).ready(function(){
 		<table cellSpacing="5" width="95%">
 			<tr>
 				<td width="20%" align="right">车牌号：</td>
-				<td align="left"><%=f.getVehicle().getLicensPadNumber()%></td>
+				<td align="left" colspan="3"><%=f.getVehicle().getLicensPadNumber()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车日期：</td>
 				<td align="left"><%=Util.FormatDateShort(f.getStartDate())%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">收车日期：</td>
 				<td align="left"><%=Util.FormatDateShort(f.getEndDate())%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车单号：</td>
 				<td align="left"><%=f.getTicketNo()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">运输备案号：</td>
 				<td align="left"><%=f.getGovernmentRecordNo()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">驾驶员：</td>
 				<td align="left"><%=f.getDriver()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">押运员：</td>
 				<td align="left"><%=f.getEscorterId()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">货物名称：</td>
 				<td align="left"><%=f.getGoodsName()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">运价：</td>
 				<td align="left"><%=f.getShipPrice()==null?"":f.getShipPrice()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">装货重量：</td>
 				<td align="left"><%=f.getLoadWeight()==null?"":f.getLoadWeight()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">卸货重量：</td>
 				<td align="left"><%=f.getUnloadWeight()==null?"":f.getUnloadWeight()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车里程：</td>
 				<td align="left"><%=f.getStartDisRecord()==null?"":f.getStartDisRecord()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">收车里程：</td>
 				<td align="left"><%=f.getEndDisRecord()==null?"":f.getEndDisRecord()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">装货地点：</td>
 				<td align="left"><%=f.getLoadSite()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">卸货地点：</td>
 				<td align="left"><%=f.getUnloadSite()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">付款单位：</td>
 				<td align="left"><%=f.getBillTo()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">运费合计：</td>
 				<td align="left"><%=f.getTotalCost()==null?"":f.getTotalCost()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">回款方式：</td>
 				<td align="left"><%=f.getPaymentMethod()%></td>
-			</tr>
-			<tr>
 				<td width="20%" align="right">回款时间：</td>
 				<td align="left"><%=Util.FormatDateShort(f.getPaymentReceiveDate())%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">经办人：</td>
-				<td align="left"><%=f.getOperator()%></td>
+				<td align="left" colspan="3"><%=f.getOperator()%></td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">备注：</td>
-				<td align="left"><%=f.getComment()%></td>
+				<td align="left" colspan="3"><%=f.getComment()%></td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">计划行驶里程：</td>
+				<td align="left"><%=f.getPlanedDistance()==null?"":f.getPlanedDistance()%></td>
+				<td width="20%" align="right">实际行驶里程：</td>
+				<td align="left"><%=f.getActualDistance()==null?"":f.getActualDistance()%></td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">计划用油：</td>
+				<td align="left"><%=f.getPlanedGas()==null?"":f.getPlanedGas()%></td>
+				<td width="20%" align="right">实际用油：</td>
+				<td align="left"><%=f.getActualGas()==null?"":f.getActualGas()%></td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">现金油料：</td>
+				<td align="left"><%=f.getGasByCash()==null?"":f.getGasByCash()%></td>
+				<td width="20%" align="right">优卡油料：</td>
+				<td align="left"><%=f.getGasByCard()==null?"":f.getGasByCard()%></td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">现金油料金额：</td>
+				<td align="left"><%=f.getGasByCashCost()==null?"":f.getGasByCashCost()%></td>
+				<td width="20%" align="right">油卡油料金额：</td>
+				<td align="left"><%=f.getGasByCardCost()==null?"":f.getGasByCardCost()%></td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">计划过境费：</td>
+				<td align="left"><%=f.getPlanedRoadFee()==null?"":f.getPlanedRoadFee()%></td>
+				<td width="20%" align="right">实际过境费：</td>
+				<td align="left"><%=f.getActualRoadFee()==null?"":f.getActualRoadFee()%></td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">计划费用：</td>
+				<td align="left"><%=f.getManagementFee()==null?"":f.getManagementFee()%></td>
+				<td width="20%" align="right">超限费用：</td>
+				<td align="left"><%=f.getOverLimitFee()==null?"":f.getOverLimitFee()%></td>
 			</tr>
 		</table>
 	</div>
