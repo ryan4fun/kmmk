@@ -4,9 +4,11 @@ import com.gps.orm.AlertHistoryHome;
 import com.gps.orm.AlertTypeDicHome;
 import com.gps.orm.DriverHome;
 import com.gps.orm.EscorterHome;
+import com.gps.orm.FExpenseLogHome;
 import com.gps.orm.FGasfeeHome;
 import com.gps.orm.FMaintainHome;
 import com.gps.orm.FMaterialKeepLogHome;
+import com.gps.orm.FMonthlyReportHome;
 import com.gps.orm.FRuningLogHome;
 import com.gps.orm.FToolsHome;
 import com.gps.orm.FToolsKeepLogHome;
@@ -97,6 +99,9 @@ public class DAOLocator {
 	private FRuningLogHome fRuningLogHome;
 	private FMaterialKeepLogHome fMaterialKeepLogHome;
 
+	private FExpenseLogHome fExpenseLogHome;
+	private FMonthlyReportHome fMonthlyReportHome;
+	
 	static DAOLocator daoLocator = null;
 
 	private DAOLocator() {
@@ -147,6 +152,9 @@ public class DAOLocator {
 		fRuningLogHome = new FRuningLogHome();
 		fMaterialKeepLogHome = new FMaterialKeepLogHome();
 		fUserHome = new FUserHome();
+		
+		fExpenseLogHome = new FExpenseLogHome();
+		fMonthlyReportHome = new FMonthlyReportHome();
 	}
 
 
@@ -536,4 +544,21 @@ public class DAOLocator {
 	public void setFUserHome(FUserHome userHome) {
 		fUserHome = userHome;
 	}
+
+	public FExpenseLogHome getFExpenseLogHome() {
+		return fExpenseLogHome;
+	}
+
+	public void setFExpenseLogHome(FExpenseLogHome expenseLogHome) {
+		fExpenseLogHome = expenseLogHome;
+	}
+
+	public FMonthlyReportHome getFMonthlyReportHome() {
+		return fMonthlyReportHome;
+	}
+
+	public void setFMonthlyReportHome(FMonthlyReportHome monthlyReportHome) {
+		fMonthlyReportHome = monthlyReportHome;
+	}
+	
 }
