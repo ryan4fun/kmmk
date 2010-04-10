@@ -3,15 +3,15 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 String idstr = request.getParameter("id");
-Vehicle v = null;
-VehicleBean vb = new VehicleBean();
-if(idstr!=null && !idstr.equals("")){
-	vb.setVehicleId(Integer.parseInt(idstr));
-	v = vb.findById();
+FMonthlyReport f = null;
+FMonthlyReportBean frb = new FMonthlyReportBean();
+frb.setId(Integer.parseInt(idstr));
+f =  frb.findById();
+if(f == null){
+	out.print("无法找到该月台帐！");
+	return;
 }
-if(v == null){
-	out.print("无法找到该月台帐表！");
-} else {
+Util.setNull2DefaultValue(f);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -48,47 +48,82 @@ $(document).ready(function(){
 </head>
 <body style="background:transparent;">
 <div id="search-div">	
-	<% if( v.getFMonthlyReports().size()>0 ){ %>
 	<h3><a href="#">月台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<form id="form2" action="mkgps.do" method="post">
 			<table cellSpacing="5" width="95%">
-			<% for( FMonthlyReport fvb : v.getFMonthlyReports() ){
-					Util.setNull2DefaultValue(fvb);
-					if( fvb.getFeeExpireDate()==null ){ %>
 				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%></td>
-					<td align="left" colspan="3" >
-					<% if( fvb.getFeeName().equals("备注") ){ %>
-						<%=fvb.getComment()%>
-					<% } else { %>
-						<%=fvb.getAmount()==null?"":fvb.getAmount()%>
-					<% } %>
+ 					<td width="20%" align="right">车牌号：</td>
+					<td align="left" colspan="3">
+						<%=f.getVehicle().getLicensPadNumber()%>
 					</td>
 				</tr>
-			<% 		} else { %>
 				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%></td>
-					<td align="left" ><%=fvb.getAmount()==null?"":fvb.getAmount()%></td>
-					<td width="20%" align="right">有效期：</td>
-					<td align="left" ><%=Util.FormatDateShort(fvb.getFeeExpireDate())%></td>
+ 					<td width="20%" align="right">日期：</td>
+					<td align="left" colspan="3">
+						<%=f.getYearMonth().substring(0,4)+"年"+f.getYearMonth().substring(4)+"月"%>
+					</td>
 				</tr>
-			<% 		}
-				}
+				<tr>
+ 					<td width="20%" align="right">工资</td>
+					<td align="left" colspan="3" >&nbsp;</td>
+				</tr>
+			<%	
+				FExpenseLogBean feb = new FExpenseLogBean();
+				feb.setVehicleId(f.getVehicle().getVehicleId());
+				feb.setYearMonth(f.getYearMonth());
+				feb.setCategory1("工资");
+				feb.setCategory2("基本工资");
+				for( FExpenseLog fe : feb.getList() ){
 			%>
+				<tr>
+ 					<td width="20%" align="right">&nbsp;</td>
+					<td align="left" colspan="3" >
+						金额：<%=fe.getAmount()==null?"":fe.getAmount()%>
+					</td>
+				</tr>
+			<%	}%>
+				<tr>
+ 					<td width="20%" align="right">其他</td>
+					<td align="left" colspan="3" >&nbsp;</td>
+				</tr>
+			<%	
+				feb.setCategory1("其他");
+				feb.setCategory2("");
+				for( FExpenseLog fe : feb.getList() ){
+					Util.setNull2DefaultValue(fe);
+			%>
+				<tr>
+ 					<td width="20%" align="right">&nbsp;</td>
+					<td align="left" >
+						项目名称：<%=fe.getCategory2()%>&nbsp;&nbsp;&nbsp;
+						金额：<%=fe.getAmount()==null?"":fe.getAmount()%>
+					</td>
+					<td width="20%" align="right">备注</td>
+					<td align="left" ><%=fe.getComment1()%></td>
+				</tr>
+			<%	}%>
+				<tr>
+					<td width="20%" align="right">财务分析：</td>
+					<td align="left" colspan="3">
+						<%=f.getNote1()%>
+						<br>
+						<%=f.getNote2()%>
+						<br>
+						<%=f.getNote3()%>
+						<br>
+						<%=f.getNote4()%>
+						<br>
+						<%=f.getNote5()%>
+					</td>
+				</tr>
 			</table>
 			<p align="center">
-				<input type="button" style="width:100px;" value="修改月台帐" onclick="javascript:href('update-monthly-report.jsp?id=<%=v.getVehicleId()%>')"/>		
-			</p>
-			<% } else { %>
-			<p align="center">
-				<input type="button" style="width:100px;" value="补全月台帐" onclick="javascript:href('update-monthly-report.jsp?id=<%=v.getVehicleId()%>')"/>		
+				<input type="button" style="width:100px;" value="修改月台帐" onclick="javascript:href('update-monthly-report.jsp?id=<%=f.getId()%>')"/>
+				<input type="button" value="返回" onclick="javascript:history.back()"/>		
 			</p>
 		</form>
 	</div>
-	
-	<% } %>
 </div>
 </body>
 </html>
-<%}%>
