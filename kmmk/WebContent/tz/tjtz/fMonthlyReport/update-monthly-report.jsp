@@ -21,8 +21,6 @@ if(f == null){
 	return;
 }
 Util.setNull2DefaultValue(f);
-FExpenseLogBean feb = new FExpenseLogBean();
-feb.setYearMonth(f.getYearMonth());
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -96,10 +94,12 @@ feb.setYearMonth(f.getYearMonth());
 					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary"/></td>
 				</tr>
 			<%	
+				FExpenseLogBean feb = new FExpenseLogBean();
+				feb.setVehicleId(f.getVehicle().getVehicleId());
+				feb.setYearMonth(f.getYearMonth());
 				feb.setCategory1("工资");
 				feb.setCategory2("基本工资");
 				for( FExpenseLog fe : feb.getList() ){
-					Util.setNull2DefaultValue(fe);
 			%>
 				<tr>
  					<td width="20%" align="right">基本工资</td>
