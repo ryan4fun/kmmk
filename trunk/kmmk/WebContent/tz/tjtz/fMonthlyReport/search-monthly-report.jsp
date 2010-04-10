@@ -3,12 +3,9 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
-VehicleBean vb = new VehicleBean(request);
-List<Vehicle> vs = vb.getList();
-Util.setNull2DefaultValue(vb);
-
-VehicleTypeDicBean vtb = new VehicleTypeDicBean();
-List<VehicleTypeDic> vts = vtb.getList();
+FMonthlyReportBean frb = new FMonthlyReportBean(request);
+List<FMonthlyReport> frs = frb.getList();
+Util.setNull2DefaultValue(frb);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,12 +37,12 @@ $(document).ready(function(){
 		}
 	});
 	
-	<%if(vs!=null && vs.size()>0){%>
+	<%if(frs!=null && frs.size()>0){%>
 	$("#__pagination").pagination(
-			<%=vb.getMaxRecord()%>,
+			<%=frb.getMaxRecord()%>,
 			{
-				current_page:<%=vb.getPageNumber()%>,
-				items_per_page:<%=vb.getRowsPerPage()%>,
+				current_page:<%=frb.getPageNumber()%>,
+				items_per_page:<%=frb.getRowsPerPage()%>,
 				num_edge_entries:2,
 				num_display_entries:5,
 				callback:pageSelectCallback
@@ -53,17 +50,6 @@ $(document).ready(function(){
 		);
 	<%}%>	
 
-	$("#vehicleTypeId")[0].options.add(new Option("所有车型",""));
-	<%if(vts != null){
-		for(VehicleTypeDic vt:vts){ 
-	%>
-	$("#vehicleTypeId")[0].options.add(new Option("<%=vt.getVehicleTypeName()%>","<%=vt.getVehicleTypeId()%>"));
-	<%}
-	}%>
-	$("#vehicleTypeId").val(["<%=vb.getVehicleTypeId()==null?"":vb.getVehicleTypeId()%>"]);
-
-	$("#annualCheckState").val(["<%=vb.getAnnualCheckState()==null?"":vb.getAnnualCheckState()%>"]);
-	
 	$("#inputform").submit(function(){
 	});
 });
@@ -82,91 +68,68 @@ function pageSelectCallback(pageNumber){
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
-			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=vb.getLicensPadNumber()==null?"":vb.getLicensPadNumber()%>" /></td>		
+			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=frb.getLicensPadNumber()==null?"":frb.getLicensPadNumber()%>" /></td>		
 		</tr>
 		<tr>
-			<td width="20%" align="right">车型：</td>
-			<td align="left"><select id="vehicleTypeId" name="vehicleTypeId" ></select></td>	
-			<td width="20%" align="right">核载：</td>
-			<td align="left"><input type="text"
-				id="capability" name="capability" value="<%=vb.getCapability()==null?"":vb.getCapability()%>" /></td>
+			<td width="20%" align="right">年：</td>
+			<td align="left">
+				<input type="text" id="year" name="year" value="<%=frb.getYear()==null?"":frb.getYear()%>" /></td>
+			<td width="20%" align="right">月：</td>
+			<td align="left">
+				<input type="text" id="month" name="month" value="<%=frb.getMonth()==null?"":frb.getMonth()%>" /></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">登记日期：</td>
-			<td align="left"><input type="text"
-				id="registerDate" name="registerDate" onclick="WdatePicker()"
-				value="<%=Util.FormatDateShort(vb.getRegisterDate())%>" /></td>	
-			<td width="20%" align="right">发证日期：</td>
-			<td align="left"><input type="text"
-				id="approvalDate" name="approvalDate" onclick="WdatePicker()"
-				value="<%=Util.FormatDateShort(vb.getApprovalDate())%>" /></td>
+			<td width="20%" align="right">收入：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="incomeStart" name="incomeStart" 
+					value="<%=frb.getIncomeStart()==null?"":frb.getIncomeStart()%>" />
+				至
+				<input type="text" id="incomeEnd" name="incomeEnd" 
+					value="<%=frb.getIncomeEnd()==null?"":frb.getIncomeEnd()%>" />
+			</td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">年检状态：</td>
-			<td align="left"><select id="annualCheckState" name="annualCheckState" >
-						<%=Util.writeOptions(VehicleService.annualCheckStates, "请选择") %>
-						</select></td>	
-			<td width="20%" align="right">二级维护到期：</td>
-			<td align="left"><input type="text"
-				id="secondMaintainDate" name="secondMaintainDate" onclick="WdatePicker()"
-				value="<%=Util.FormatDateShort(vb.getSecondMaintainDate())%>" /></td>
+			<td width="20%" align="right">支出：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="costsStart" name="costsStart" 
+					value="<%=frb.getCostsStart()==null?"":frb.getCostsStart()%>" />
+				至
+				<input type="text" id="costsEnd" name="costsEnd" 
+					value="<%=frb.getCostsEnd()==null?"":frb.getCostsEnd()%>" />
+			</td>
 		</tr>
-		<tr>
-			<td width="20%" align="right">资产基数：</td>
-			<td align="left"><input type="text"
-				id="assetBaseValue" name="assetBaseValue"
-				value="<%=vb.getAssetBaseValue()==null?"":vb.getAssetBaseValue()%>" /></td>	
-			<td width="20%" align="right">SIM卡号：</td>
-			<td align="left"><input type="text"
-				id="simCardNo" name="simCardNo" value="<%=vb.getSimCardNo()%>" /></td>
-		</tr>
+		
 	</table>
 	<p align="center">
-		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
-		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
+		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=frb.getPageNumber()%>" />
+		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=frb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
 		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-monthly-report.jsp')"/>
 	<input type="reset" style="width: 100px;" value="重   置" /></p>
 </form>
 </div>
 </div>
-<% if(vs.size()>0){ %>
+<% if(frs.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="8%">车牌号</th>
-		<th width="8%">自编号</th>
-		<th width="8%">车主</th>
-		<th width="8%">车型</th>
-		<th width="8%">核载</th>
-		<th width="12%">登记日期</th>
-		<th width="12%">发证日期</th>
-		<th width="8%">年检状态</th>
-		<th width="12%">二级维护到期时间</th>
-		<th width="14%">操作</th>
+		<th width="20%">车牌号</th>
+		<th width="20%">日期</th>
+		<th width="20%">收入</th>
+		<th width="20%">支出</th>
+		<th width="20%">操作</th>
 	</tr>
-	<% for(Vehicle v:vs){ 
-		Util.setNull2DefaultValue(v);%>
+	<% for(FMonthlyReport fr:frs){ 
+		Util.setNull2DefaultValue(fr);%>
 	<tr>
-		<td id="p_<%=v.getVehicleId()%>" colspan="10">
+		<td id="p_<%=fr.getId()%>" colspan="10">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
-					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
-					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
-					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?id=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-					<td width="16%">
-					<!-- 
-						<% if(v.getFMonthlyReports().size()>0){ %>
-							<a href="javascript:href('update-monthly-report.jsp?id=<%=v.getVehicleId()%>')">修改车辆月台帐</a>
-						<% } else {%>
-							<a href="javascript:href('update-monthly-report.jsp?id=<%=v.getVehicleId()%>')">补全车辆月台帐</a>
-						<% } %>
-					 -->
+					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getVehicle().getLicensPadNumber()%></a></td>
+					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getYearMonth()%></a></td>
+					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getIncome()==null?"":fr.getIncome()%></a></td>
+					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getCosts()==null?"":fr.getCosts()%></a></td>
+					<td width="20%">
+						<a href="javascript:href('update-monthly-report.jsp?id=<%=fr.getId()%>')">修改车辆月台帐</a>
 					</td>					
 				</tr>
 			</table>
