@@ -43,27 +43,45 @@ Util.setNull2DefaultValue(f);
 
 </style>
 <script language="JavaScript">
-	var allOwners = new Array();
-	$(document).ready(function(){
-		$("#search-div").accordion({
-			header:"h3",		
-			collapsible:false,
-			change: function(event, ui) {		
-				
-			}
-		});
-		
-   		$("#form2").validate({
-			rules: {
-   				amount: {
-   					number: true
-				}
-			},
-			messages: {
-
-			}
-		});
+var allOwners = new Array();
+$(document).ready(function(){
+	$("#search-div").accordion({
+		header:"h3",		
+		collapsible:false,
+		change: function(event, ui) {		
+			
+		}
 	});
+	
+  		$("#form2").validate({
+		rules: {
+  			year: {
+  				required: true,
+  				digits: true
+			},
+			month: {
+  				required: true,
+  				digits: true
+			},
+			category2: {
+  				required: true
+			},
+			amount: {
+				number: true
+			}
+		},
+		messages: {
+
+		}
+	});
+});
+
+function addSalary(btn){
+	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" colspan="3" ><input type="hidden" id="category1" name="category1" value="工资" /><input type="hidden" id="category2" name="category2" value="基本工资" />金额：<input type="text" id="amount" name="amount" value="" /><input type="hidden" id="comment1" name="comment1" value="" /></td></tr>');
+}
+function addOther(btn){
+	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" ><input type="hidden" id="category1" name="category1" value="其他" />项目名称：<input type="text" id="category2" name="category2" value="" />&nbsp;&nbsp;&nbsp;金额：<input type="text" id="amount" name="amount" value="" /></td><td width="20%" align="right">备注</td><td align="left" ><textarea rows="3" id="comment1" name="comment1"></textarea></td></tr>');
+}
 </script>
 </head>
 <body style="background:transparent;">
@@ -80,18 +98,20 @@ Util.setNull2DefaultValue(f);
 				<tr>
  					<td width="20%" align="right">车牌号：</td>
 					<td align="left" colspan="3">
-						<%=f.getVehicle()==null?"":f.getVehicle().getLicensPadNumber()%>
+						<%=f.getVehicle().getLicensPadNumber()%>
 					</td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">日期：</td>
 					<td align="left" colspan="3">
+						<input type="hidden" id="year" name="year" value="<%=f.getYearMonth().substring(0,4)%>" />
+						<input type="hidden" id="month" name="month" value="<%=f.getYearMonth().substring(4)%>" />
 						<%=f.getYearMonth().substring(0,4)+"年"+f.getYearMonth().substring(4)+"月"%>
 					</td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">工资</td>
-					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary"/></td>
+					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary(this)"/></td>
 				</tr>
 			<%	
 				FExpenseLogBean feb = new FExpenseLogBean();
@@ -113,7 +133,7 @@ Util.setNull2DefaultValue(f);
 			<%	}%>
 				<tr>
  					<td width="20%" align="right">其他</td>
-					<td align="left" colspan="3" ><input type="button" value="增加其他项" onclick="javascript:addOther"/></td>
+					<td align="left" colspan="3" ><input type="button" value="增加其他项" onclick="javascript:addOther(this)"/></td>
 				</tr>
 			<%	
 				feb.setCategory1("其他");
@@ -138,7 +158,7 @@ Util.setNull2DefaultValue(f);
  					<td width="20%" align="right">车牌号：</td>
 					<td align="left" colspan="3">
 						<jsp:include page="/vehicle-selector.jsp" >
-							<jsp:param name="vehicleId" value='<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>' />
+							<jsp:param name="vehicleId" value='' />
 						</jsp:include>
 					</td>
 				</tr>
@@ -172,30 +192,11 @@ Util.setNull2DefaultValue(f);
 				</tr>
 				<tr>
  					<td width="20%" align="right">工资</td>
-					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary"/></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">&nbsp;</td>
-					<td align="left" colspan="3" >
-						<input type="hidden" id="category1" name="category1" value="工资" />
-						<input type="hidden" id="category2" name="category2" value="基本工资" />
-						金额：<input type="text" id="amount" name="amount" value="" />
-						<input type="hidden" id="comment1" name="comment1" value="" />
-					</td>
+					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary(this)"/></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">其他</td>
-					<td align="left" colspan="3" ><input type="button" value="增加其他项" onclick="javascript:addOther"/></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">&nbsp;</td>
-					<td align="left" >
-						<input type="hidden" id="category1" name="category1" value="其他" />
-						项目名称：<input type="text" id="category2" name="category2" value="" />&nbsp;&nbsp;&nbsp;
-						金额：<input type="text" id="amount" name="amount" value="" />
-					</td>
-					<td width="20%" align="right">备注</td>
-					<td align="left" ><textarea rows="3" id="comment1" name="comment1"></textarea></td>
+					<td align="left" colspan="3" ><input type="button" value="增加其他项" onclick="javascript:addOther(this)"/></td>
 				</tr>
 			<% }%>
 				<tr>
