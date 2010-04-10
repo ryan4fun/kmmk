@@ -21,6 +21,8 @@ if(f == null){
 	return;
 }
 Util.setNull2DefaultValue(f);
+FExpenseLogBean feb = new FExpenseLogBean();
+feb.setYearMonth(f.getYearMonth());
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -80,9 +82,7 @@ Util.setNull2DefaultValue(f);
 				<tr>
  					<td width="20%" align="right">车牌号：</td>
 					<td align="left" colspan="3">
-						<jsp:include page="/vehicle-selector.jsp" >
-							<jsp:param name="vehicleId" value='<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>' />
-						</jsp:include>
+						<%=f.getVehicle()==null?"":f.getVehicle().getLicensPadNumber()%>
 					</td>
 				</tr>
 				<tr>
@@ -91,6 +91,111 @@ Util.setNull2DefaultValue(f);
 						<%=f.getYearMonth().substring(0,4)+"年"+f.getYearMonth().substring(4)+"月"%>
 					</td>
 				</tr>
+				<tr>
+ 					<td width="20%" align="right">工资</td>
+					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary"/></td>
+				</tr>
+			<%	
+				feb.setCategory1("工资");
+				feb.setCategory2("基本工资");
+				for( FExpenseLog fe : feb.getList() ){
+					Util.setNull2DefaultValue(fe);
+			%>
+				<tr>
+ 					<td width="20%" align="right">基本工资</td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
+						<input type="hidden" id="category1" name="category1" value="工资" />
+						<input type="hidden" id="category2" name="category2" value="基本工资" />
+						<input type="hidden" id="comment1" name="comment1" value="" />
+					</td>
+				</tr>
+			<%	}%>
+				<tr>
+ 					<td width="20%" align="right">其他</td>
+					<td align="left" colspan="3" ><input type="button" value="增加其他<项" onclick="javascript:addOther"/></td>
+				</tr>
+			<%	
+				feb.setCategory1("其他");
+				feb.setCategory2("");
+				for( FExpenseLog fe : feb.getList() ){
+					Util.setNull2DefaultValue(fe);
+			%>
+				<tr>
+ 					<td width="20%" align="right"><input type="text" id="category2" name="category2" value="" /></td>
+					<td align="left" >
+						<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
+						<input type="hidden" id="category1" name="category1" value="其他" />
+					</td>
+					<td width="20%" align="right">备注</td>
+					<td align="left" ><textarea rows="3" id="comment1" name="comment1"><%=fe.getComment1()%></textarea></td>
+				</tr>
+			<%	}
+			// new record
+			} else {%>
+				<tr>
+ 					<td width="20%" align="right">车牌号：</td>
+					<td align="left" colspan="3">
+						<jsp:include page="/vehicle-selector.jsp" >
+							<jsp:param name="vehicleId" value='<%=f.getVehicle()==null?"":f.getVehicle().getVehicleId()%>' />
+						</jsp:include>
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">日期：</td>
+					<td align="left" colspan="3">
+						<input type="text" id="year" name="year" value="" />年<input type="text" id="month" name="month" value="" />月
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">经营费用</td>
+					<td align="left" colspan="3" >&nbsp;</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">过境</td>
+					<td align="left" colspan="3" >
+						<input type="hidden" id="category1" name="category1" value="经营费用" />
+						<input type="hidden" id="category2" name="category2" value="过境" />
+						<input type="text" id="amount" name="amount" value="" />
+						<input type="hidden" id="comment1" name="comment1" value="" />
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">超限</td>
+					<td align="left" colspan="3" >
+						<input type="hidden" id="category1" name="category1" value="经营费用" />
+						<input type="hidden" id="category2" name="category2" value="超限" />
+						<input type="text" id="amount" name="amount" value="" />
+						<input type="hidden" id="comment1" name="comment1" value="" />
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">工资</td>
+					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">基本工资</td>
+					<td align="left" colspan="3" >
+						<input type="text" id="amount" name="amount" value="" />
+						<input type="hidden" id="category1" name="category1" value="工资" />
+						<input type="hidden" id="category2" name="category2" value="基本工资" />
+						<input type="hidden" id="comment1" name="comment1" value="" />
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">其他</td>
+					<td align="left" colspan="3" ><input type="button" value="增加其他<项" onclick="javascript:addOther"/></td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right"><input type="text" id="category2" name="category2" value="" /></td>
+					<td align="left" >
+						<input type="text" id="amount" name="amount" value="" />
+						<input type="hidden" id="category1" name="category1" value="其他" />
+					</td>
+					<td width="20%" align="right">备注</td>
+					<td align="left" ><textarea rows="3" id="comment1" name="comment1"></textarea></td>
+				</tr>
+			<% }%>
 				<tr>
  					<td width="20%" align="right">财务分析：</td>
 					<td align="left" colspan="3">
@@ -105,62 +210,6 @@ Util.setNull2DefaultValue(f);
 						<textarea rows="3" id="note5" name="note5"><%=f.getNote5()%></textarea>
 					</td>
 				</tr>
-				
-			<%	for( FMonthlyReport fvb : v.getFMonthlyReports() ){
-					Util.setNull2DefaultValue(fvb);
-					if( fvb.getFeeExpireDate()==null ){%>
-				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" id="feeName" name="feeName" value="<%=fvb.getFeeName()%>" /></td>
-					<td align="left" colspan="3" >
-						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
-					<% if( fvb.getFeeName().equals("备注") ){ %>
-						<input type="hidden" id="amount" name="amount" value="" />
-						<textarea rows="3" id="comment" name="comment"><%=fvb.getComment()%></textarea>
-					<% } else { %>
-						<input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()%>" />
-						<input type="hidden" id="comment" name="comment" value="" />
-					<% } %>
-					</td>
-				</tr>
-			<% 		} else {%>
-				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%><input type="hidden" id="feeName" name="feeName" value="<%=fvb.getFeeName()%>" /></td>
-					<td align="left" ><input type="text" id="amount" name="amount" value="<%=fvb.getAmount()==null?"":fvb.getAmount()%>" /></td>
-					<td width="20%" align="right">有效期：</td>
-					<td align="left" >
-						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(fvb.getFeeExpireDate())%>" onclick="WdatePicker()"/>
-						<input type="hidden" id="comment" name="comment" value="" />
-					</td>
-				</tr>
-			<% 		}
-				}
-			} else {%>
-				<tr>
- 					<td width="20%" align="right">灯牌费<input type="hidden" id="feeName" name="feeName" value="灯牌费" /></td>
-					<td align="left" colspan="3" >
-						<input type="text" id="amount" name="amount" value="" />
-						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
-						<input type="hidden" id="comment" name="comment" value="" />
-					</td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">营管费<input type="hidden" id="feeName" name="feeName" value="营管费" /></td>
-					<td align="left" ><input type="text" id="amount" name="amount" value="" /></td>
-					<td width="20%" align="right">有效期：</td>
-					<td align="left" >
-						<input type="text" id="feeExpireDate" name="feeExpireDate" value="<%=Util.FormatDateShort(Util.getCurrentDate())%>" onclick="WdatePicker()"/>
-						<input type="hidden" id="comment" name="comment" value="" />
-					</td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">备注<input type="hidden" id="feeName" name="feeName" value="备注" /></td>
- 					<td align="left" colspan="3" >
-						<input type="hidden" id="amount" name="amount" value="" />
-						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
-						<textarea rows="3" id="comment" name="comment"></textarea>
-					</td>
-				</tr>
-			<% }%>
 			</table>
 			<p align="center">
 				<input type="submit" value="提交"/>
