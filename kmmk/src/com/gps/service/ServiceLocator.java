@@ -55,6 +55,9 @@ public class ServiceLocator {
 	private FRuningLogService fRuningLogService;
 	private FMaterialKeepLogService fMaterialKeepLogService;
 	
+	private FMonthlyReportService fMonthlyReportService;
+	private FExpenseLogService fExpenseLogService;
+	
 	public static ServiceLocator getInstance(){
 		if(locator == null){
 			locator = new ServiceLocator();
@@ -110,6 +113,9 @@ public class ServiceLocator {
 		fToolsKeepLogService = new FToolsKeepLogService();
 		fRuningLogService = new FRuningLogService();
 		fMaterialKeepLogService = new FMaterialKeepLogService();
+		
+		fMonthlyReportService = new FMonthlyReportService();
+		fExpenseLogService = new FExpenseLogService();
 	}
 
 	public VehicleService getVehicleService() {
@@ -511,6 +517,22 @@ public class ServiceLocator {
 	public void setFMaterialKeepLogService(
 			FMaterialKeepLogService materialKeepLogService) {
 		fMaterialKeepLogService = materialKeepLogService;
+	}
+
+	public FMonthlyReportService getFMonthlyReportService() {
+		return fMonthlyReportService;
+	}
+
+	public void setFMonthlyReportService(FMonthlyReportService monthlyReportService) {
+		fMonthlyReportService = monthlyReportService;
+	}
+
+	public FExpenseLogService getFExpenseLogService() {
+		return fExpenseLogService;
+	}
+
+	public void setFExpenseLogService(FExpenseLogService expenseLogService) {
+		fExpenseLogService = expenseLogService;
 	}
 
 }
