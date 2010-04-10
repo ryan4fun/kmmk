@@ -105,7 +105,9 @@ function pageSelectCallback(pageNumber){
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=frb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
 		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-monthly-report.jsp')"/>
-	<input type="reset" style="width: 100px;" value="重   置" /></p>
+		<input type="reset" style="width: 100px;" value="重   置" />
+		<input type="button" value="新增月台帐" onclick="javascript:href('update-monthly-report.jsp')"/>
+	</p>
 </form>
 </div>
 </div>
