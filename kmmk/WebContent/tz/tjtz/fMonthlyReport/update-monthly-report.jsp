@@ -102,18 +102,18 @@ Util.setNull2DefaultValue(f);
 				for( FExpenseLog fe : feb.getList() ){
 			%>
 				<tr>
- 					<td width="20%" align="right">基本工资</td>
+ 					<td width="20%" align="right">&nbsp;</td>
 					<td align="left" colspan="3" >
-						<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
 						<input type="hidden" id="category1" name="category1" value="工资" />
 						<input type="hidden" id="category2" name="category2" value="基本工资" />
+						金额：<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
 						<input type="hidden" id="comment1" name="comment1" value="" />
 					</td>
 				</tr>
 			<%	}%>
 				<tr>
  					<td width="20%" align="right">其他</td>
-					<td align="left" colspan="3" ><input type="button" value="增加其他<项" onclick="javascript:addOther"/></td>
+					<td align="left" colspan="3" ><input type="button" value="增加其他项" onclick="javascript:addOther"/></td>
 				</tr>
 			<%	
 				feb.setCategory1("其他");
@@ -122,10 +122,11 @@ Util.setNull2DefaultValue(f);
 					Util.setNull2DefaultValue(fe);
 			%>
 				<tr>
- 					<td width="20%" align="right"><input type="text" id="category2" name="category2" value="" /></td>
+ 					<td width="20%" align="right">&nbsp;</td>
 					<td align="left" >
-						<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
 						<input type="hidden" id="category1" name="category1" value="其他" />
+						项目名称：<input type="text" id="category2" name="category2" value="<%=fe.getCategory2()%>" />&nbsp;&nbsp;&nbsp;
+						金额：<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
 					</td>
 					<td width="20%" align="right">备注</td>
 					<td align="left" ><textarea rows="3" id="comment1" name="comment1"><%=fe.getComment1()%></textarea></td>
@@ -174,23 +175,24 @@ Util.setNull2DefaultValue(f);
 					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary"/></td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">基本工资</td>
+ 					<td width="20%" align="right">&nbsp;</td>
 					<td align="left" colspan="3" >
-						<input type="text" id="amount" name="amount" value="" />
 						<input type="hidden" id="category1" name="category1" value="工资" />
 						<input type="hidden" id="category2" name="category2" value="基本工资" />
+						金额：<input type="text" id="amount" name="amount" value="" />
 						<input type="hidden" id="comment1" name="comment1" value="" />
 					</td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">其他</td>
-					<td align="left" colspan="3" ><input type="button" value="增加其他<项" onclick="javascript:addOther"/></td>
+					<td align="left" colspan="3" ><input type="button" value="增加其他项" onclick="javascript:addOther"/></td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right"><input type="text" id="category2" name="category2" value="" /></td>
+ 					<td width="20%" align="right">&nbsp;</td>
 					<td align="left" >
-						<input type="text" id="amount" name="amount" value="" />
 						<input type="hidden" id="category1" name="category1" value="其他" />
+						项目名称：<input type="text" id="category2" name="category2" value="" />&nbsp;&nbsp;&nbsp;
+						金额：<input type="text" id="amount" name="amount" value="" />
 					</td>
 					<td width="20%" align="right">备注</td>
 					<td align="left" ><textarea rows="3" id="comment1" name="comment1"></textarea></td>
