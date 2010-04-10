@@ -79,7 +79,7 @@ public class FExpenseLogBean extends AbstractBean {
 			}
 			
 			crit.addOrder(Order.desc("yearMonth"));
-			addPagination(crit);
+//			addPagination(crit);
 			List<FExpenseLog> list = crit.list();
 			
 			getTotalCount(_crit);
