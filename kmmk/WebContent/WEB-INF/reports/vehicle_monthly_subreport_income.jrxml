@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicle_monthly_subreport_income" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<parameter name="vehicleId" class="java.lang.Integer"/>
+	<parameter name="startDate" class="java.util.Date"/>
+	<parameter name="endDate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\raymond\\Documents\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     count(f_runingLog."ID")as runCount,
+     sum(f_runingLog."totalCost")as totalIncome,
+     sum(f_runingLog."actualGas") AS totalGas,
+     sum(f_runingLog."gasByCashCost") AS totalGasByCashCost,
+     sum(f_runingLog."gasByCardCost") AS totalGasByCardCost,
+     sum(f_runingLog."actualDistance") AS totalDistance,
+     sum(f_runingLog."actualRoadFee") AS totalRoadFee,
+     sum(f_runingLog."overLimitFee") AS totalOverLimitFee
+FROM
+     "f_runingLog" f_runingLog
+WHERE
+     vehicleID = $P{vehicleId}
+     and endDate >= $P{startDate}
+     and endDate < $P{endDate}
+GROUP BY
+     vehicleID]]>
+	</queryString>
+	<field name="runCount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalIncome" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalGas" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalGasByCashCost" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalGasByCardCost" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalDistance" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalRoadFee" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalOverLimitFee" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="totalCost" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{_totalRuningCost}+$V{_totalRutionFee}+$V{manageFee}+$V{totalSalary}]]></variableExpression>
+	</variable>
+	<variable name="_totalRuningCost" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{totalGasByCashCost}+$F{totalGasByCardCost}+$F{totalRoadFee}+$F{totalOverLimitFee}+$V{totalMaintain}]]></variableExpression>
+	</variable>
+	<variable name="totalGasFee" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{totalGasByCashCost}+$F{totalGasByCardCost}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="percentOfGas" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($V{totalGasFee}.doubleValue() / $F{totalIncome}.doubleValue())*100)]]></variableExpression>
+	</variable>
+	<variable name="percentOfRoadFee" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{totalRoadFee}.doubleValue() / $F{totalIncome}.doubleValue())*100)]]></variableExpression>
+	</variable>
+	<variable name="percentOfLimitFee" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($F{totalOverLimitFee}.doubleValue() / $F{totalIncome}.doubleValue())*100)]]></variableExpression>
+	</variable>
+	<variable name="totalRoadFee" class="java.lang.Double"/>
+	<variable name="totalGOVMGRFee" class="java.lang.Double"/>
+	<variable name="totalGPSFee" class="java.lang.Double"/>
+	<variable name="manageFee" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{totalIncome} * 0.1]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="percenOfManageFee" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($V{manageFee}.doubleValue() / $F{totalIncome}.doubleValue())*100)]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalSalary" class="java.lang.Double">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="peopleCount" class="java.lang.Integer"/>
+	<variable name="percentOfSalary" class="java.lang.Double">
+		<variableExpression><![CDATA[new Double(($V{totalSalary}.doubleValue() / $F{totalIncome}.doubleValue())*100)]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="profit" class="java.lang.String">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
+	<variable name="totalMaintain" class="java.lang.Double"/>
+	<variable name="_totalRutionFee" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{totalRoadFixFee}+$V{totalGOVMGRFee}+$V{totalGPSFee}]]></variableExpression>
+	</variable>
+	<variable name="totalRoadFixFee" class="java.lang.Double"/>
+	<variable name="totalOther" class="java.lang.Double"/>
+	<filterExpression><![CDATA[$P{vehicleId}]]></filterExpression>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="749" splitType="Stretch">
+			<textField>
+				<reportElement x="222" y="163" width="49" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalGas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="110" y="40" width="76" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[个车次，总计]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="126" width="151" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{_totalRuningCost}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="90" width="100" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[二. 支出情况]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="163" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[(合]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="126" width="77" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.经营费用]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="87" y="40" width="23" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{runCount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="56" y="162" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[油料:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="202" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[超限:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="40" width="54" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[本月共跑]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="98" y="182" width="87" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalRoadFee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="261" y="40" width="76" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[元]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="491" y="163" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="163" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[升)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="222" width="41" height="19"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[修理:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="163" width="39" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[占收入]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="98" y="202" width="87" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalOverLimitFee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="10" width="100" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[一. 收入情况]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="439" y="163" width="52" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfGas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="10" width="106" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="98" y="162" width="87" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{totalGasFee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="56" y="182" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[过境:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="186" y="40" width="75" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="98" y="222" width="418" height="19"/>
+				<subreportParameter name="startDate">
+					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="vehicleId">
+					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="totalIncome">
+					<subreportParameterExpression><![CDATA[$F{totalIncome}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="endDate">
+					<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="totalMaintainFee1" toVariable="totalMaintain"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="439" y="183" width="52" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfGas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="183" width="39" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[占收入]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="491" y="183" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="439" y="202" width="52" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfGas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="202" width="39" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[占收入]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="491" y="202" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="269" width="77" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[2.固定费用]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="299" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[养路费:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="339" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[GPS费:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="319" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[营管费:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="100" y="299" width="416" height="20"/>
+				<subreportParameter name="category">
+					<subreportParameterExpression><![CDATA[new Integer("1")]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="vehicleId">
+					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="monthYear">
+					<subreportParameterExpression><![CDATA[(new SimpleDateFormat("yyyyMM")).format($P{startDate})]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="totalFee" toVariable="totalRoadFixFee"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="100" y="339" width="416" height="20"/>
+				<subreportParameter name="category">
+					<subreportParameterExpression><![CDATA[new Integer("3")]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="vehicleId">
+					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="monthYear">
+					<subreportParameterExpression><![CDATA[(new SimpleDateFormat("yyyyMM")).format($P{startDate})]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="totalFee" toVariable="totalGPSFee"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="100" y="319" width="416" height="20"/>
+				<subreportParameter name="category">
+					<subreportParameterExpression><![CDATA[new Integer("2")]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="vehicleId">
+					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="monthYear">
+					<subreportParameterExpression><![CDATA[(new SimpleDateFormat("yyyyMM")).format($P{startDate})]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="totalFee" toVariable="totalGOVMGRFee"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="33" y="382" width="77" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[3.管理费用]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="110" y="382" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{manageFee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="141" y="409" width="71" height="20"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{manageFee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="409" width="44" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="409" width="41" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[* 10% = ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="448" width="77" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4.工资]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="439" y="382" width="52" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percenOfManageFee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="491" y="382" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="382" width="39" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[占收入]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="110" y="448" width="60" height="20"/>
+				<subreportParameter name="category">
+					<subreportParameterExpression><![CDATA[new Integer("4")]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="vehicleId">
+					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="monthYear">
+					<subreportParameterExpression><![CDATA[(new SimpleDateFormat("yyyyMM")).format($P{startDate})]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="totalFee" toVariable="totalGPSFee"/>
+				<returnValue subreportVariable="count" toVariable="peopleCount"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="56" y="482" width="54" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[1500元 ＊]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="482" width="10" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{peopleCount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="118" y="482" width="10" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[+]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="130" y="482" width="48" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="178" y="482" width="58" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="10"/>
+				</textElement>
+				<text><![CDATA[＊６％　＝]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="237" y="482" width="87" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalSalary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="491" y="482" width="25" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="439" y="482" width="52" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfSalary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="482" width="39" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[占收入]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="524" width="77" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[5.其他]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="670" width="100" height="20"/>
+				<textElement>
+					<font fontName="宋体" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[三.利润]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="56" y="559" width="460" height="100"/>
+				<subreportParameter name="yearMonth">
+					<subreportParameterExpression><![CDATA[(new SimpleDateFormat("yyyyMM")).format($P{startDate})]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="vehicleId">
+					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="totalCost" toVariable="totalOther"/>
+				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_other.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>
