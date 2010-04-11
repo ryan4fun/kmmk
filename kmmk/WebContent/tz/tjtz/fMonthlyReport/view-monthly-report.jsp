@@ -51,6 +51,7 @@ $(document).ready(function(){
 	<h3><a href="#">月台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
 		<form id="form2" action="mkgps.do" method="post">
+			<input value="FGenerateMonthlyReportAction" type="hidden" name="action" />
 			<table cellSpacing="5" width="95%">
 				<tr>
  					<td width="20%" align="right">车牌号：</td>
@@ -147,7 +148,8 @@ $(document).ready(function(){
 			</table>
 			<p align="center">
 				<input type="button" style="width:100px;" value="修改月台帐" onclick="javascript:href('update-monthly-report.jsp?id=<%=f.getId()%>')"/>
-				<input type="button" value="返回" onclick="javascript:history.back()"/>		
+				<input type="button" value="返回" onclick="javascript:history.back()"/>	
+				<input  value="生成/打印报表" type="submit"/>		
 			</p>
 		</form>
 	</div>
