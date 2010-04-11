@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Wednesday, April 07, 2010 22:42:13
+ * Date Created : Sunday, April 11, 2010 16:14:20
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -154,6 +154,7 @@ CREATE TABLE f_gasfee(
     comment        varchar(100)        NULL,
     vehicleID      int                 NULL,
     operator       varchar(20)         NULL,
+    feeType        char(10)            NULL,
     CONSTRAINT PK72 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -182,6 +183,7 @@ CREATE TABLE f_maintain(
     comment         varchar(200)        NULL,
     studio          varchar(100)        NULL,
     operator        varchar(20)         NULL,
+    feeType         smallint            NULL,
     CONSTRAINT PK70 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
