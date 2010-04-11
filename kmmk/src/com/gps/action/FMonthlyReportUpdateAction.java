@@ -39,7 +39,7 @@ public class FMonthlyReportUpdateAction extends Action{
 						if(comment1s[i].length()>0)
 							fe.setComment1(comment1s[i]);
 						fe.setVehicle(fmr.getVehicle());
-						fmr.setYearMonth(fmr.getYearMonth());
+						fe.setYearMonth(fmr.getYearMonth());
 						getServiceLocator().getFExpenseLogService().addFExpenseLog(fe);
 					}
 				}
