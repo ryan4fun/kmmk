@@ -52,7 +52,9 @@ $(document).ready(function(){
 			
 		}
 	});
+	<%if( f.getYearMonth().length()<1 ){%>
 	initVehicleSelector();
+	<%}%>
  	$("#form2").validate({
 		rules: {
   			year: {
@@ -116,15 +118,47 @@ function delRow(btn){
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">工资</td>
-					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary(this)"/></td>
+ 					<td width="20%" align="right">经营费用</td>
+					<td align="left" colspan="3" >&nbsp;</td>
 				</tr>
 			<%	
 				FExpenseLogBean feb = new FExpenseLogBean();
 				feb.setVehicleId(f.getVehicle().getVehicleId());
 				feb.setYearMonth(f.getYearMonth());
+				feb.setCategory1("经营费用");
+				feb.setCategory2("过境");
+				for( FExpenseLog fe : feb.getList() ){
+			%>
+				<tr>
+ 					<td width="20%" align="right">过境</td>
+					<td align="left" colspan="3" >
+						<input type="hidden" id="category1" name="category1" value="经营费用" />
+						<input type="hidden" id="category2" name="category2" value="过境" />
+						金额：<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
+						<input type="hidden" id="comment1" name="comment1" value="" />
+					</td>
+				</tr>
+			<%	}
+				feb.setCategory2("超限");
+				for( FExpenseLog fe : feb.getList() ){
+			%>
+				<tr>
+ 					<td width="20%" align="right">超限</td>
+					<td align="left" colspan="3" >
+						<input type="hidden" id="category1" name="category1" value="经营费用" />
+						<input type="hidden" id="category2" name="category2" value="超限" />
+						金额：<input type="text" id="amount" name="amount" value="<%=fe.getAmount()==null?"":fe.getAmount()%>" />
+						<input type="hidden" id="comment1" name="comment1" value="" />
+					</td>
+				</tr>
+			<%	}%>
+				<tr>
+ 					<td width="20%" align="right">工资</td>
+					<td align="left" colspan="3" ><input type="button" value="增加工资项" onclick="javascript:addSalary(this)"/></td>
+				</tr>
+			<%	
 				feb.setCategory1("工资");
-				feb.setCategory2("基本工资");
+				feb.setCategory2("");
 				for( FExpenseLog fe : feb.getList() ){
 			%>
 				<tr>
@@ -143,7 +177,6 @@ function delRow(btn){
 				</tr>
 			<%	
 				feb.setCategory1("其他");
-				feb.setCategory2("");
 				for( FExpenseLog fe : feb.getList() ){
 					Util.setNull2DefaultValue(fe);
 			%>
