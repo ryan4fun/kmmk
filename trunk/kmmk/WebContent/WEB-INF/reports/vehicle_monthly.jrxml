@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicle_monthly" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="418"/>
+	<parameter name="vehicleId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[new Integer(1)]]></defaultValueExpression>
+	</parameter>
+	<parameter name="startDate" class="java.util.Date"/>
+	<parameter name="endDate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\raymond\\Documents\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     vehicle."vehicleID" AS vehicle_vehicleID,
+     vehicle."deviceID" AS vehicle_deviceID,
+     vehicle."licensPadNumber" AS vehicle_licensPadNumber,
+     vehicle."internalNumber" AS vehicle_internalNumber,
+     vehicle."frameNumber" AS vehicle_frameNumber,
+     vehicle."engineNumber" AS vehicle_engineNumber,
+     vehicle."modelNumber" AS vehicle_modelNumber,
+     vehicle."capability" AS vehicle_capability,
+     vehicle."registerDate" AS vehicle_registerDate,
+     vehicle."annualCheckState" AS vehicle_annualCheckState,
+     vehicle."approvalDate" AS vehicle_approvalDate,
+     vehicle."secondMaintainDate" AS vehicle_secondMaintainDate,
+     vehicle."assetBaseValue" AS vehicle_assetBaseValue,
+     vehicle."simCardNo" AS vehicle_simCardNo,
+     vehicle."userID" AS vehicle_userID,
+     vehicle."vehicleState" AS vehicle_vehicleState,
+     vehicle."vehicleTypeID" AS vehicle_vehicleTypeID,
+     vehicle."serviceExpireDate" AS vehicle_serviceExpireDate,
+     vehicle."msgIntervel" AS vehicle_msgIntervel,
+     vehicle."monitLevel" AS vehicle_monitLevel,
+     vehicle."speedLimitation" AS vehicle_speedLimitation
+FROM
+     "vehicle" vehicle
+
+where vehicleID = $P!{vehicleId}]]>
+	</queryString>
+	<field name="vehicle_vehicleID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_deviceID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_licensPadNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_internalNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_frameNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_engineNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_modelNumber" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_capability" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_registerDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_annualCheckState" class="java.lang.Short">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_approvalDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_secondMaintainDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_assetBaseValue" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_simCardNo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_userID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_vehicleState" class="java.lang.Short">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_vehicleTypeID" class="java.lang.Short">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_serviceExpireDate" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_msgIntervel" class="java.lang.Short">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_monitLevel" class="java.lang.Short">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vehicle_speedLimitation" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="555" height="74"/>
+				<staticText>
+					<reportElement x="165" y="0" width="219" height="34"/>
+					<textElement textAlignment="Center">
+						<font fontName="宋体" size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[车辆经营情况月报表]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="384" y="32" width="123" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{vehicle_internalNumber}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="316" y="32" width="68" height="20"/>
+					<textElement>
+						<font fontName="宋体" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[内部编号]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="316" y="54" width="68" height="18"/>
+					<textElement>
+						<font fontName="宋体" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[车牌号]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="384" y="52" width="123" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{vehicle_licensPadNumber}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="72" width="555" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="65" y="34" width="100" height="20"/>
+					<textElement>
+						<font fontName="宋体" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[帐务日期]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="165" y="34" width="49" height="20"/>
+					<textElement>
+						<font fontName="宋体" size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("yyyy").format($P{startDate})]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="214" y="34" width="17" height="20"/>
+					<textElement>
+						<font fontName="宋体" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[年]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="253" y="34" width="17" height="20"/>
+					<textElement>
+						<font fontName="宋体" size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[月]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="232" y="34" width="21" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[new SimpleDateFormat("MM").format($P{startDate})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="582" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="555" height="567"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<subreport>
+					<reportElement x="0" y="0" width="555" height="557"/>
+					<subreportParameter name="startDate">
+						<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="vehicleId">
+						<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="endDate">
+						<subreportParameterExpression><![CDATA[$P{endDate}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income.jasper"]]></subreportExpression>
+				</subreport>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>
