@@ -52,16 +52,19 @@ $(document).ready(function(){
 			
 		}
 	});
-	
-  		$("#form2").validate({
+	initVehicleSelector();
+ 	$("#form2").validate({
 		rules: {
   			year: {
   				required: true,
-  				digits: true
+  				digits: true,
+  				maxlength: 4,
+  				minlength: 4
 			},
 			month: {
   				required: true,
-  				digits: true
+  				digits: true,
+  				range: [1, 12]
 			},
 			category2: {
   				required: true
@@ -77,10 +80,13 @@ $(document).ready(function(){
 });
 
 function addSalary(btn){
-	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" colspan="3" ><input type="hidden" id="category1" name="category1" value="工资" /><input type="hidden" id="category2" name="category2" value="基本工资" />金额：<input type="text" id="amount" name="amount" value="" /><input type="hidden" id="comment1" name="comment1" value="" /></td></tr>');
+	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" colspan="3" ><input type="hidden" id="category1" name="category1" value="工资" /><input type="hidden" id="category2" name="category2" value="基本工资" />金额：<input type="text" id="amount" name="amount" value="" /><input type="hidden" id="comment1" name="comment1" value="" /><input type="button" value="删除该项" onclick="javascript:delRow(this)"/></td></tr>');
 }
 function addOther(btn){
-	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" ><input type="hidden" id="category1" name="category1" value="其他" />项目名称：<input type="text" id="category2" name="category2" value="" />&nbsp;&nbsp;&nbsp;金额：<input type="text" id="amount" name="amount" value="" /></td><td width="20%" align="right">备注</td><td align="left" ><textarea rows="3" id="comment1" name="comment1"></textarea></td></tr>');
+	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" ><input type="hidden" id="category1" name="category1" value="其他" />项目名称：<input type="text" id="category2" name="category2" value="" />&nbsp;&nbsp;&nbsp;金额：<input type="text" id="amount" name="amount" value="" /><input type="button" value="删除该项" onclick="javascript:delRow(this)"/></td><td width="20%" align="right">备注</td><td align="left" ><textarea rows="3" id="comment1" name="comment1"></textarea></td></tr>');
+}
+function delRow(btn){
+	$(btn).parent().parent().remove();
 }
 </script>
 </head>
