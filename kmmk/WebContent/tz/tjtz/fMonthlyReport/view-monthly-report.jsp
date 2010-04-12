@@ -63,8 +63,12 @@ $(document).ready(function(){
  					<td width="20%" align="right">日期：</td>
 					<td align="left" colspan="3">
 						<%=f.getYearMonth().substring(0,4)+"年"+f.getYearMonth().substring(4)+"月"%>
+						
+						<input type="hidden" name = "vehicleId" value="<%=f.getVehicle().getVehicleId()%>"/>	
+						<input type="hidden" name = "yearMonth" value="<%=f.getYearMonth()%>"/>
 					</td>
 				</tr>
+				
 			<%	
 				FExpenseLogBean feb = new FExpenseLogBean();
 				feb.setVehicleId(f.getVehicle().getVehicleId());
