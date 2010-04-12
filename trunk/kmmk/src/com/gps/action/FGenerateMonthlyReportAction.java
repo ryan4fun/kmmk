@@ -1,6 +1,7 @@
 package com.gps.action;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -58,6 +59,11 @@ public class FGenerateMonthlyReportAction extends Action{
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters);  
 			byte[] generatedPDF =  JasperExportManager.exportReportToPdf(jasperPrint);
+			
+			FileOutputStream  os = new FileOutputStream(basePath+"test.pdf");
+			os.write(generatedPDF);
+			os.flush();
+			os.close();
 			 
 			 if (jasperPrint != null) {  
 		            response.setContentType("application/pdf");  
