@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicle_monthly_subreport_income" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicle_monthly_subreport_income" language="groovy" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="48"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="vehicleId" class="java.lang.Integer"/>
 	<parameter name="startDate" class="java.util.Date"/>
 	<parameter name="endDate" class="java.util.Date">
@@ -124,160 +124,160 @@ GROUP BY
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="749" splitType="Stretch">
+		<band height="546" splitType="Stretch">
 			<textField>
-				<reportElement x="222" y="163" width="49" height="20"/>
+				<reportElement x="222" y="102" width="49" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalGas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="110" y="40" width="76" height="20"/>
+				<reportElement x="110" y="27" width="76" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[个车次，总计]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="126" width="151" height="20"/>
+				<reportElement x="110" y="77" width="151" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{_totalRuningCost}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="90" width="100" height="20"/>
+				<reportElement x="10" y="53" width="100" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[二. 支出情况]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="197" y="163" width="25" height="20"/>
+				<reportElement x="197" y="102" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[(合]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="126" width="77" height="20"/>
+				<reportElement x="33" y="77" width="77" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[1.经营费用]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="87" y="40" width="23" height="20"/>
+				<reportElement x="87" y="27" width="23" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Integer"><![CDATA[$F{runCount}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="56" y="162" width="41" height="20"/>
+				<reportElement x="56" y="101" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[油料:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="202" width="41" height="20"/>
+				<reportElement x="56" y="141" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[超限:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="40" width="54" height="20"/>
+				<reportElement x="33" y="27" width="54" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[本月共跑]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="98" y="182" width="87" height="20"/>
+				<reportElement x="98" y="121" width="87" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalRoadFee}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="261" y="40" width="76" height="20"/>
+				<reportElement x="261" y="27" width="76" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[元]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="491" y="163" width="25" height="20"/>
+				<reportElement x="491" y="102" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="274" y="163" width="25" height="20"/>
+				<reportElement x="274" y="102" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[升)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="222" width="41" height="19"/>
+				<reportElement x="56" y="161" width="41" height="19"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[修理:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="163" width="39" height="20"/>
+				<reportElement x="400" y="102" width="39" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[占收入]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="98" y="202" width="87" height="20"/>
+				<reportElement x="98" y="141" width="87" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalOverLimitFee}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="10" width="100" height="20"/>
+				<reportElement x="10" y="3" width="100" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[一. 收入情况]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="439" y="163" width="52" height="20"/>
+				<reportElement x="439" y="102" width="52" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfGas}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="110" y="10" width="106" height="20"/>
+				<reportElement x="110" y="3" width="106" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="98" y="162" width="87" height="20"/>
+				<reportElement x="98" y="101" width="87" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{totalGasFee}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="56" y="182" width="41" height="20"/>
+				<reportElement x="56" y="121" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[过境:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="186" y="40" width="75" height="20"/>
+				<reportElement x="186" y="27" width="75" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="14" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
 			</textField>
 			<subreport>
-				<reportElement x="98" y="222" width="418" height="19"/>
+				<reportElement x="98" y="161" width="418" height="19"/>
 				<subreportParameter name="startDate">
 					<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
 				</subreportParameter>
@@ -295,73 +295,73 @@ GROUP BY
 				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport1.jasper"]]></subreportExpression>
 			</subreport>
 			<textField>
-				<reportElement x="439" y="183" width="52" height="20"/>
+				<reportElement x="439" y="122" width="52" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfGas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="400" y="183" width="39" height="20"/>
+				<reportElement x="400" y="122" width="39" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[占收入]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="491" y="183" width="25" height="20"/>
+				<reportElement x="491" y="122" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="439" y="202" width="52" height="20"/>
+				<reportElement x="439" y="141" width="52" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfGas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="400" y="202" width="39" height="20"/>
+				<reportElement x="400" y="141" width="39" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[占收入]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="491" y="202" width="25" height="20"/>
+				<reportElement x="491" y="141" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="269" width="77" height="20"/>
+				<reportElement x="33" y="187" width="77" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[2.固定费用]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="299" width="41" height="20"/>
+				<reportElement x="56" y="213" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[养路费:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="339" width="41" height="20"/>
+				<reportElement x="56" y="253" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[GPS费:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="56" y="319" width="41" height="20"/>
+				<reportElement x="56" y="233" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[营管费:]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="100" y="299" width="416" height="20"/>
+				<reportElement x="100" y="213" width="416" height="20"/>
 				<subreportParameter name="category">
 					<subreportParameterExpression><![CDATA[new Integer("1")]]></subreportParameterExpression>
 				</subreportParameter>
@@ -376,7 +376,7 @@ GROUP BY
 				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="100" y="339" width="416" height="20"/>
+				<reportElement x="100" y="253" width="416" height="20"/>
 				<subreportParameter name="category">
 					<subreportParameterExpression><![CDATA[new Integer("3")]]></subreportParameterExpression>
 				</subreportParameter>
@@ -391,7 +391,7 @@ GROUP BY
 				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
 			</subreport>
 			<subreport>
-				<reportElement x="100" y="319" width="416" height="20"/>
+				<reportElement x="100" y="233" width="416" height="20"/>
 				<subreportParameter name="category">
 					<subreportParameterExpression><![CDATA[new Integer("2")]]></subreportParameterExpression>
 				</subreportParameter>
@@ -406,64 +406,64 @@ GROUP BY
 				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement x="33" y="382" width="77" height="20"/>
+				<reportElement x="33" y="278" width="77" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[3.管理费用]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="110" y="382" width="100" height="20"/>
+				<reportElement x="110" y="278" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{manageFee}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="141" y="409" width="71" height="20"/>
+				<reportElement x="141" y="302" width="71" height="20"/>
 				<textElement>
 					<font fontName="宋体"/>
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{manageFee}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="56" y="409" width="44" height="20"/>
+				<reportElement x="56" y="302" width="44" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="100" y="409" width="41" height="20"/>
+				<reportElement x="100" y="302" width="41" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[* 10% = ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="448" width="77" height="20"/>
+				<reportElement x="31" y="325" width="77" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[4.工资]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="439" y="382" width="52" height="20"/>
+				<reportElement x="439" y="278" width="52" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percenOfManageFee}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="491" y="382" width="25" height="20"/>
+				<reportElement x="491" y="278" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="382" width="39" height="20"/>
+				<reportElement x="400" y="278" width="39" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[占收入]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="110" y="448" width="60" height="20"/>
+				<reportElement x="110" y="325" width="60" height="20"/>
 				<subreportParameter name="category">
 					<subreportParameterExpression><![CDATA[new Integer("4")]]></subreportParameterExpression>
 				</subreportParameter>
@@ -479,76 +479,76 @@ GROUP BY
 				<subreportExpression class="java.lang.String"><![CDATA[$P{SUBREPORT_DIR} + "vehicle_monthly_subreport_income_subreport2.jasper"]]></subreportExpression>
 			</subreport>
 			<staticText>
-				<reportElement x="56" y="482" width="54" height="20"/>
+				<reportElement x="56" y="352" width="54" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[1500元 ＊]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="108" y="482" width="10" height="20"/>
+				<reportElement x="108" y="352" width="10" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$V{peopleCount}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="118" y="482" width="10" height="20"/>
+				<reportElement x="118" y="352" width="10" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[+]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="130" y="482" width="48" height="20"/>
+				<reportElement x="130" y="352" width="48" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="178" y="482" width="58" height="20"/>
+				<reportElement x="178" y="352" width="58" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="10"/>
 				</textElement>
 				<text><![CDATA[＊６％　＝]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="237" y="482" width="87" height="20"/>
+				<reportElement x="237" y="352" width="87" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalSalary}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="491" y="482" width="25" height="20"/>
+				<reportElement x="491" y="352" width="25" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[%]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="439" y="482" width="52" height="20"/>
+				<reportElement x="439" y="352" width="52" height="20"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{percentOfSalary}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="400" y="482" width="39" height="20"/>
+				<reportElement x="400" y="352" width="39" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12"/>
 				</textElement>
 				<text><![CDATA[占收入]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="524" width="77" height="20"/>
+				<reportElement x="31" y="380" width="77" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[5.其他]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="8" y="670" width="100" height="20"/>
+				<reportElement x="10" y="513" width="100" height="20"/>
 				<textElement>
 					<font fontName="宋体" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[三.利润]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="56" y="559" width="460" height="100"/>
+				<reportElement x="56" y="406" width="460" height="100"/>
 				<subreportParameter name="yearMonth">
 					<subreportParameterExpression><![CDATA[(new SimpleDateFormat("yyyyMM")).format($P{startDate})]]></subreportParameterExpression>
 				</subreportParameter>
