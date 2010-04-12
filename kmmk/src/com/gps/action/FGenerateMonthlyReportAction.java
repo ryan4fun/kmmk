@@ -56,23 +56,28 @@ public class FGenerateMonthlyReportAction extends Action{
 			parameters.put("startDate", startDate);
 			parameters.put("endDate", endDate);
 			
+			parameters.put("SUBREPORT_DIR",basePath);
+			
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters);  
-			byte[] generatedPDF =  JasperExportManager.exportReportToPdf(jasperPrint);
+			response.setContentType("application/pdf");  
+			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+//			byte[] generatedPDF =  JasperExportManager.exportReportToPdf(jasperPrint);
 			
 			FileOutputStream  os = new FileOutputStream(basePath+"test.pdf");
-			os.write(generatedPDF);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, os);
+//			os.write(generatedPDF);
 			os.flush();
 			os.close();
 			 
-			 if (jasperPrint != null) {  
-		            response.setContentType("application/pdf");  
-		            OutputStream ouputStream = response.getOutputStream();  
-		            ouputStream.write(generatedPDF);
-
-		            ouputStream.flush();  
-		            ouputStream.close();  
-			 }
+//			 if (jasperPrint != null) {  
+//		            response.setContentType("application/pdf");  
+//		            OutputStream ouputStream = response.getOutputStream();  
+//		            ouputStream.write(generatedPDF);
+//
+//		            ouputStream.flush();  
+//		            ouputStream.close();  
+//			 }
 		}
 	       
 	}
