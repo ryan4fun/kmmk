@@ -3,6 +3,8 @@ package com.gps.action;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -50,6 +52,10 @@ public class FGenerateMonthlyReportAction extends Action{
 			
 			File reportFile = new File(basePath+"vehicle_monthly.jasper");  
 			
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String conStr =  "jdbc:sqlserver://localhost:1433;databaseName=mkgps1";
+			Connection connection = DriverManager.getConnection(conStr,"sa","1234");
+			
 			Map parameters = new HashMap();  
 			
 			parameters.put("vehicleId", Integer.parseInt(vehicleId));
@@ -59,16 +65,16 @@ public class FGenerateMonthlyReportAction extends Action{
 			parameters.put("SUBREPORT_DIR",basePath);
 			
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters);  
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,connection);  
 			response.setContentType("application/pdf");  
 			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 //			byte[] generatedPDF =  JasperExportManager.exportReportToPdf(jasperPrint);
 			
-			FileOutputStream  os = new FileOutputStream(basePath+"test.pdf");
-			JasperExportManager.exportReportToPdfStream(jasperPrint, os);
-//			os.write(generatedPDF);
-			os.flush();
-			os.close();
+//			FileOutputStream  os = new FileOutputStream(basePath+"test.pdf");
+//			JasperExportManager.exportReportToPdfStream(jasperPrint, os);
+//
+//			os.flush();
+//			os.close();
 			 
 //			 if (jasperPrint != null) {  
 //		            response.setContentType("application/pdf");  
