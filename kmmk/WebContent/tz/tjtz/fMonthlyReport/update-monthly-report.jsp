@@ -66,7 +66,8 @@ $(document).ready(function(){
 			month: {
   				required: true,
   				digits: true,
-  				range: [1, 12]
+  				range: [1, 12],
+  				reportNotExist: true
 			},
 			category2: {
   				required: true
@@ -80,6 +81,25 @@ $(document).ready(function(){
 		}
 	});
 });
+
+jQuery.validator.addMethod("reportNotExist", function(value, element) {
+	var result = false;
+	$.ajax({
+		url : "mkgps.do",
+		dataType : "json",
+		data : {
+			action : "CheckDuplicatedMonthlyReportAjax",
+			year : $("#year").val(),
+			month : $("#month").val()
+		},
+		cache : false,
+		async : false,
+		success : function(json){
+			result = json.result;
+		}
+	});
+	return result;
+}, "该月台帐已存在！");
 
 function addSalary(btn){
 	$(btn).parent().parent().after('<tr><td width="20%" align="right">&nbsp;</td><td align="left" colspan="3" ><input type="hidden" id="category1" name="category1" value="工资" /><input type="hidden" id="category2" name="category2" value="基本工资" />金额：<input type="text" id="amount" name="amount" value="" /><input type="hidden" id="comment1" name="comment1" value="" /><input type="button" value="删除该项" onclick="javascript:delRow(this)"/></td></tr>');
@@ -204,7 +224,7 @@ function delRow(btn){
 				<tr>
  					<td width="20%" align="right">日期：</td>
 					<td align="left" colspan="3">
-						<input type="text" id="year" name="year" value="" />年<input type="text" id="month" name="month" value="" />月
+						<input type="text" id="year" name="year" value="<%=Calendar.getInstance().get(Calendar.YEAR)%>" />年<input type="text" id="month" name="month" value="" />月
 					</td>
 				</tr>
 				<tr>
