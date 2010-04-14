@@ -10,7 +10,7 @@
 	<parameter name="endDate" class="java.util.Date">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
-	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
 		<defaultValueExpression><![CDATA["C:\\Users\\raymond\\Documents\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
