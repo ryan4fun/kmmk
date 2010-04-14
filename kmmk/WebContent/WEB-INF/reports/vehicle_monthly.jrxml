@@ -205,6 +205,9 @@ where vehicleID = $P!{vehicleId}]]>
 				</box>
 				<subreport isUsingCache="false">
 					<reportElement x="0" y="0" width="555" height="699"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
 					<subreportParameter name="startDate">
 						<subreportParameterExpression><![CDATA[$P{startDate}]]></subreportParameterExpression>
 					</subreportParameter>
