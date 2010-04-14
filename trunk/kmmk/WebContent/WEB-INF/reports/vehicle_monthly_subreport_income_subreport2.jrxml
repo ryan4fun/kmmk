@@ -5,7 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="vehicleId" class="java.lang.Integer"/>
 	<parameter name="monthYear" class="java.lang.String"/>
-	<parameter name="category" class="java.lang.Integer"/>
+	<parameter name="category" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      count(*) count,
