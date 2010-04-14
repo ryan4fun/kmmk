@@ -369,7 +369,7 @@ GROUP BY
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="category">
-					<subreportParameterExpression><![CDATA[new Integer("1")]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[new String("养路费")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="vehicleId">
 					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
@@ -387,7 +387,7 @@ GROUP BY
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="category">
-					<subreportParameterExpression><![CDATA[new Integer("3")]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[new String("GPS费")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="vehicleId">
 					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
@@ -405,7 +405,7 @@ GROUP BY
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="category">
-					<subreportParameterExpression><![CDATA[new Integer("2")]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[new String("营管费")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="vehicleId">
 					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
@@ -480,7 +480,7 @@ GROUP BY
 					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="category">
-					<subreportParameterExpression><![CDATA[new Integer("4")]]></subreportParameterExpression>
+					<subreportParameterExpression><![CDATA[new String("工资")]]></subreportParameterExpression>
 				</subreportParameter>
 				<subreportParameter name="vehicleId">
 					<subreportParameterExpression><![CDATA[$P{vehicleId}]]></subreportParameterExpression>
