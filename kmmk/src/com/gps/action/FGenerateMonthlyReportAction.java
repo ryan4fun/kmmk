@@ -19,6 +19,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 import org.hibernate.Criteria;
+import org.hibernate.connection.ConnectionProviderFactory;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.Message;
@@ -55,7 +56,7 @@ public class FGenerateMonthlyReportAction extends Action{
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			String conStr =  "jdbc:sqlserver://localhost:1433;databaseName=mkgps1";
 			Connection connection = DriverManager.getConnection(conStr,"sa","1234");
-			
+		
 			Map parameters = new HashMap();  
 			
 			parameters.put("vehicleId", Integer.parseInt(vehicleId));
@@ -67,6 +68,12 @@ public class FGenerateMonthlyReportAction extends Action{
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,connection);  
 			response.setContentType("application/pdf");  
+			
+			FileOutputStream of = new FileOutputStream(basePath+"test.pdf");
+			JasperExportManager.exportReportToPdfStream(jasperPrint,of);
+			of.flush();
+			of.close();
+			
 			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
 //			byte[] generatedPDF =  JasperExportManager.exportReportToPdf(jasperPrint);
 			
