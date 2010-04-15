@@ -61,7 +61,9 @@ where
 		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="82" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="楷体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{comment1}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -71,7 +73,9 @@ where
 			</textField>
 			<textField>
 				<reportElement x="239" y="0" width="316" height="20"/>
-				<textElement/>
+				<textElement>
+					<font fontName="楷体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{comment2}]]></textFieldExpression>
 			</textField>
 		</band>
