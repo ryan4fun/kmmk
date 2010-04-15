@@ -68,20 +68,23 @@ public class FGenerateMonthlyReportAction extends Action{
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,connection);  
 			response.setContentType("application/pdf");  
+//			response.setHeader("Content-Disposition", "inline; filename=\"monthlyReport.pdf\"");   
 			
-			FileOutputStream of = new FileOutputStream(basePath+"test.pdf");
-			JasperExportManager.exportReportToPdfStream(jasperPrint,of);
-			of.flush();
-			of.close();
+//			FileOutputStream of = new FileOutputStream(basePath+"test.pdf");
+//			JasperExportManager.exportReportToPdfStream(jasperPrint,of);
+//			of.flush();
+//			of.close();
 			
 			JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
 //			byte[] generatedPDF =  JasperExportManager.exportReportToPdf(jasperPrint);
 			
-//			FileOutputStream  os = new FileOutputStream(basePath+"test.pdf");
-//			JasperExportManager.exportReportToPdfStream(jasperPrint, os);
-//
-//			os.flush();
-//			os.close();
+			FileOutputStream  os = new FileOutputStream(basePath+"monthlyReport.pdf");
+			JasperExportManager.exportReportToPdfStream(jasperPrint, os);
+
+			os.flush();
+			os.close();
 			 
 //			 if (jasperPrint != null) {  
 //		            response.setContentType("application/pdf");  
