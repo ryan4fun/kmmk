@@ -44,6 +44,9 @@ Util.setNull2DefaultValue(f);
 </style>
 <script language="JavaScript">
 jQuery.validator.addMethod("reportNotExist", function(value, element) {
+	<% if( f.getYearMonth().length()>0 ){%>
+	return true;
+	<% } else {%>
 	var result = false;
 	$.ajax({
 		url : "mkgps.do",
@@ -60,6 +63,7 @@ jQuery.validator.addMethod("reportNotExist", function(value, element) {
 		}
 	});
 	return result;
+	<% }%>
 }, "该月台帐已存在！");
 
 var allOwners = new Array();
