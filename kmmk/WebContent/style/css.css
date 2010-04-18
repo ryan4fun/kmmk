@@ -24,6 +24,9 @@ TEXTAREA {
 SELECT {
 	FONT-SIZE: 12px
 }
+input[type=button], input[type=reset], input[type=submit]{	
+	width:100px;
+}
 A {
 	COLOR: #07519a; TEXT-DECORATION: none
 }
