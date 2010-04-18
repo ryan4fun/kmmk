@@ -34,8 +34,6 @@ public class SegmentAddAction extends Action{
 		if(list == null || list.size()<1)
 			throw new Message("无法保存该路线!");
 		
-		getServiceLocator().getSegmentService().addSegment(s);
-		
 		Set<SegmentDetail> set = new LinkedHashSet<SegmentDetail>(list.size());
 		SegmentDetail startDetail = null;
 		SegmentDetail endDetail = null;
@@ -49,16 +47,16 @@ public class SegmentAddAction extends Action{
 				sd.setLatValue(Double.parseDouble(lat.toString()));
 				sd.setTag(SegmentDetailService.SEGMENT_DETAIL_TYPE_ROAD_POINT);
 				set.add(sd);
-				
-				getServiceLocator().getSegmentDetailService().addSegmentDetail(sd);
 				if(startDetail == null)
 					startDetail = sd;
 				
 				endDetail = sd;
 			}
 		}
+		s.setSegmentDetails(set);
 		s.setStartDetialId(startDetail.getSegDetailId());
 		s.setEndDetailId(endDetail.getSegDetailId());
+		
 //		String[] longValues = getArray("longValue");
 //		String[] latValues = getArray("latValue");
 //		if (longValues != null && latValues != null && longValues.length > 0
@@ -80,7 +78,7 @@ public class SegmentAddAction extends Action{
 //			s.setSegmentDetails(set);
 //		}
 		
-		getServiceLocator().getSegmentService().updateSegment(s);
+		getServiceLocator().getSegmentService().addSegment(s);
 		request.setAttribute("segmentId", String.valueOf(s.getSegmentId()));
 	}
 }
