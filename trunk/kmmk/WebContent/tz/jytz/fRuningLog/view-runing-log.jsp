@@ -156,7 +156,7 @@ $(document).ready(function(){
 		</table>
 	</div>
 	<p align="center">
-		<input type="button" value="修改车辆经营收支明细台帐" onclick="javascript:href('update-runing-log.jsp?id=<%=f.getId()%>')"/>
+		<input type="button" value="修改收支明细" onclick="javascript:href('update-runing-log.jsp?id=<%=f.getId()%>')"/>
 		<input type="button" value="返回" onclick="javascript:history.back()"/>
 	</p>
 </div>
