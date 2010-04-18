@@ -124,6 +124,7 @@ function delOrg(id){
 			<td align="left">
 				<input type="text" id="operator" name="operator" value="<%=frb.getOperator()%>" /></td>	
 		</tr>
+		<!-- 
 		<tr>
 			<td width="20%" align="right">运价：</td>
 			<td align="left" colSpan="3">
@@ -174,6 +175,7 @@ function delOrg(id){
 					value="<%=frb.getEndDisRecordEnd()==null?"":frb.getEndDisRecordEnd()%>" />
 			</td>
 		</tr>
+		 
 		<tr>
 			<td width="20%" align="right">装货地点：</td>
 			<td align="left">
@@ -192,6 +194,7 @@ function delOrg(id){
 					value="<%=frb.getTotalCostEnd()==null?"":frb.getTotalCostEnd()%>" />
 			</td>
 		</tr>
+		-->
 		<tr>
 			<td width="20%" align="right">付款单位：</td>
 			<td align="left">
