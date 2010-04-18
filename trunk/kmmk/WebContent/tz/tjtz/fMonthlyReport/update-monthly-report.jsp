@@ -9,7 +9,8 @@ FMonthlyReportBean frb = new FMonthlyReportBean();
 String actionName = "FMonthlyReportAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FMonthlyReport();
-	VehicleBean vb = new VehicleBean(request);
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
 	f.setVehicle(vb.findById());
 } else {
 	frb.setId(Integer.parseInt(idstr));

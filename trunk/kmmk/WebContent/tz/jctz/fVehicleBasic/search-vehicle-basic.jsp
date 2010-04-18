@@ -9,6 +9,8 @@ Util.setNull2DefaultValue(vb);
 
 VehicleTypeDicBean vtb = new VehicleTypeDicBean();
 List<VehicleTypeDic> vts = vtb.getList();
+
+request.getSession().removeAttribute("vehicleId");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

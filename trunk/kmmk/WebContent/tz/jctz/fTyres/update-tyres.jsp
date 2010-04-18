@@ -9,7 +9,8 @@ FTyresBean ftb = new FTyresBean();
 String actionName = "FTyresAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FTyres();
-	VehicleBean vb = new VehicleBean(request);
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
 	f.setVehicle(vb.findById());
 } else {
 	ftb.setTyreId(Integer.parseInt(idstr));
