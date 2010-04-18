@@ -89,6 +89,22 @@ $(document).ready(function(){
 	<%}
 	}%>
 	$("#regionTypeId").val(["<%=r.getRegionTypeDic()==null?"":r.getRegionTypeDic().getRegionTypeId()%>"]);
+	
+	<% 
+	if( Util.isCurrentUserAdmin(request) ){
+		OrganizationBean ob = new OrganizationBean();
+		List<Organization> os = ob.getList();
+	%>
+		$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
+	<%	if(os != null){
+			for(Organization o:os){ 
+	%>
+		$("#organizationId")[0].options.add(new Option("<%=o.getName()%>","<%=o.getOrganizationId()%>"));
+	<%		}
+		}
+	%>	
+		$("#organizationId").val(["<%=r.getOrganization()==null ? "" : r.getOrganization().getOrganizationId()%>"]);
+	<%}%>
 
 	initialize();
 });
@@ -236,6 +252,14 @@ function doAction() {
 		<input type="hidden" name = "regionId" value="<%=r.getRegionId()%>"/>
 		
 			<table cellSpacing="5" width="95%">
+			<% if( Util.isCurrentUserAdmin(request) ){ %>
+				<tr>
+ 					<td width="20%" align="right">区域所属单位：</td>
+					<td align="left" colSpan="3">
+						<select id="organizationId" name="organizationId" ></select>
+					</td>
+				</tr>
+			<% } %>
 				<tr>
 					<td width="20%" align="right">区域名：</td>
 					<td align="left" width="30%">
