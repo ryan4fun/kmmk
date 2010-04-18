@@ -77,19 +77,19 @@ $(document).ready(function(){
 				<td width="20%" align="right">货物名称：</td>
 				<td align="left"><%=f.getGoodsName()%></td>
 				<td width="20%" align="right">运价：</td>
-				<td align="left"><%=f.getShipPrice()==null?"":f.getShipPrice()%></td>
+				<td align="left"><%=f.getShipPrice()==null?"":f.getShipPrice()%> 元/吨</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">装货重量：</td>
-				<td align="left"><%=f.getLoadWeight()==null?"":f.getLoadWeight()%></td>
+				<td align="left"><%=f.getLoadWeight()==null?"":f.getLoadWeight()%> 吨</td>
 				<td width="20%" align="right">卸货重量：</td>
-				<td align="left"><%=f.getUnloadWeight()==null?"":f.getUnloadWeight()%></td>
+				<td align="left"><%=f.getUnloadWeight()==null?"":f.getUnloadWeight()%> 吨</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">出车里程：</td>
-				<td align="left"><%=f.getStartDisRecord()==null?"":f.getStartDisRecord()%></td>
+				<td align="left"><%=f.getStartDisRecord()==null?"":f.getStartDisRecord()%> 公里</td>
 				<td width="20%" align="right">收车里程：</td>
-				<td align="left"><%=f.getEndDisRecord()==null?"":f.getEndDisRecord()%></td>
+				<td align="left"><%=f.getEndDisRecord()==null?"":f.getEndDisRecord()%> 公里</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">装货地点：</td>
@@ -101,7 +101,7 @@ $(document).ready(function(){
 				<td width="20%" align="right">付款单位：</td>
 				<td align="left"><%=f.getBillTo()%></td>
 				<td width="20%" align="right">运费合计：</td>
-				<td align="left"><%=f.getTotalCost()==null?"":f.getTotalCost()%></td>
+				<td align="left"><%=f.getTotalCost()==null?"":f.getTotalCost()%> 元</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">回款方式：</td>
@@ -119,39 +119,39 @@ $(document).ready(function(){
 			</tr>
 			<tr>
 				<td width="20%" align="right">计划行驶里程：</td>
-				<td align="left"><%=f.getPlanedDistance()==null?"":f.getPlanedDistance()%></td>
+				<td align="left"><%=f.getPlanedDistance()==null?"":f.getPlanedDistance()%> 公里</td>
 				<td width="20%" align="right">实际行驶里程：</td>
-				<td align="left"><%=f.getActualDistance()==null?"":f.getActualDistance()%></td>
+				<td align="left"><%=f.getActualDistance()==null?"":f.getActualDistance()%> 公里</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">计划用油：</td>
-				<td align="left"><%=f.getPlanedGas()==null?"":f.getPlanedGas()%></td>
+				<td align="left"><%=f.getPlanedGas()==null?"":f.getPlanedGas()%> 升</td>
 				<td width="20%" align="right">实际用油：</td>
-				<td align="left"><%=f.getActualGas()==null?"":f.getActualGas()%></td>
+				<td align="left"><%=f.getActualGas()==null?"":f.getActualGas()%> 升</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">现金油料：</td>
-				<td align="left"><%=f.getGasByCash()==null?"":f.getGasByCash()%></td>
+				<td align="left"><%=f.getGasByCash()==null?"":f.getGasByCash()%> 升</td>
 				<td width="20%" align="right">优卡油料：</td>
-				<td align="left"><%=f.getGasByCard()==null?"":f.getGasByCard()%></td>
+				<td align="left"><%=f.getGasByCard()==null?"":f.getGasByCard()%> 升</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">现金油料金额：</td>
-				<td align="left"><%=f.getGasByCashCost()==null?"":f.getGasByCashCost()%></td>
+				<td align="left"><%=f.getGasByCashCost()==null?"":f.getGasByCashCost()%> 元</td>
 				<td width="20%" align="right">油卡油料金额：</td>
-				<td align="left"><%=f.getGasByCardCost()==null?"":f.getGasByCardCost()%></td>
+				<td align="left"><%=f.getGasByCardCost()==null?"":f.getGasByCardCost()%> 元</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">计划过境费：</td>
-				<td align="left"><%=f.getPlanedRoadFee()==null?"":f.getPlanedRoadFee()%></td>
+				<td align="left"><%=f.getPlanedRoadFee()==null?"":f.getPlanedRoadFee()%> 元</td>
 				<td width="20%" align="right">实际过境费：</td>
-				<td align="left"><%=f.getActualRoadFee()==null?"":f.getActualRoadFee()%></td>
+				<td align="left"><%=f.getActualRoadFee()==null?"":f.getActualRoadFee()%> 元</td>
 			</tr>
 			<tr>
 				<td width="20%" align="right">计划费用：</td>
-				<td align="left"><%=f.getManagementFee()==null?"":f.getManagementFee()%></td>
+				<td align="left"><%=f.getManagementFee()==null?"":f.getManagementFee()%> 元</td>
 				<td width="20%" align="right">超限费用：</td>
-				<td align="left"><%=f.getOverLimitFee()==null?"":f.getOverLimitFee()%></td>
+				<td align="left"><%=f.getOverLimitFee()==null?"":f.getOverLimitFee()%> 元</td>
 			</tr>
 		</table>
 	</div>
