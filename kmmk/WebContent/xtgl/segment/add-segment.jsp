@@ -73,6 +73,21 @@ $(document).ready(function(){
 		}
 	});
 
+	<% 
+	if( Util.isCurrentUserAdmin(request) ){
+		OrganizationBean ob = new OrganizationBean();
+		List<Organization> os = ob.getList();
+	%>
+		$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
+	<%	if(os != null){
+			for(Organization o:os){ 
+	%>
+		$("#organizationId")[0].options.add(new Option("<%=o.getName()%>","<%=o.getOrganizationId()%>"));
+	<%		}
+		}
+	}
+	%>
+	
 	initialize();
 });
 
@@ -309,30 +324,37 @@ function setRecieveTimeEnd(t){
 	<input type="hidden" name = "queryPrecision" value="<%=TrackBean.QUERY_REALTIME%>"/>
 	<input type="hidden" id="taskId" name="taskId" value="<%=(tb.getTaskId()==null || tb.getTaskId()<1)?"":tb.getTaskId()%>" />
 	<input type="hidden" name = "vehicleId" value="<%=tb.getVehicleId()%>"/>
-	
 
-<table cellSpacing="5" width="width:650px;">
-	<tr>
-		<td width="20%" align="right">路线名：</td>
-		<td align="left"><input type="text" id="segName" name = "segName" /></td>
-		<td width="20%" align="right">描述：</td>
-		<td align="left">
-			<input type="text" id="description" name = "description" /></td>
-	</tr>
-	<tr>
-		<td align="right">起始节点：</td>
-		<td align="left">
-			<input type="text" readonly id="recieveTimeStart" name="recieveTimeStart" value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
-		<td align="right">终止节点：</td>
-		<td align="left">
-			<input type="text" readonly id="recieveTimeEnd" name="recieveTimeEnd" value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
-	</tr>
-</table>
-<p align="center">
-	<input type="submit" value="提交"/>
-	<input type="reset" value="重置"/>
-	<input type="button" value="返回车辆轨迹查询" onclick="javascript:history.back()"/></p>
-
+	<table cellSpacing="5" width="width:650px;">
+	<% if( Util.isCurrentUserAdmin(request) ){ %>
+		<tr>
+			<td width="20%" align="right">区域所属单位：</td>
+			<td align="left" colSpan="3">
+				<select id="organizationId" name="organizationId" ></select>
+			</td>
+		</tr>
+	<% } %>
+		<tr>
+			<td width="20%" align="right">路线名：</td>
+			<td align="left"><input type="text" id="segName" name = "segName" /></td>
+			<td width="20%" align="right">描述：</td>
+			<td align="left">
+				<input type="text" id="description" name = "description" /></td>
+		</tr>
+		<tr>
+			<td align="right">起始节点：</td>
+			<td align="left">
+				<input type="text" readonly id="recieveTimeStart" name="recieveTimeStart" value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
+			<td align="right">终止节点：</td>
+			<td align="left">
+				<input type="text" readonly id="recieveTimeEnd" name="recieveTimeEnd" value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
+		</tr>
+	</table>
+	<p align="center">
+		<input type="submit" value="提交"/>
+		<input type="reset" value="重置"/>
+		<input type="button" value="返回车辆轨迹查询" onclick="javascript:history.back()"/>
+	</p>
 </form>
 </div>
 </div>
