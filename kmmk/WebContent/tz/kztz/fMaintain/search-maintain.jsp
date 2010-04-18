@@ -152,7 +152,7 @@ function delOrg(id){
 					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getCost()==null?"":fm.getCost()%></a></td>
 					<td width="12%"><a href="javascript:href('view-maintain.jsp?id=<%=fm.getId()%>')"><%=fm.getHandler()==null?"":fm.getHandler()%></a></td>
 					<td width="16%">
-						<a href="javascript:href('update-maintain.jsp?id=<%=fm.getId()%>')">修改车辆维修明细台帐</a> | <a href="javascript:delOrg('<%=fm.getId()%>')">删 除</a>
+						<a href="javascript:href('update-maintain.jsp?id=<%=fm.getId()%>')">修改</a> | <a href="javascript:delOrg('<%=fm.getId()%>')">删 除</a>
 					</td>
 				</tr>
 			</table>

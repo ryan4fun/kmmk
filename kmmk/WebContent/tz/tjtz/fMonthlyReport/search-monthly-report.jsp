@@ -131,7 +131,7 @@ function pageSelectCallback(pageNumber){
 					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getIncome()==null?"":fr.getIncome()%></a></td>
 					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getCosts()==null?"":fr.getCosts()%></a></td>
 					<td width="20%">
-						<a href="javascript:href('update-monthly-report.jsp?id=<%=fr.getId()%>')">修改车辆月台帐</a>
+						<a href="javascript:href('update-monthly-report.jsp?id=<%=fr.getId()%>')">修改</a>
 					</td>					
 				</tr>
 			</table>
