@@ -259,12 +259,12 @@ function delOrg(id){
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
 					<td width="9%" rowspan="2"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTicketNo()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getStartDate())%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTicketNo()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getDriver()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getGoodsName()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getLoadWeight()==null?"":fr.getLoadWeight()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getStartDisRecord()==null?"":fr.getStartDisRecord()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getLoadWeight()==null?"":fr.getLoadWeight()+" 吨"%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getStartDisRecord()==null?"":fr.getStartDisRecord()+" 公里"%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getLoadSite()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getBillTo()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getPaymentMethod()%></a></td>
@@ -274,11 +274,11 @@ function delOrg(id){
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getEndDate())%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getGovernmentRecordNo()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getEscorterId()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getShipPrice()==null?"":fr.getShipPrice()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getUnloadWeight()==null?"":fr.getUnloadWeight()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getEndDisRecord()==null?"":fr.getEndDisRecord()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getShipPrice()==null?"":fr.getShipPrice()+" 元/吨"%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getUnloadWeight()==null?"":fr.getUnloadWeight()+" 吨"%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getEndDisRecord()==null?"":fr.getEndDisRecord()+" 公里"%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getUnloadSite()%></a></td>
-					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTotalCost()%></a></td>
+					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTotalCost()%> 元</a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getPaymentReceiveDate())%></a></td>
 					<td width="10%">
 						<a href="javascript:href('update-runing-log.jsp?id=<%=fr.getId()%>')">修改</a> | <a href="javascript:delOrg('<%=fr.getId()%>')">删 除</a>
