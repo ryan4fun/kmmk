@@ -7,9 +7,12 @@ String idstr = request.getParameter("materialId");
 FVehicleMaterial f = null;
 FVehicleMaterialBean ftb = new FVehicleMaterialBean();
 String actionName = "FVehicleMaterialAddAction";
+
 if(idstr==null || idstr.equals("")){
 	f = new FVehicleMaterial();
-	VehicleBean vb = new VehicleBean(request);
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
+	
 	f.setVehicle(vb.findById());
 } else {
 	ftb.setMaterialId(Integer.parseInt(idstr));

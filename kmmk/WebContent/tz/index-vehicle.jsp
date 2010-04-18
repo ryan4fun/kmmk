@@ -2,6 +2,7 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.*"%>
 <%@ include file="/tz/header.jsp"%><%
 String idstr = request.getParameter("vehicleId");
+request.getSession().setAttribute("vehicleId", Integer.parseInt(idstr));
 Vehicle v = null;
 VehicleBean vb = new VehicleBean();
 if(idstr!=null && !idstr.equals("")){

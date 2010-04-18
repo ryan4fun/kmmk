@@ -9,7 +9,8 @@ FGasfeeBean fgb = new FGasfeeBean();
 String actionName = "FGasfeeAddAction";
 if(idstr==null || idstr.equals("")){
 	f = new FGasfee();
-	VehicleBean vb = new VehicleBean(request);
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
 	f.setVehicle(vb.findById());
 } else {
 	fgb.setId(Integer.parseInt(idstr));
