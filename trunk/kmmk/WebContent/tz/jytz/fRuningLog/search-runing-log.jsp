@@ -281,7 +281,7 @@ function delOrg(id){
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=fr.getTotalCost()%></a></td>
 					<td width="9%"><a href="javascript:href('view-runing-log.jsp?id=<%=fr.getId()%>')"><%=Util.FormatDateShort(fr.getPaymentReceiveDate())%></a></td>
 					<td width="10%">
-						<a href="javascript:href('update-runing-log.jsp?id=<%=fr.getId()%>')">修改车辆经营收支明细台帐</a> | <a href="javascript:delOrg('<%=fr.getId()%>')">删 除</a>
+						<a href="javascript:href('update-runing-log.jsp?id=<%=fr.getId()%>')">修改</a> | <a href="javascript:delOrg('<%=fr.getId()%>')">删 除</a>
 					</td>
 				</tr>
 			</table>
