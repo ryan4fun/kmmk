@@ -4,6 +4,12 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 FVehicleMaterialBean fmb = new FVehicleMaterialBean(request);
+if(fmb.getLicensPadNumber()==null && request.getSession().getAttribute("vehicleId")!=null){
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
+	Vehicle v = vb.findById();
+	fmb.setLicensPadNumber(v.getLicensPadNumber());
+}
 List<FVehicleMaterial> fms = fmb.getList();
 Util.setNull2DefaultValue(fmb);
 %>

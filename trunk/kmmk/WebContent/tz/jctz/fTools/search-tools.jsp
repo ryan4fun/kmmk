@@ -4,6 +4,13 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 FToolsBean ftb = new FToolsBean(request);
+if(ftb.getLicensPadNumber()==null && request.getSession().getAttribute("vehicleId")!=null){
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
+	Vehicle v = vb.findById();
+	ftb.setLicensPadNumber(v.getLicensPadNumber());
+}
+
 List<FTools> fts = ftb.getList();
 Util.setNull2DefaultValue(ftb);
 %>
