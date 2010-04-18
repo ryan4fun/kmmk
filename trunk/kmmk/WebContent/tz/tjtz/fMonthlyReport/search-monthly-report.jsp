@@ -3,8 +3,9 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
+boolean embedded = request.getParameter("embedded") != null && request.getParameter("embedded").equals("true");
 FMonthlyReportBean frb = new FMonthlyReportBean(request);
-if(frb.getLicensPadNumber()==null && request.getSession().getAttribute("vehicleId")!=null){
+if(embedded){
 	VehicleBean vb = new VehicleBean();
 	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
 	Vehicle v = vb.findById();
@@ -71,6 +72,7 @@ function pageSelectCallback(pageNumber){
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
 <form id="inputform" action="search-monthly-report.jsp" method="post">
+<input type=hidden name="embedded" value="<%=embedded %>">
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
@@ -110,9 +112,9 @@ function pageSelectCallback(pageNumber){
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=frb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=frb.getRowsPerPage()%>" />
 		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-monthly-report.jsp')"/>
+		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-monthly-report.jsp<%=embedded?"?embedded=true":"" %>')"/>
 		<input type="reset" style="width: 100px;" value="重   置" />
-		<input type="button" value="新增月台帐" onclick="javascript:href('update-monthly-report.jsp')"/>
+		<input type="button" value="新增月台帐" onclick="javascript:href('update-monthly-report.jsp<%=embedded?"?embedded=true":"" %>')"/>
 	</p>
 </form>
 </div>
