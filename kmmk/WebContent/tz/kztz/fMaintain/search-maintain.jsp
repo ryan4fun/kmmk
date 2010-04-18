@@ -84,11 +84,13 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">报修时间：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text"
 					id="maintainDateStart" name="maintainDateStart" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(fmb.getMaintainDateStart())%>" />
-				至
+			</td>
+			<td align="right">至：</td>
+			<td>
 				<input type="text"
 					id="maintainDateEnd" name="maintainDateEnd" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(fmb.getMaintainDateEnd())%>" />
@@ -96,10 +98,12 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">维修金额：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="costStart" name="costStart" 
 					value="<%=fmb.getCostStart()==null?"":fmb.getCostStart()%>" />
-				至
+			</td>
+			<td align="right">至：</td>
+			<td>
 				<input type="text" id="costEnd" name="costEnd" 
 					value="<%=fmb.getCostEnd()==null?"":fmb.getCostEnd()%>" />
 			</td>

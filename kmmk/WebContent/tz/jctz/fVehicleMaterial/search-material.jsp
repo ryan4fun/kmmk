@@ -92,11 +92,13 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">最后领用时间：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text"
 					id="lastChangeDateStart" name="lastChangeDateStart" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(fmb.getLastChangeDateStart())%>" />
-				至
+			</td>
+			<td align="right">至：</td>
+			<td>
 				<input type="text"
 					id="lastChangeDateEnd" name="lastChangeDateEnd" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(fmb.getLastChangeDateEnd())%>" />
