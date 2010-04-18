@@ -53,7 +53,7 @@ public class RegionBean extends AbstractBean {
 			
 			if (organizationId != null && organizationId>0)
 				crit.add(Restrictions.eq("organization.organizationId", organizationId));
-			else
+			else if( !Util.isCurrentUserAdmin(request) )
 				crit.add(Restrictions.eq("organization.organizationId", this.getCurrentOrganizationId()));
 			
 			if (queryRadius != null && queryRadius > 0 && queryLong != null
