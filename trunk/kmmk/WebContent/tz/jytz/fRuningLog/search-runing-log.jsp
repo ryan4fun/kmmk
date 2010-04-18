@@ -80,15 +80,18 @@ function delOrg(id){
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
-			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=frb.getLicensPadNumber()==null?"":frb.getLicensPadNumber()%>" /></td>
+			<td align="left"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=frb.getLicensPadNumber()==null?"":frb.getLicensPadNumber()%>" /></td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">出车日期：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text"
 					id="startDateStart" name="startDateStart" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(frb.getStartDateStart())%>" />
-				至
+			</td>
+			<td align="right">至：</td>
+			<td>
+		
 				<input type="text"
 					id="startDateEnd" name="startDateEnd" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(frb.getStartDateEnd())%>" />
@@ -96,11 +99,13 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">收车日期：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text"
 					id="endDateStart" name="endDateStart" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(frb.getEndDateStart())%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text"
 					id="endDateEnd" name="endDateEnd" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(frb.getEndDateEnd())%>" />
@@ -133,50 +138,60 @@ function delOrg(id){
 		<!-- 
 		<tr>
 			<td width="20%" align="right">运价：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="shipPriceStart" name="shipPriceStart" 
 					value="<%=frb.getShipPriceStart()==null?"":frb.getShipPriceStart()%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text" id="shipPriceEnd" name="shipPriceEnd" 
 					value="<%=frb.getShipPriceEnd()==null?"":frb.getShipPriceEnd()%>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">装货重量：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="loadWeightStart" name="loadWeightStart" 
 					value="<%=frb.getLoadWeightStart()==null?"":frb.getLoadWeightStart()%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text" id="loadWeightEnd" name="loadWeightEnd" 
 					value="<%=frb.getLoadWeightEnd()==null?"":frb.getLoadWeightEnd()%>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">卸货重量：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="unloadWeightStart" name="unloadWeightStart" 
 					value="<%=frb.getUnloadWeightStart()==null?"":frb.getUnloadWeightStart()%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text" id="unloadWeightEnd" name="unloadWeightEnd" 
 					value="<%=frb.getUnloadWeightEnd()==null?"":frb.getUnloadWeightEnd()%>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">出车里程：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="startDisRecordStart" name="startDisRecordStart" 
 					value="<%=frb.getStartDisRecordStart()==null?"":frb.getStartDisRecordStart()%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text" id="startDisRecordEnd" name="startDisRecordEnd" 
 					value="<%=frb.getStartDisRecordEnd()==null?"":frb.getStartDisRecordEnd()%>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">收车里程：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="endDisRecordStart" name="endDisRecordStart" 
 					value="<%=frb.getEndDisRecordStart()==null?"":frb.getEndDisRecordStart()%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text" id="endDisRecordEnd" name="endDisRecordEnd" 
 					value="<%=frb.getEndDisRecordEnd()==null?"":frb.getEndDisRecordEnd()%>" />
 			</td>
@@ -192,10 +207,12 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">运费合计：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="totalCostStart" name="totalCostStart" 
 					value="<%=frb.getTotalCostStart()==null?"":frb.getTotalCostStart()%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text" id="totalCostEnd" name="totalCostEnd" 
 					value="<%=frb.getTotalCostEnd()==null?"":frb.getTotalCostEnd()%>" />
 			</td>
@@ -211,11 +228,13 @@ function delOrg(id){
 		</tr>
 		<tr>
 			<td width="20%" align="right">回款时间：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text"
 					id="paymentReceiveDateStart" name="paymentReceiveDateStart" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(frb.getPaymentReceiveDateStart())%>" />
-				至
+			</td>			
+				<td align="right">至：</td>
+			<td>
 				<input type="text"
 					id="paymentReceiveDateEnd" name="paymentReceiveDateEnd" onclick="WdatePicker()"
 					value="<%=Util.FormatDateShort(frb.getPaymentReceiveDateEnd())%>" />
