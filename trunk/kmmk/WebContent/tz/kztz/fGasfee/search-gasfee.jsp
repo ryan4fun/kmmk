@@ -164,7 +164,7 @@ function delOrg(id){
 					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefillMoney()==null?"":fg.getRefillMoney()%></a></td>
 					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>
 					<td width="16%">
-						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改加油开支明细帐</a>
+						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改</a>
 					</td>
 				</tr>
 			</table>

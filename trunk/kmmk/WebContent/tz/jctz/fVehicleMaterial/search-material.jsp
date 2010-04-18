@@ -128,7 +128,7 @@ function delOrg(id){
 					<td width="20%"><a href="javascript:href('view-material.jsp?materialId=<%=fm.getMaterialId()%>')"><%=Util.FormatDateShort(fm.getLastChangeDate())%></a></td>
 					<td width="20%"><a href="javascript:href('view-material.jsp?materialId=<%=fm.getMaterialId()%>')"><%=fm.getLastKeeper()==null?"":fm.getLastKeeper()%></a></td>
 					<td width="20%">
-						<a href="javascript:href('update-material-keep-log.jsp?materialId=<%=fm.getMaterialId()%>')">交接车辆资料</a> | <a href="javascript:href('update-material.jsp?materialId=<%=fm.getMaterialId()%>')">修改车辆资料</a> | <a href="javascript:delOrg('<%=fm.getMaterialId()%>')">删 除</a>
+						<a href="javascript:href('update-material-keep-log.jsp?materialId=<%=fm.getMaterialId()%>')">交接资料</a> | <a href="javascript:href('update-material.jsp?materialId=<%=fm.getMaterialId()%>')">修改</a> | <a href="javascript:delOrg('<%=fm.getMaterialId()%>')">删 除</a>
 					</td>
 				</tr>
 			</table>

@@ -251,7 +251,7 @@ function delOrg(id){
 					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getUsedPeriod()==null?"":ft.getUsedPeriod()+"月"%></a></td>
 					<td width="9%"><a href="javascript:href('view-tyres.jsp?tyreId=<%=ft.getTyreId()%>')"><%=ft.getUsedDistance()==null?"":ft.getUsedDistance()+"公里"%></a></td>
 					<td width="9%">
-						<a href="javascript:href('update-tyres.jsp?tyreId=<%=ft.getTyreId()%>')">修改轮胎使用台帐</a> | <a href="javascript:delOrg('<%=ft.getTyreId()%>')">删 除</a>
+						<a href="javascript:href('update-tyres.jsp?tyreId=<%=ft.getTyreId()%>')">修改</a> | <a href="javascript:delOrg('<%=ft.getTyreId()%>')">删 除</a>
 					</td>
 				</tr>
 			</table>
