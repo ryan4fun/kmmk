@@ -57,7 +57,7 @@ $(document).ready(function(){
 					Util.setNull2DefaultValue(fvb);
 					if( fvb.getFeeExpireDate()==null ){ %>
 				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%></td>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%>：</td>
 					<td align="left" colspan="3" >
 					<% if( fvb.getFeeName().equals("备注") ){ %>
 						<%=fvb.getComment()%>
@@ -68,7 +68,7 @@ $(document).ready(function(){
 				</tr>
 			<% 		} else { %>
 				<tr>
- 					<td width="20%" align="right"><%=fvb.getFeeName()%></td>
+ 					<td width="20%" align="right"><%=fvb.getFeeName()%>：</td>
 					<td align="left" ><%=fvb.getAmount()==null?"":fvb.getAmount()%></td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" ><%=Util.FormatDateShort(fvb.getFeeExpireDate())%></td>

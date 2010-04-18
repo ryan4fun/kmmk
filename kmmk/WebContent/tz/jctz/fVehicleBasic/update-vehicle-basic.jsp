@@ -104,7 +104,7 @@ Util.setNull2DefaultValue(v);
 				}
 			} else { %>
 				<tr>
- 					<td width="20%" align="right">总资产<input type="hidden" id="feeName" name="feeName" value="总资产" /></td>
+ 					<td width="20%" align="right">总资产：<input type="hidden" id="feeName" name="feeName" value="总资产" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -112,7 +112,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
  				<tr>
- 					<td width="20%" align="right">车款<input type="hidden" id="feeName" name="feeName" value="车款" /></td>
+ 					<td width="20%" align="right">车款：<input type="hidden" id="feeName" name="feeName" value="车款" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -120,7 +120,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">购置税<input type="hidden" id="feeName" name="feeName" value="购置税" /></td>
+ 					<td width="20%" align="right">购置税：<input type="hidden" id="feeName" name="feeName" value="购置税" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -146,7 +146,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">GPS设备安装费<input type="hidden" id="feeName" name="feeName" value="GPS设备安装费" /></td>
+ 					<td width="20%" align="right">GPS设备安装费：<input type="hidden" id="feeName" name="feeName" value="GPS设备安装费" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -154,7 +154,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">灯牌费<input type="hidden" id="feeName" name="feeName" value="灯牌费" /></td>
+ 					<td width="20%" align="right">灯牌费：<input type="hidden" id="feeName" name="feeName" value="灯牌费" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -162,7 +162,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">水箱费<input type="hidden" id="feeName" name="feeName" value="水箱费" /></td>
+ 					<td width="20%" align="right">水箱费：<input type="hidden" id="feeName" name="feeName" value="水箱费" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -170,7 +170,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">轮胎费<input type="hidden" id="feeName" name="feeName" value="轮胎费" /></td>
+ 					<td width="20%" align="right">轮胎费：<input type="hidden" id="feeName" name="feeName" value="轮胎费" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -178,7 +178,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">初始罐检费<input type="hidden" id="feeName" name="feeName" value="初始罐检费" /></td>
+ 					<td width="20%" align="right">初始罐检费：<input type="hidden" id="feeName" name="feeName" value="初始罐检费" /></td>
 					<td align="left" ><input type="text" id="amount" name="amount" value="" /> 元</td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
@@ -187,7 +187,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">落户费<input type="hidden" id="feeName" name="feeName" value="落户费" /></td>
+ 					<td width="20%" align="right">落户费：<input type="hidden" id="feeName" name="feeName" value="落户费" /></td>
 					<td align="left" colspan="3" >
 						<input type="text" id="amount" name="amount" value="" /> 元
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
@@ -195,7 +195,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">营管费<input type="hidden" id="feeName" name="feeName" value="营管费" /></td>
+ 					<td width="20%" align="right">营管费：<input type="hidden" id="feeName" name="feeName" value="营管费" /></td>
 					<td align="left" ><input type="text" id="amount" name="amount" value="" /> 元</td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
@@ -204,7 +204,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">初始养路费<input type="hidden" id="feeName" name="feeName" value="初始养路费" /></td>
+ 					<td width="20%" align="right">初始养路费：<input type="hidden" id="feeName" name="feeName" value="初始养路费" /></td>
 					<td align="left" ><input type="text" id="amount" name="amount" value="" /> 元</td>
 					<td width="20%" align="right">有效期：</td>
 					<td align="left" >
@@ -213,7 +213,7 @@ Util.setNull2DefaultValue(v);
 					</td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">备注<input type="hidden" id="feeName" name="feeName" value="备注" /></td>
+ 					<td width="20%" align="right">备注：<input type="hidden" id="feeName" name="feeName" value="备注" /></td>
  					<td align="left" colspan="3" >
 						<input type="hidden" id="amount" name="amount" value="" />
 						<input type="hidden" id="feeExpireDate" name="feeExpireDate" value="" />
