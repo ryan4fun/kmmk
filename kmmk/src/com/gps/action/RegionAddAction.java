@@ -1,5 +1,6 @@
 package com.gps.action;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.gps.Message;
@@ -28,7 +29,8 @@ public class RegionAddAction extends Action{
 		String[] longValues = getArray("longValue");
 		String[] latValues = getArray("latValue");
 		if (longValues != null && latValues != null && longValues.length == latValues.length) {
-			Set<RegionPoints> set = r.getRegionPointses();
+//			Set<RegionPoints> set = r.getRegionPointses();
+			Set<RegionPoints> set = new LinkedHashSet<RegionPoints>(longValues.length);
 			int i = 0;
 			for (String longValue : longValues) {
 				if (longValue != null && !longValue.equals("")) {
@@ -43,6 +45,7 @@ public class RegionAddAction extends Action{
 					}
 				}
 			}
+			r.setRegionPointses(set);
 		}
 		getServiceLocator().getRegionService().addRegion(r);
 		request.setAttribute("regionId", String.valueOf(r.getRegionId()));
