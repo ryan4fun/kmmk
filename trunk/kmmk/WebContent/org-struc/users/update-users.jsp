@@ -20,8 +20,7 @@ if(u == null){
 	out.print("无法找到该用户！");
 	return;
 }
-	OrganizationBean ob = new OrganizationBean(request);
-//	ob.setPagination(false);
+	OrganizationBean ob = new OrganizationBean();
 	List<Organization> os = ob.getList();
 	
 	RoleBean rb = new RoleBean();
