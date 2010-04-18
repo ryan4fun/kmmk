@@ -79,7 +79,7 @@ $(document).ready(function(){
 	<%if( f.getYearMonth().length()<1 ){%>
 	initVehicleSelector();
 	<%}%>
- 	$("#form2").validate({
+ 	$("#inputform").validate({
 		rules: {
 			vehicleId:{
  				required: true
@@ -124,7 +124,7 @@ function delRow(btn){
 <div id="search-div">
 	<h3><a href="#">修改月台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="form2" action="mkgps.do" method="post">
+		<form id="inputform" action="mkgps.do" method="post">
 			<input type="hidden" name = "action" value="<%=actionName%>"/>
 			<input type="hidden" name = "success" value="update-monthly-report-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-monthly-report-faild.jsp"/>
