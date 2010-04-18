@@ -3,6 +3,7 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
+boolean embedded = request.getParameter("embedded") != null && request.getParameter("embedded").equals("true");
 VehicleBean vb = new VehicleBean(request);
 List<Vehicle> vs = vb.getList();
 Util.setNull2DefaultValue(vb);
@@ -81,6 +82,7 @@ function pageSelectCallback(pageNumber){
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
 <form id="inputform" action="search-vehicle-basic.jsp" method="post">
+<input type=hidden name="embedded" value="<%=embedded %>">
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
@@ -127,7 +129,7 @@ function pageSelectCallback(pageNumber){
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
 		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
 		<input type="submit" value="查   询" />
-		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp')"/>
+		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp<%=embedded?"?embedded=true":"" %>')"/>
 	<input type="reset" value="重   置" /></p>
 </form>
 </div>
