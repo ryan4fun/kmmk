@@ -50,7 +50,7 @@ Util.setNull2DefaultValue(v);
 			}
 		});
 		
-   		$("#form2").validate({
+   		$("#inputform").validate({
 			rules: {
    				amount: {
    					number: true
@@ -67,7 +67,7 @@ Util.setNull2DefaultValue(v);
 <div id="search-div">
 	<h3><a href="#">修改车辆基础台帐表</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="form2" action="mkgps.do" method="post">
+		<form id="inputform" action="mkgps.do" method="post">
 			<input type="hidden" name = "action" value="<%=actionName%>"/>
 			<input type="hidden" name = "success" value="update-vehicle-basic-succ.jsp"/>
 			<input type="hidden" name = "failed" value="update-vehicle-basic-faild.jsp"/>

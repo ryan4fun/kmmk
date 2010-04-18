@@ -51,7 +51,7 @@ $(document).ready(function(){
 	<% if( v.getFVehicleBasics().size()>0 ){ %>
 	<h3><a href="#">基础台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="form2" action="mkgps.do" method="post">
+		<form id="inputform" action="mkgps.do" method="post">
 			<table cellSpacing="5" width="95%">
 			<% for( FVehicleBasic fvb : v.getFVehicleBasics() ){
 					Util.setNull2DefaultValue(fvb);
