@@ -13,9 +13,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.fileupload.FileItem;
 
+import com.gps.bean.LoginInfo;
+import com.gps.service.RoleService;
 import com.gps.servlet.MKgpsServlet;
 
 public class Util {
@@ -436,6 +440,12 @@ public class Util {
 		return buf.toString();
 	}
 	
+	public static boolean isCurrentUserAdmin(HttpServletRequest request){
+		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
+		if( login.getRoles().contains(RoleService.ROLE_SYS_ADMIN) )
+			return true;
+		return false;
+	}
 	
 	public static void main(String[] args) {
 		System.out.println(25.06148417706757-25.064545547090517);

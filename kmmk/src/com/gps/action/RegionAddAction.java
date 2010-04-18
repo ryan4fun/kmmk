@@ -7,6 +7,7 @@ import com.gps.orm.Organization;
 import com.gps.orm.Region;
 import com.gps.orm.RegionPoints;
 import com.gps.orm.RegionTypeDic;
+import com.gps.util.Util;
 
 public class RegionAddAction extends Action{
 	@Override
@@ -17,7 +18,9 @@ public class RegionAddAction extends Action{
 			throw new Message("RegionTypeDic not find!");
 		generateAllSimpleProp(r);
 		r.setRegionTypeDic(rtd);
-		Organization o = getServiceLocator().getOrganizationService().findById(getCurrentOrganizationId());
+		Organization o = getServiceLocator().getOrganizationService().findById(this.getCurrentOrganizationId());
+		if( o == null && Util.isCurrentUserAdmin(request) )
+			o = getServiceLocator().getOrganizationService().findById(this.getInteger("organizationId"));
 		if(o == null)
 			throw new Message("无法找到用户所属单位！");
 		r.setOrganization(o);
@@ -44,5 +47,4 @@ public class RegionAddAction extends Action{
 		getServiceLocator().getRegionService().addRegion(r);
 		request.setAttribute("regionId", String.valueOf(r.getRegionId()));
 	}
-	
 }
