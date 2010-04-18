@@ -13,6 +13,7 @@ import org.hibernate.criterion.Restrictions;
 import com.gps.orm.AlertTypeDic;
 import com.gps.orm.Segment;
 import com.gps.service.SegmentService;
+import com.gps.util.Util;
 
 public class SegmentBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(SegmentBean.class);
@@ -43,7 +44,7 @@ public class SegmentBean extends AbstractBean {
 			Criteria crit = this.generateStringPropCriteria(Segment.class,this);
 			if (organizationId != null && organizationId>0)
 				crit.add(Restrictions.eq("organization.organizationId", organizationId));
-			else
+			else if( !Util.isCurrentUserAdmin(request) )
 				crit.add(Restrictions.eq("organization.organizationId", getCurrentOrganizationId()));
 			
 			if(this.state == null || this.state.equals(""))
