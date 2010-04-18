@@ -4,6 +4,12 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 FRuningLogBean frb = new FRuningLogBean(request);
+if(frb.getLicensPadNumber()==null && request.getSession().getAttribute("vehicleId")!=null){
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
+	Vehicle v = vb.findById();
+	frb.setLicensPadNumber(v.getLicensPadNumber());
+}
 List<FRuningLog> frs = frb.getList();
 Util.setNull2DefaultValue(frb);
 %>

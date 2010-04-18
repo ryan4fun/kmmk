@@ -4,6 +4,12 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 FGasfeeBean fgb = new FGasfeeBean(request);
+if(fgb.getLicensPadNumber()==null && request.getSession().getAttribute("vehicleId")!=null){
+	VehicleBean vb = new VehicleBean();
+	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
+	Vehicle v = vb.findById();
+	fgb.setLicensPadNumber(v.getLicensPadNumber());
+}
 List<FGasfee> fgs = fgb.getList();
 Util.setNull2DefaultValue(fgb);
 %>
