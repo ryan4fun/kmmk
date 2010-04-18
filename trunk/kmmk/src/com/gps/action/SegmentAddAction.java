@@ -23,6 +23,8 @@ public class SegmentAddAction extends Action{
 		s.setCreateTime(Util.getCurrentDateTime());
 		s.setState(SegmentService.SEGMENT_NORM_STATE);
 		Organization o = getServiceLocator().getOrganizationService().findById(getCurrentOrganizationId());
+		if( o == null && Util.isCurrentUserAdmin(request) )
+			o = getServiceLocator().getOrganizationService().findById(this.getInteger("organizationId"));
 		if(o == null)
 			throw new Message("无法找到用户所属单位！");
 		s.setOrganization(o);
