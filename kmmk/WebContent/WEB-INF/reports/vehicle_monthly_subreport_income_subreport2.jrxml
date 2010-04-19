@@ -29,7 +29,7 @@ GROUP BY
 		<variableExpression><![CDATA[$F{totalCost}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
-	<variable name="count" class="java.lang.Integer">
+	<variable name="count1" class="java.lang.Integer">
 		<variableExpression><![CDATA[$F{count}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
 	</variable>
