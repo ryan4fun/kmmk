@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicle_monthly_subreport_income" language="groovy" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="91"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="vehicleId" class="java.lang.Integer"/>
 	<parameter name="startDate" class="java.util.Date"/>
 	<parameter name="endDate" class="java.util.Date">
@@ -103,7 +103,9 @@ GROUP BY
 		<variableExpression><![CDATA[$V{totalRoadFixFee}+$V{totalGOVMGRFee}+$V{totalGPSFee}]]></variableExpression>
 	</variable>
 	<variable name="totalRoadFixFee" class="java.lang.Double"/>
-	<variable name="totalOther" class="java.lang.Double"/>
+	<variable name="totalOther" class="java.lang.Double">
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<variable name="_totalRoadFee" class="java.lang.Double">
 		<variableExpression><![CDATA[$F{totalRoadFee}]]></variableExpression>
 		<initialValueExpression><![CDATA[0]]></initialValueExpression>
@@ -598,13 +600,13 @@ GROUP BY
 				</textElement>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$F{totalIncome}]]></textFieldExpression>
 			</textField>
-			<textField evaluationTime="Band">
+			<textField evaluationTime="Band" isBlankWhenNull="true">
 				<reportElement x="108" y="380" width="100" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalOther}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Band" isBlankWhenNull="true">
-				<reportElement x="110" y="56" width="106" height="20"/>
+				<reportElement x="110" y="53" width="106" height="20"/>
 				<textElement>
 					<font fontName="楷体" size="12" isBold="true"/>
 				</textElement>
@@ -636,7 +638,7 @@ $V{manageFee}+$V{totalSalary}+$V{totalOther}]]></textFieldExpression>
 				<textElement/>
 				<text><![CDATA[=]]></text>
 			</staticText>
-			<textField evaluationTime="Band">
+			<textField evaluationTime="Band" isBlankWhenNull="true">
 				<reportElement x="300" y="545" width="100" height="20"/>
 				<textElement>
 					<font fontName="楷体" size="12" isBold="true"/>
@@ -646,7 +648,7 @@ $V{manageFee}+$V{totalSalary}+$V{totalOther}]]></textFieldExpression>
 $V{totalGPSFee}+$V{totalGOVMGRFee}+$V{totalRoadFixFee}+
 $V{manageFee}+$V{totalSalary}+$V{totalOther})]]></textFieldExpression>
 			</textField>
-			<textField evaluationTime="Band">
+			<textField evaluationTime="Band" isBlankWhenNull="true">
 				<reportElement x="108" y="513" width="100" height="20"/>
 				<textElement>
 					<font fontName="楷体" size="12" isBold="true"/>
