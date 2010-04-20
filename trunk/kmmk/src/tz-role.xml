@@ -72,7 +72,7 @@
 	</FunctionGroup>
 	<FunctionGroup folder="xtgl" name="系统管理" roles="1,2,3">
 		<Function name="系统用户管理" roles="1,2">
-			<Link url="tz/xtgl/fuser/search-user.jsp" name="系统用户管理" roles="1,2" />
+			<Link url="tz/xtgl/fUser/search-user.jsp" name="系统用户管理" roles="1,2" />
 		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="help" name="帮助" roles="*">
