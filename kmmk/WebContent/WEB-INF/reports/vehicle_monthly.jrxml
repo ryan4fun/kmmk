@@ -167,7 +167,7 @@ where vehicleID = $P!{vehicleId}]]>
 					<text><![CDATA[年]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="241" y="34" width="29" height="20"/>
+					<reportElement x="241" y="34" width="35" height="20"/>
 					<textElement>
 						<font fontName="楷体" size="12" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 					</textElement>
