@@ -70,6 +70,11 @@
 			<Link url="tz/tjtz/fMonthlyReport/search-monthly-report.jsp" name="月统计报表管理" roles="1,2,11" />
 		</Function>		
 	</FunctionGroup>
+	<FunctionGroup folder="xtgl" name="系统管理" roles="1,2,3">
+		<Function name="系统用户管理" roles="1,2">
+			<Link url="tz/xtgl/fuser/search-user.jsp" name="系统用户管理" roles="1,2" />
+		</Function>
+	</FunctionGroup>
 	<FunctionGroup folder="help" name="帮助" roles="*">
 		<Function name="帮助" roles="1,2">
 			<Link url="about:blank" name="帮助" roles="1,2" />
