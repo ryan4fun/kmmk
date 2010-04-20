@@ -12,11 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import org.hibernate.Criteria;
 import org.hibernate.connection.ConnectionProviderFactory;
@@ -51,7 +54,10 @@ public class FGenerateMonthlyReportAction extends Action{
 			cal.add(Calendar.MONTH, 1);		
 			Date endDate = cal.getTime();
 			
+			File reportXMLFile = new File(basePath+"vehicle_monthly.jrxml");  
 			File reportFile = new File(basePath+"vehicle_monthly.jasper");  
+			System.out.println("Start Report export : " + basePath+"vehicle_monthly.jasper");
+			
 			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			String conStr =  "jdbc:sqlserver://localhost:1433;databaseName=mkgps1";
@@ -65,6 +71,9 @@ public class FGenerateMonthlyReportAction extends Action{
 			
 			parameters.put("SUBREPORT_DIR",basePath);
 			
+//			 JasperDesign jasperDesign = JRXmlLoader.load(reportXMLFile);
+//	         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+	           
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,connection);  
 			response.setContentType("application/pdf");  
