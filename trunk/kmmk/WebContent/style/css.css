@@ -47,6 +47,16 @@ EM {
 	background-image: url(images/mk_login_G.jpg);
 }
 
+#login_tz {
+	POSITION: relative;
+	TEXT-ALIGN: center;
+	MARGIN: 0px auto;
+	WIDTH: 891px;
+	HEIGHT: 531px;
+	TOP: 0px;
+	background-image: url(images/mk_login_Tz.jpg);
+}
+
 #top {
 	width:100%;
 	height:100%;
