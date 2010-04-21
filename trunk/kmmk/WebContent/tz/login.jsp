@@ -59,20 +59,12 @@
 </script>
 </head>
 <body style="">
-<DIV id="login">
-<table width="543px" height="453px" >
-<tr>
-<td>
+<DIV id="login_tz">
 <FORM id="inputform" method="post" action="mkgps.do">
 	<input value="FLoginAction" type="hidden" name="action" />
 	<input value="login-succ.jsp" type="hidden" name="success" /> 
 	<input value="login-faild.jsp" type="hidden" name="failed" /> 
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<br/>
-	<TABLE border="0" cellSpacing="0" width="472px" height="120px" cellsPadding="0">
+	<TABLE border="0" cellSpacing="0" cellsPadding="0" style="width:300px;height:130px;position:absolute;left:320px;top:313px">
 	  <TBODY>
 	  <TR>
 	    <TD width="20%" align="right"><span class="STYLE1">用户名：</span></TD>
@@ -99,14 +91,13 @@
 			<option value="trontastic">深 绿</option>
 			<option value="ui-lightness">温 暖</option></select>
 		</TD></TR>
-	  </TBODY></TABLE><br /><br /><br />
-	
-	<input style="position:absolute;top:343px;left:108px;WIDTH: 40px" value="登录" type="submit" />
-	<input style="position:absolute;top:343px;left:204px;WIDTH: 40px" value="重置" type="reset" />
+	  <TR>
+	    <TD align="center" colspan="2">
+	    	<input style="WIDTH: 40px" value="登录" type="submit" />
+			<input style="WIDTH: 40px" value="重置" type="reset" /></TD>
+	  <tr>
+	  </TBODY></TABLE>
 </FORM>
-</td>
-</tr>
-</table>
 </DIV>
 
 </body>
