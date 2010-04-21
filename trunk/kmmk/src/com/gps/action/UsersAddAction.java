@@ -12,15 +12,13 @@ import com.gps.service.UsersService;
 import com.gps.util.Util;
 
 public class UsersAddAction extends Action{
-	protected static String INIT_PWD = "123456";
-	
 	@Override
 	public void doAction() throws Message{
 		Users u = new Users();
 		generateAllSimpleProp(u);
 		u.setRegisterDate(Util.getCurrentDateTime());
 		u.setUserState(UsersService.USERS_NORM_STATE);
-		u.setPasswd(INIT_PWD);
+		u.setPasswd(UsersService.INIT_PWD);
 		if(get("organizationId")!=null){
 			Organization o = getServiceLocator().getOrganizationService().findById(this.getInteger("organizationId"));
 			if(o == null)
