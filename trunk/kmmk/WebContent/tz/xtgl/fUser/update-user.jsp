@@ -1,30 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
-<%@ include file="/header.jsp"%>
-
+<%@ include file="/tz/header.jsp"%>
 
 <%
 String idstr = request.getParameter("userId");
-Users u = null;
-UsersBean ub = new UsersBean();
-String actionName = "UsersAddAction";
+FUser u = null;
+FUserBean ub = new FUserBean();
+String actionName = "FUserAddAction";
 if(idstr==null || idstr.equals("")){
-	u = new Users();
+	u = new FUser();
 	Util.setNull2DefaultValue(u);
 } else {
 	ub.setUserId(Integer.parseInt(idstr));
 	u =  ub.findById();
-	actionName = "UsersUpdateAction";
+	actionName = "FUserUpdateAction";
 }
 if(u == null){
 	out.print("无法找到该用户！");
 	return;
 }
-	OrganizationBean ob = new OrganizationBean();
-	List<Organization> os = ob.getList();
-	
-	RoleBean rb = new RoleBean();
-	List<Role> rs = rb.getList();
+OrganizationBean ob = new OrganizationBean();
+List<Organization> os = ob.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,13 +40,10 @@ if(u == null){
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
-
-
 <style type="text/css">
 
 </style>
 <script language="JavaScript">
-
 jQuery.validator.addMethod("loginName", function(value, element) {
 	var result = false;
 	$.ajax({
@@ -71,87 +64,65 @@ jQuery.validator.addMethod("loginName", function(value, element) {
 	return result;
 }, "该登录名已被使用！");
 
-	$(document).ready(function(){
-		$("#search-div").accordion({
-			header:"h3",		
-			collapsible:false,
-			change: function(event, ui) {		
-				
-			}
-		});
-   		$("#inputform").validate({
-   			success: function(label) {
-				var $input = label.parent("td").children("input");
-				if($input.length){
-					if($input.attr("name")=="loginName"){
-						label.text("登录名可以使用！").addClass("success");
-					}
-	   			}				
+$(document).ready(function(){
+	$("#search-div").accordion({
+		header:"h3",		
+		collapsible:false,
+		change: function(event, ui) {		
+			
+		}
+	});
+  		$("#inputform").validate({
+  			success: function(label) {
+			var $input = label.parent("td").children("input");
+			if($input.length){
+				if($input.attr("name")=="loginName"){
+					label.text("登录名可以使用！").addClass("success");
+				}
+   			}				
+		},
+		rules: {
+  				loginName: {
+				required: true,
+				loginName: true
 			},
-			rules: {
-   				loginName: {
-					required: true,
-					loginName: true
-				},
-				realName: {
-					required: true
-				},
-				organizationId: {
-					required: true
-				},
-				roleId: {
-					required: true
-				}			
+			realName: {
+				required: true
 			},
-			messages: {
-				loginName: {
-					required: "请输入登录名称"
-				},
-				realName: {
-					required: "请输入真实姓名"
-				},
-				organizationId: {
-					required: "请选择所属单位"
-				},
-				roleId: {
-					required: "请选择用户角色"
-				}		
-			}
-		});
+			organizationId: {
+				required: true
+			},
+			roleId: {
+				required: true
+			}			
+		},
+		messages: {
+			loginName: {
+				required: "请输入登录名称"
+			},
+			realName: {
+				required: "请输入真实姓名"
+			},
+			organizationId: {
+				required: "请选择所属单位"
+			},
+			roleId: {
+				required: "请选择用户角色"
+			}		
+		}
+	});
 
-   		$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
-   		<%if(os != null){
-   			for(Organization o:os){ 
-   		%>
-   		$("#organizationId")[0].options.add(new Option("<%=o.getName()%>","<%=o.getOrganizationId()%>"));
-   		<%}
-   		}%>
-   		
-   		$("#organizationId").val(["<%=u.getOrganization()==null ? "" : u.getOrganization().getOrganizationId()%>"]);
+  		$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
+  		<%if(os != null){
+  			for(Organization o:os){ 
+  		%>
+  		$("#organizationId")[0].options.add(new Option("<%=o.getName()%>","<%=o.getOrganizationId()%>"));
+  		<%}
+  		}%>
+  		
+  		$("#organizationId").val(["<%=u.getOrganization()==null ? "" : u.getOrganization().getOrganizationId()%>"]);
+ });
 
-   		$("#roleId")[0].options.add(new Option("请选择用户角色",""));
-   		<%if(rs != null){
-   			for(Role r:rs){ 
-   		%>
-   		$("#roleId")[0].options.add(new Option("<%=r.getRoleName()%>","<%=r.getRoleId()%>"));
-   		<%}
-   		}%>
-   		$("#roleId").val(["<%=u.getUserRoles()==null || u.getUserRoles().isEmpty() ? "" : u.getUserRoles().iterator().next().getRole().getRoleId()%>"]);
-
-   		checkRole();
-
-   		if($("#roleId").change(function(){
-   			checkRole();
-   	   	}));
-  });
-
-  function checkRole(){
-	if($("#roleId").val()!="2" && $("#roleId").val()!="11"){
-		$("#organizationId").attr("disabled", true);
-	} else {
-		$("#organizationId").attr("disabled", false);
-	}
-  }
 <%--
 	var name = '<%=u.getName()%>';
 	function checkName(newName){
@@ -160,7 +131,7 @@ jQuery.validator.addMethod("loginName", function(value, element) {
 			$.ajax({
 				url: "mkgps.do",
 				data: {
-					action: "UsersNameCheckAction",
+					action: "FUserNameCheckAction",
 					name: newName
 				},
 				cache: false,
@@ -188,16 +159,10 @@ jQuery.validator.addMethod("loginName", function(value, element) {
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
-		<input type="hidden" name = "success" value="update-users-succ.jsp"/>
-		<input type="hidden" name = "failed" value="update-users-faild.jsp"/>
+		<input type="hidden" name = "success" value="update-user-succ.jsp"/>
+		<input type="hidden" name = "failed" value="update-user-faild.jsp"/>
 		<input type="hidden" name = "userId" value="<%=u.getUserId()%>"/>		
 			<table cellSpacing="5" width="95%">
-				<tr>
-					<td width="20%" align="right">用户角色：</td>
-					<td align="left">
-					<select id="roleId" name="roleId"></select>
-					</td>
-				</tr>
  				<tr> 
  					<td width="20%" align="right">登录名称：</td>
 					<td align="left">
@@ -225,7 +190,6 @@ jQuery.validator.addMethod("loginName", function(value, element) {
 				
 			</table>
 			<p align="center"><input type="submit" value="提交"/> <input type="reset" value="重置"/></p>
-
 	</form>
 </div>
 </div>

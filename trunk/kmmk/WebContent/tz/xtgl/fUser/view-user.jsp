@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
-<%@ include file="/header.jsp"%>
-
+<%@ include file="/tz/header.jsp"%>
 
 <%
 String idstr = request.getParameter("userId");
-Users u = null;
-UsersBean ub = new UsersBean();
+FUser u = null;
+FUserBean ub = new FUserBean();
 if(idstr!=null && !idstr.equals("")){
 	ub.setUserId(Integer.parseInt(idstr));
 	u =  ub.findById();
@@ -14,11 +13,6 @@ if(idstr!=null && !idstr.equals("")){
 if(u == null){
 	out.print("无法找到该用户！");
 } else {
-	String roleName = "";
-	if(u.getUserRoles()!=null && !u.getUserRoles().isEmpty()){
-		Role r = u.getUserRoles().iterator().next().getRole();
-		roleName = r.getRoleName();
-	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -61,10 +55,6 @@ $(document).ready(function(){
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">		
 			<table cellSpacing="5" width="95%">
-				<tr>
-					<td width="20%" align="right">用户角色：</td>
-					<td align="left"><%=roleName==null?"&nbsp;":roleName%></td>
-				</tr>
  				<tr> 
  					<td width="20%" align="right">登录名称：</td>
 					<td align="left"><%=u.getLoginName()%></td>
@@ -98,7 +88,7 @@ $(document).ready(function(){
 				
 			</table>
 			<p align="center">
-				<input type="button" value="修改" onclick="javascript:href('update-users.jsp?userId=<%=u.getUserId()%>')"/>
+				<input type="button" value="修改" onclick="javascript:href('update-user.jsp?userId=<%=u.getUserId()%>')"/>
 				<input type="button" value="返回" onclick="javascript:history.back()"/>
 			</p>
 
