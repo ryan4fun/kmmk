@@ -7,6 +7,7 @@ import com.gps.orm.FUser;
 
 public class FUserService extends AbstractService {
 	static Logger logger = Logger.getLogger(VehicleService.class);
+	public final static String INIT_PWD = "123456";
 	public final static short TZUSERS_NORM_STATE = 1;
 	public final static short TZUSERS_DEL_STATE = -1;
 	

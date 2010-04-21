@@ -12,8 +12,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.gps.orm.FUser;
 import com.gps.orm.HibernateUtil;
-import com.gps.service.RoleService;
-import com.gps.service.UsersService;
+import com.gps.service.FUserService;
 
 public class FUserBean extends AbstractBean {
 	static Logger logger = Logger.getLogger(FUserBean.class);
@@ -46,16 +45,6 @@ public class FUserBean extends AbstractBean {
 
 	public FUserBean(HttpServletRequest request) {
 		super(request);
-		
-		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
-		if( !login.isTz() ){
-			int role = login.getRoles().iterator().next();
-			if(role == RoleService.ROLE_ORG_ADMIN){
-				setOrganizationId(login.getOrganizationId());
-			} else if(role == RoleService.ROLE_VEHICLE_OWNER){
-				setUserId(login.getUserId());
-			}
-		}
 	}
 
 	public List<FUser> getList(){
@@ -66,7 +55,6 @@ public class FUserBean extends AbstractBean {
 				crit.add(Restrictions.eq("userId", this.getUserId()));
 			if (this.getOrganizationId() != null && organizationId>0)
 				crit.add(Restrictions.eq("organization.organizationId", this.getOrganizationId()));				
-
 			
 			if (this.getLoginName() != null && !loginName.equals(""))
 				crit.add(Restrictions.eq("loginName", this.getLoginName()));
@@ -79,7 +67,7 @@ public class FUserBean extends AbstractBean {
 			if (this.userState != null && this.userState>0)
 				crit.add(Restrictions.eq("userState", this.userState));
 			else
-				crit.add(Restrictions.ne("userState", UsersService.USERS_DEL_STATE));
+				crit.add(Restrictions.ne("userState", FUserService.TZUSERS_DEL_STATE));
 
 			if (this.registerDateStart != null)
 				crit.add(Restrictions.ge("registerDate", this.registerDateStart));
