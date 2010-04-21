@@ -18,11 +18,11 @@
 <script language="JavaScript">
 	parent.parent.refreshTree();
 	function goedit(id){
-		href("view-users.jsp?userId="+id);
+		href("view-user.jsp?userId="+id);
 	}
 
 	function golist(){
-		href("search-users.jsp");
+		href("search-user.jsp");
 	}
 </script>
 </head>

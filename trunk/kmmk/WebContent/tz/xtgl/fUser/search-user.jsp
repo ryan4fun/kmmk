@@ -4,7 +4,7 @@
 <%@ include file="/header.jsp"%>
 
 <%
-UsersBean ub = new UsersBean(request);
+FUsersBean ub = new FUsersBean(request);
 List<Users> uss = ub.getList();
 Util.setNull2DefaultValue(ub);
 
