@@ -5,14 +5,12 @@
 
 <%
 FUsersBean ub = new FUsersBean(request);
-List<Users> uss = ub.getList();
+List<FUser> uss = ub.getList();
 Util.setNull2DefaultValue(ub);
 
 OrganizationBean ob = new OrganizationBean();
 List<Organization> obs = ob.getList();
 
-RoleBean rb = new RoleBean();
-List<Role> rs = rb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -55,19 +53,7 @@ $(document).ready(function(){
 			}
 		);
 	<%}%>
-
-	$("#roleId")[0].options.add(new Option("请选择用户角色",""));
-	<%if(rs != null){
-		for(Role r:rs){ 
-	%>
-	$("#roleId")[0].options.add(new Option("<%=r.getRoleName()%>","<%=r.getRoleId()%>"));
-	<%}
-	}%>
-	$("#roleId").val(<%=ub.getRoleId()==null? "" : ub.getRoleId()%>);
-	if($("#roleId").change(function(){
-		checkRole();
-   	}));
-	checkRole();
+	
 
 	$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
 	<%if(obs != null){
@@ -193,7 +179,7 @@ function resetPwd(id){
 		<th width="10%">最后登录IP</th>		
 		<th width="15%">操作</th>
 	</tr>
-	<% for(Users u:uss){ 
+	<% for(FUser u:uss){ 
 		Util.setNull2DefaultValue(u);%>
 	<tr>
 		<td id="p_<%=u.getUserId()%>" colspan="7">
