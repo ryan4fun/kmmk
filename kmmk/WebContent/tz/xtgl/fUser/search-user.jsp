@@ -135,10 +135,8 @@ function resetPwd(id){
 			name="realName" value="<%=ub.getRealName()%>" /></td>
 	</tr>
 	<tr>
-	<td width="20%" align="right">用户角色：</td>
-		<td><select id="roleId" name="roleId"></select></td>	
 		<td width="20%" align="right">所属单位：</td>
-		<td><select id="organizationId" name="organizationId" ></select></td>
+		<td colspan="3"><select id="organizationId" name="organizationId" ></select></td>
 	</tr>
 	<tr>
 		<td width="20%" align="right">注册日期：</td>
@@ -156,6 +154,7 @@ function resetPwd(id){
 	<input type="submit" value="查   询" /> 
 	<input type="button" value="查询所有" onclick="javascript:href('search-user.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="新增台帐系统用户" onclick="javascript:href('update-user.jsp')"/>
 </p>
 
 </form>

@@ -13,6 +13,7 @@ if(idstr!=null && !idstr.equals("")){
 if(u == null){
 	out.print("无法找到该用户！");
 } else {
+Util.setNull2DefaultValue(u);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,8 +32,6 @@ if(u == null){
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
-
-
 
 <style type="text/css">
 
@@ -91,7 +90,6 @@ $(document).ready(function(){
 				<input type="button" value="修改" onclick="javascript:href('update-user.jsp?userId=<%=u.getUserId()%>')"/>
 				<input type="button" value="返回" onclick="javascript:history.back()"/>
 			</p>
-
 	</form>
 </div>
 </div>
