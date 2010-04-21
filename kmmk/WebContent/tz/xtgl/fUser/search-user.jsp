@@ -4,7 +4,7 @@
 <%@ include file="/header.jsp"%>
 
 <%
-FUsersBean ub = new FUsersBean(request);
+FUserBean ub = new FUserBean(request);
 List<FUser> uss = ub.getList();
 Util.setNull2DefaultValue(ub);
 
@@ -65,14 +65,6 @@ $(document).ready(function(){
 	$("#organizationId").val(["<%=ub.getOrganizationId()%>"]);
 });
 
-function checkRole(){
-	if($("#roleId").val()!="2" && $("#roleId").val()!="11"){
-		$("#organizationId").attr("disabled", true);
-	} else {
-		$("#organizationId").attr("disabled", false);
-	}
-}
-
 function pageSelectCallback(pageNumber){
 	$('#pageNumber').val(pageNumber);
 	document.forms[0].submit();
@@ -81,7 +73,7 @@ function pageSelectCallback(pageNumber){
 function delOrg(id){
 	jConfirm("确定要删除吗？", "警告", function(r){			
 		if(r){
-			delSingleRec('UsersDelAction',id);
+			delSingleRec('FUserDelAction',id);
 		} else {
 			
 		}
@@ -103,7 +95,7 @@ function resetPwd(id){
 				$.ajax( {
 					url : "mkgps.do",
 					data : {
-						action : "UsersResetPasswordAction",
+						action : "FUserResetPasswordAction",
 						userId : id
 					},
 					cache : false,
@@ -131,7 +123,7 @@ function resetPwd(id){
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="inputform" action="search-users.jsp" method="post">
+<form id="inputform" action="search-user.jsp" method="post">
 
 <table cellSpacing="5" width="650px;">
 	<tr>
@@ -162,7 +154,7 @@ function resetPwd(id){
 	<input type="hidden" name="pageNumber" id="pageNumber" value="<%=ub.getPageNumber()%>" /> 
 	<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=ub.getRowsPerPage()%>" /> 	
 	<input type="submit" value="查   询" /> 
-	<input type="button" value="查询所有" onclick="javascript:href('search-users.jsp')"/>
+	<input type="button" value="查询所有" onclick="javascript:href('search-user.jsp')"/>
 	<input type="reset" value="重   置" />	
 </p>
 
@@ -185,13 +177,13 @@ function resetPwd(id){
 		<td id="p_<%=u.getUserId()%>" colspan="7">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>
-				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getLoginName()%></a></td>
-				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getRealName()%></a></td>
-				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getOrganization()==null?"":u.getOrganization().getName()%></a></td>
-				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=Util.FormatDateLong(u.getRegisterDate())%></a></td>
-				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=Util.FormatDateLong(u.getLastLoginDate())%></a></td>
-				<td width="10%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getLastLoginIp()%></a></td>				
-				<td width="15%"><a href="javascript:href('update-users.jsp?userId=<%=u.getUserId()%>')">修   改</a> | <a href="javascript:resetPwd('<%=u.getUserId()%>')">重置密码</a> | <a href="javascript:delOrg('<%=u.getUserId()%>')">删   除</a></td>
+				<td width="15%"><a href="javascript:href('view-user.jsp?userId=<%=u.getUserId()%>')" ><%=u.getLoginName()%></a></td>
+				<td width="15%"><a href="javascript:href('view-user.jsp?userId=<%=u.getUserId()%>')" ><%=u.getRealName()%></a></td>
+				<td width="15%"><a href="javascript:href('view-user.jsp?userId=<%=u.getUserId()%>')" ><%=u.getOrganization()==null?"":u.getOrganization().getName()%></a></td>
+				<td width="15%"><a href="javascript:href('view-user.jsp?userId=<%=u.getUserId()%>')" ><%=Util.FormatDateLong(u.getRegisterDate())%></a></td>
+				<td width="15%"><a href="javascript:href('view-user.jsp?userId=<%=u.getUserId()%>')" ><%=Util.FormatDateLong(u.getLastLoginDate())%></a></td>
+				<td width="10%"><a href="javascript:href('view-user.jsp?userId=<%=u.getUserId()%>')" ><%=u.getLastLoginIp()%></a></td>				
+				<td width="15%"><a href="javascript:href('update-user.jsp?userId=<%=u.getUserId()%>')">修   改</a> | <a href="javascript:resetPwd('<%=u.getUserId()%>')">重置密码</a> | <a href="javascript:delOrg('<%=u.getUserId()%>')">删   除</a></td>
 			</tr>
 		</table>
 		</td>
