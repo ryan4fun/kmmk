@@ -15,8 +15,8 @@ import com.gps.orm.HibernateUtil;
 import com.gps.service.RoleService;
 import com.gps.service.UsersService;
 
-public class FUsersBean extends AbstractBean {
-	static Logger logger = Logger.getLogger(FUsersBean.class);
+public class FUserBean extends AbstractBean {
+	static Logger logger = Logger.getLogger(FUserBean.class);
 	
 	private Integer userId;
 	private String loginName;
@@ -41,10 +41,10 @@ public class FUsersBean extends AbstractBean {
 	private Date registerDateEnd;
 	private Date lastLoginDateEnd;
 	
-	public FUsersBean() {
+	public FUserBean() {
 	}
 
-	public FUsersBean(HttpServletRequest request) {
+	public FUserBean(HttpServletRequest request) {
 		super(request);
 		
 		LoginInfo login = (LoginInfo)request.getSession().getAttribute("login");
