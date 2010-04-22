@@ -93,8 +93,8 @@
 		</TD></TR>
 	  <TR>
 	    <TD align="center" colspan="2">
-	    	<input style="WIDTH: 40px" value="登录" type="submit" />
-			<input style="WIDTH: 40px" value="重置" type="reset" /></TD>
+	    	<input value="登录" type="submit" />
+			<input value="重置" type="reset" /></TD>
 	  <tr>
 	  </TBODY></TABLE>
 </FORM>
