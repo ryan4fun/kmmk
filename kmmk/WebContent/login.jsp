@@ -112,8 +112,8 @@ type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name=
     </TD></TR>
   </TBODY></TABLE><br /><br /><br />
 
-<input style="position:absolute;top:343px;left:108px;WIDTH: 40px" value="登录" type="submit" />
-<input style="position:absolute;top:343px;left:204px;WIDTH: 40px" value="重置" type="reset" />
+<input style="position:absolute;top:344px;left:84px;WIDTH: 66px" value="登录" type="submit" />
+<input style="position:absolute;top:344px;left:180px;WIDTH: 66px" value="重置" type="reset" />
 </FORM>
 </td>
 </tr>
