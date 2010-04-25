@@ -115,8 +115,11 @@ jQuery.validator.addMethod("organizationName", function(value, element) {
 					</td>
 				</tr>
 			</table>
-			<p align="center"><input type="submit" style="" value="提交"/> <input type="reset" style="" value="重置"/></p>
-
+			<p align="center">
+				<input type="submit" style="" value="提交"/>
+				<input type="reset" style="" value="重置"/>
+				<input type="button" value="返回" onclick="<%=backUri%>"/>
+			</p>
 	</form>
 </div>
 </div>

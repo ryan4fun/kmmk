@@ -65,7 +65,7 @@ $(document).ready(function(){
 		</table>
 		<p align="center">
 		   <input type="button" value="修 改" onclick="javascript:href('update-organization.jsp?organizationId=<%=o.getOrganizationId()%>')"/>
-		   <input type="button" value="返 回" onclick="javascript:history.back()"/>
+		   <input type="button" value="返回" onclick="<%=backUri%>"/>
 		</p>
 	</form>
 </div>
