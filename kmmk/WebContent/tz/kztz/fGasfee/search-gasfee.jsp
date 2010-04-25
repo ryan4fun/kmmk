@@ -3,7 +3,7 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
-boolean embedded = request.getParameter("embedded") != null && request.getParameter("embedded").equals("true");
+boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
 FGasfeeBean fgb = new FGasfeeBean(request);
 if(embedded){
 	VehicleBean vb = new VehicleBean();
