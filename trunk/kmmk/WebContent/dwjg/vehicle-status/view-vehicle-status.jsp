@@ -141,46 +141,46 @@ function leftClick( param ) {
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">
 	<input type="hidden" id = "vehicleId" name = "vehicleId" value="<%=vs.getVehicleId()%>"/>		
-			<table cellSpacing="5" width="95%">
- 				<tr>
- 					<td width="20%" align="right">车牌号：</td>
-					<td align="left" ><%=vs.getLicensPadNumber()%></td>
-					
-				</tr>				
+		<table cellSpacing="5" width="95%">
 				<tr>
- 					<td width="20%" align="right">行驶状态：</td>
-					<td align="left"><%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%></td>
- 					<td width="20%" align="right">在线状态：</td>
-					<td align="left"><%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">求救状态：</td>
-					<td align="left"><%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%></td>
- 					<td width="20%" align="right">限制区域报警：</td>
-					<td align="left"><%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">超速报警：</td>
-					<td align="left"><%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%></td>
- 					<td width="20%" align="right">疲劳驾驶：</td>
-					<td align="left"><%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">任务状态：</td>
- 					<% if(vs.getTaskId()!=null && vs.getTaskId() > 0 ) {
-						TaskBean tb = new TaskBean();
-						tb.setTaskId(vs.getTaskId());
-						Task task = tb.findById();
-					%>
-					<td align="left" colspan="3"><a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')" ><%=task.getTaskName()%></a></td>
-					<% } else { %>
-					<td align="left" colspan="3"><%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%></td>
-					<% }  %>
-				</tr>
-			</table>
-			<p align="center">
-				<input type="button" value="返 回" onclick="javascript:history.back()"/>	</p>
-
+					<td width="20%" align="right">车牌号：</td>
+				<td align="left" ><%=vs.getLicensPadNumber()%></td>
+				
+			</tr>				
+			<tr>
+					<td width="20%" align="right">行驶状态：</td>
+				<td align="left"><%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%></td>
+					<td width="20%" align="right">在线状态：</td>
+				<td align="left"><%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">求救状态：</td>
+				<td align="left"><%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%></td>
+					<td width="20%" align="right">限制区域报警：</td>
+				<td align="left"><%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">超速报警：</td>
+				<td align="left"><%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%></td>
+					<td width="20%" align="right">疲劳驾驶：</td>
+				<td align="left"><%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">任务状态：</td>
+					<% if(vs.getTaskId()!=null && vs.getTaskId() > 0 ) {
+					TaskBean tb = new TaskBean();
+					tb.setTaskId(vs.getTaskId());
+					Task task = tb.findById();
+				%>
+				<td align="left" colspan="3"><a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')" ><%=task.getTaskName()%></a></td>
+				<% } else { %>
+				<td align="left" colspan="3"><%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%></td>
+				<% }  %>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="button" value="返 回" onclick="javascript:history.back()"/>
+		</p>
 	</form>
 	</div>
 	</div>
