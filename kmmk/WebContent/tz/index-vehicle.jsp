@@ -44,7 +44,10 @@ Util.setNull2DefaultValue(v);
 			cache: false,
 			selected: <%=tabIndex%>,
 			show : function(event, ui) {
-				$("#main-frame-"+ui.index).attr("src", $("#main-frame-"+ui.index).attr("_src")+"&_"+new Date());
+				var src = $("#main-frame-"+ui.index).attr("_src");
+				if(src.indexOf("?")==-1)
+					src+="?";
+				$("#main-frame-"+ui.index).attr("src", src + "&_"+new Date());
 				$("#main-frame-"+ui.index).height($("#tab").height()-60);
 				$("#main-frame-"+ui.index).width($(window).width()-30);
 				return true;
@@ -77,10 +80,10 @@ Util.setNull2DefaultValue(v);
 	<li><a href="#tabs-8"><span>统计报表</span></a></li>
 </ul>
 <div id="tabs-0">
-<iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp" ></iframe>
+<iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp?vehicleId=<%=idstr %>" ></iframe>
 </div>
 <div id="tabs-1">
-<iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp" ></iframe>
+<iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr %>"></iframe>
 </div>
 <div id="tabs-2">
 <iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleMaterial/search-material.jsp"></iframe>
