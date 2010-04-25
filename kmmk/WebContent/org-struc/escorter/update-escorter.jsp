@@ -196,8 +196,11 @@ List<Organization> os = ob.getList();
 					</td>
 				</tr>
 			</table>
-			<p align="center"><input type="submit" value="提交"/> <input type="reset" value="重置"/></p>
-
+			<p align="center">
+				<input type="submit" value="提交"/>
+				<input type="reset" value="重置"/>
+				<input type="button" value="返回" onclick="<%=backUri%>"/>
+			</p>
 	</form>
 </div>
 </div>
