@@ -249,7 +249,7 @@ function delOrg(id){
 		<input type="submit" value="查   询" />
 		<input type="button" value="查询所有" onclick="javascript:href('search-runing-log.jsp<%=embedded?"?embedded=true":"" %>')"/>
 		<input type="reset" value="重   置" />
-		<input type="button" value="新增车辆经营收支明细台帐" onclick="javascript:href('update-runing-log.jsp<%=embedded?"?embedded=true":"" %>')"/>
+		<input type="button" value="新增经营收支帐" onclick="javascript:href('update-runing-log.jsp<%=embedded?"?embedded=true":"" %>')"/>
 	</p>
 </form>
 </div>
