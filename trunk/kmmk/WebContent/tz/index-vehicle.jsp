@@ -45,9 +45,11 @@ Util.setNull2DefaultValue(v);
 			selected: <%=tabIndex%>,
 			show : function(event, ui) {
 				var src = $("#main-frame-"+ui.index).attr("_src");
-				if(src.indexOf("?")==-1)
-					src+="?";
-				$("#main-frame-"+ui.index).attr("src", src + "&_"+new Date());
+				if(src.indexOf("?")==-1){
+					$("#main-frame-"+ui.index).attr("src", src + "?_"+new Date());
+				} else {
+					$("#main-frame-"+ui.index).attr("src", src + "&_"+new Date());
+				}
 				$("#main-frame-"+ui.index).height($("#tab").height()-60);
 				$("#main-frame-"+ui.index).width($(window).width()-30);
 				return true;
