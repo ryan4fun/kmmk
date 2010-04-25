@@ -19,5 +19,13 @@
 	String skin = login.getSkin();
 	boolean isNewUI = login.isNewUI();
 	int intRole = login.getRoles().iterator().next();
-	String role = String.valueOf(intRole);	
+	String role = String.valueOf(intRole);
+	
+	//get path when get back from view and update page to search page
+	String ref = request.getHeader("referer");
+	String reqUri = request.getRequestURI();
+	String backUri = "javascript:history.back()";
+	if(ref.indexOf("/search-")<0){
+		backUri = "javascript:href('" + reqUri.replaceFirst(".*((view)|(update))-","search-") + "')";
+	}
 %>

@@ -370,7 +370,7 @@ if(idstr==null || idstr.equals("")){
 			<p align="center">
 				<input type="submit" value="提交"/>
 				<input type="reset" value="重置"/>
-				<input type="button" value="返回" onclick="javascript:history.back()"/>
+				<input type="button" value="返回" onclick="<%=backUri%>"/>
 			</p>
 	</form>
 </div>
