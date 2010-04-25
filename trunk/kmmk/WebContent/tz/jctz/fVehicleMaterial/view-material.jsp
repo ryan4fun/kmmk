@@ -105,7 +105,7 @@ function delOrg(id){
 	<p align="center">
 		<input type="button" value="交接车辆资料" onclick="javascript:href('update-material-keep-log.jsp?materialId=<%=f.getMaterialId()%>')"/>
 		<input type="button" value="修改车辆资料" onclick="javascript:href('update-material.jsp?materialId=<%=f.getMaterialId()%>')"/>
-		<input type="button" value="返回" onclick="javascript:history.back()"/>
+		<input type="button" value="返回" onclick="<%=backUri%>"/>
 	</p>
 </div>
 </body>

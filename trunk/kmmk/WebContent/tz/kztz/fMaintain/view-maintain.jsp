@@ -95,7 +95,7 @@ $(document).ready(function(){
 	</div>
 	<p align="center">
 		<input type="button" value="修改车辆维修明细台帐" onclick="javascript:href('update-maintain.jsp?id=<%=f.getId()%>')"/>
-		<input type="button" value="返回" onclick="javascript:history.back()"/>
+		<input type="button" value="返回" onclick="<%=backUri%>"/>
 	</p>
 </div>
 </body>

@@ -105,7 +105,7 @@ $(document).ready(function(){
 			</table>
 			<p align="center">
 				<input type="button" value="修改轮胎使用台帐" onclick="javascript:href('update-tyres.jsp?tyreId=<%=f.getTyreId()%>')"/>
-				<input type="button" value="返回" onclick="javascript:history.back()"/>
+				<input type="button" value="返回" onclick="<%=backUri%>"/>
 			</p>
 		</form>
 	</div>
