@@ -86,27 +86,32 @@ function pageSelectCallback(pageNumber){
 			<td align="left">
 				<input type="text" id="month" name="month" value="<%=frb.getMonth()==null?"":frb.getMonth()%>" /></td>
 		</tr>
+		<!-- 
 		<tr>
 			<td width="20%" align="right">收入：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="incomeStart" name="incomeStart" 
 					value="<%=frb.getIncomeStart()==null?"":frb.getIncomeStart()%>" />
-				至
+			</td>
+			<td width="20%" align="right">至</td>
+			<td>				
 				<input type="text" id="incomeEnd" name="incomeEnd" 
 					value="<%=frb.getIncomeEnd()==null?"":frb.getIncomeEnd()%>" />
 			</td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">支出：</td>
-			<td align="left" colSpan="3">
+			<td align="left">
 				<input type="text" id="costsStart" name="costsStart" 
 					value="<%=frb.getCostsStart()==null?"":frb.getCostsStart()%>" />
-				至
+			</td>
+			<td width="20%" align="right">至</td>
+			<td>
 				<input type="text" id="costsEnd" name="costsEnd" 
 					value="<%=frb.getCostsEnd()==null?"":frb.getCostsEnd()%>" />
 			</td>
 		</tr>
-		
+		 -->
 	</table>
 	<p align="center">
 		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=frb.getPageNumber()%>" />
