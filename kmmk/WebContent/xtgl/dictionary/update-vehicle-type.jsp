@@ -99,7 +99,7 @@ if(rtd == null){
 </head>
 <body style="background:transparent;">
 <div id="search-div">
-<h3><a href="#">请输入查询条件</a></h3>
+<h3><a href="#">请输入车辆类型</a></h3>
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>

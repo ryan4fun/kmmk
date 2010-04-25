@@ -186,7 +186,8 @@ function changeTaskState(recID,taskState){
 	<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=tb.getRowsPerPage()%>" /> 	
 	<input type="submit" style="" value="查   询" /> 
 	<input type="button" value="查询所有" onclick="javascript:href('<%=searchAllUrl %>')" />
-	<input type="reset" style="" value="重   置" />	
+	<input type="reset" style="" value="重   置" />
+	<input type="button" value="添加任务" onclick="javascript:href('update-task.jsp')"/>
 </p>
 </form>
 </div>

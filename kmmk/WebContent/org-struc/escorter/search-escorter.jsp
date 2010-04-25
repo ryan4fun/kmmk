@@ -101,6 +101,7 @@ function delOrg(id){
 	<input type="submit" value="查   询" /> 
 	<input type="button" value="查询所有" onclick="javascript:href('search-escorter.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="添加押运员" onclick="javascript:href('update-escorter.jsp')"/>
 </p>
 
 </form>

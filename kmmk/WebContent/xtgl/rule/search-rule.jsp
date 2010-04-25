@@ -124,6 +124,7 @@ function delOrg(id){
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-rule.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="添加规则" onclick="javascript:href('update-rule.jsp')"/>
 </p>
 
 </form>
