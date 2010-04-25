@@ -31,12 +31,27 @@
 
 <script type="text/javascript" src="<%=basePath %>js/dependency/dhtmlxtree_json.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/mkgps.js"></script>
-
-<style type="text/css">
-    
-</style>
   
 <script>
+	function redirect(url){
+		url= "<%=tzBasePath%>" + url;
+		$.ajax( {
+			url : "mkgps.do",
+			data : {
+				action : "SetEmbeddedSessionAction",
+				embedded :false
+			},
+			cache : false,
+			success : function() {
+				main.window.href(url);		
+			},
+			error : function(xml, status, e) {
+				
+			}
+		});
+		
+		
+	}
 	$(document).ready( function(){
 		// init menu
 		$(function(){
@@ -98,7 +113,7 @@
 	<tr>
 		<td id="main-td" style="border:1px solid gray;border-top-width:0px;">
 			<div style="position:relative;height:100%;">
-				<iframe id="main-frame" name="main" frameborder="0" scrolling="no" style="width:100%;height:100%" src="jctz/fVehicleBasic/search-vehicle-basic.jsp" />
+				<iframe id="main-frame" name="main" frameborder="0" scrolling="no" style="width:100%;height:100%" src="jctz/fVehicleBasic/search-vehicle-basic.jsp"></iframe>
 			</div>
 		</td>
 	</tr>
