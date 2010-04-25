@@ -5,7 +5,8 @@
 	java.util.*,
 	java.util.regex.Pattern,
 	java.util.regex.Matcher"
-%><%	
+%>
+<%	
 	String  basePath = request.getScheme()+ "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
 	String  tzBasePath = basePath + "tz/";
 	
@@ -19,4 +20,12 @@
 	//String skin = "south-street";//redmond, blitzer, south-street, trontastic, ui-lightness
 	String skin = login.getSkin();
 	boolean isNewUI = login.isNewUI();
+	
+	//get path when get back from view and update page to search page
+	String ref = request.getHeader("referer");
+	String reqUri = request.getRequestURI();
+	String backUri = "javascript:history.back()";
+	if(ref.indexOf("/search-")<0){
+		backUri = "javascript:href('" + reqUri.replaceFirst(".*((view)|(update))-","search-") + "')";
+	}
 %>
