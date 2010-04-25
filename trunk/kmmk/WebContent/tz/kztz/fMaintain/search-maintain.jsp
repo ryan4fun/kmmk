@@ -133,7 +133,7 @@ function delOrg(id){
 		<input type="submit" value="查   询" />
 		<input type="button" value="查询所有" onclick="javascript:href('search-maintain.jsp<%=embedded?"?embedded=true":"" %>')"/>
 		<input type="reset" value="重   置" />
-		<input type="button" value="新增车辆维修明细台帐" onclick="javascript:href('update-maintain.jsp<%=embedded?"?embedded=true":"" %>')"/>
+		<input type="button" value="新增维修明细帐" onclick="javascript:href('update-maintain.jsp<%=embedded?"?embedded=true":"" %>')"/>
 	</p>
 </form>
 </div>
