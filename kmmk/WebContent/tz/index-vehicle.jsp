@@ -77,31 +77,31 @@ Util.setNull2DefaultValue(v);
 	<li><a href="#tabs-8"><span>统计报表</span></a></li>
 </ul>
 <div id="tabs-0">
-<iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp?vehicleId=<%=idstr%>" ></iframe>
+<iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp" ></iframe>
 </div>
 <div id="tabs-1">
-<iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp?vehicleId=<%=idstr%>" ></iframe>
+<iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle-basic.jsp" ></iframe>
 </div>
 <div id="tabs-2">
-<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleMaterial/search-material.jsp?vehicleId=<%=idstr%>"></iframe>
+<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleMaterial/search-material.jsp"></iframe>
 </div>
 <div id="tabs-3">
-<iframe id="main-frame-3" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTools/search-tools.jsp?vehicleId=<%=idstr%>"></iframe>
+<iframe id="main-frame-3" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTools/search-tools.jsp"></iframe>
 </div>
 <div id="tabs-4">
-<iframe id="main-frame-4" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTyres/search-tyres.jsp?vehicleId=<%=idstr%>" ></iframe>
+<iframe id="main-frame-4" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fTyres/search-tyres.jsp" ></iframe>
 </div>
 <div id="tabs-5">
-<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="kztz/fGasfee/search-gasfee.jsp?vehicleId=<%=idstr%>"></iframe>
+<iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="kztz/fGasfee/search-gasfee.jsp"></iframe>
 </div>
 <div id="tabs-6">
-<iframe id="main-frame-6" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="kztz/fMaintain/search-maintain.jsp?vehicleId=<%=idstr%>"></iframe>
+<iframe id="main-frame-6" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="kztz/fMaintain/search-maintain.jsp"></iframe>
 </div>
 <div id="tabs-7">
-<iframe id="main-frame-7" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jytz/fRuningLog/search-runing-log.jsp?vehicleId=<%=idstr%>"></iframe>
+<iframe id="main-frame-7" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jytz/fRuningLog/search-runing-log.jsp"></iframe>
 </div>
 <div id="tabs-8">
-<iframe id="main-frame-8" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tjtz/fMonthlyReport/search-monthly-report.jsp?vehicleId=<%=idstr%>"></iframe>
+<iframe id="main-frame-8" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tjtz/fMonthlyReport/search-monthly-report.jsp"></iframe>
 </div>
 </div>
 </body>
