@@ -142,6 +142,7 @@ function delOrg(id){
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-private-rule.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="添加任务规则" onclick="javascript:href('update-private-rule.jsp')"/>
 </p>
 
 </form>

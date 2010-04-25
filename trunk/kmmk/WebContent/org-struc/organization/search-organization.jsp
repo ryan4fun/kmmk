@@ -98,6 +98,7 @@ function delOrg(id){
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-organization.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="添加营运单位" onclick="javascript:href('update-organization.jsp')"/>
 </p>
 
 </form>

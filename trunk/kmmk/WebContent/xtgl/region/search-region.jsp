@@ -105,6 +105,8 @@ function delOrg(id){
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-region.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="添加节点" onclick="javascript:href('update-region-node.jsp')"/>
+	<input type="button" value="添加多边形区域" onclick="javascript:href('update-region-polygon.jsp')"/>
 </p>
 
 </form>

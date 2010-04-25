@@ -142,7 +142,9 @@ function delOrg(id){
 	<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-vehicle.jsp')"/>
-	<input type="reset" value="重   置" /></p>
+	<input type="reset" value="重   置" />
+	<input type="button" value="添加车辆" onclick="javascript:href('update-vehicle.jsp')"/>	
+</p>
 
 </form>
 </div>

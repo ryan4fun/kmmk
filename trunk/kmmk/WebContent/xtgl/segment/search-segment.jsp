@@ -96,6 +96,7 @@ function delOrg(id){
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-segment.jsp')"/>
 	<input type="reset" value="重   置" />	
+	<input type="button" value="添加路线" onclick="javascript:href('search-segment-trace.jsp')"/>
 </p>
 
 </form>
