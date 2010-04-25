@@ -100,7 +100,7 @@ Util.setNull2DefaultValue(v);
 <iframe id="main-frame-7" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jytz/fRuningLog/search-runing-log.jsp?vehicleId=<%=idstr%>&embedded=true"></iframe>
 </div>
 <div id="tabs-8">
-<iframe id="main-frame-8" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src=""></iframe>
+<iframe id="main-frame-8" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tjtz/fMonthlyReport/search-monthly-report.jsp?vehicleId=<%=idstr%>&embedded=true"></iframe>
 </div>
 </div>
 </body>
