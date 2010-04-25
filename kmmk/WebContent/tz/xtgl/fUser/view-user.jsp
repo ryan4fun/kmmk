@@ -88,7 +88,7 @@ $(document).ready(function(){
 			</table>
 			<p align="center">
 				<input type="button" value="修改" onclick="javascript:href('update-user.jsp?userId=<%=u.getUserId()%>')"/>
-				<input type="button" value="返回" onclick="javascript:history.back()"/>
+				<input type="button" value="返回" onclick="<%=backUri%>"/>
 			</p>
 	</form>
 </div>

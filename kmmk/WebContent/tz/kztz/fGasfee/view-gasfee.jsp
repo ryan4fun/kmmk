@@ -83,7 +83,7 @@ $(document).ready(function(){
 	</div>
 	<p align="center">
 		<input type="button" value="修改加油开支明细帐" onclick="javascript:href('update-gasfee.jsp?id=<%=f.getId()%>')"/>
-		<input type="button" value="返回" onclick="javascript:history.back()"/>
+		<input type="button" value="返回" onclick="<%=backUri%>"/>
 	</p>
 </div>
 </body>

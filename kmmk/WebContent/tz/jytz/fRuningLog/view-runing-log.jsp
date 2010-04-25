@@ -157,7 +157,7 @@ $(document).ready(function(){
 	</div>
 	<p align="center">
 		<input type="button" value="修改收支明细" onclick="javascript:href('update-runing-log.jsp?id=<%=f.getId()%>')"/>
-		<input type="button" value="返回" onclick="javascript:history.back()"/>
+		<input type="button" value="返回" onclick="<%=backUri%>"/>
 	</p>
 </div>
 </body>

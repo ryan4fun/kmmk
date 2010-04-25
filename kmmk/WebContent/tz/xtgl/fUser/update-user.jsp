@@ -72,8 +72,8 @@ $(document).ready(function(){
 			
 		}
 	});
-  		$("#inputform").validate({
-  			success: function(label) {
+  	$("#inputform").validate({
+  		success: function(label) {
 			var $input = label.parent("td").children("input");
 			if($input.length){
 				if($input.attr("name")=="loginName"){
@@ -82,7 +82,7 @@ $(document).ready(function(){
    			}				
 		},
 		rules: {
-  				loginName: {
+  			loginName: {
 				required: true,
 				loginName: true
 			},
@@ -189,7 +189,11 @@ $(document).ready(function(){
 				</tr>
 				
 			</table>
-			<p align="center"><input type="submit" value="提交"/> <input type="reset" value="重置"/><input type="button" value="返回" onclick="javascript:history.back()"/></p>
+			<p align="center">
+				<input type="submit" value="提交"/>
+				<input type="reset" value="重置"/>
+				<input type="button" value="返回" onclick="<%=backUri%>"/>
+			</p>
 	</form>
 </div>
 </div>
