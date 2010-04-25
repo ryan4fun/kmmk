@@ -196,7 +196,8 @@ $(document).ready(function(){
 				<td colSpan="4" align="center"">
 					<input type="submit" value="提 交"/>
 					<input type="reset" value="重 置"/>
-					<input type="button" value="返回" onclick="javascript:history.back()" />	</td>
+					<input type="button" value="返回" onclick="<%=backUri%>"/>
+				</td>
 			</tr>
 		</table>
 	</form>
