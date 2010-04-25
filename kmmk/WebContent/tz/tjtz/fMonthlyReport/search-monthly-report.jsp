@@ -72,7 +72,7 @@ function pageSelectCallback(pageNumber){
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
 <form id="inputform" action="search-monthly-report.jsp" method="post">
-<input type=hidden name="embedded" value="<%=embedded %>">
+
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
