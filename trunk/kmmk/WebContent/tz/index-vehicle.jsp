@@ -3,6 +3,7 @@
 <%@ include file="/tz/header.jsp"%><%
 String idstr = request.getParameter("vehicleId");
 request.getSession().setAttribute("vehicleId", Integer.parseInt(idstr));
+request.getSession().setAttribute("embedded", "true");
 Vehicle v = null;
 VehicleBean vb = new VehicleBean();
 if(idstr!=null && !idstr.equals("")){
