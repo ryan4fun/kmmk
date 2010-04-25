@@ -50,7 +50,7 @@ $(document).ready(function(){
 <div id="search-div">	
 	<h3><a href="#">月台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="inputform" action="mkgps.do" method="post" target="_blank">
+		<form id="inputform" action="<%=f.getYearMonth()%>.do" method="post" target="_blank">
 			<input value="FGenerateMonthlyReportAction" type="hidden" name="action" />
 			<table cellSpacing="5" width="95%">
 				<tr>
