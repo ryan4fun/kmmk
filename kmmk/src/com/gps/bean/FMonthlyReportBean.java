@@ -65,13 +65,13 @@ public class FMonthlyReportBean extends AbstractBean {
 						crit.add(Restrictions.eq("yearMonth", year.toString() + (month<10 ? "0" + month.toString() : month.toString())));
 						_crit.add(Restrictions.eq("yearMonth", year.toString() + (month<10 ? "0" + month.toString() : month.toString())));
 					} else {
-						crit.add(Restrictions.like("yearMonth", "%"+year.toString()));
-						_crit.add(Restrictions.like("yearMonth", "%"+year.toString()));
+						crit.add(Restrictions.like("yearMonth", year.toString()+"%"));
+						_crit.add(Restrictions.like("yearMonth", year.toString()+"%"));
 					}
 				} else {
 					if (this.month != null && month > 0){
-						crit.add(Restrictions.like("yearMonth",  (month<10 ? "0" + month.toString() : month.toString())));
-						_crit.add(Restrictions.like("yearMonth",  (month<10 ? "0" + month.toString() : month.toString())));
+						crit.add(Restrictions.like("yearMonth",  "%" + (month<10 ? "0" + month.toString() : month.toString())));
+						_crit.add(Restrictions.like("yearMonth",  "%" + (month<10 ? "0" + month.toString() : month.toString())));
 					}
 				}
 			}
