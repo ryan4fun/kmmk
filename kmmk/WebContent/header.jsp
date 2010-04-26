@@ -5,7 +5,8 @@
 	java.util.*,
 	java.util.regex.Pattern,
 	java.util.regex.Matcher"
-%><%	
+%>
+<%	
 	String  basePath  =  request.getScheme()+ "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
 
 	request.setCharacterEncoding("UTF-8");	
