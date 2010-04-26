@@ -163,32 +163,36 @@ function drawPoly() {
 <h3><a href="#">请输入矩形区域信息</a></h3>
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">
-		
-			<table cellSpacing="5" width="95%">
+		<table cellSpacing="5" width="95%">
+			<tr>
+				<td width="20%" align="right">矩形区域类型：</td>
+				<td align="left"><%=c.getRegionTypeDic().getRegionTypeName()%></td>
+			</tr>
 				<tr>
-					<td width="20%" align="right">矩形区域类型：</td>
-					<td align="left"><%=c.getRegionTypeDic().getRegionTypeName()%></td>
-				</tr>
- 				<tr>
- 					<td width="20%" align="right">矩形区域名：</td>
-					<td align="left"><%=c.getName()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">描述：</td>
-					<td align="left"><%=c.getDescription()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">矩形区域东北角坐标：</td>
-					<td align="left">经度：<%=c.getCentralLong()%>&nbsp;&nbsp;纬度：<%=c.getCentralLat()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">矩形区域西南角坐标：</td>
-					<td align="left">经度：<%=c.getEdgeLong()==null?"":c.getEdgeLong()%>&nbsp;&nbsp;纬度：<%=c.getEdgeLat()==null?"":c.getEdgeLat()%></td>
-				</tr>
-			</table>
-			<p align="center">
-				<input type="button" value="修 改" onclick="javascript:href('update-region-rectangle.jsp?regionId=<%=c.getRegionId()%>')"/>
-			    <input type="button" value="返 回" onclick="javascript:history.back()"/></p>
+					<td width="20%" align="right">矩形区域名：</td>
+				<td align="left"><%=c.getName()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">描述：</td>
+				<td align="left"><%=c.getDescription()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">矩形区域东北角坐标：</td>
+				<td align="left">经度：<%=c.getCentralLong()%>&nbsp;&nbsp;纬度：<%=c.getCentralLat()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">矩形区域西南角坐标：</td>
+				<td align="left">经度：<%=c.getEdgeLong()==null?"":c.getEdgeLong()%>&nbsp;&nbsp;纬度：<%=c.getEdgeLat()==null?"":c.getEdgeLat()%></td>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="button" value="修 改" onclick="javascript:href('update-region-rectangle.jsp?regionId=<%=c.getRegionId()%>')"/>
+			<%
+			if(!backUri.equalsIgnoreCase("javascript:history.back()"))
+				backUri = "javascript:href('search-region.jsp')";
+			%>
+		    <input type="button" value="返回" onclick="<%=backUri%>"/>
+		</p>
 	</form>
 </div>
 </div>

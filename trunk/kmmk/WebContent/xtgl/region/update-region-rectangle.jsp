@@ -318,42 +318,48 @@ function leftClick(overlay, point) {
 		<input type="hidden" name = "success" value="update-region-rectangle-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-region-faild.jsp"/>
 		<input type="hidden" name = "regionId" value="<%=c.getRegionId()%>"/>
-		
-			<table cellSpacing="5" width="95%">
-				<tr>
-					<td width="20%" align="right">区域名：</td>
-					<td align="left" width="30%">
-					<input type="text" id="name" name="name" value="<%=c.getName()%>" />
-					</td>
-					<td width="20%" align="right">区域类型：</td>
-					<td align="left" width="30%">
-					<select id="regionTypeId" name="regionTypeId" ></select>
-					</td>
-				</tr> 				
-				<tr>
- 					<td width="20%" align="right">描述：</td>
-					<td align="left" colSpan="3">
-					<input type="text" id="description" name="description" value="<%=c.getDescription()%>" />
-					</td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">矩形区域东北角经度：</td>
-					<td align="left" colSpan="3">
-						<input type="text" id="centralLong" name="centralLong" value="<%=c.getCentralLong()==null?"":c.getCentralLong()%>" />
-						纬度：<input type="text" id="centralLat" name="centralLat" value="<%=c.getCentralLat()==null?"":c.getCentralLat()%>" />
-						<input type="button" value="刷新地图" onclick="initialize()"/>
-					</td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">矩形区域西南角经度：</td>
-					<td align="left" colSpan="3">
-					<input type="text" id="edgeLong" name="edgeLong" value="<%=c.getEdgeLong()==null?"":c.getEdgeLong()%>" />
-					纬度：<input type="text" id="edgeLat" name="edgeLat" value="<%=c.getEdgeLat()==null?"":c.getEdgeLat()%>" />
-					</td>
-				</tr>
-			</table>
-			<p align="center"><input type="submit" value="提交"/> <input type="reset" value="重置"/></p>
-
+		<table cellSpacing="5" width="95%">
+			<tr>
+				<td width="20%" align="right">区域名：</td>
+				<td align="left" width="30%">
+				<input type="text" id="name" name="name" value="<%=c.getName()%>" />
+				</td>
+				<td width="20%" align="right">区域类型：</td>
+				<td align="left" width="30%">
+				<select id="regionTypeId" name="regionTypeId" ></select>
+				</td>
+			</tr> 				
+			<tr>
+					<td width="20%" align="right">描述：</td>
+				<td align="left" colSpan="3">
+				<input type="text" id="description" name="description" value="<%=c.getDescription()%>" />
+				</td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">矩形区域东北角经度：</td>
+				<td align="left" colSpan="3">
+					<input type="text" id="centralLong" name="centralLong" value="<%=c.getCentralLong()==null?"":c.getCentralLong()%>" />
+					纬度：<input type="text" id="centralLat" name="centralLat" value="<%=c.getCentralLat()==null?"":c.getCentralLat()%>" />
+					<input type="button" value="刷新地图" onclick="initialize()"/>
+				</td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">矩形区域西南角经度：</td>
+				<td align="left" colSpan="3">
+				<input type="text" id="edgeLong" name="edgeLong" value="<%=c.getEdgeLong()==null?"":c.getEdgeLong()%>" />
+				纬度：<input type="text" id="edgeLat" name="edgeLat" value="<%=c.getEdgeLat()==null?"":c.getEdgeLat()%>" />
+				</td>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="submit" value="提交"/>
+			<input type="reset" value="重置"/>
+			<%
+			if(!backUri.equalsIgnoreCase("javascript:history.back()"))
+				backUri = "javascript:href('search-region.jsp')";
+			%>
+		    <input type="button" value="返回" onclick="<%=backUri%>"/>
+	    </p>
 	</form>
 </div>
 </div>

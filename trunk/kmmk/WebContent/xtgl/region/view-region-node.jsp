@@ -103,29 +103,32 @@ if(c.getCentralLong() != null && c.getCentralLat() != null && c.getCentralLong()
 <h3><a href="#">请输入节点信息</a></h3>
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">
-		
-			<table cellSpacing="5" width="95%">
+		<table cellSpacing="5" width="95%">
+			<tr>
+				<td width="20%" align="right">节点类型：</td>
+				<td align="left"><%=c.getRegionTypeDic().getRegionTypeName()%></td>
+			</tr>
 				<tr>
-					<td width="20%" align="right">节点类型：</td>
-					<td align="left"><%=c.getRegionTypeDic().getRegionTypeName()%></td>
-				</tr>
- 				<tr>
- 					<td width="20%" align="right">节点名：</td>
-					<td align="left"><%=c.getName()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">描述：</td>
-					<td align="left"><%=c.getDescription()%></td>
-				</tr>
-			    <tr>
- 					<td width="20%" align="right">坐标：</td>
-					<td align="left">经度：<%=strLat%>纬度：<%=strLon%></td>
-				</tr>
-			</table>
-			<p align="center">
-				<input type="button" value="修 改" onclick="javascript:href('update-region-node.jsp?regionId=<%=c.getRegionId()%>')"/>
-			   <input type="button" value="返 回" onclick="javascript:history.back()"/></p>
-
+					<td width="20%" align="right">节点名：</td>
+				<td align="left"><%=c.getName()%></td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">描述：</td>
+				<td align="left"><%=c.getDescription()%></td>
+			</tr>
+		    <tr>
+					<td width="20%" align="right">坐标：</td>
+				<td align="left">经度：<%=strLat%>纬度：<%=strLon%></td>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="button" value="修 改" onclick="javascript:href('update-region-node.jsp?regionId=<%=c.getRegionId()%>')"/>
+			<%
+			if(!backUri.equalsIgnoreCase("javascript:history.back()"))
+				backUri = "javascript:href('search-region.jsp')";
+			%>
+		    <input type="button" value="返回" onclick="<%=backUri%>"/>
+		</p>
 	</form>
 </div>
 </div>
