@@ -3,15 +3,13 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
-boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
 VehicleBean vb = new VehicleBean(request);
+vb.setPagination(false);
 List<Vehicle> vs = vb.getList();
 Util.setNull2DefaultValue(vb);
 
 VehicleTypeDicBean vtb = new VehicleTypeDicBean();
 List<VehicleTypeDic> vts = vtb.getList();
-
-request.getSession().removeAttribute("vehicleId");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -43,19 +41,6 @@ $(document).ready(function(){
 		}
 	});
 	
-	<%if(vs!=null && vs.size()>0){%>
-	$("#__pagination").pagination(
-			<%=vb.getMaxRecord()%>,
-			{
-				current_page:<%=vb.getPageNumber()%>,
-				items_per_page:<%=vb.getRowsPerPage()%>,
-				num_edge_entries:2,
-				num_display_entries:5,
-				callback:pageSelectCallback
-			}
-		);
-	<%}%>	
-
 	$("#vehicleTypeId")[0].options.add(new Option("所有车型",""));
 	<%if(vts != null){
 		for(VehicleTypeDic vt:vts){ 
@@ -69,29 +54,12 @@ $(document).ready(function(){
 	
 	$("#inputform").submit(function(){
 	});
-
-	initPrint($("#printThisBtn"), "print-vehicle-basic.jsp" );
 });
-
-function pageSelectCallback(pageNumber){
-	$('#pageNumber').val(pageNumber);
-	document.forms[0].submit();
-}
-
-function initPrint( $btn, printPage ){
-	if($btn && printPage){
-		var $form = $btn.parents("form:first");
-		$form.after("<div/>").next("div:last").hide().append($form.clone());
-		$btn.click(function(){
-			$form.next().children("form:last").attr("target","_blank").attr("action",printPage).submit();
-		});
-	}
-}
 </script>
 </head>
 <body>
 <div id="search-div">
-<h3><a href="#">请输入查询条件</a></h3>
+<h3><a href="#">查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
 <form id="inputform" action="search-vehicle-basic.jsp" method="post">
 	<table cellSpacing="5" width="650px;">
@@ -136,14 +104,6 @@ function initPrint( $btn, printPage ){
 				id="simCardNo" name="simCardNo" value="<%=vb.getSimCardNo()%>" /></td>
 		</tr>
 	</table>
-	<p align="center">
-		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=vb.getPageNumber()%>" />
-		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vb.getRowsPerPage()%>" />
-		<input type="submit" value="查   询" />
-		<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-basic.jsp<%=embedded?"?embedded=true":"" %>')"/>
-		<input type="reset" value="重   置" />
-		<input type="button" id="printThisBtn" value="打印当前查询结果" />
-	</p>
 </form>
 </div>
 </div>
@@ -158,13 +118,12 @@ function initPrint( $btn, printPage ){
 		<th width="12%">登记日期</th>
 		<th width="12%">发证日期</th>
 		<th width="8%">年检状态</th>
-		<th width="12%">二级维护到期时间</th>
-		<th width="14%">操作</th>
+		<th >二级维护到期时间</th>
 	</tr>
 	<% for(Vehicle v:vs){ 
 		Util.setNull2DefaultValue(v);%>
 	<tr>
-		<td id="p_<%=v.getVehicleId()%>" colspan="10">
+		<td id="p_<%=v.getVehicleId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
 					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
@@ -175,24 +134,12 @@ function initPrint( $btn, printPage ){
 					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
 					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
 					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
-					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-					<td width="16%">
-					<!-- 
-						<% if(v.getFVehicleBasics().size()>0){ %>
-							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
-						<% } else {%>
-							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">补全车辆基础台帐</a>
-						<% } %>
-					 -->
-					</td>					
+					<td ><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<% } %>
-	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="10" align="center"></td>
-	</tr>
 </table>
 <% } %>
 </body>
