@@ -264,7 +264,10 @@ function doAction() {
 				<td align="left"><%=s.getDescription()%></td>
 			</tr>
 		</table>
-		<p align="center"><input type="button" value="提交" onclick="doAction()" /></p>
+		<p align="center">
+			<input type="button" value="提交" onclick="doAction()" />
+			<input type="button" value="返回" onclick="javascript:history.back()"/>
+		</p>
 	</form>
 </div>
 </div>
