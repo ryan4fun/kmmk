@@ -348,9 +348,9 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 					<input type="text" id="deviceId" name = "deviceId" value="<%=v.getDeviceId()%>" />
 					</td>
 				</tr>
-<%
-if(idstr==null || idstr.equals("")){
-%>
+				<%
+				if(idstr==null || idstr.equals("")){
+				%>
 				<tr>
  					<td width="20%" align="right">GPS设备初始安装费用：</td>
 					<td align="left">
@@ -363,9 +363,9 @@ if(idstr==null || idstr.equals("")){
 					<input type="text" id="dueDate" name = "dueDate" value="" onclick="WdatePicker()"/>
 					</td>
 				</tr>
-<%	
-}
-%>				
+				<%	
+				}
+				%>				
 			</table>
 			<p align="center">
 				<input type="submit" value="提交"/>
