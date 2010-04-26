@@ -250,35 +250,41 @@ function doAction() {
 		<input type="hidden" name = "success" value="update-region-polygon-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-region-faild.jsp"/>
 		<input type="hidden" name = "regionId" value="<%=r.getRegionId()%>"/>
-		
-			<table cellSpacing="5" width="95%">
-			<% if( Util.isCurrentUserAdmin(request) ){ %>
-				<tr>
- 					<td width="20%" align="right">区域所属单位：</td>
-					<td align="left" colSpan="3">
-						<select id="organizationId" name="organizationId" ></select>
-					</td>
-				</tr>
-			<% } %>
-				<tr>
-					<td width="20%" align="right">区域名：</td>
-					<td align="left" width="30%">
-					<input type="text" id="name" name="name" value="<%=r.getName()%>" />
-					</td>
-					<td width="20%" align="right">区域类型：</td>
-					<td align="left" width="30%">
-					<select id="regionTypeId" name="regionTypeId" ></select>
-					</td>
-				</tr> 				
-				<tr>
- 					<td width="20%" align="right">描述：</td>
-					<td align="left" colSpan="3">
-					<input type="text" id="description" name="description" value="<%=r.getDescription()%>" />
-					</td>
-				</tr>
-			</table>
-			<p align="center"><input type="button" value="提交" onclick="doAction()" /><input type="reset" value="重置"/></p>
-
+		<table cellSpacing="5" width="95%">
+		<% if( Util.isCurrentUserAdmin(request) ){ %>
+			<tr>
+					<td width="20%" align="right">区域所属单位：</td>
+				<td align="left" colSpan="3">
+					<select id="organizationId" name="organizationId" ></select>
+				</td>
+			</tr>
+		<% } %>
+			<tr>
+				<td width="20%" align="right">区域名：</td>
+				<td align="left" width="30%">
+				<input type="text" id="name" name="name" value="<%=r.getName()%>" />
+				</td>
+				<td width="20%" align="right">区域类型：</td>
+				<td align="left" width="30%">
+				<select id="regionTypeId" name="regionTypeId" ></select>
+				</td>
+			</tr> 				
+			<tr>
+					<td width="20%" align="right">描述：</td>
+				<td align="left" colSpan="3">
+				<input type="text" id="description" name="description" value="<%=r.getDescription()%>" />
+				</td>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="button" value="提交" onclick="doAction()" />
+			<input type="reset" value="重置"/>
+			<%
+			if(!backUri.equalsIgnoreCase("javascript:history.back()"))
+				backUri = "javascript:href('search-region.jsp')";
+			%>
+		    <input type="button" value="返回" onclick="<%=backUri%>"/>
+	    </p>
 	</form>
 </div>
 </div>

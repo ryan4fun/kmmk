@@ -151,7 +151,12 @@ function initialize() {
 		</table>
 		<p align="center">
 			<input type="button" value="修 改" onclick="javascript:href('update-region-polygon.jsp?regionId=<%=r.getRegionId()%>')"/>
-		    <input type="button" value="返 回" onclick="javascript:history.back()"/></p>
+		    <%
+			if(!backUri.equalsIgnoreCase("javascript:history.back()"))
+				backUri = "javascript:href('search-region.jsp')";
+			%>
+		    <input type="button" value="返回" onclick="<%=backUri%>"/>
+		</p>
 	</form>
 </div>
 </div>

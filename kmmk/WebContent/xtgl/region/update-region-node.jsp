@@ -249,40 +249,47 @@ function resetAll(){
 		<input type="hidden" name = "success" value="update-region-node-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-region-faild.jsp"/>
 		<input type="hidden" name = "regionId" value="<%=c.getRegionId()%>"/>		
-			<table cellSpacing="5" width="95%">
-				<tr>
-					<td width="20%" align="right">节点名：</td>
-					<td width="30%" align="left">
-					<input type="text" id="name" name="name" value="<%=c.getName()%>" />
+		<table cellSpacing="5" width="95%">
+			<tr>
+				<td width="20%" align="right">节点名：</td>
+				<td width="30%" align="left">
+				<input type="text" id="name" name="name" value="<%=c.getName()%>" />
+				</td>
+				<td width="20%" align="right">节点类型：</td>
+				<td width="30%" align="left">
+				<select id="regionTypeId" name="regionTypeId" ></select>
+				</td>					
+			</tr> 				
+			<tr>
+					<td width="20%" align="right">描述：</td>
+				<td align="left" colSpan="3">
+				<input type="text" id="description" name="description" value="<%=c.getDescription()%>" />
+				</td>
+			</tr>
+			<tr>
+					<td width="20%" align="right">根据车辆坐标：</td>
+				<td align="left" colSpan="3">
+					<jsp:include page="/vehicle-selector.jsp" />
 					</td>
-					<td width="20%" align="right">节点类型：</td>
-					<td width="30%" align="left">
-					<select id="regionTypeId" name="regionTypeId" ></select>
-					</td>					
-				</tr> 				
-				<tr>
- 					<td width="20%" align="right">描述：</td>
-					<td align="left" colSpan="3">
-					<input type="text" id="description" name="description" value="<%=c.getDescription()%>" />
-					</td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">根据车辆坐标：</td>
-					<td align="left" colSpan="3">
-						<jsp:include page="/vehicle-selector.jsp" />
-						</td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">经度：</td>
-					<td align="left" colSpan="3">
-						<input type="text" id="centralLong" name="centralLong" value="<%=c.getCentralLong()==null?Util.CENTER_LON:c.getCentralLong()%>" />
-						纬度：<input type="text" id="centralLat" name="centralLat" value="<%=c.getCentralLat()==null?Util.CENTER_LAT:c.getCentralLat()%>" />
-						<input type="button" value="刷新地图" onclick="initialize()"/>
-					</td>
-				</tr>
-			</table>
-			<p align="center"><input type="submit" value="提交"/> <input type="button" value="重置" onclick="resetAll()"/></p>
-
+			</tr>
+			<tr>
+					<td width="20%" align="right">经度：</td>
+				<td align="left" colSpan="3">
+					<input type="text" id="centralLong" name="centralLong" value="<%=c.getCentralLong()==null?Util.CENTER_LON:c.getCentralLong()%>" />
+					纬度：<input type="text" id="centralLat" name="centralLat" value="<%=c.getCentralLat()==null?Util.CENTER_LAT:c.getCentralLat()%>" />
+					<input type="button" value="刷新地图" onclick="initialize()"/>
+				</td>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="submit" value="提交"/>
+			<input type="button" value="重置" onclick="resetAll()"/>
+			<%
+			if(!backUri.equalsIgnoreCase("javascript:history.back()"))
+				backUri = "javascript:href('search-region.jsp')";
+			%>
+		    <input type="button" value="返回" onclick="<%=backUri%>"/>
+	    </p>
 	</form>	
 </div>
 </div>
