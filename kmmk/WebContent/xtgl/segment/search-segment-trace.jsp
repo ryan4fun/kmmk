@@ -81,8 +81,9 @@ $(document).ready(function(){
 </table>
 <p align="center">
 	<input type="submit" value="查   询" />
-	<input type="reset" value="重   置" /></p>
-
+	<input type="reset" value="重   置" />
+	<input type="button" value="返回" onclick="javascript:history.back()"/>
+</p>
 </form>
 </div>
 </div>

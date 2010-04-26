@@ -2,7 +2,6 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/header.jsp"%>
 
-
 <%
 String idstr = request.getParameter("segmentId");
 Segment s = null;
@@ -110,7 +109,11 @@ if(s == null){
 					<input type="text" id="description" name = "description" value="<%=s.getDescription()%>" /></td>
 			</tr>
 		</table>
-		<p align="center"><input type="submit" value="提交"/> <input type="reset" value="重置"/></p>
+		<p align="center">
+			<input type="submit" value="提交"/>
+			<input type="reset" value="重置"/>
+			<input type="button" value="返回" onclick="<%=backUri%>"/>
+		</p>
 	</form>
 </div>
 </div>
