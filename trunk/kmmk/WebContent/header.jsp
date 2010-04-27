@@ -26,7 +26,7 @@
 	String ref = request.getHeader("referer");
 	String reqUri = request.getRequestURI();
 	String backUri = "javascript:history.back()";
-	if(ref.indexOf("/search-")<0){
+	if(ref!=null && ref.indexOf("/search-")<0){
 		backUri = "javascript:href('" + reqUri.replaceFirst(".*((view)|(update))-","search-") + "')";
 	}
 %>
