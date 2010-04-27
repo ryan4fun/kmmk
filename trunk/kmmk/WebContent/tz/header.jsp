@@ -43,13 +43,13 @@ function initPrint( $btn, printPage ){
 
 function convertLinkAnd2InputText( ){
 	$(document.body).find("td>select").each(function(){
-		$(this).parent().html($(this).children(":selected").text());
+		$(this).after($(this).children(":selected").text()).remove();
 	});
 	$(document.body).find("td>input,td>textarea").each(function(){
-		$(this).parent().html($(this).val());
+		$(this).after($(this).val()).remove();
 	});
 	$(document.body).find("td>a").each(function(){
-		$(this).parent().html($(this).html());
+		$(this).parent().html($(this).html()+"&nbsp;");
 	});
 }
 </script>

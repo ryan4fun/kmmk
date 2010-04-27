@@ -3,14 +3,8 @@
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
 <%
-boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
 FVehicleMaterialBean fmb = new FVehicleMaterialBean(request);
-if(embedded){
-	VehicleBean vb = new VehicleBean();
-	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
-	Vehicle v = vb.findById();
-	fmb.setLicensPadNumber(v.getLicensPadNumber());
-}
+fmb.setPagination(false);
 List<FVehicleMaterial> fms = fmb.getList();
 Util.setNull2DefaultValue(fmb);
 %>
@@ -37,6 +31,7 @@ Util.setNull2DefaultValue(fmb);
 </style>
 <script language="JavaScript">
 $(document).ready(function(){
+	convertLinkAnd2InputText();
 	$("#search-div").accordion({
 		header:"h3",		
 		collapsible:false,
@@ -44,35 +39,7 @@ $(document).ready(function(){
 			
 		}
 	});
-	
-	<%if(fms!=null && fms.size()>0){%>
-		$("#__pagination").pagination(
-			<%=fmb.getMaxRecord()%>,
-			{
-				current_page:<%=fmb.getPageNumber()%>,
-				items_per_page:<%=fmb.getRowsPerPage()%>,
-				num_edge_entries:2,
-				num_display_entries:5,
-				callback:pageSelectCallback
-			}
-		);
-	<%}%>
-
-	initPrint($("#printThisBtn"), "print-material.jsp" );
 });
-
-function pageSelectCallback(pageNumber){
-	$('#pageNumber').val(pageNumber);
-	document.forms[0].submit();
-}
-
-function delOrg(id){
-	jConfirm("确定要删除吗？", "警告", function(r){			
-		if(r){
-			delSingleRec('FVehicleMaterialDelAction',id);
-		}
-	});
-}
 </script>
 </head>
 <body>
@@ -108,15 +75,6 @@ function delOrg(id){
 			</td>
 		</tr>
 	</table>
-	<p align="center">
-		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=fmb.getPageNumber()%>" />
-		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=fmb.getRowsPerPage()%>" />
-		<input type="submit" value="查   询" />
-		<input type="button" value="查询所有" onclick="javascript:href('search-material.jsp<%=embedded?"?embedded=true":"" %>')"/>
-		<input type="reset" value="重   置" />
-		<input type="button" value="新增车辆资料" onclick="javascript:href('update-material.jsp<%=embedded?"?embedded=true":"" %>')"/>
-		<input type="button" id="printThisBtn" value="打印当前查询结果" />
-	</p>
 </form>
 </div>
 </div>
@@ -127,7 +85,7 @@ function delOrg(id){
 		<th width="20%">资料名称</th>
 		<th width="20%">最后领用时间</th>
 		<th width="20%">最后领用人</th>
-		<th width="20%">操作</th>
+		<th width="20%">&nbsp</th>
 	</tr>
 	<% for(FVehicleMaterial fm:fms){ 
 		Util.setNull2DefaultValue(fm);%>
@@ -139,17 +97,12 @@ function delOrg(id){
 					<td width="20%"><a href="javascript:href('view-material.jsp?materialId=<%=fm.getMaterialId()%>')"><%=fm.getName()%></a></td>
 					<td width="20%"><a href="javascript:href('view-material.jsp?materialId=<%=fm.getMaterialId()%>')"><%=Util.FormatDateShort(fm.getLastChangeDate())%></a></td>
 					<td width="20%"><a href="javascript:href('view-material.jsp?materialId=<%=fm.getMaterialId()%>')"><%=fm.getLastKeeper()==null?"":fm.getLastKeeper()%></a></td>
-					<td width="20%">
-						<a href="javascript:href('update-material-keep-log.jsp?materialId=<%=fm.getMaterialId()%>')">交接资料</a> | <a href="javascript:href('update-material.jsp?materialId=<%=fm.getMaterialId()%>')">修改</a> | <a href="javascript:delOrg('<%=fm.getMaterialId()%>')">删 除</a>
-					</td>
+					<th width="20%">&nbsp</th>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<% } %>
-	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
-	</tr>
 </table>
 <% } %>
 </body>
