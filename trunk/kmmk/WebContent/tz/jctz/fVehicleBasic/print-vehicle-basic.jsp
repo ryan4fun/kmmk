@@ -33,14 +33,6 @@ List<VehicleTypeDic> vts = vtb.getList();
 </style>
 <script language="JavaScript">
 $(document).ready(function(){
-	$("#search-div").accordion({
-		header:"h3",		
-		collapsible:false,
-		change: function(event, ui) {		
-			
-		}
-	});
-	
 	$("#vehicleTypeId")[0].options.add(new Option("所有车型",""));
 	<%if(vts != null){
 		for(VehicleTypeDic vt:vts){ 
@@ -53,6 +45,13 @@ $(document).ready(function(){
 	$("#annualCheckState").val(["<%=vb.getAnnualCheckState()==null?"":vb.getAnnualCheckState()%>"]);
 
 	convertLinkAnd2InputText();
+	$("#search-div").accordion({
+		header:"h3",		
+		collapsible:false,
+		change: function(event, ui) {		
+			
+		}
+	});
 });
 </script>
 </head>
@@ -109,14 +108,14 @@ $(document).ready(function(){
 <% if(vs.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="8%">车牌号</th>
-		<th width="8%">自编号</th>
-		<th width="8%">车主</th>
-		<th width="8%">车型</th>
-		<th width="8%">核载</th>
-		<th width="12%">登记日期</th>
-		<th width="12%">发证日期</th>
-		<th width="8%">年检状态</th>
+		<th width="11%">车牌号</th>
+		<th width="11%">自编号</th>
+		<th width="11%">车主</th>
+		<th width="11%">车型</th>
+		<th width="11%">核载</th>
+		<th width="11%">登记日期</th>
+		<th width="11%">发证日期</th>
+		<th width="11%">年检状态</th>
 		<th >二级维护到期时间</th>
 	</tr>
 	<% for(Vehicle v:vs){ 
@@ -125,14 +124,14 @@ $(document).ready(function(){
 		<td id="p_<%=v.getVehicleId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
-					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
-					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
-					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getInternalNumber()%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getVehicleTypeDic().getVehicleTypeName()%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getCapability()%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getRegisterDate())%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
+					<td width="11%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
 					<td ><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
 				</tr>
 			</table>

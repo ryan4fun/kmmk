@@ -57,6 +57,8 @@ $(document).ready(function(){
 			}
 		);
 	<%}%>
+
+	initPrint($("#printThisBtn"), "print-runing-log.jsp" );
 });
 
 function pageSelectCallback(pageNumber){
@@ -250,6 +252,7 @@ function delOrg(id){
 		<input type="button" value="查询所有" onclick="javascript:href('search-runing-log.jsp<%=embedded?"?embedded=true":"" %>')"/>
 		<input type="reset" value="重   置" />
 		<input type="button" value="新增经营收支帐" onclick="javascript:href('update-runing-log.jsp<%=embedded?"?embedded=true":"" %>')"/>
+		<input type="button" id="printThisBtn" value="打印当前查询结果" />
 	</p>
 </form>
 </div>
