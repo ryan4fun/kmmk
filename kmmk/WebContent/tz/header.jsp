@@ -25,7 +25,19 @@
 	String ref = request.getHeader("referer");
 	String reqUri = request.getRequestURI();
 	String backUri = "javascript:history.back()";
-	if(ref.indexOf("/search-")<0){
+	if(ref!=null && ref.indexOf("/search-")<0){
 		backUri = "javascript:href('" + reqUri.replaceFirst(".*((view)|(update))-","search-") + "')";
 	}
 %>
+
+<script language="JavaScript">
+function initPrint( $btn, printPage ){
+	if($btn && printPage){
+		var $form = $btn.parents("form:first");
+		$form.after("<div/>").next("div:last").hide().append($form.clone());
+		$btn.click(function(){
+			$form.next().children("form:last").attr("target","_blank").attr("action",printPage).submit();
+		});
+	}
+}
+</script>

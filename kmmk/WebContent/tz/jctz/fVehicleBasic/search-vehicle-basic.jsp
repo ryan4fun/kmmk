@@ -78,15 +78,6 @@ function pageSelectCallback(pageNumber){
 	document.forms[0].submit();
 }
 
-function initPrint( $btn, printPage ){
-	if($btn && printPage){
-		var $form = $btn.parents("form:first");
-		$form.after("<div/>").next("div:last").hide().append($form.clone());
-		$btn.click(function(){
-			$form.next().children("form:last").attr("target","_blank").attr("action",printPage).submit();
-		});
-	}
-}
 </script>
 </head>
 <body>
