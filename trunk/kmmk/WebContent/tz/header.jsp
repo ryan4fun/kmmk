@@ -42,7 +42,10 @@ function initPrint( $btn, printPage ){
 }
 
 function convertLinkAnd2InputText( ){
-	$(document.body).find(":input").each(function(){
+	$(document.body).find("td>select").each(function(){
+		$(this).parent().html($(this).children(":selected").text());
+	});
+	$(document.body).find("td>input,td>textarea").each(function(){
 		$(this).parent().html($(this).val());
 	});
 	$(document.body).find("td>a").each(function(){
