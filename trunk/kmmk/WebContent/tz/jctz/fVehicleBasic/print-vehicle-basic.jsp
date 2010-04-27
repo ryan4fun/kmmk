@@ -51,9 +51,8 @@ $(document).ready(function(){
 	$("#vehicleTypeId").val(["<%=vb.getVehicleTypeId()==null?"":vb.getVehicleTypeId()%>"]);
 
 	$("#annualCheckState").val(["<%=vb.getAnnualCheckState()==null?"":vb.getAnnualCheckState()%>"]);
-	
-	$("#inputform").submit(function(){
-	});
+
+	convertLinkAnd2InputText();
 });
 </script>
 </head>
