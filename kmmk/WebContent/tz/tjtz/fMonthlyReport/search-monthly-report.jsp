@@ -57,8 +57,7 @@ $(document).ready(function(){
 		);
 	<%}%>	
 
-	$("#inputform").submit(function(){
-	});
+	initPrint($("#printThisBtn"), "print-monthly-report.jsp" );
 });
 
 function pageSelectCallback(pageNumber){
@@ -120,6 +119,7 @@ function pageSelectCallback(pageNumber){
 		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-monthly-report.jsp<%=embedded?"?embedded=true":"" %>')"/>
 		<input type="reset" style="width: 100px;" value="重   置" />
 		<input type="button" value="新增月台帐" onclick="javascript:href('update-monthly-report.jsp<%=embedded?"?embedded=true":"" %>')"/>
+		<input type="button" id="printThisBtn" value="打印当前查询结果" />
 	</p>
 </form>
 </div>

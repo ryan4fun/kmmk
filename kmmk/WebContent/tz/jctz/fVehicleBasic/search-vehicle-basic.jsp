@@ -67,9 +67,6 @@ $(document).ready(function(){
 
 	$("#annualCheckState").val(["<%=vb.getAnnualCheckState()==null?"":vb.getAnnualCheckState()%>"]);
 	
-	$("#inputform").submit(function(){
-	});
-
 	initPrint($("#printThisBtn"), "print-vehicle-basic.jsp" );
 });
 
