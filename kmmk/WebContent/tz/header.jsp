@@ -40,4 +40,13 @@ function initPrint( $btn, printPage ){
 		});
 	}
 }
+
+function convertLinkAnd2InputText( ){
+	$(document.body).find(":input").each(function(){
+		$(this).parent().html($(this).val());
+	});
+	$(document.body).find("td>a").each(function(){
+		$(this).parent().html($(this).html());
+	});
+}
 </script>
