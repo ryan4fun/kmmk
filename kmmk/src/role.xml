@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 1 = 平台管理员
 2 = 企业管理员
 3 = 规则管理员
@@ -9,33 +9,32 @@
 12 = 监管用户
  -->
 <FunctionGroups>
-	<FunctionGroup folder="" name="欢迎页" roles="*">
-		<Function name="修改密码" roles="*">			
+	<FunctionGroup folder="" name="欢迎页" roles="*" img="1_0.png">
+		<Function name="修改密码" roles="*" img="1_1.png">
 			<Link url="change-pwd.jsp" name="修改密码" roles="*" />
 		</Function>
-		<Function name="退出系统" roles="*">			
+		<Function name="退出系统" roles="*" img="1_2.png">
 			<Link url="javascript:logout()" name="退出" roles="*" />
 		</Function>
-		
 	</FunctionGroup>
-	<FunctionGroup folder="tzgl" name="车辆台帐" roles="1,2,11">		
-		<Function name="车辆基本信息管理" roles="1,2,11">			
+	<FunctionGroup folder="tzgl" name="车辆台帐" roles="1,2,11" img="2_0.png">
+		<Function name="车辆基本信息管理" roles="1,2,11" img="2_1.png">
 			<Link url="tzgl/vehicle/search-vehicle.jsp" name="车辆管理" roles="1,2,11" />
 		</Function>
-		<Function name="GPS费用管理" roles="1,2,11">			
+		<Function name="GPS费用管理" roles="1,2,11" img="2_2.png">
 			<link url="tzgl/gpsFee/search-gpsfee.jsp" name="收费历史查询" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="dwjg" name="定位监管" roles="1,2,3,11,12">
-		<Function name="车辆基本运行状态管理" roles="1,2,3,11,12">			
+	<FunctionGroup folder="dwjg" name="定位监管" roles="1,2,3,11,12" img="3_0.png">
+		<Function name="车辆基本运行状态管理" roles="1,2,3,11,12" img="3_1.png">
 			<Link url="dwjg/vehicle-status/search-vehicle-status.jsp" name="车辆运行状态管理" roles="1,2,3,11,12" />
 		</Function>
-		<Function name="车辆违规信息管理" roles="1,2,4,11,12">			
+		<Function name="车辆违规信息管理" roles="1,2,4,11,12" img="3_1.png">
 			<Link url="tzgl/alertHistory/search-alert.jsp" name="车辆违规信息管理" roles="1,2,4,11,12" />
-		</Function>		
+		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="rwgl" name="任务管理" roles="1,2,3,11">			
-		<Function name="任务管理" roles="1,2,3,11">			
+	<FunctionGroup folder="rwgl" name="任务管理" roles="1,2,3,11" img="4_0.png">
+		<Function name="任务管理" roles="1,2,3,11" img="4_1.png">
 			<!--
 			<Link url="rwgl/task/search-task.jsp?taskState=1&amp;lockState=true" name="已分配的任务" roles="1,2,3,11" />
 			<Link url="rwgl/task/search-task.jsp?taskState=2&amp;lockState=true" name="进行中的任务" roles="1,2,3,11" />
@@ -44,61 +43,61 @@
 			<Link url="rwgl/task/search-task.jsp?taskState=11&amp;lockState=true" name="中途放弃的任务" roles="1,2,3,11" />
 			-->
 			<Link url="rwgl/task/search-task.jsp" name="任务管理" roles="1,2,3,11" />
-		</Function>		
+		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="fzcx" name="辅助查询" roles="1,2,3,11,12">			
-		<Function name="根据车辆" roles="1,2,3,11,12">			
+	<FunctionGroup folder="fzcx" name="辅助查询" roles="1,2,3,11,12" img="5_0.png">
+		<Function name="根据车辆" roles="1,2,3,11,12" img="5_1.png">
 			<Link url="fzcx/vehicle2map/search-vehicle-map.jsp" name="车辆到地图" roles="1,2,3,11,12" />
-		</Function>		
-		<Function name="根据地图" roles="1,2,3,11,12">			
+		</Function>
+		<Function name="根据地图" roles="1,2,3,11,12" img="5_2.png">
 			<Link url="fzcx/map2vehicle/search-map-vehicle.jsp" name="地图到车辆" roles="1,2,3,11,12" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="org-struc" name="单位架构" roles="1,2">			
-		<Function name="营运单位管理" roles="1,2,11">			
+	<FunctionGroup folder="org-struc" name="单位架构" roles="1,2" img="6_0.png">
+		<Function name="营运单位管理" roles="1,2,11" img="6_1.png">
 			<Link url="org-struc/organization/search-organization.jsp" name="营运单位管理" roles="1,2" />
 		</Function>
-		<Function name="系统用户管理" roles="1,2">			
+		<Function name="系统用户管理" roles="1,2" img="6_2.png">
 			<Link url="org-struc/users/search-users.jsp" name="系统用户管理" roles="1,2" />
 		</Function>
-		<Function name="驾驶员" roles="1,2">	
+		<Function name="驾驶员" roles="1,2" img="6_3.png">
 			<Link url="org-struc/driver/search-driver.jsp" name="驾驶员管理" roles="1,2" />
 		</Function>
-		<Function name="押运员" roles="1,2">			
+		<Function name="押运员" roles="1,2" img="6_4.png">
 			<Link url="org-struc/escorter/search-escorter.jsp" name="押运员管理" roles="1,2" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="xtgl" name="系统管理" roles="1,2,3">			
-		<Function name="GPS设备安装管理" roles="1">			
+	<FunctionGroup folder="xtgl" name="系统管理" roles="1,2,3" img="7_0.png">
+		<Function name="GPS设备安装管理" roles="1" img="7_1.png">
 			<Link url="xtgl/gps-device/search-gps-device.jsp" name="管理GPS设备安装记录" roles="1" />
 		</Function>
-		<Function name="数据字典管理" roles="1">			
-			<Link url="xtgl/dictionary/search-region-type.jsp" name="区域类型管理" roles="1" />
-			<Link url="xtgl/dictionary/search-alert-type.jsp" name="报警种类管理" roles="1" />
-			<Link url="xtgl/dictionary/search-vehicle-type.jsp" name="车辆类别管理" roles="1" />
+		<Function name="数据字典管理" roles="1" img="7_2_0.png">
+			<Link url="xtgl/dictionary/search-region-type.jsp" name="区域类型管理" roles="1"  img="7_2_1.png" />
+			<Link url="xtgl/dictionary/search-alert-type.jsp" name="报警种类管理" roles="1" img="7_2_2.png" />
+			<Link url="xtgl/dictionary/search-vehicle-type.jsp" name="车辆类别管理" roles="1" img="7_2_3.png" />
 		</Function>
-		<Function name="区域管理" roles="1,2,3">			
+		<Function name="区域管理" roles="1,2,3" img="7_3.png">
 			<Link url="xtgl/region/search-region.jsp" name="区域管理" roles="1,2,3" />
 		</Function>
-		<Function name="公用路线管理" roles="1,2,3">			
+		<Function name="公用路线管理" roles="1,2,3" img="7_4.png">
 			<Link url="xtgl/segment/search-segment.jsp" name="路线管理" roles="1,2,3" />
-		</Function>		
+		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="" name="报警框" roles="*">
-		<Function name="显示报警框" roles="*">			
+	<FunctionGroup folder="" name="报警框" roles="*" img="8_0.png">
+		<Function name="显示报警框" roles="*" img="8_1.png">
 			<Link url="javascript:__popup.maximize()" name="显示报警框" roles="*" />
 		</Function>
-		<Function name="隐藏报警框" roles="*">			
+		<Function name="隐藏报警框" roles="*" img="8_2.png">
 			<Link url="javascript:__popup.hide()" name="隐藏报警框" roles="*" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="help" name="帮助" roles="*">			
-		<Function name="帮助" roles="1,2,3,4,11,12">			
+	<FunctionGroup folder="help" name="帮助" roles="*" img="9_0.png">
+		<Function name="帮助" roles="1,2,3,4,11,12" img="9_1.png">
 			<Link url="about:blank" name="帮助" roles="1,2,3,4,11,12" />
 		</Function>
-		<Function name="联系我们" roles="1,2,3,4,11,12">			
-			<Link url="about:blank" name="北京公司" roles="1,2,3,4,11,12" />
-			<Link url="about:blank" name="昆明公司" roles="1,2,3,4,11,12" />
+		<Function name="联系我们" roles="1,2,3,4,11,12" img="9_2_0.png">
+			<Link url="about:blank" name="北京公司" roles="1,2,3,4,11,12" img="9_2_1.png" />
+			<Link url="about:blank" name="昆明公司" roles="1,2,3,4,11,12" img="9_2_2.png" />
 		</Function>
 	</FunctionGroup>
 </FunctionGroups>
