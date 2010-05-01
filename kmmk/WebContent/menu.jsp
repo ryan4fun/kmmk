@@ -19,20 +19,19 @@
 	int intRole = login.getRoles().iterator().next();
 	String role = String.valueOf(intRole);
 	
-	List<Tab> tabs = RoleService.getTabs();
 %><div id="menu-div" style="width:100%;height:30px; border-bottom:1px solid gray; text-align: left;" class="myMenu">
 			<table class="rootVoices" cellspacing='0' cellpadding='0' border='0'>
 			<tr><%
 				StringBuilder submenu1 = new StringBuilder();
 				StringBuilder submenu2 = new StringBuilder();
-				for(Tab tab : tabs){
-			%><td class="rootVoice {menu: '<%=(tab.folder + tab.name)%>'}" ><%=tab.name%></td><%
-					submenu1.append("<div id=\"" + (tab.folder + tab.name) + "\" class=\"mbmenu\">");
+				for(Tab tab : RoleService.getTabs()){
+			%><td class="rootVoice {menu: '<%=(tab.folder + tab.name)%>'}" ><img src="<%=basePath + "/images/menu/ico/" +tab.getImg()%>" ></img><%=tab.name%></td><%
+					submenu1.append("<div id='" + (tab.folder + tab.name) + "' class='mbmenu' >");
 					for(Accordion a:tab.accordions){
 						if(!RoleService.isAllowed(role, a.roles))
 							continue;
 						if( a.links.size()>1 ){
-							submenu1.append("<a class=\"{menu: '" + a.name + "'}\">" + a.name + "</a>");
+							submenu1.append("<a class=\"{menu: '" + a.name + "'}\" img=\"" + a.getImg() + "\">" + a.name + "</a>");
 							submenu2.append("<div id=\"" + a.name + "\" class=\"mbmenu\">");
 							for(Link l:a.links){
 								if(!RoleService.isAllowed(role, l.roles))
@@ -43,7 +42,7 @@
 									 url = basePath+url;
 									 target = "main";
 								}
-								submenu2.append("<a target='" + target + "' href='" + url + "'>" + l.name + "</a>");
+								submenu2.append("<a target='" + target + "' href='" + url + "' img='" + l.getImg() + "'>" + l.name + "</a>");
 							}
 							submenu2.append("</div>");
 						} else {
@@ -56,7 +55,7 @@
 									 url = basePath+url;
 									 target = "main";
 								}
-								submenu1.append("<a target='" + target + "' href='" + url + "'>" + l.name + "</a>");
+								submenu1.append("<a target='" + target + "' href='" + url + "' img='" + a.getImg() + "'>" + l.name + "</a>");
 							}
 						}
 					}
