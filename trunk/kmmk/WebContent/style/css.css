@@ -41,10 +41,10 @@ EM {
 	POSITION: relative;
 	TEXT-ALIGN: center;
 	MARGIN: 0px auto;
-	WIDTH: 543px;
-	HEIGHT: 453px;
-	TOP: 0px;
-	background-image: url(images/mk_login_G.jpg);
+	WIDTH: 868px;
+	HEIGHT: 429px;
+	TOP: 50px;
+	background-image: url(images/GPSloginbg.jpg);
 }
 
 #login_tz {

@@ -58,22 +58,18 @@
 </head>
 <body style="">
 <DIV id="login">
-<table width="543px" height="453px" >
+<table width="100%" height="100%">
 <tr>
 <td>
 <FORM id="inputform" method="post" action="mkgps.do"><input value="LoginAction"
 type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name="success" /> 
 <input value="login-faild.jsp" type="hidden" name="failed" /> 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<TABLE border="0" cellSpacing="0" width="472px" height="120px" cellsPadding="0">
+
+<TABLE border="0" cellSpacing="0" width="290px" height="120px" cellsPadding="0" style="position:relative;left:404px;top:30px;">
   <TBODY>
   <TR>
-    <TD width="20%" align="right"><span class="STYLE1">用户名：</span></TD>
-    <TD width="80%" align="left"><input style="WIDTH: 150px" value="admin" 
+    <TD width="23%" align="right"><span class="STYLE1">用户名：</span></TD>
+    <TD width="77%" align="left"><input style="WIDTH: 150px" value="admin" 
       name="loginName" /></TD></TR>
   <TR>
     <TD align="right"><span class="STYLE1">密码：</span></TD>
@@ -89,8 +85,8 @@ type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name=
      </span></td>
      </tr>
   <TR>
-    <TD width="20%" align="right"><span class="STYLE1">皮肤风格：</span></TD>
-    <TD width="80%" align="left"><select style="WIDTH: 154px" id="skin" name="skin"> 
+    <TD width="23%" align="right"><span class="STYLE1">皮肤风格：</span></TD>
+    <TD width="77%" align="left"><select style="WIDTH: 154px" id="skin" name="skin"> 
         <option value="redmond" selected>浅 蓝</option>
 		<option value="blitzer">红 色</option> 
         <option value="south-street">浅 绿</option>
@@ -98,22 +94,19 @@ type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name=
 		<option value="ui-lightness">温 暖</option></select>
 	</TD></TR>
   <TR>
-    <TD width="20%" align="right"><span class="STYLE1">地图引擎：</span></TD>
-    <TD width="80%" align="left">
-		<%--
-		<% for( Map.Entry en :LoginInfo.mapTypes.entrySet()){ %>
-			<input type="radio" name="map" value="<%=en.getKey()%>" /><%=en.getValue()%>&nbsp;&nbsp;&nbsp;&nbsp;
-		<% } %>
-    	<input type="radio" name="map" value="google" checked />Google Map&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="map" value="mapabc"/>Map ABC
-    	--%>
-    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP_CN%>" checked /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP_CN)%>&nbsp;&nbsp;&nbsp;&nbsp;
-    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP%>" /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP)%>&nbsp;&nbsp;&nbsp;&nbsp;
+    <TD width="23%" align="right"><span class="STYLE1">地图引擎：</span></TD>
+    <TD width="77%" align="left">
+    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP_CN%>" checked /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP_CN)%>&nbsp;
+    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP%>" /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP)%>&nbsp;
     	<input type="radio" name="map" value="<%=LoginInfo.MAPABC%>"/><%=LoginInfo.mapTypes.get(LoginInfo.MAPABC)%>
     </TD></TR>
-  </TBODY></TABLE><br /><br /><br />
-
-<input style="position:absolute;top:344px;left:84px;WIDTH: 66px" value="登录" type="submit" />
-<input style="position:absolute;top:344px;left:180px;WIDTH: 66px" value="重置" type="reset" />
+   <TR>
+    <TD colSpan="2">
+    <br/>    
+   	<input style="" value="登录" type="submit" />
+	<input style="" value="重置" type="reset" />	
+    </TD></TR>
+  </TBODY></TABLE>
 </FORM>
 </td>
 </tr>
