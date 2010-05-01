@@ -143,14 +143,16 @@ public class RoleService extends AbstractService {
 			String groupRoles = group.attributeValue("roles");
 			String gName = group.attributeValue("name");
 			String folder = group.attributeValue("folder");
-			Tab tab = new Tab(gName, folder, groupRoles);
+			String img = group.attributeValue("img");
+			Tab tab = new Tab(gName, folder, groupRoles, img);
 			tabs.add(tab);
 			List functions = group.elements();
 			for(int j=0; j<functions.size(); j++){
 				Element function = (Element)functions.get(j);
 				String functionRoles = function.attributeValue("roles");
 				String fName = function.attributeValue("name");
-				Accordion accordion = new Accordion(fName, functionRoles);
+				String fImg = function.attributeValue("img");
+				Accordion accordion = new Accordion(fName, functionRoles, fImg);
 				tab.accordions.add(accordion);
 				List links = function.elements();
 				for(int k=0; k<links.size(); k++){
@@ -158,7 +160,8 @@ public class RoleService extends AbstractService {
 					String linkRoles = _link.attributeValue("roles");
 					String lName = _link.attributeValue("name");
 					String url = _link.attributeValue("url");
-					Link link = new Link(lName, url, linkRoles);
+					String lImg = _link.attributeValue("img");
+					Link link = new Link(lName, url, linkRoles, lImg);
 					accordion.links.add(link);
 				}
 			}
