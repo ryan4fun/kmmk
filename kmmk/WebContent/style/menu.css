@@ -16,8 +16,12 @@
 	font-size:12px;
 	line-height:12px;
 	padding:8px;
-	cursor: pointer;
-	
+	cursor: pointer;	
+}
+
+.rootVoices img {
+	margin-bottom:-4px;
+	margin-right:4px;
 }
 
 .rootVoices td.rootVoice.selected{
