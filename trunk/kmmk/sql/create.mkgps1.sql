@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, April 11, 2010 16:14:20
+ * Date Created : Tuesday, May 04, 2010 23:36:04
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -155,6 +155,7 @@ CREATE TABLE f_gasfee(
     vehicleID      int                 NULL,
     operator       varchar(20)         NULL,
     feeType        char(10)            NULL,
+    yearMonth      char(10)            NULL,
     CONSTRAINT PK72 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -184,6 +185,7 @@ CREATE TABLE f_maintain(
     studio          varchar(100)        NULL,
     operator        varchar(20)         NULL,
     feeType         smallint            NULL,
+    yearMonth       char(10)            NULL,
     CONSTRAINT PK70 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -286,6 +288,7 @@ CREATE TABLE f_runingLog(
     actualRoadFee         double precision    NULL,
     managementFee         double precision    NULL,
     overLimitFee          double precision    NULL,
+    yearMonth             varchar(10)         NULL,
     CONSTRAINT PK71 PRIMARY KEY NONCLUSTERED (ID)
 )
 go
@@ -364,6 +367,7 @@ CREATE TABLE f_tyres(
     usedDistance          double precision    NULL,
     price                 double precision    NULL,
     operator              varchar(20)         NULL,
+    yearMonth             char(10)            NULL,
     CONSTRAINT PK68_1 PRIMARY KEY NONCLUSTERED (tyreId)
 )
 go
