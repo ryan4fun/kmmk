@@ -29,7 +29,7 @@
 		<Function name="车辆基本运行状态管理" roles="1,2,3,11,12" img="3_1.png">
 			<Link url="dwjg/vehicle-status/search-vehicle-status.jsp" name="车辆运行状态管理" roles="1,2,3,11,12" />
 		</Function>
-		<Function name="车辆违规信息管理" roles="1,2,4,11,12" img="3_1.png">
+		<Function name="车辆违规信息管理" roles="1,2,4,11,12" img="3_2.png">
 			<Link url="tzgl/alertHistory/search-alert.jsp" name="车辆违规信息管理" roles="1,2,4,11,12" />
 		</Function>
 	</FunctionGroup>
