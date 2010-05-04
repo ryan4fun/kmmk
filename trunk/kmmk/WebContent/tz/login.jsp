@@ -64,11 +64,11 @@
 	<input value="FLoginAction" type="hidden" name="action" />
 	<input value="login-succ.jsp" type="hidden" name="success" /> 
 	<input value="login-faild.jsp" type="hidden" name="failed" /> 
-	<TABLE border="0" cellSpacing="0" cellsPadding="0" style="width:300px;height:130px;position:absolute;left:320px;top:313px">
+	<TABLE border="0" cellSpacing="0" cellsPadding="0" style="width:300px;height:130px;position:relative;left:312px;top:313px">
 	  <TBODY>
 	  <TR>
-	    <TD width="20%" align="right"><span class="STYLE1">用户名：</span></TD>
-	    <TD width="80%" align="left"><input style="WIDTH: 150px" value="admin" 
+	    <TD width="23%" align="right"><span class="STYLE1">用户名：</span></TD>
+	    <TD align="left"><input style="WIDTH: 150px" value="admin" 
 	      name="loginName" /></TD></TR>
 	  <TR>
 	    <TD align="right"><span class="STYLE1">密码：</span></TD>
@@ -83,8 +83,8 @@
 	     </span></td>
 	  </tr>
 	  <TR>
-	    <TD width="20%" align="right"><span class="STYLE1">皮肤风格：</span></TD>
-	    <TD width="80%" align="left"><select style="WIDTH: 154px" id="skin" name="skin"> 
+	    <TD align="right"><span class="STYLE1">皮肤风格：</span></TD>
+	    <TD align="left"><select style="WIDTH: 154px" id="skin" name="skin"> 
 	        <option value="redmond" selected>浅 蓝</option>
 			<option value="blitzer">红 色</option> 
 	        <option value="south-street">浅 绿</option>
@@ -93,10 +93,10 @@
 		</TD></TR>
 	  <TR>
 	    <TD align="center" colspan="2">
-	    	<input value="登录" type="submit" />
+	    	<input value="登录" type="submit" style="position:relative;left:-30px;" />
 			<input value="重置" type="reset" /></TD>
-	  <tr>
-	  </TBODY></TABLE>
+	  </TR>
+	</TBODY></TABLE>
 </FORM>
 </DIV>
 
