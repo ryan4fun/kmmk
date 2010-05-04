@@ -19,7 +19,7 @@
 	int intRole = login.getRoles().iterator().next();
 	String role = String.valueOf(intRole);
 	
-%><div id="menu-div" style="width:100%;height:30px; border-bottom:1px solid gray; text-align: left;" class="myMenu">
+%><div id="menu-div" style="width:100%;height:41px; border-bottom:1px solid gray; text-align: left;" class="myMenu">
 			<table class="rootVoices" cellspacing='0' cellpadding='0' border='0'>
 			<tr><%
 				StringBuilder submenu1 = new StringBuilder();
