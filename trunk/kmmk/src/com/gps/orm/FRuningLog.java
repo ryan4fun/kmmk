@@ -44,6 +44,7 @@ public class FRuningLog implements java.io.Serializable {
 	private Double actualRoadFee;
 	private Double managementFee;
 	private Double overLimitFee;
+	private String yearMonth;
 
 	public FRuningLog() {
 	}
@@ -63,7 +64,7 @@ public class FRuningLog implements java.io.Serializable {
 			Double actualDistance, Double planedGas, Double actualGas,
 			Double gasByCash, Double gasByCard, Double gasByCashCost,
 			Double gasByCardCost, Double planedRoadFee, Double actualRoadFee,
-			Double managementFee, Double overLimitFee) {
+			Double managementFee, Double overLimitFee, String yearMonth) {
 		this.id = id;
 		this.vehicle = vehicle;
 		this.ticketNo = ticketNo;
@@ -99,6 +100,7 @@ public class FRuningLog implements java.io.Serializable {
 		this.actualRoadFee = actualRoadFee;
 		this.managementFee = managementFee;
 		this.overLimitFee = overLimitFee;
+		this.yearMonth = yearMonth;
 	}
 
 	public long getId() {
@@ -379,6 +381,14 @@ public class FRuningLog implements java.io.Serializable {
 
 	public void setOverLimitFee(Double overLimitFee) {
 		this.overLimitFee = overLimitFee;
+	}
+
+	public String getYearMonth() {
+		return this.yearMonth;
+	}
+
+	public void setYearMonth(String yearMonth) {
+		this.yearMonth = yearMonth;
 	}
 
 }

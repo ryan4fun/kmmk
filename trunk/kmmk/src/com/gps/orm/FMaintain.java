@@ -21,6 +21,7 @@ public class FMaintain implements java.io.Serializable {
 	private String studio;
 	private String operator;
 	private Short feeType;
+	private String yearMonth;
 
 	public FMaintain() {
 	}
@@ -32,7 +33,7 @@ public class FMaintain implements java.io.Serializable {
 	public FMaintain(long id, Vehicle vehicle, Date maintainDate,
 			String category, String subCategory, Double cost, Integer quantity,
 			String handler, String comment, String studio, String operator,
-			Short feeType) {
+			Short feeType, String yearMonth) {
 		this.id = id;
 		this.vehicle = vehicle;
 		this.maintainDate = maintainDate;
@@ -45,6 +46,7 @@ public class FMaintain implements java.io.Serializable {
 		this.studio = studio;
 		this.operator = operator;
 		this.feeType = feeType;
+		this.yearMonth = yearMonth;
 	}
 
 	public long getId() {
@@ -141,6 +143,14 @@ public class FMaintain implements java.io.Serializable {
 
 	public void setFeeType(Short feeType) {
 		this.feeType = feeType;
+	}
+
+	public String getYearMonth() {
+		return this.yearMonth;
+	}
+
+	public void setYearMonth(String yearMonth) {
+		this.yearMonth = yearMonth;
 	}
 
 }
