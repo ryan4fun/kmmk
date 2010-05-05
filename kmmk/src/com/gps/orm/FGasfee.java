@@ -19,6 +19,7 @@ public class FGasfee implements java.io.Serializable {
 	private String comment;
 	private String operator;
 	private String feeType;
+	private String yearMonth;
 
 	public FGasfee() {
 	}
@@ -29,7 +30,7 @@ public class FGasfee implements java.io.Serializable {
 
 	public FGasfee(long id, Vehicle vehicle, Date occurDate, Double deposit,
 			Double refill, Double refillMoney, Double balance, String comment,
-			String operator, String feeType) {
+			String operator, String feeType, String yearMonth) {
 		this.id = id;
 		this.vehicle = vehicle;
 		this.occurDate = occurDate;
@@ -40,6 +41,7 @@ public class FGasfee implements java.io.Serializable {
 		this.comment = comment;
 		this.operator = operator;
 		this.feeType = feeType;
+		this.yearMonth = yearMonth;
 	}
 
 	public long getId() {
@@ -120,6 +122,14 @@ public class FGasfee implements java.io.Serializable {
 
 	public void setFeeType(String feeType) {
 		this.feeType = feeType;
+	}
+
+	public String getYearMonth() {
+		return this.yearMonth;
+	}
+
+	public void setYearMonth(String yearMonth) {
+		this.yearMonth = yearMonth;
 	}
 
 }
