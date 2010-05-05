@@ -110,5 +110,8 @@
         <property name="overLimitFee" type="java.lang.Double">
             <column name="overLimitFee" precision="53" scale="0" />
         </property>
+        <property name="yearMonth" type="string">
+            <column name="yearMonth" length="10" />
+        </property>
     </class>
 </hibernate-mapping>
