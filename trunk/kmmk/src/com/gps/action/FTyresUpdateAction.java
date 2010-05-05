@@ -1,5 +1,6 @@
 package com.gps.action;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.gps.Message;
@@ -28,6 +29,8 @@ public class FTyresUpdateAction extends Action{
 		if(ft.getDisposeDistanceRec()!=null){
 			ft.setUsedDistance(ft.getDisposeDistanceRec()-ft.getInstallDistanceRec());
 		}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM"); 
+		ft.setYearMonth(sdf.format(ft.getInstallDate()));
 		getServiceLocator().getFTyresService().updateFTyres(ft);
 		request.setAttribute("tyreId", String.valueOf(ft.getTyreId()));
 	}

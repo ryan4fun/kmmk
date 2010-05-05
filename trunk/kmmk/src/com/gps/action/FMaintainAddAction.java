@@ -1,5 +1,7 @@
 package com.gps.action;
 
+import java.text.SimpleDateFormat;
+
 import com.gps.Message;
 import com.gps.orm.FMaintain;
 import com.gps.orm.Vehicle;
@@ -12,6 +14,8 @@ public class FMaintainAddAction extends Action{
 		if (v != null) {
 			generateAllSimpleProp(ft);
 			ft.setVehicle(v);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM"); 
+			ft.setYearMonth(sdf.format(ft.getMaintainDate()));
 			getServiceLocator().getFMaintainService().addFMaintain(ft);
 		} else {
 			throw new Message("无法找到该车辆!");

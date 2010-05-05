@@ -1,5 +1,6 @@
 package com.gps.action;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import com.gps.Message;
@@ -23,6 +24,8 @@ public class FGasfeeAddAction extends Action{
 				ft.setBalance(list.get(0).getBalance()+ft.getDeposit()-ft.getRefillMoney());
 			else
 				ft.setBalance(ft.getDeposit()-ft.getRefillMoney());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM"); 
+			ft.setYearMonth(sdf.format(ft.getOccurDate()));
 			getServiceLocator().getFGasfeeService().addFGasFee(ft);
 		} else {
 			throw new Message("无法找到该车辆!");
