@@ -35,5 +35,8 @@
         <property name="feeType" type="string">
             <column name="feeType" length="10" />
         </property>
+        <property name="yearMonth" type="string">
+            <column name="yearMonth" length="10" />
+        </property>
     </class>
 </hibernate-mapping>
