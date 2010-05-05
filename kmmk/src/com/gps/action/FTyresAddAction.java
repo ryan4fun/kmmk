@@ -1,5 +1,6 @@
 package com.gps.action;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.gps.Message;
@@ -24,6 +25,8 @@ public class FTyresAddAction extends Action{
 			if(ft.getDisposeDistanceRec()!=null){
 				ft.setUsedDistance(ft.getDisposeDistanceRec()-ft.getInstallDistanceRec());
 			}
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM"); 
+			ft.setYearMonth(sdf.format(ft.getInstallDate()));
 			getServiceLocator().getFTyresService().addFTyres(ft);
 		} else {
 			throw new Message("无法找到该车辆!");

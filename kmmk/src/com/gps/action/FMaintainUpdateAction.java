@@ -1,5 +1,7 @@
 package com.gps.action;
 
+import java.text.SimpleDateFormat;
+
 import com.gps.Message;
 import com.gps.orm.FMaintain;
 import com.gps.orm.Vehicle;
@@ -16,6 +18,8 @@ public class FMaintainUpdateAction extends Action{
 		
 		generateAllSimpleProp(ft);
 		ft.setVehicle(v);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMM"); 
+		ft.setYearMonth(sdf.format(ft.getMaintainDate()));
 		getServiceLocator().getFMaintainService().updateFMaintain(ft);
 		request.setAttribute("id", String.valueOf(ft.getId()));
 	}
