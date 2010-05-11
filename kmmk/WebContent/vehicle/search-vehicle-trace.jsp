@@ -133,7 +133,6 @@ function initialize() {
 			int i = 0;
 			Short tag = 0;
 			for(Object trace:ts){
-				
 				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
 				if( tempValue == null )
 					continue;
@@ -229,7 +228,6 @@ function initialize() {
 			int i = 0;
 			Short tag = 0;
 			for(Object trace:ts){
-				
 				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
 				if( tempValue == null )
 					continue;
@@ -260,40 +258,36 @@ function initialize() {
 					if(tempValue > maxLon)
 						maxLon = tempValue;
 				}
-				
-				//for stop point marker add by Ryan
-				tag = (Short)PropertyUtils.getProperty(trace,"tag");
-				
-				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){		
-					int tempIdx = i-1;
-					if(tempIdx < 0){
-						tempIdx =0;
-					}
-					Date nextRecieveTime;
-					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
-					if(tempIdx < ts.size()){
-						Object nextPoint = ts.get(tempIdx);
-						nextRecieveTime = (Date)PropertyUtils.getProperty(nextPoint,"recieveTime");
-					}else{
-						nextRecieveTime = recieveTime;
-					}
-					
-					long stopTime = recieveTime.getTime()- nextRecieveTime.getTime();
-					//double stopTimeInDouble = stopTime;
-					//double stopHours = stopTimeInDouble/(1000*60*60);
-					String stopTimeDisp = Util.formateLongToDays(stopTime);
-					%>
-					stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=stopTimeDisp%>",stopIcon));
-					<%
-				}
-				i++;
-				//----------Ryan end here
-				
 				if(lat != null && lon != null){
 					%>
 					points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));
 					<%
 				}
+				
+				//for stop point marker add by Ryan
+				tag = (Short)PropertyUtils.getProperty(trace,"tag");
+				
+				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){
+					if(i==0){
+						%>
+						stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=Util.formateLongToDays(0)%>",stopIcon));
+						<%
+					} else {
+						recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
+						Object prevPoint = ts.get(i-1);
+						Date prevRecieveTime = (Date)PropertyUtils.getProperty(prevPoint,"recieveTime");
+						String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
+						lat = (Double)PropertyUtils.getProperty(prevRecieveTime,"latValue");
+						lon = (Double)PropertyUtils.getProperty(prevRecieveTime,"longValue");
+						if(lat != null && lon != null){
+							%>
+							stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=stopTimeDisp%>",stopIcon));
+							<%
+						}
+					}
+				}
+				i++;
+				//----------Ryan end here
 			}
 			%>
 			setCenterByLatLngs(mapObj, <%=maxLat%>+CN_OFFSET_LAT, <%=maxLon%>+CN_OFFSET_LON, <%=minLat%>+CN_OFFSET_LAT, <%=minLon%>+CN_OFFSET_LON);
