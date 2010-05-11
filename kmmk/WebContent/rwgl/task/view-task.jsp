@@ -141,44 +141,34 @@ function initialize() {
 						continue;
 					lon = tempValue;
 				}
-				
+				if(lat != null && lon != null){
+					%>
+						points.push(new MLngLat(<%=lon%>, <%=lat%>));
+					<%
+				}
 				//for stop point marker add by Ryan
 				tag = (Short)PropertyUtils.getProperty(trace,"tag");
-				
 				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){
-					int tempIdx = i-1;
-					if(tempIdx < 0){
-						tempIdx=0;
-					}
-
-					//recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
-					Date nextRecieveTime;
 					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
-					if(tempIdx < ts.size()){
-						Object nextPoint = ts.get(tempIdx);
-						nextRecieveTime = (Date)PropertyUtils.getProperty(nextPoint,"recieveTime");
-					}else{
-						nextRecieveTime = recieveTime;
+					if(i==0){
+						%>
+						tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), "<%=Util.formateLongToDays(0)%>", stopIcon);
+						<%
+					} else {
+						Object prevPoint = ts.get(i-1);
+						Date prevRecieveTime = (Date)PropertyUtils.getProperty(prevPoint,"recieveTime");
+						String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
+						lat = (Double)PropertyUtils.getProperty(prevPoint,"latValue");
+						lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
+						if(lat != null && lon != null){
+							%>
+							tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), "<%=stopTimeDisp%>", stopIcon);
+							<%
+						}
 					}
-					
-					long stopTime = recieveTime.getTime() -nextRecieveTime.getTime();
-					//double stopTimeInDouble = stopTime;
-					//double stopHours = stopTimeInDouble/(1000*60*60);
-					String stopTimeDisp = Util.formateLongToDays(stopTime);
-				
-					%>
-					
-					tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), "<%=stopTimeDisp%>", stopIcon);
-					<%
 				}
 				i++;
 				//----------Ryan end here
-				
-				if(lat != null && lon != null){
-				%>
-					points.push(new MLngLat(<%=lon%>, <%=lat%>));
-				<%
-				}
 			}
 			%>
 			var lineopt = new MLineOptions();
@@ -249,40 +239,34 @@ function initialize() {
 					if(tempValue > maxLon)
 						maxLon = tempValue;
 				}
-				
-				//for stop point marker add by Ryan
-				tag = (Short)PropertyUtils.getProperty(trace,"tag");
-				
-				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){		
-					int tempIdx = i-1;
-					if(tempIdx < 0){
-						tempIdx =0;
-					}
-					Date nextRecieveTime;
-					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
-					if(tempIdx < ts.size()){
-						Object nextPoint = ts.get(tempIdx);
-						nextRecieveTime = (Date)PropertyUtils.getProperty(nextPoint,"recieveTime");
-					}else{
-						nextRecieveTime = recieveTime;
-					}
-					
-					long stopTime = recieveTime.getTime()- nextRecieveTime.getTime();
-					//double stopTimeInDouble = stopTime;
-					//double stopHours = stopTimeInDouble/(1000*60*60);
-					String stopTimeDisp = Util.formateLongToDays(stopTime);
-					%>
-					stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=stopTimeDisp%>",stopIcon));
-					<%
-				}
-				i++;
-				//----------Ryan end here
-				
 				if(lat != null && lon != null){
 					%>
 					points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));
 					<%
 				}
+				//for stop point marker add by Ryan
+				tag = (Short)PropertyUtils.getProperty(trace,"tag");
+				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){
+					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
+					if(i==0){
+						%>
+						stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=Util.formateLongToDays(0)%>",stopIcon));
+						<%
+					} else {
+						Object prevPoint = ts.get(i-1);
+						Date prevRecieveTime = (Date)PropertyUtils.getProperty(prevPoint,"recieveTime");
+						String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
+						lat = (Double)PropertyUtils.getProperty(prevPoint,"latValue");
+						lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
+						if(lat != null && lon != null){
+							%>
+							stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=stopTimeDisp%>",stopIcon));
+							<%
+						}
+					}
+				}
+				i++;
+				//----------Ryan end here
 			}
 			%>
 			setCenterByLatLngs(mapObj, <%=maxLat%>+CN_OFFSET_LAT, <%=maxLon%>+CN_OFFSET_LON, <%=minLat%>+CN_OFFSET_LAT, <%=minLon%>+CN_OFFSET_LON);
