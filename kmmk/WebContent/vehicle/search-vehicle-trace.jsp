@@ -17,7 +17,7 @@ if( tb.getQueryType()==null ) {
 		tb.setRecieveTimeStart(Util.getYesterdayTime());
 	if(tb.getRecieveTimeEnd()==null)
 		tb.setRecieveTimeEnd(Util.getCurrentDateTime());
-	tb.setQueryPrecision(TrackBean.QUERY_TENMIN);
+	tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 } else if( tb.getQueryType() == TrackBean.QUERY_72HOUR ) {
 	if(tb.getRecieveTimeStart()==null){
 		Calendar yesterday = Calendar.getInstance();
@@ -26,7 +26,7 @@ if( tb.getQueryType()==null ) {
 	}
 	if(tb.getRecieveTimeEnd()==null)
 		tb.setRecieveTimeEnd(Util.getCurrentDateTime());
-	tb.setQueryPrecision(TrackBean.QUERY_TENMIN);
+	tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 }
 
 List ts = tb.getList();
