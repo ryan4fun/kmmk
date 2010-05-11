@@ -354,8 +354,8 @@ function createMarker(rcvTime,latlng,stopTimeDisp,icon) {
 		<td align="left">
 			<select id="queryPrecision" name="queryPrecision" >
 				<option value="<%=TrackBean.QUERY_HOURLY%>">一小时精度</option>
-				<option value="<%=TrackBean.QUERY_TENMIN%>" selected>十分钟精度</option>
-				<option value="<%=TrackBean.QUERY_REALTIME%>">一分钟精度</option>
+				<option value="<%=TrackBean.QUERY_TENMIN%>">十分钟精度</option>
+				<option value="<%=TrackBean.QUERY_REALTIME%>" selected>一分钟精度</option>
 			</select></td>
 		<td width="20%" align="right">车牌号：</td>
 		<td><jsp:include page="/vehicle-selector.jsp" />
