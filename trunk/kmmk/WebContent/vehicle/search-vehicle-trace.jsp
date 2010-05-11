@@ -268,17 +268,17 @@ function initialize() {
 				tag = (Short)PropertyUtils.getProperty(trace,"tag");
 				
 				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){
+					recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
 					if(i==0){
 						%>
 						stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=Util.formateLongToDays(0)%>",stopIcon));
 						<%
 					} else {
-						recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
 						Object prevPoint = ts.get(i-1);
 						Date prevRecieveTime = (Date)PropertyUtils.getProperty(prevPoint,"recieveTime");
 						String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
-						lat = (Double)PropertyUtils.getProperty(prevRecieveTime,"latValue");
-						lon = (Double)PropertyUtils.getProperty(prevRecieveTime,"longValue");
+						lat = (Double)PropertyUtils.getProperty(prevPoint,"latValue");
+						lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
 						if(lat != null && lon != null){
 							%>
 							stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),"<%=stopTimeDisp%>",stopIcon));
