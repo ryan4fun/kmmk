@@ -5,8 +5,6 @@
 
 <%
 TrackBean tb = new TrackBean(request);
-String queryType = request.getParameter("");
-
 if( tb.getQueryType()==null ) {
 	if(tb.getRecieveTimeStart()==null)
 		tb.setRecieveTimeStart(Util.getYesterdayTime());
@@ -17,7 +15,6 @@ if( tb.getQueryType()==null ) {
 		tb.setRecieveTimeStart(Util.getYesterdayTime());
 	if(tb.getRecieveTimeEnd()==null)
 		tb.setRecieveTimeEnd(Util.getCurrentDateTime());
-	tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 } else if( tb.getQueryType() == TrackBean.QUERY_72HOUR ) {
 	if(tb.getRecieveTimeStart()==null){
 		Calendar yesterday = Calendar.getInstance();
@@ -26,9 +23,8 @@ if( tb.getQueryType()==null ) {
 	}
 	if(tb.getRecieveTimeEnd()==null)
 		tb.setRecieveTimeEnd(Util.getCurrentDateTime());
-	tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 }
-
+tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 List ts = tb.getList();
 Util.setNull2DefaultValue(tb);
 %>
@@ -215,9 +211,10 @@ function initialize() {
 			Double maxLat = Util.MIN_LAT;
 			Double maxLon = Util.MIN_LON;
 			
-			int i = 0;
+			int i = -1;
 			Short tag = 0;
 			for(Object trace:ts){
+				i++;
 				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
 				if( tempValue == null )
 					continue;
@@ -274,7 +271,6 @@ function initialize() {
 						}
 					}
 				}
-				i++;
 				//----------Ryan end here
 			}
 			%>
