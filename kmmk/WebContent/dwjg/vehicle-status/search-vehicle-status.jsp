@@ -105,8 +105,9 @@ font-weight: bold;
 	<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=vsb.getRowsPerPage()%>" />
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-status.jsp')"/>
-	<input type="reset" value="重   置" /></p>
-
+	<input type="reset" value="重   置" />
+	<input type="button" id="defColBtn" value="定制数据列" />
+</p>
 </form>
 </div>
 </div>
@@ -292,6 +293,14 @@ $(document).ready(function(){
 		$("#alertDiv").append("<img src='<%=basePath %>images/status/completed-44.gif' width='44' height='44' />");
 		setTimeout("MM_controlSound('play','document.CS1248450275753','<%=basePath %>images/ALARM2.WAV')", <%=i%>*1000);
 	<% } %>
+
+	$("#defColBtn").click(function(){
+		var ret = showModalDialog("def-vehicle-status-col.jsp",null,"dialogWidth=800px;dialogHeight=600px");
+		if(ret)
+			window.location.reload(true);
+		//else
+			//alert("定制车辆状态信息数据列失败！");
+	});
 });
 </script>
 <div align="center" id="alertDiv">
