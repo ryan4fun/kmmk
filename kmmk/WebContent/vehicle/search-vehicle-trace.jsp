@@ -296,8 +296,8 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,startRunTime) {
 			tipOption.content = ( stopTimeDisp ? "<b>停留时间: </b>" + stopTimeDisp   : "" )+ 
 				"<b><br>纬度: </b>" + latlng.latY + 
 				"<b><br>经度: </b>" + latlng.lngX + 
-				( rcvTime ? "<b><br>停车时间: </b>" + rcvTime : "" ) + 
-				( startRunTime ? "<b><br>离开时间: </b>" + startRunTime   : "" );
+				( startRunTime ? "<b><br>停车时间: </b>" + startRunTime   : "" ) +
+				( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" );
 		} else {
 			tipOption.content = ( rcvTime ? "<b>接收时间: </b>" + rcvTime : "" ) +
 				"<b><br>纬度: </b>" + latlng.latY + 
@@ -315,9 +315,8 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,startRunTime) {
 					( stopTimeDisp ? "<b>停留时间: </b>" + stopTimeDisp   : "" ) +
 					"<b><br>纬度: </b>" + latlng.lat() + 
 					"<b><br>经度: </b>" + latlng.lng() +
-					( rcvTime ? "<b><br>停车时间: </b>" + rcvTime : "" ) +
-					( startRunTime ? "<b><br>离开时间: </b>" + startRunTime   : "" )
-				);
+					( startRunTime ? "<b><br>停车时间: </b>" + startRunTime   : "" ) + 
+					( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" ));
 			} else {
 				marker.openInfoWindowHtml(
 					( rcvTime ? "<b>接收时间: </b>" + rcvTime : "" ) +
