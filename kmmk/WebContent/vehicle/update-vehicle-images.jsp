@@ -53,7 +53,7 @@ if(v == null){
 		<td width="245" height="185">
 		
 <%
-	if(v.getImgPath1() != null && !v.getImgPath1().equals("!")){
+	if(v.getImgPath1() != null && !v.getImgPath1().equals("")){
 %>
 	<img src="<%=basePath+v.getImgPath1() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
@@ -63,7 +63,7 @@ if(v == null){
 		</td>
 		<td width="245" height="185">
 <%
-	if(v.getImgPath2() != null && !v.getImgPath2().equals("!")){
+	if(v.getImgPath2() != null && !v.getImgPath2().equals("")){
 %>
 	<img src="<%=basePath+v.getImgPath2() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
@@ -72,7 +72,7 @@ if(v == null){
 		</td>
 		<td width="245" height="185">
 <%
-	if(v.getImgPath3() != null && !v.getImgPath3().equals("!")){
+	if(v.getImgPath3() != null && !v.getImgPath3().equals("")){
 %>
 	<img src="<%=basePath+v.getImgPath3() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
@@ -81,10 +81,34 @@ if(v == null){
 		</td>
 	</tr>
 	<tr>
-		<td align="center">图片一</td>
-		<td align="center">图片二</td>
-		<td align="center">图片三</td>
-	</tr>
+		<td align="center">图片一 
+<%
+	if(v.getImgPath1() != null && !v.getImgPath1().equals("")) {
+%>
+		 &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="imgPath1_delete" value="1"> 删除
+<%
+	}
+%>
+		</td>
+		<td align="center">图片二
+<%
+	if(v.getImgPath2() != null && !v.getImgPath2().equals("")) {
+%>
+		 &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="imgPath2_delete" value="1"> 删除
+<%
+	}
+%>
+		</td>
+		<td align="center">图片三
+<%
+	if(v.getImgPath3() != null && !v.getImgPath2().equals("")) {
+%>
+		 &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="imgPath3_delete" value="1"> 删除
+<%
+	}
+%>		
+		</td>
+	</tr>	
 	<tr>
 		<td align="left"><input type="file" name="imgPath1"></td>
 		<td align="left"><input type="file" name="imgPath2"></td>
