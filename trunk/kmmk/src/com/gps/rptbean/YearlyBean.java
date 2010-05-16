@@ -10,10 +10,29 @@ package com.gps.rptbean;
 public class YearlyBean {
 
 	int month;
+	String licensePad;
+	int vehicleId;
 	double measure1;
 	double measure2;
 	double measure3;
 	
+	public YearlyBean(){
+		
+	}
+	
+	public YearlyBean(int month){
+		
+		this.month = month;
+	}
+	
+	
+	public int getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(int vehicleId) {
+		this.vehicleId = vehicleId;
+	}
 	
 	public int getMonth() {
 		return month;
@@ -21,6 +40,15 @@ public class YearlyBean {
 	public void setMonth(int month) {
 		this.month = month;
 	}
+	
+	public String getLicensePad() {
+		return licensePad;
+	}
+
+	public void setLicensePad(String licensePad) {
+		this.licensePad = licensePad;
+	}
+	
 	public double getMeasure1() {
 		return measure1;
 	}
