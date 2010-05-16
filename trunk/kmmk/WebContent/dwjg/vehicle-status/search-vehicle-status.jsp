@@ -114,16 +114,18 @@ font-weight: bold;
 <% if(vss.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="11%">车牌号</th>		
+		<th width="8%">车牌号</th>		
 		<th width="8%">行驶状态</th>
 		<th width="7%">在线</th>
 		<th width="7%">求救</th>
 		<th width="11%">限制区域报警</th>
 		<th width="8%">超速</th>
 		<th width="8%">疲劳</th>
-		<th width="18%">最后通信时间</th>
-		<th width="14%">任务状态</th>
+		<th width="15%">最后通信时间</th>
+		<th width="12%">任务状态</th>
+		<th width="8%">SIM卡号</th>
 		<th width="8%">查看</th>
+		
 	</tr>
 	<%
 	for(VehicleStatus vs:vss){
@@ -159,10 +161,10 @@ font-weight: bold;
 		String viewURL = "javascript:href('view-vehicle-status.jsp?vehicleId="+vs.getVehicleId()+"')";
 	%>
 	<tr>
-		<td id="p_<%=vs.getVehicleId()%>" colspan="10">
+		<td id="p_<%=vs.getVehicleId()%>" colspan="11">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>
-				<td width="11%"><a href="<%=viewURL %>"><%=vs.getLicensPadNumber()%></a></td>
+				<td width="8%"><a href="<%=viewURL %>"><%=vs.getLicensPadNumber()%></a></td>
 
 				<td width="8%"><a href="<%=viewURL %>"><%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%></a></td>
 				<td width="7%"><a href="<%=viewURL %>"><%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%></a></td>
@@ -170,34 +172,37 @@ font-weight: bold;
 				<td width="11%"><a <%=limitAreaClass %> href="<%=viewURL %>"><%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%></a></td>
 				<td width="8%"><a <%=overSpeedClass %> href="<%=viewURL %>"><%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%></a></td>
 				<td width="8%"><a <%=tiredDriveClass %> href="<%=viewURL %>"><%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%></a></td>
-				<td width="18%"><a href="<%=viewURL %>"><%=helper.getLastMessage()==null?"-":Util.FormatDateLong(helper.getLastMessage())%></a></td>
+				<td width="15%"><a href="<%=viewURL %>"><%=helper.getLastMessage()==null?"-":Util.FormatDateLong(helper.getLastMessage())%></a></td>
 				<% if(vs.getTaskId()!=null && vs.getTaskId() > 0 ) {
 						TaskBean tb = new TaskBean();
 						tb.setTaskId(vs.getTaskId());
 						Task task = tb.findById();
 						if(task!=null){
 				%>
-							<td width="14%"><a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')"><%=task.getTaskName()%></a></td>
+							<td width="12%"><a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')"><%=task.getTaskName()%></a></td>
 				<%						
 						} else {
 				%>
-							<td width="14%">任务查询错误</td>
+							<td width="12%">任务查询错误</td>
 				<%			
 						}
 					} else {
 				%>
-					<td width="14%"><%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%></td>
+					<td width="12%"><%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%></td>
 				<%		
 					}
 				%>
-				<td width="8%"><a href="javascript:href('<%=basePath %>tzgl/vehicle/view-vehicle.jsp?vehicleId=<%=vs.getVehicleId()%>')">车辆信息</a></td>
+				<td width="8%"><%=vs.getVehicle().getSimCardNo() %></td>
+				<td width="8%">
+					<a href="javascript:href('<%=basePath %>tzgl/vehicle/view-vehicle.jsp?vehicleId=<%=vs.getVehicleId()%>')">车辆</a> | <a href="javascript:href('<%=basePath %>org-struc/users/view-users.jsp?userId=<%=vs.getVehicle().getUsers().getUserId()%>')">车主</a>
+				</td>
 			</tr>
 		</table>
 		</td>
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="10" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
 	</tr>
 </table>
 <% } %>
