@@ -68,6 +68,15 @@
         <property name="speedLimitation" type="java.lang.Double">
             <column name="speedLimitation" precision="53" scale="0" />
         </property>
+        <property name="imgPath1" type="string">
+            <column name="imgPath1" length="100" />
+        </property>
+        <property name="imgPath2" type="string">
+            <column name="imgPath2" length="100" />
+        </property>
+        <property name="imgPath3" type="string">
+            <column name="imgPath3" length="100" />
+        </property>
         <set name="FToolses" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="vehicleID" />
