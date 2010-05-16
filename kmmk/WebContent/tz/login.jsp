@@ -64,18 +64,18 @@
 	<input value="FLoginAction" type="hidden" name="action" />
 	<input value="login-succ.jsp" type="hidden" name="success" /> 
 	<input value="login-faild.jsp" type="hidden" name="failed" /> 
-	<TABLE border="0" cellSpacing="0" cellsPadding="0" style="width:300px;height:130px;position:relative;left:312px;top:313px">
+	<TABLE border="0" cellSpacing="0" width="310" height="120" cellsPadding="0" style="position:absolute;left:315px;top:314px;">
 	  <TBODY>
 	  <TR>
 	    <TD width="23%" align="right"><span class="STYLE1">用户名：</span></TD>
-	    <TD align="left"><input style="WIDTH: 150px" value="admin" 
+	    <TD align="left"><input style="WIDTH: 120px" value="admin" 
 	      name="loginName" /></TD></TR>
 	  <TR>
 	    <TD align="right"><span class="STYLE1">密码：</span></TD>
-	    <TD align="left"><input style="WIDTH: 150px" value="222222" type="password" name="passwd" /></TD></TR>
+	    <TD align="left"><input style="WIDTH: 120px" value="222222" type="password" name="passwd" /></TD></TR>
 	  <TR>
 	    <TD align="right"><span class="STYLE1">校验码：</span></TD>
-	    <TD align="left"><input style="WIDTH: 150px" name="verifyCode" /></TD></TR>
+	    <TD align="left"><input style="WIDTH: 120px" name="verifyCode" /></TD></TR>
 	  <tr>
 	     <td>&nbsp;</td><td><span style="float:left;">
 	     <img id="varifyImg" style="padding: 0px; margin: 0px;" vspace="0" src="mkgps.do?action=GetVarifyImgAction" />
@@ -93,6 +93,8 @@
 		</TD></TR>
 	  <TR>
 	    <TD align="center" colspan="2">
+	    	<br/>
+	    	<br/>
 	    	<input value="登录" type="submit" style="position:relative;left:-30px;" />
 			<input value="重置" type="reset" /></TD>
 	  </TR>
