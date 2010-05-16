@@ -129,17 +129,16 @@ $(document).ready(function(){
 		<td width="245" height="185">
 		
 <%
-	if(v.getImgPath1() != null && !v.getImgPath1().equals("!")){
+	if(v.getImgPath1() != null && !v.getImgPath1().equals("")){
 %>
 	<img src="<%=basePath+v.getImgPath1() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
 	}
 %>
-
 		</td>
 		<td width="245" height="185">
 <%
-	if(v.getImgPath2() != null && !v.getImgPath2().equals("!")){
+	if(v.getImgPath2() != null && !v.getImgPath2().equals("")){
 %>
 	<img src="<%=basePath+v.getImgPath2() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
@@ -148,7 +147,7 @@ $(document).ready(function(){
 		</td>
 		<td width="245" height="185">
 <%
-	if(v.getImgPath3() != null && !v.getImgPath3().equals("!")){
+	if(v.getImgPath3() != null && !v.getImgPath3().equals("")){
 %>
 	<img src="<%=basePath+v.getImgPath3() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		

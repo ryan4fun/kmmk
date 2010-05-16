@@ -26,7 +26,15 @@ public class VehicleImagesUpdateAction extends Action{
 		if (imagePath3 != null)
 			v.setImgPath3(imagePath3);
 		
-		
+		if(this.getFileItemValue("imgPath1_delete") != null && this.getFileItemValue("imgPath1_delete").equals("1")){
+			v.setImgPath1("");
+		}
+		if(this.getFileItemValue("imgPath2_delete") != null && this.getFileItemValue("imgPath2_delete").equals("1")){
+			v.setImgPath2("");
+		}
+		if(this.getFileItemValue("imgPath3_delete") != null && this.getFileItemValue("imgPath3_delete").equals("1")){
+			v.setImgPath3("");
+		}
 		getServiceLocator().getVehicleService().updateVehicle(v);
 		request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
 	}
