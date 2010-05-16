@@ -65,7 +65,7 @@
 type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name="success" /> 
 <input value="login-faild.jsp" type="hidden" name="failed" /> 
 
-<TABLE border="0" cellSpacing="0" width="290px" height="120px" cellsPadding="0" style="position:relative;left:404px;top:30px;">
+<TABLE border="0" cellSpacing="0" width="310" height="120" cellsPadding="0" style="position:absolute;left:398px;top:174px;">
   <TBODY>
   <TR>
     <TD width="23%" align="right"><span class="STYLE1">用户名：</span></TD>
@@ -96,13 +96,13 @@ type="hidden" name="action" /> <input value="login-succ.jsp" type="hidden" name=
   <TR>
     <TD width="23%" align="right"><span class="STYLE1">地图引擎：</span></TD>
     <TD width="77%" align="left">
-    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP_CN%>" checked /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP_CN)%>&nbsp;
-    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP%>" /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP)%>&nbsp;
+    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP_CN%>" checked /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP_CN)%>
+    	<input type="radio" name="map" value="<%=LoginInfo.GOOGLE_MAP%>" /><%=LoginInfo.mapTypes.get(LoginInfo.GOOGLE_MAP)%>
     	<input type="radio" name="map" value="<%=LoginInfo.MAPABC%>"/><%=LoginInfo.mapTypes.get(LoginInfo.MAPABC)%>
     </TD></TR>
    <TR>
     <TD colSpan="2">
-    <br/>    
+    <br/>
    	<input style="" value="登录" type="submit" />
 	<input style="" value="重置" type="reset" />	
     </TD></TR>
