@@ -187,7 +187,7 @@ public class Util {
 			String relativePath = "user_images"+File.separator+folderName+File.separator;
 			String absolutePath = MKgpsServlet.WEB_ROOT_ABSOLUTE_PATH + relativePath;
 			String imageName = relativePath+saveFile(absolutePath, postfix, imageItem.get());
-			imageName = imageName.replaceAll("\\\\", "/");			
+			imageName = imageName.replaceAll("\\\\", "/");
 			return imageName;
 		}
 		return null;

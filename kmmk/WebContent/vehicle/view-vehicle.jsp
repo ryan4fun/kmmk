@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/header.jsp"%>
-
-
 <%
 String idstr = request.getParameter("vehicleId");
 Vehicle v = null;
@@ -15,6 +13,7 @@ if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -43,6 +42,8 @@ $(document).ready(function(){
 			
 		}
 	});
+
+	$("imgDiv").show();
 });
 </script>
 </head>
@@ -122,8 +123,45 @@ $(document).ready(function(){
 	</form>
 </div>
 <h3><a href="#">图 片</a></h3>
-<div style="padding:2px;overflow:visible">
-	
+<div id="imgDiv" style="padding:2px;overflow:visible;display:none;">
+<table width="740">
+	<tr>
+		<td width="245" height="185">
+		
+<%
+	if(v.getImgPath1() != null && !v.getImgPath1().equals("!")){
+%>
+	<img src="<%=basePath+v.getImgPath1() %>" width="240" height="180" style="border:1px solid black;"></img>
+<%		
+	}
+%>
+
+		</td>
+		<td width="245" height="185">
+<%
+	if(v.getImgPath2() != null && !v.getImgPath2().equals("!")){
+%>
+	<img src="<%=basePath+v.getImgPath2() %>" width="240" height="180" style="border:1px solid black;"></img>
+<%		
+	}
+%>
+		</td>
+		<td width="245" height="185">
+<%
+	if(v.getImgPath3() != null && !v.getImgPath3().equals("!")){
+%>
+	<img src="<%=basePath+v.getImgPath3() %>" width="240" height="180" style="border:1px solid black;"></img>
+<%		
+	}
+%>
+		</td>
+	</tr>
+	<tr>
+		<td align="center"><a href="update-vehicle-images.jsp?vehicleId=<%=idstr %>">图片一</a></td>
+		<td align="center"><a href="update-vehicle-images.jsp?vehicleId=<%=idstr %>">图片二</a></td>
+		<td align="center"><a href="update-vehicle-images.jsp?vehicleId=<%=idstr %>">图片三</a></td>
+	</tr>
+</table>
 </div>
 </body>
 </html>
