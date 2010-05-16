@@ -13,7 +13,7 @@ if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
-String imageFolder = "user_images/";
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -55,7 +55,7 @@ String imageFolder = "user_images/";
 <%
 	if(v.getImgPath1() != null && !v.getImgPath1().equals("!")){
 %>
-	<img src="<%=basePath+imageFolder+v.getImgPath1() %>" width="240" height="180" style="border:1px solid black;"></img>
+	<img src="<%=basePath+v.getImgPath1() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
 	}
 %>
@@ -65,7 +65,7 @@ String imageFolder = "user_images/";
 <%
 	if(v.getImgPath2() != null && !v.getImgPath2().equals("!")){
 %>
-	<img src="<%=basePath+imageFolder+v.getImgPath2() %>" width="240" height="180" style="border:1px solid black;"></img>
+	<img src="<%=basePath+v.getImgPath2() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
 	}
 %>
@@ -74,7 +74,7 @@ String imageFolder = "user_images/";
 <%
 	if(v.getImgPath3() != null && !v.getImgPath3().equals("!")){
 %>
-	<img src="<%=basePath+imageFolder+v.getImgPath3() %>" width="240" height="180" style="border:1px solid black;"></img>
+	<img src="<%=basePath+v.getImgPath3() %>" width="240" height="180" style="border:1px solid black;"></img>
 <%		
 	}
 %>
