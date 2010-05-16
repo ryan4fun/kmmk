@@ -1245,6 +1245,9 @@ CREATE TABLE vehicle(
     msgIntervel           smallint            NULL,
     monitLevel            smallint            NULL,
     speedLimitation       double precision    NULL,
+    imgPath1              varchar(100)        NULL,
+    imgPath2              varchar(100)        NULL,
+    imgPath3              varchar(100)        NULL,
     CONSTRAINT PK3 PRIMARY KEY NONCLUSTERED (vehicleID)
 )
 go
