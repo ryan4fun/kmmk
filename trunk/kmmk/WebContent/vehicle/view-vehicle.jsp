@@ -107,19 +107,21 @@ $(document).ready(function(){
 					<td align="left"><%=v.getSimCardNo()%></td>
 					<td align="right">GPS设备号：</td>
 					<td align="left"><%=v.getDeviceId()%></td>
-				</tr>				
-				<tr>
+				</tr>
+				<!--
  					<td align="right">车辆状态：</td>
 					<td align="left" colSpan="3"><%=v.getVehicleState()%></td>
 				</tr>
+				-->
+				<tr>
 			</table>
 			<p align="center">
-				<input type="button" value="修改" onclick="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
-				<input type="button" value="返回" onclick="javascript:history.back()"/>	</p>
+				<input type="button" value="修 改" onclick="javascript:href('update-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"/>
+				<input type="button" value="返 回" onclick="javascript:history.back()"/>	</p>
 
 	</form>
 </div>
-<h3><a href="#">车辆图片</a></h3>
+<h3><a href="#">图 片</a></h3>
 <div style="padding:2px;overflow:visible">
 	
 </div>
