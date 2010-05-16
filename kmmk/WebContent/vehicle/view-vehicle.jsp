@@ -38,7 +38,7 @@ if(v == null){
 $(document).ready(function(){
 	$("#search-div").accordion({
 		header:"h3",		
-		collapsible:false,
+		collapsible:true,
 		change: function(event, ui) {		
 			
 		}
@@ -51,76 +51,66 @@ $(document).ready(function(){
 <h3><a href="#">车辆信息</a></h3>
 <div style="padding:2px;overflow:visible">
 	<form id="inputform" action="#" method="post">		
-			<table cellSpacing="5" width="95%">
+			<table cellSpacing="5" width="600" style="table-layout:fixed">
+				<tr style="display:none;">
+					<td width="20%"></td>
+					<td width="30%"></td>
+					<td width="20%"></td>
+					<td width="30%"></td>
+				</tr>
  				<tr>
- 					<td width="20%" align="right">车牌号：</td>
+ 					<td align="right">车牌号：</td>
 					<td align="left"><%=v.getLicensPadNumber()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">自编号：</td>
+					<td align="right">自编号：</td>
 					<td align="left"><%=v.getInternalNumber()%></td>
-				</tr>
+				</tr>				
 				<tr> 
- 					<td width="20%" align="right">所属单位：</td>
+ 					<td align="right">所属单位：</td>
 					<td align="left">
 					<%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%>
 					</td>
-				</tr>
-				<tr>
-					<td width="20%" align="right">车主：</td>
+					<td align="right">车主：</td>
 					<td align="left"><%=v.getUsers()==null?"":v.getUsers().getRealName()%></td>
-				</tr>
+				</tr>				
 				<tr>
- 					<td width="20%" align="right">发动机号：</td>
+ 					<td align="right">发动机号：</td>
 					<td align="left"><%=v.getEngineNumber()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">车架号：</td>
+					<td align="right">车架号：</td>
 					<td align="left"><%=v.getFrameNumber()%></td>
-				</tr>
+				</tr>				
 				<tr>
- 					<td width="20%" align="right">车型：</td>
+ 					<td align="right">车型：</td>
 					<td align="left"><%=v.getVehicleTypeDic().getVehicleTypeName()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">厂牌型号：</td>
+					<td align="right">厂牌型号：</td>
 					<td align="left"><%=v.getModelNumber()%></td>
-				</tr>
+				</tr>				
 				<tr>
- 					<td width="20%" align="right">核载：</td>
-					<td align="left"><%=v.getCapability()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">登记日期：</td>
+ 					<td align="right">登记日期：</td>
 					<td align="left"><%=Util.FormatDateShort(v.getRegisterDate())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">发证日期：</td>
+					<td align="right">发证日期：</td>
 					<td align="left"><%=Util.FormatDateShort(v.getApprovalDate())%></td>
 				</tr>
 				<tr>
- 					<td width="20%" align="right">年检状态：</td>
+ 					<td align="right">核载：</td>
+					<td align="left"><%=v.getCapability()%></td>
+					<td align="right">年检状态：</td>
 					<td align="left"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></td>
-				</tr>
+				</tr>				
 				<tr>
- 					<td width="20%" align="right">二级维护到期时间：</td>
+ 					<td align="right">二级维护到期时间：</td>
 					<td align="left"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">资产基数：</td>
+					<td align="right">资产基数：</td>
 					<td align="left"><%=v.getAssetBaseValue()==null?"":v.getAssetBaseValue()%></td>
-				</tr>
+				</tr>				
 				<tr>
- 					<td width="20%" align="right">SIM卡号：</td>
+ 					<td align="right">SIM卡号：</td>
 					<td align="left"><%=v.getSimCardNo()%></td>
-				</tr>
-				<tr>
- 					<td width="20%" align="right">GPS设备号：</td>
+					<td align="right">GPS设备号：</td>
 					<td align="left"><%=v.getDeviceId()%></td>
-				</tr>
+				</tr>				
 				<tr>
- 					<td width="20%" align="right">车辆状态：</td>
-					<td align="left"><%=v.getVehicleState()%></td>
+ 					<td align="right">车辆状态：</td>
+					<td align="left" colSpan="3"><%=v.getVehicleState()%></td>
 				</tr>
 			</table>
 			<p align="center">
@@ -129,6 +119,9 @@ $(document).ready(function(){
 
 	</form>
 </div>
+<h3><a href="#">车辆图片</a></h3>
+<div style="padding:2px;overflow:visible">
+	
 </div>
 </body>
 </html>
