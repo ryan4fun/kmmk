@@ -85,9 +85,6 @@ function resize(){
 }
 
 var mapObj = null,tmpMarker = null,startMarker = null,endMarker = null;
-var startIcon = "<%=mapImagePath %>images/google_icon/start.png";
-var endIcon = "<%=mapImagePath %>images/google_icon/running.png";
-var stopIcon = "<%=mapImagePath %>images/google_icon/stop.png";
 function initialize() {
 	<% if(ts.size()>0){ %>
     if (GBrowserIsCompatible()) {
@@ -96,6 +93,7 @@ function initialize() {
     	Double lat = null;
       	Double lon = null;
       	Date recieveTime = null;
+      	Short tag = 0;
       	
       	Object firstPoint = ts.get(0);
 		lat = (Double)PropertyUtils.getProperty(firstPoint,"latValue");
@@ -109,7 +107,7 @@ function initialize() {
 			<%
 			if(lat != null && lon != null){
 			%>
-				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), startIcon);
+				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), START_ICON);
 	      	<%
 	      	}
 			if(ts.size()>1){
@@ -118,15 +116,20 @@ function initialize() {
 				lon = (Double)PropertyUtils.getProperty(lastPoint,"longValue");
 				recieveTime = (Date)PropertyUtils.getProperty(lastPoint,"recieveTime");
 				if(lat != null && lon != null){
+					tag = (Short)PropertyUtils.getProperty(lastPoint,"tag");
+					if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
 	      	%>
-	      		endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), endIcon);
-	      	<%}
+	      		endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), STOP_ICON);
+	      	<%		} else {
+	      	%>
+	      		endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), RUNNING_ICON);
+	      	<%		}
+				}
 			}%>
 
 	      	var points = new Array();
 			<%
 			Double tempValue = null;
-			Short tag = 0;
 			Object prevPoint = null;
 			for(Object trace:ts){
 				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
@@ -164,7 +167,7 @@ function initialize() {
 							lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
 							if(lat != null && lon != null){
 								%>
-								tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), stopIcon,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>");
+								tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>");
 								<%
 							}
 						}
@@ -183,7 +186,7 @@ function initialize() {
 	      	<%
 			if( lat != null && lon != null ){
 			%>
-				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), startIcon);
+				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), START_ICON);
 		    <%
 			}
 			if(ts.size()>1){
@@ -192,9 +195,16 @@ function initialize() {
 				lon = (Double)PropertyUtils.getProperty(lastPoint,"longValue");
 				recieveTime = (Date)PropertyUtils.getProperty(lastPoint,"recieveTime");
 				if( lat != null && lon != null ){
+					tag = (Short)PropertyUtils.getProperty(lastPoint,"tag");
+					if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
 				%>
-					endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), endIcon);
+					endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), STOP_ICON);
 				<%
+					} else {
+				%>
+					endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), RUNNING_ICON);
+				<%
+					}
 				}
 			}
 			%>
@@ -207,7 +217,6 @@ function initialize() {
 			Double maxLat = Util.MIN_LAT;
 			Double maxLon = Util.MIN_LON;
 			
-			Short tag = 0;
 			Object prevPoint = null;
 			for(Object trace:ts){
 				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
@@ -257,7 +266,7 @@ function initialize() {
 							lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
 							if(lat != null && lon != null){
 								%>
-								stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),stopIcon,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
+								stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
 								<%
 							}
 						}
