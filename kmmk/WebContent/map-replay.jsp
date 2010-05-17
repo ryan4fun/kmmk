@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
+	import="com.gps.util.Util,com.gps.servlet.MKgpsServlet,com.gps.bean.LoginInfo"
+%>
+<%
+if( login.getMapType()!=LoginInfo.MAPABC ){
 %>
 <script type="text/javascript">
 	var _oldLine = null;
@@ -224,6 +228,4 @@
 		}
 	}
 </script>
-
-
-            
+<%}%>
