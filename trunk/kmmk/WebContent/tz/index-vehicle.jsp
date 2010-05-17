@@ -79,7 +79,8 @@ Util.setNull2DefaultValue(v);
 	<li><a href="#tabs-5"><span>加油明细</span></a></li>	
 	<li><a href="#tabs-6"><span>维修明细</span></a></li>
 	<li><a href="#tabs-7"><span>经营收支明细</span></a></li>
-	<li><a href="#tabs-8"><span>统计报表</span></a></li>
+	<li><a href="#tabs-8"><span>月台帐表</span></a></li>
+	<li><a href="#tabs-9"><span>年台帐表</span></a></li>
 </ul>
 <div id="tabs-0">
 <iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="jctz/fVehicleBasic/view-vehicle.jsp?vehicleId=<%=idstr %>" ></iframe>
@@ -107,6 +108,9 @@ Util.setNull2DefaultValue(v);
 </div>
 <div id="tabs-8">
 <iframe id="main-frame-8" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tjtz/fMonthlyReport/search-monthly-report.jsp"></iframe>
+</div>
+<div id="tabs-9">
+<iframe id="main-frame-9" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tjtz/fYearlyReport/search-yearly-report.jsp?vehicleId=<%=idstr %>"></iframe>
 </div>
 </div>
 </body>
