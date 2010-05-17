@@ -58,9 +58,9 @@ public class DataSourceFactory {
 	    			.add( Projections.sum(measureName), "total" )
 	    			.add( Projections.groupProperty("yearMonth"), "yearMonth" )
 	    )
-	    .add( Restrictions.eq("vehicleId", v.getVehicleId()) )
-	    .add( Restrictions.le("startDate", startDate))
-	    .add( Restrictions.ge("startDate", endDate))
+	    .add( Restrictions.eq("vehicle.vehicleId", v.getVehicleId()))
+	    .add( Restrictions.le("startDate", endDate))
+	    .add( Restrictions.ge("startDate", startDate))
 	    .addOrder( Order.asc("yearMonth") )
 	    .list();
 
