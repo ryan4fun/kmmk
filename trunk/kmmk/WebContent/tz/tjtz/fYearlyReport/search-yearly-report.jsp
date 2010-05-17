@@ -4,15 +4,13 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
-FMonthlyReportBean frb = new FMonthlyReportBean(request);
+String licensPadNumber = "";
 if(embedded){
 	VehicleBean vb = new VehicleBean();
 	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
 	Vehicle v = vb.findById();
-	frb.setLicensPadNumber(v.getLicensPadNumber());
+	licensPadNumber = v.getLicensPadNumber()==null?"":v.getLicensPadNumber();
 }
-List<FMonthlyReport> frs = frb.getList();
-Util.setNull2DefaultValue(frb);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -43,115 +41,39 @@ $(document).ready(function(){
 			
 		}
 	});
-	
-	<%if(frs!=null && frs.size()>0){%>
-	$("#__pagination").pagination(
-			<%=frb.getMaxRecord()%>,
-			{
-				current_page:<%=frb.getPageNumber()%>,
-				items_per_page:<%=frb.getRowsPerPage()%>,
-				num_edge_entries:2,
-				num_display_entries:5,
-				callback:pageSelectCallback
-			}
-		);
-	<%}%>	
-
-	initPrint($("#printThisBtn"), "print-monthly-report.jsp" );
 });
-
-function pageSelectCallback(pageNumber){
-	$('#pageNumber').val(pageNumber);
-	document.forms[0].submit();
-}
 </script>
 </head>
 <body>
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="inputform" action="search-monthly-report.jsp" method="post">
-
+<form id="form1" action="mkgps.do" method="post">
+	<input type="hidden" name = "action" value="FGenerateYearlyChartAction"/>
+	<input type="hidden" name = "success" value="view-yearly-report.jsp"/>
+	<input type="hidden" name = "failed" value="view-yearly-report.jsp"/>
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
-			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=frb.getLicensPadNumber()==null?"":frb.getLicensPadNumber()%>" /></td>		
+			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=licensPadNumber%>" /></td>		
 		</tr>
 		<tr>
 			<td width="20%" align="right">年：</td>
 			<td align="left" colSpan="3">
-				<input type="text" id="year" name="year" value="<%=frb.getYear()==null?"":frb.getYear()%>" /></td>
-		</tr>
-		<!-- 
-		<tr>
-			<td width="20%" align="right">收入：</td>
-			<td align="left">
-				<input type="text" id="incomeStart" name="incomeStart" 
-					value="<%=frb.getIncomeStart()==null?"":frb.getIncomeStart()%>" />
-			</td>
-			<td width="20%" align="right">至</td>
-			<td>				
-				<input type="text" id="incomeEnd" name="incomeEnd" 
-					value="<%=frb.getIncomeEnd()==null?"":frb.getIncomeEnd()%>" />
-			</td>
+				<input type="text" id="year" name="year" value="" /></td>
 		</tr>
 		<tr>
-			<td width="20%" align="right">支出：</td>
-			<td align="left">
-				<input type="text" id="costsStart" name="costsStart" 
-					value="<%=frb.getCostsStart()==null?"":frb.getCostsStart()%>" />
-			</td>
-			<td width="20%" align="right">至</td>
-			<td>
-				<input type="text" id="costsEnd" name="costsEnd" 
-					value="<%=frb.getCostsEnd()==null?"":frb.getCostsEnd()%>" />
-			</td>
+			<td width="20%" align="right">统计项目：</td>
+			<td align="left" colSpan="3">
+				<input type="text" id="measureName" name="measureName" value="" /></td>
 		</tr>
-		 -->
 	</table>
 	<p align="center">
-		<input type="hidden" name="pageNumber" id="pageNumber" value="<%=frb.getPageNumber()%>" />
-		<input type="hidden" name="rowsPerPage" id="pageNumber" value="<%=frb.getRowsPerPage()%>" />
-		<input type="submit" style="width: 100px;" value="查   询" />
-		<input type="button" style="width: 100px;" value="查询所有" onclick="javascript:href('search-monthly-report.jsp<%=embedded?"?embedded=true":"" %>')"/>
+		<input type="submit" style="width: 100px;" value="生成年报表" />
 		<input type="reset" style="width: 100px;" value="重   置" />
-		<input type="button" value="新增月台帐" onclick="javascript:href('update-monthly-report.jsp<%=embedded?"?embedded=true":"" %>')"/>
-		<input type="button" id="printThisBtn" value="打印当前查询结果" />
 	</p>
 </form>
 </div>
 </div>
-<% if(frs.size()>0){ %>
-<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
-	<tr>
-		<th width="20%">车牌号</th>
-		<th width="20%">日期</th>
-		<th width="20%">收入</th>
-		<th width="20%">支出</th>
-		<th width="20%">操作</th>
-	</tr>
-	<% for(FMonthlyReport fr:frs){ 
-		Util.setNull2DefaultValue(fr);%>
-	<tr>
-		<td id="p_<%=fr.getId()%>" colspan="10">
-			<table cellSpacing="0" width="100%" cellpadding="0">
-				<tr>
-					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getVehicle().getLicensPadNumber()%></a></td>
-					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getYearMonth()%></a></td>
-					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getIncome()==null?"":fr.getIncome()%></a></td>
-					<td width="20%"><a href="javascript:href('view-monthly-report.jsp?id=<%=fr.getId()%>')"><%=fr.getCosts()==null?"":fr.getCosts()%></a></td>
-					<td width="20%">
-						<a href="javascript:href('update-monthly-report.jsp?id=<%=fr.getId()%>')">修改</a>
-					</td>					
-				</tr>
-			</table>
-		</td>
-	</tr>
-	<% } %>
-	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="10" align="center"></td>
-	</tr>
-</table>
-<% } %>
 </body>
 </html>
