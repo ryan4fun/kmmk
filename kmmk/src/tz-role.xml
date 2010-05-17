@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- 
+<!--
 1 = 平台管理员
 2 = 企业管理员
 3 = 规则管理员
@@ -17,37 +17,40 @@
 			<Link url='javascript:logout()' name="退出" roles="*" />
 		</Function>
 	</FunctionGroup>
-	<FunctionGroup folder="tzgl" name="基础台帐" roles="1,2">	
+	<FunctionGroup folder="tzgl" name="基础台帐" roles="1,2">
 		<Function name="车辆基础台帐表" roles="1,2">
 			<Link url='javascript:redirect("jctz/fVehicleBasic/search-vehicle-basic.jsp")' name="车辆基础台帐表管理" roles="1,2,11" />
 		</Function>
-		<Function name="车辆资料保管领用表" roles="1,2">			
+		<Function name="车辆资料保管领用表" roles="1,2">
 			<Link url='javascript:redirect("jctz/fVehicleMaterial/search-material.jsp")' name="车辆资料保管领用表管理" roles="1,2,11" />
 		</Function>
-		<Function name="车辆随车工具保管领用表" roles="1,2">			
+		<Function name="车辆随车工具保管领用表" roles="1,2">
 			<Link url='javascript:redirect("jctz/fTools/search-tools.jsp")' name="随车工具保管领用表管理" roles="1,2,11" />
 		</Function>
-		<Function name="轮胎使用台帐" roles="1,2">			
+		<Function name="轮胎使用台帐" roles="1,2">
 			<Link url='javascript:redirect("jctz/fTyres/search-tyres.jsp")' name="轮胎使用台帐管理" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="dwjg" name="开支台帐" roles="1,2">
-		<Function name="加油开支明细帐" roles="1,2">			
+		<Function name="加油开支明细帐" roles="1,2">
 			<Link url='javascript:redirect("kztz/fGasfee/search-gasfee.jsp")' name="加油开支明细帐管理" roles="1,2,11" />
 		</Function>
-		<Function name="车辆维修明细台帐" roles="1,2">			
+		<Function name="车辆维修明细台帐" roles="1,2">
 			<Link url='javascript:redirect("kztz/fMaintain/search-maintain.jsp")' name="车辆维修明细台帐管理" roles="1,2,11" />
 		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="rwgl" name="经营台帐" roles="1,2">
-		<Function name="车辆经营收支明细台帐" roles="1,2">			
+		<Function name="车辆经营收支明细台帐" roles="1,2">
 			<Link url='javascript:redirect("jytz/fRuningLog/search-runing-log.jsp")' name="车辆经营收支明细台帐管理" roles="1,2,11" />
-		</Function>		
+		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="fzcx" name="统计台帐" roles="1,2">
-		<Function name="月统计报表" roles="1,2">			
+		<Function name="月统计报表" roles="1,2">
 			<Link url='javascript:redirect("tjtz/fMonthlyReport/search-monthly-report.jsp")' name="月统计报表管理" roles="1,2,11" />
-		</Function>		
+		</Function>
+		<Function name="年统计报表" roles="1,2">
+			<Link url='javascript:redirect("tjtz/fYearlyReport/search-yearly-report.jsp")' name="年统计报表管理" roles="1,2,11" />
+		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="xtgl" name="系统管理" roles="1,2,3">
 		<Function name="系统用户管理" roles="1,2">
@@ -58,7 +61,7 @@
 		<Function name="帮助" roles="1,2">
 			<Link url="about:blank" name="帮助" roles="1,2" />
 		</Function>
-		<Function name="联系我们" roles="1,2">			
+		<Function name="联系我们" roles="1,2">
 			<Link url="about:blank" name="北京公司" roles="1,2" />
 			<Link url="about:blank" name="昆明公司" roles="1,2" />
 		</Function>
