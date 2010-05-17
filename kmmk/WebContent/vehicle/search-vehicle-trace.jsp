@@ -302,7 +302,7 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 		var tipOption = new MTipOptions();
 		tipOption.title="坐标";
 		if(stopTimeDisp){
-			tipOption.content = ( stopTimeDisp ? "<b>停留时长: </b>" + stopTimeDisp   : "" )+ 				
+			tipOption.content = ( stopTimeDisp ? "<b>停留时长: </b>" + stopTimeDisp   : "" )+ 
 				( stopTime ? "<b><br>停车时间: </b>" + stopTime   : "" ) +
 				( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" ) + 
 				"<b><br>纬度: </b>" + latlng.latY + 
