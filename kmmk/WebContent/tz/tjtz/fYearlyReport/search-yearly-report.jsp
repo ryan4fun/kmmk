@@ -18,7 +18,7 @@ Util.setNull2DefaultValue(frb);
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>月台帐表</title>
+<title>年台帐表</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
@@ -79,11 +79,8 @@ function pageSelectCallback(pageNumber){
 		</tr>
 		<tr>
 			<td width="20%" align="right">年：</td>
-			<td align="left">
+			<td align="left" colSpan="3">
 				<input type="text" id="year" name="year" value="<%=frb.getYear()==null?"":frb.getYear()%>" /></td>
-			<td width="20%" align="right">月：</td>
-			<td align="left">
-				<input type="text" id="month" name="month" value="<%=frb.getMonth()==null?"":frb.getMonth()%>" /></td>
 		</tr>
 		<!-- 
 		<tr>
