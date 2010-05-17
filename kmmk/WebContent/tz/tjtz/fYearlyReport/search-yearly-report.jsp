@@ -4,12 +4,7 @@
 <%@ include file="/tz/header.jsp"%>
 <%
 boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
-String licensPadNumber = "";
 if(embedded){
-	VehicleBean vb = new VehicleBean();
-	vb.setVehicleId((Integer)request.getSession().getAttribute("vehicleId"));
-	Vehicle v = vb.findById();
-	licensPadNumber = v.getLicensPadNumber()==null?"":v.getLicensPadNumber();
 }
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -20,15 +15,10 @@ if(embedded){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
-<link rel="stylesheet" type="text/css" href="<%=basePath %>style/jquery.alerts.css" />
 <script type="text/javascript" src="<%=basePath %>js/mkgps.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.validate.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.pagination.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
-<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
 <style type="text/css">
 </style>
@@ -41,6 +31,10 @@ $(document).ready(function(){
 			
 		}
 	});
+	initVehicleSelector();
+	//$("#form1").submit(){
+		
+	//}
 });
 </script>
 </head>
@@ -48,14 +42,12 @@ $(document).ready(function(){
 <div id="search-div">
 <h3><a href="#">请输入查询条件</a></h3>
 <div style="padding:2px;overflow:visible">
-<form id="form1" action="mkgps.do" method="post">
+<form id="form1" action="-经营年报表-.do" method="post" target="_self">
 	<input type="hidden" name = "action" value="FGenerateYearlyChartAction"/>
-	<input type="hidden" name = "success" value="view-yearly-report.jsp"/>
-	<input type="hidden" name = "failed" value="view-yearly-report.jsp"/>
 	<table cellSpacing="5" width="650px;">
 		<tr>
 			<td width="20%" align="right">车牌号：</td>
-			<td align="left" colSpan="3"><input type="text" id="licensPadNumber" name="licensPadNumber" value="<%=licensPadNumber%>" /></td>		
+			<td align="left" colSpan="3"><jsp:include page="/vehicle-selector.jsp" /></td>		
 		</tr>
 		<tr>
 			<td width="20%" align="right">年：</td>
@@ -69,7 +61,7 @@ $(document).ready(function(){
 		</tr>
 	</table>
 	<p align="center">
-		<input type="submit" style="width: 100px;" value="生成年报表" />
+		<input type="submit" style="width: 100px;" value="生成年台帐表" />
 		<input type="reset" style="width: 100px;" value="重   置" />
 	</p>
 </form>
