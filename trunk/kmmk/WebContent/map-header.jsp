@@ -14,6 +14,12 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	--%>
 	<script src="http://app.mapabc.com/apis?&t=flashmap&v=2.2&key=e8eb35afcc4c53bd5a251b4f4eec1f7142ad4efd42ee781bbfc9fcb590cb9e9a61d0b2fa6580678a"></script>
 	<script type="text/javascript">
+	var START_ICON = "<%=mapImagePath %>images/google_icon/start.png";
+	var STOP_ICON = "<%=mapImagePath %>images/google_icon/stop.png";
+	var RUNNING_ICON = "<%=mapImagePath %>images/google_icon/running.png";
+	var OFFLINE_ICON = "<%=mapImagePath %>images/google_icon/offline.png";
+	var ALERT_ICON = "<%=mapImagePath %>images/google_icon/alert.png";
+
 	function GBrowserIsCompatible(){
 		return true;
 	}
