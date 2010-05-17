@@ -2,11 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
 <%@ include file="/tz/header.jsp"%>
-<%
-boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
-if(embedded){
-}
-%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,14 +45,14 @@ $(document).ready(function(){
 			<td align="left" colSpan="3"><jsp:include page="/vehicle-selector.jsp" /></td>		
 		</tr>
 		<tr>
-			<td width="20%" align="right">年：</td>
+			<td width="20%" align="right">年份：</td>
 			<td align="left" colSpan="3">
-				<input type="text" id="year" name="year" value="" /></td>
+				<input type="text" id="year" name="year" /></td>
 		</tr>
 		<tr>
 			<td width="20%" align="right">统计项目：</td>
 			<td align="left" colSpan="3">
-				<input type="text" id="measureName" name="measureName" value="" /></td>
+				<input type="text" id="measureName" name="measureName" /></td>
 		</tr>
 	</table>
 	<p align="center">
