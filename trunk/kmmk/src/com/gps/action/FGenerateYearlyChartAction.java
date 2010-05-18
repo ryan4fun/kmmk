@@ -32,6 +32,7 @@ import com.gps.orm.FUser;
 import com.gps.orm.HibernateUtil;
 import com.gps.orm.Vehicle;
 import com.gps.rptbean.DataSourceFactory;
+import com.gps.service.FRuningLogService;
 import com.gps.service.FUserService;
 import com.gps.service.ServiceLocator;
 import com.gps.servlet.MKgpsServlet;
@@ -47,7 +48,7 @@ public class FGenerateYearlyChartAction extends Action{
 //		String rptName = get("reportName");
 		String vehicleId = get("vehicleId");
 		String year = get("year");
-		
+		String reportName = get("rptName");
 		String measureName = get("measureName");
 		
 		if(vehicleId != null && year != null){
@@ -73,7 +74,9 @@ public class FGenerateYearlyChartAction extends Action{
 //			parameters.put("vehicleId", Integer.parseInt(vehicleId));
 //			parameters.put("startDate", startDate);
 //			parameters.put("endDate", endDate);
-//			
+			
+			parameters.put("rptName", FRuningLogService.measureNames.get(measureName));
+			parameters.put("year", year);
 			parameters.put("SUBREPORT_DIR",basePath);
 			
 //			 JasperDesign jasperDesign = JRXmlLoader.load(reportXMLFile);
