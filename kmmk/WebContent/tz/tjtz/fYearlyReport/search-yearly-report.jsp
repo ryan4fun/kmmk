@@ -15,6 +15,8 @@
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.validate.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 
 <style type="text/css">
 </style>
@@ -29,7 +31,28 @@ $(document).ready(function(){
 	});
 	initVehicleSelector();
 	$("#form1").submit(function(){
-		$("#form1").attr("action",$("#vehicleString").val() + "-经营年报表-" + $("#year").val() + ".do").append('<input type="hidden" name="action" value="FGenerateYearlyChartAction"/>');
+		$("#form1")
+			.attr("action",$("#vehicleString").val() + "-经营年报表-" + $("#year").val() + ".do")
+			.append('<input type="hidden" name="action" value="FGenerateYearlyChartAction"/>');
+	})
+	.validate({
+		rules: {
+			vehicleId:{
+				required: true
+			},
+			year: {
+				required: true,
+				digits: true,
+				maxlength: 4,
+				minlength: 4
+			},
+			measureName: {
+				required: true
+			}
+		},
+		messages: {
+	
+		}
 	}); 
 });
 </script>
