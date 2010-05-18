@@ -23,19 +23,14 @@
 <script language="JavaScript">
 $(document).ready(function(){
 	$("#search-div").accordion({
-		header:"h3",		
+		header:"h3",
 		collapsible:false,
-		change: function(event, ui) {		
+		change: function(event, ui) {
 			
 		}
 	});
 	initVehicleSelector();
-	$("#form1").submit(function(){
-		$("#form1")
-			.attr("action",$("#vehicleString").val() + "-经营年报表-" + $("#year").val() + ".do")
-			.append('<input type="hidden" name="action" value="FGenerateYearlyChartAction"/>');
-	})
-	.validate({
+	$("#form1").validate({
 		rules: {
 			vehicleId:{
 				required: true
@@ -52,7 +47,14 @@ $(document).ready(function(){
 		},
 		messages: {
 	
-		}
+		},
+		submitHandler: function(form) {
+   			$(form)
+	   			.attr("action",$("#vehicleString").val() + "-经营年报表-" + $("#year").val() + ".do")
+				.append('<input type="hidden" name="action" value="FGenerateYearlyChartAction"/>');
+			//不能使用 $(form).submit(); 否则会循环触发validate事件，必须用form.submit();
+   			form.submit();
+	   }
 	}); 
 });
 </script>
@@ -75,7 +77,9 @@ $(document).ready(function(){
 		<tr>
 			<td width="20%" align="right">统计项目：</td>
 			<td align="left" colSpan="3">
-				<input type="text" id="measureName" name="measureName" /></td>
+				<select id="measureName" name="measureName" >
+				<%=Util.writeOptions(FRuningLogService.measureNames, "请选择") %>
+				</select></td>
 		</tr>
 	</table>
 	<p align="center">
