@@ -3,6 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="year" class="java.lang.String"/>
+	<parameter name="rptName" class="java.lang.String"/>
+	<parameter name="fullName" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{year}+"车辆"+$P{rptName}+"分析报表"]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -38,14 +43,15 @@
 		<band height="439" splitType="Stretch">
 			<xyLineChart>
 				<chart>
-					<reportElement x="56" y="49" width="481" height="303"/>
+					<reportElement x="41" y="68" width="481" height="303"/>
 					<chartTitle/>
 					<chartSubtitle/>
 					<chartLegend/>
 				</chart>
 				<xyDataset>
 					<xySeries>
-						<seriesExpression><![CDATA[""]]></seriesExpression>
+						<seriesExpression><![CDATA[""
+]]></seriesExpression>
 						<xValueExpression><![CDATA[$F{month}]]></xValueExpression>
 						<yValueExpression><![CDATA[$F{measure1}]]></yValueExpression>
 						<labelExpression><![CDATA[$F{licensePad}]]></labelExpression>
@@ -67,6 +73,13 @@
 					</valueAxisFormat>
 				</linePlot>
 			</xyLineChart>
+			<textField>
+				<reportElement x="141" y="17" width="295" height="28"/>
+				<textElement textAlignment="Center">
+					<font fontName="楷体" size="18"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fullName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
