@@ -31,7 +31,6 @@ Util.setNull2DefaultValue(f);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/css.css" />
 <link rel="stylesheet" type="text/css" href="<%=basePath %>style/<%=skin %>/jquery-ui-1.7.2.custom.css" />
-<link rel="stylesheet" type="text/css" href="<%=basePath %>style/jquery.alerts.css" />
 <script type="text/javascript" src="<%=basePath %>js/mkgps.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
