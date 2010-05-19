@@ -147,12 +147,12 @@ function pageSelectCallback(pageNumber){
 		<th width="12%">发证日期</th>
 		<th width="8%">年检状态</th>
 		<th width="12%">二级维护到期时间</th>
-		<th width="14%">操作</th>
+		<%--<th width="14%">操作</th>--%>
 	</tr>
 	<% for(Vehicle v:vs){ 
 		Util.setNull2DefaultValue(v);%>
 	<tr>
-		<td id="p_<%=v.getVehicleId()%>" colspan="10">
+		<td id="p_<%=v.getVehicleId()%>" colspan="99">
 			<table cellSpacing="0" width="100%" cellpadding="0">
 				<tr>
 					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=v.getLicensPadNumber()%></a></td>
@@ -164,22 +164,22 @@ function pageSelectCallback(pageNumber){
 					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getApprovalDate())%></a></td>
 					<td width="8%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></a></td>
 					<td width="12%"><a href="javascript:href('<%=tzBasePath %>index-vehicle.jsp?vehicleId=<%=v.getVehicleId()%>')"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></a></td>
-					<td width="16%">
-					<!-- 
+					<%--
+					<td width="14%">
 						<% if(v.getFVehicleBasics().size()>0){ %>
 							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">修改车辆基础台帐</a>
 						<% } else {%>
 							<a href="javascript:href('update-vehicle-basic.jsp?vehicleId=<%=v.getVehicleId()%>')">补全车辆基础台帐</a>
 						<% } %>
-					 -->
-					</td>					
+					</td>
+					--%>
 				</tr>
 			</table>
 		</td>
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="10" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="99" align="center"></td>
 	</tr>
 </table>
 <% } %>
