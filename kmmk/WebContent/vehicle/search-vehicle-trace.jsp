@@ -151,9 +151,7 @@ function initialize() {
 					lon = tempValue;
 				}
 				if(lat != null && lon != null){
-					%>
-						points.push(new MLngLat(<%=lon%>, <%=lat%>));
-					<%
+					%>points.push(new MLngLat(<%=lon%>, <%=lat%>));<%
 				}
 				//for stop point marker add by Ryan
 				tag = (Short)PropertyUtils.getProperty(trace,"tag");
@@ -166,8 +164,7 @@ function initialize() {
 							lat = (Double)PropertyUtils.getProperty(prevPoint,"latValue");
 							lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
 							if(lat != null && lon != null){
-								%>
-								tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>");
+								%>tmpMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new MLngLat( <%=lon%>, <%=lat%> ), STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>");
 								<%
 							}
 						}
@@ -182,11 +179,9 @@ function initialize() {
 			polyShape = new MPolyline(points, lineopt);
 			polyShape.id="polyShape";
 			mapObj.addOverlay(polyShape, true);
-		<%} else {%>
-	      	<%
+		<%} else {
 			if( lat != null && lon != null ){
-			%>
-				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), START_ICON);
+			%>startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), START_ICON);
 		    <%
 			}
 			if(ts.size()>1){
@@ -197,18 +192,15 @@ function initialize() {
 				if( lat != null && lon != null ){
 					tag = (Short)PropertyUtils.getProperty(lastPoint,"tag");
 					if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-				%>
-					endMarker = createMarker("-", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), STOP_ICON, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
+				%>endMarker = createMarker("-", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), STOP_ICON, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
 				<%
 					} else {
-				%>
-					endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), RUNNING_ICON);
+				%>endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), RUNNING_ICON);
 				<%
 					}
 				}
 			}
-			%>
-			var points = new Array();
+			%>var points = new Array();
 			var stopMarkers = new Array();
 			<%
 			Double tempValue = null;
@@ -250,9 +242,7 @@ function initialize() {
 						maxLon = tempValue;
 				}
 				if(lat != null && lon != null){
-					%>
-					points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));
-					<%
+					%>points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));<%
 				}
 				//for stop point marker add by Ryan
 				tag = (Short)PropertyUtils.getProperty(trace,"tag");
@@ -265,8 +255,7 @@ function initialize() {
 							lat = (Double)PropertyUtils.getProperty(prevPoint,"latValue");
 							lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
 							if(lat != null && lon != null){
-								%>
-								stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
+								%>stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
 								<%
 							}
 						}
