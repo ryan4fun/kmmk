@@ -146,26 +146,7 @@ public abstract class Action {
 		return null;
 	}
 	protected Date getDate(String name){
-		String p = get(name);
-		if(p != null){
-			try{
-				SimpleDateFormat sdf;
-				if (p.length() == Util.DATE_FORMAT_SHORT.length()) {
-					sdf = new SimpleDateFormat(Util.DATE_FORMAT_SHORT);
-				} else if (p.length() == Util.DATE_FORMAT_LONG.length()) {
-					sdf = new SimpleDateFormat(Util.DATE_FORMAT_LONG);
-				} else if(p.length() == 23){
-					p=p.substring(0,p.length()-4);
-					sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-				}else{
-					return null;
-				}
-				return sdf.parse(p);
-			} catch (Exception e) {
-				return null;
-			}
-		}
-		return null;
+		return Util.parseDate(get(name));
 	}
 	protected String[] getArray(String name){
 		return isMultipart? getFileItemValues(name): request.getParameterValues(name);

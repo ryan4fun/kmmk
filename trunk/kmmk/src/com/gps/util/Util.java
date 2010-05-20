@@ -23,9 +23,9 @@ import com.gps.service.RoleService;
 import com.gps.servlet.MKgpsServlet;
 
 public class Util {
-	public final static String DATE_FORMAT_SHORT = "yyyy/MM/dd";
-	public final static String DATE_FORMAT_MID = "yyyy/MM/dd HH:mm";
-	public final static String DATE_FORMAT_LONG = "yyyy/MM/dd HH:mm:ss";
+	public final static String DATE_FORMAT_SHORT = "yyyy-MM-dd";
+	public final static String DATE_FORMAT_MID = "yyyy-MM-dd HH:mm";
+	public final static String DATE_FORMAT_LONG = "yyyy-MM-dd HH:mm:ss";
 	
 	public final static int DAY_MILSEC = 24 * 60 * 60 *1000;
 	public final static int HOUR_MILSEC = 60 * 60 *1000;
@@ -54,17 +54,20 @@ public class Util {
 	
 	public static Date parseDate(String dateStr){
 		if(dateStr != null){
-			SimpleDateFormat sdf = null;
-			if (((String)dateStr).length() == Util.DATE_FORMAT_SHORT.length()) {
-				sdf = new SimpleDateFormat(Util.DATE_FORMAT_SHORT);
-			} else if (((String)dateStr).length() == Util.DATE_FORMAT_LONG.length()) {
-				sdf = new SimpleDateFormat(Util.DATE_FORMAT_LONG);
-			}
-			
 			try{
-				if (sdf != null)
-					return sdf.parse(dateStr);
-			} catch(Exception e){
+				SimpleDateFormat sdf;
+				if (dateStr.length() == Util.DATE_FORMAT_SHORT.length()) {
+					sdf = new SimpleDateFormat(Util.DATE_FORMAT_SHORT);
+				} else if (dateStr.length() == Util.DATE_FORMAT_LONG.length()) {
+					sdf = new SimpleDateFormat(Util.DATE_FORMAT_LONG);
+				} else if(dateStr.length() == 23){
+					dateStr=dateStr.substring(0,dateStr.length()-4);
+					sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				}else{
+					return null;
+				}
+				return sdf.parse(dateStr);
+			} catch (Exception e) {
 			}
 		}
 		return null;
