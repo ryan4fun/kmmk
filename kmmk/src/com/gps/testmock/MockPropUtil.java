@@ -4,7 +4,6 @@
 package com.gps.testmock;
 
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.gps.util.Util;
@@ -59,23 +58,7 @@ public class MockPropUtil {
 		return null;
 	}
 	public static Date getDate(String name){
-		String p = name;
-		if(p != null){
-			try{
-				SimpleDateFormat sdf;
-				if (p.length() == Util.DATE_FORMAT_SHORT.length()) {
-					sdf = new SimpleDateFormat(Util.DATE_FORMAT_SHORT);
-				} else if (p.length() == Util.DATE_FORMAT_LONG.length()) {
-					sdf = new SimpleDateFormat(Util.DATE_FORMAT_LONG);
-				} else {
-					return null;
-				}
-				return sdf.parse(p);
-			} catch (Exception e) {
-				return null;
-			}
-		}
-		return null;
+		return Util.parseDate(name);
 	}
 
 }
