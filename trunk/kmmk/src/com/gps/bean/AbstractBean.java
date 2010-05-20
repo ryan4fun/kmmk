@@ -89,14 +89,6 @@ public abstract class AbstractBean extends Action{
 						crit.add(Restrictions.eq(pd.getName(), Double.parseDouble((String)tmps)));
 					} else if (c.getName().equals("java.util.Date")) {
 						crit.add(Restrictions.eq(pd.getName(), Util.parseDate((String)tmps)));
-//						SimpleDateFormat sdf = null;
-//						if (((String)tmps).length() == Util.DATE_FORMAT_SHORT.length()) {
-//							sdf = new SimpleDateFormat(Util.DATE_FORMAT_SHORT);
-//						} else if (((String)tmps).length() == Util.DATE_FORMAT_LONG.length()) {
-//							sdf = new SimpleDateFormat(Util.DATE_FORMAT_LONG);
-//						}
-//						if (sdf != null)
-//							crit.add(Restrictions.eq(pd.getName(), sdf.parse((String)tmps)));
 //					} else if (c.getName().equals("java.math.BigDecimal")) {
 //						crit.add(Restrictions.eq(pd.getName(), new BigDecimal(tmps)));
 					}
