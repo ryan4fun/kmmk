@@ -119,7 +119,7 @@ function initialize() {
 					tag = (Short)PropertyUtils.getProperty(lastPoint,"tag");
 					if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
 	      	%>
-	      		endMarker = createMarker("-",new MLngLat( <%=lon%>, <%=lat%> ), STOP_ICON, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
+	      		endMarker = createMarker("-",new MLngLat( <%=lon%>, <%=lat%> ), null, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
 	      	<%		} else {
 	      	%>
 	      		endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new MLngLat( <%=lon%>, <%=lat%> ), RUNNING_ICON);
@@ -192,7 +192,7 @@ function initialize() {
 				if( lat != null && lon != null ){
 					tag = (Short)PropertyUtils.getProperty(lastPoint,"tag");
 					if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-				%>endMarker = createMarker("-", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), STOP_ICON, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
+				%>endMarker = createMarker("-", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), null, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
 				<%
 					} else {
 				%>endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), RUNNING_ICON);
