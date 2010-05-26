@@ -57,7 +57,6 @@ Util.setNull2DefaultValue(f);
 		
    		$("#inputform").validate({
 			rules: {
-   				
    				occurDate: {
    					required: true
 				},
@@ -67,7 +66,7 @@ Util.setNull2DefaultValue(f);
 				},
 				refill: {
    					required: true,
-   					digits: true
+   					number: true
 				},
 				refillMoney: {
    					required: true,
