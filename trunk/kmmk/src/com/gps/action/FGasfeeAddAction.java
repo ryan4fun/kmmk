@@ -18,7 +18,7 @@ public class FGasfeeAddAction extends Action{
 			ft.setVehicle(v);
 			FGasfeeBean fgb = new FGasfeeBean();
 			fgb.setVehicleId(v.getVehicleId());
-			fgb.setPagination(false);
+//			fgb.setPagination(false);
 			List<FGasfee> list = fgb.getList();
 			if(list.size()>0)
 				ft.setBalance(list.get(0).getBalance()+ft.getDeposit()-ft.getRefillMoney());
