@@ -117,7 +117,7 @@ public class FGasfeeBean extends AbstractBean {
 				_crit.add(Restrictions.eq("operator", operator));
 			}
 			
-			crit.addOrder(Order.desc("occurDate"));
+			crit.addOrder(Order.desc("id"));
 			addPagination(crit);
 			List<FGasfee> list = crit.list();
 			
