@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List"%>
+<%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.List,java.text.NumberFormat"%>
 <%@ include file="/tz/header.jsp"%>
 <%
 boolean embedded = request.getSession().getAttribute("embedded") != null && request.getSession().getAttribute("embedded").equals("true");
@@ -13,6 +13,8 @@ if(embedded){
 }
 List<FGasfee> fgs = fgb.getList();
 Util.setNull2DefaultValue(fgb);
+NumberFormat nf = NumberFormat.getInstance();
+nf.setMaximumFractionDigits(2);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -173,7 +175,7 @@ function delOrg(id){
 					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getDeposit()==null?"":fg.getDeposit()%></a></td>
 					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefill()==null?"":fg.getRefill()%></a></td>
 					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getRefillMoney()==null?"":fg.getRefillMoney()%></a></td>
-					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":fg.getBalance()%></a></td>
+					<td width="14%"><a href="javascript:href('view-gasfee.jsp?id=<%=fg.getId()%>')"><%=fg.getBalance()==null?"":nf.format(fg.getBalance())%></a></td>
 					<td width="16%">
 						<a href="javascript:href('update-gasfee.jsp?id=<%=fg.getId()%>')">修改</a>
 					</td>
