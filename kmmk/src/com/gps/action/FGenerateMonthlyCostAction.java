@@ -37,7 +37,7 @@ import com.gps.service.ServiceLocator;
 import com.gps.servlet.MKgpsServlet;
 import com.gps.util.Util;
 
-public class FGenerateMonthlyReportAction extends Action{
+public class FGenerateMonthlyCostAction extends Action{
 
 	public static final String basePath = MKgpsServlet.WEB_ROOT_ABSOLUTE_PATH + "WEB-INF"+File.separator+"reports" +File.separator;
 	  
@@ -62,13 +62,13 @@ public class FGenerateMonthlyReportAction extends Action{
 			JRDataSource subChart = DataSourceFactory.buildMonthlyCostDataSource(v, startDate, endDate);
 			
 			File reportXMLFile = new File(basePath+"vehicle_monthly.jrxml");  
-			File reportFile = new File(basePath+"vehicle_monthly.jasper");  
-			System.out.println("Start Report export : " + basePath+"vehicle_monthly.jasper");
+			File reportFile = new File(basePath+"charts/costAnalysis.jasper");  
+			System.out.println("Start Report export : " + basePath+"charts/costAnalysis.jasper");
 			
 			
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String conStr =  "jdbc:sqlserver://localhost:1433;databaseName=mkgps1";
-			Connection connection = DriverManager.getConnection(conStr,"sa","1234");
+//			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+//			String conStr =  "jdbc:sqlserver://localhost:1433;databaseName=mkgps1";
+//			Connection connection = DriverManager.getConnection(conStr,"sa","1234");
 		
 			Map parameters = new HashMap();  
 			
@@ -83,7 +83,7 @@ public class FGenerateMonthlyReportAction extends Action{
 //	         JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 	           
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObject(reportFile.getPath()); 
-			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,connection);  
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport,parameters,subChart);  
 			response.setContentType("application/pdf");
 			
 			
