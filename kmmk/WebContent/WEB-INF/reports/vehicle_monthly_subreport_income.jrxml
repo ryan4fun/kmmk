@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="vehicle_monthly_subreport_income" language="groovy" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="322"/>
 	<parameter name="vehicleId" class="java.lang.Integer"/>
 	<parameter name="startDate" class="java.util.Date"/>
 	<parameter name="endDate" class="java.util.Date">
@@ -137,7 +137,7 @@ GROUP BY
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="698" splitType="Stretch">
+		<band height="802" splitType="Stretch">
 			<textField>
 				<reportElement x="222" y="102" width="49" height="20"/>
 				<textElement/>
