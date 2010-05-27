@@ -44,14 +44,20 @@ $(document).ready(function(){
 		}
 	});
 });
+
+function submitForm(actionName){
+	inputform.action.value = actionName;
+	inputform.submit();
+}
 </script>
 </head>
 <body style="background:transparent;">
 <div id="search-div">	
 	<h3><a href="#">月台帐</a></h3>
 	<div style="padding:2px;overflow:visible">
-		<form id="inputform" action="<%=f.getVehicle().getLicensPadNumber() %>-经营月报表-<%=f.getYearMonth()%>.do" method="post" target="_blank">
+		<form id="inputform" name="inputform" action="<%=f.getVehicle().getLicensPadNumber() %>-经营月报表-<%=f.getYearMonth()%>.do" method="post" target="_blank">
 			<input value="FGenerateMonthlyReportAction" type="hidden" name="action" />
+			
 			<table cellSpacing="5" width="95%">
 				<tr>
  					<td width="20%" align="right">车牌号：</td>
@@ -153,13 +159,10 @@ $(document).ready(function(){
 			<p align="center">
 				<input type="button" style="width:100px;" value="修改月台帐" onclick="javascript:href('update-monthly-report.jsp?id=<%=f.getId()%>')"/>
 				<input type="button" value="返回" onclick="<%=backUri%>"/>
-				<input  value="生成/打印报表" type="submit"/>		
+				<input value="生成/打印报表" type="button" onclick="submitForm('FGenerateMonthlyReportAction')" />
+				<input value="生成/打印报表1" type="button" onclick="submitForm('FGenerateMonthlyCostAction')" />	
 			</p>
-		</form>
-		<form id="inputform1" action="<%=f.getVehicle().getLicensPadNumber() %>-经营月报表-<%=f.getYearMonth()%>.do" method="post" target="_blank">
-			<input value="FGenerateMonthlyCostAction" type="hidden" name="action" />
-		<input  value="生成/打印报表1" type="submit"/>	
-		</form>
+		</form>		
 	</div>
 </div>
 </body>
