@@ -156,6 +156,10 @@ $(document).ready(function(){
 				<input  value="生成/打印报表" type="submit"/>		
 			</p>
 		</form>
+		<form id="inputform1" action="<%=f.getVehicle().getLicensPadNumber() %>-经营月报表-<%=f.getYearMonth()%>.do" method="post" target="_blank">
+			<input value="FGenerateMonthlyCostAction" type="hidden" name="action" />
+		<input  value="生成/打印报表1" type="submit"/>	
+		</form>
 	</div>
 </div>
 </body>
