@@ -116,7 +116,8 @@ public abstract class AbstractClientHandler implements Runnable{
 
 				boolean isHandled = this.dataHandler.handle(vehicle,message);
 
-				if(isHandled && vehicle.getMonitLevel()== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){
+				short monitorLevel = vehicle.getMonitLevel();
+				if(isHandled && monitorLevel== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){
 					
 					if(this.ruleManager != null && vs.getTaskId()!= null && vs.getTaskId().intValue() > 0){
 						

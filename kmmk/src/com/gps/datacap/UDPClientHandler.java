@@ -67,42 +67,42 @@ public class UDPClientHandler extends AbstractClientHandler {
 	@Override
 	public void run() {
 		
-		if(!this.initialed){
+		if (!this.initialed) {
 			return;
 		}
 
 		int receivCount = 0;
-		
-		while(true){
-			
-			try {
+		try {
+			while (true) {
+
 				serverSocket.receive(dataPacket);
 				receivCount = dataPacket.getLength();
-				
+
 				if (receivCount > 0) {
-					
-					String str = new String(buff,0,receivCount);
-					System.out.println("Message Received from UDP server : " + str);
+
+					String str = new String(buff, 0, receivCount);
+					System.out.println("Message Received from UDP server : "
+							+ str);
 					byte[] tempBuf = new byte[receivCount];
 					System.arraycopy(buff, 0, tempBuf, 0, receivCount);
 					handleMessage(tempBuf);
-					
-				}else{
-					
-					//TODO later
+
+				} else {
+
+					// TODO later
 				}
-				
-				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}finally{
-				if(serverSocket != null) {
-					serverSocket.close();
-				}
-			
+
 			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (serverSocket != null) {
+				serverSocket.close();
+			}
+
 		}
+		
 		
 	}
 
