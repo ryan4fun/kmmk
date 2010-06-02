@@ -64,15 +64,15 @@ public class QQXMessageHandler extends MessageHandler{
 		Message result = new Message();
 		
 		{
-//			String deviceId = new String(data,5,4);
-//			System.out.println("Device ID:" + deviceId);
+			String deviceId = new String(data,5,4);
+			System.out.println("Device ID:" + deviceId);
 			byte[] tempIdBytes = new byte[4];
 			System.arraycopy(data, 5, tempIdBytes, 0, 4);
 			int i = 0;
 			int idValue = 0;
 			int tempValue = 0;
 			int power;
-			while(tempIdBytes[i] != 0 && i < 4){
+			while(i < 4 && tempIdBytes[i] != 0){
 				
 				power = 1;
 				tempValue = tempIdBytes[i] & 0x000000ff;
@@ -86,7 +86,7 @@ public class QQXMessageHandler extends MessageHandler{
 				idValue = idValue + tempValue;
 				i++;
 			}
-			
+			System.out.println("Decoded Device ID:" + idValue);
 			result.setDeviceId(Integer.toString(idValue));
 			
 			int cmd =  data[3];
