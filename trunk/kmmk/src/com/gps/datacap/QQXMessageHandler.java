@@ -21,6 +21,10 @@ public class QQXMessageHandler extends MessageHandler{
 
 	public static final int MSG_HEADER = 0x29; // auto report
 	
+	public static final String PACKET_START = "(";
+	public static final String PACKET_END = ")";
+	public static final String PACKET_PLACEHOLDER = "0";
+	
 	public static final int CMD_RPT = 0x80; // auto report
 	public static final BigDecimal convertFact = new BigDecimal(60);
 	public static final BigDecimal convertFact2 = new BigDecimal(1000);
@@ -244,6 +248,10 @@ public class QQXMessageHandler extends MessageHandler{
 		
 		System.out.print("Result : " + value);
 		
+		
+		QQXMessageHandler hh = new QQXMessageHandler();
+		hh.buildSetIntervalCmd(new String[]{"60"});
+		
 	}
 
 
@@ -264,8 +272,64 @@ public class QQXMessageHandler extends MessageHandler{
 
 
 	private String buildSetIntervalCmd(String[] params) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		String result;
+		
+		if(params == null || params.length<1){
+			throw new MessageException("Parameter not enough!");
+		}
+		
+		String interval = params[0];
+		int sec = Integer.parseInt(interval);
+		if(sec <=0 || sec > 65535){
+			throw new MessageException("Parameter out of range! interval must between 1 and 65535");
+		}
+		short time = (short) sec;
+		String intervalValue = Integer.toHexString(time);
+		char[] temp = {'0','0'};
+		for(int i = 0; i<intervalValue.length(); i++){
+			temp[2-intervalValue.length()+i] = intervalValue.charAt(i);
+		}
+		
+		StringBuffer buf = new StringBuffer();
+		
+		char checksum = 0;
+		
+		buf.append((char)0x29);
+		checksum = (char) (checksum^0x29);
+		buf.append((char)0x29);
+		checksum = (char) (checksum^0x29);
+		
+		buf.append((char)0x34);
+		checksum = (char) (checksum^0x34);
+		
+		buf.append((char)0x00);
+		checksum = (char) (checksum^0x00);
+		buf.append((char)0x08);
+		checksum = (char) (checksum^0x08);
+		
+		buf.append((char)0x74);
+		checksum = (char) (checksum^0x74);
+		buf.append((char)0x34);
+		checksum = (char) (checksum^0x34);
+		buf.append((char)0x02);
+		checksum = (char) (checksum^0x02);
+		buf.append((char)0xD2);
+		checksum = (char) (checksum^0xD2);
+		
+		buf.append(temp[0]);
+		checksum = (char) (checksum^temp[0]);
+		buf.append(temp[1]);
+		checksum = (char) (checksum^temp[1]);
+		
+		buf.append(checksum);
+		buf.append((char)0x0D);
+		
+		result = buf.toString();
+		
+		return result;
 	}
+	
+
 
 }
