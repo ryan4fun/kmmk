@@ -106,7 +106,7 @@ font-weight: bold;
 	<input type="submit" value="查   询" />
 	<input type="button" value="查询所有" onclick="javascript:href('search-vehicle-status.jsp')"/>
 	<input type="reset" value="重   置" />
-	<input type="button" id="defColBtn" value="定制数据列" />
+	<%--<input type="button" id="defColBtn" value="定制数据列" />--%>
 </p>
 </form>
 </div>
@@ -114,13 +114,14 @@ font-weight: bold;
 <% if(vss.size()>0){ %>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
-		<th width="8%">车牌号</th>		
+		<th width="6%">自编号</th>
+		<th width="8%">车牌号</th>
 		<th width="8%">行驶状态</th>
-		<th width="7%">在线</th>
-		<th width="7%">求救</th>
+		<th width="5%">在线</th>
+		<th width="5%">求救</th>
 		<th width="11%">限制区域报警</th>
-		<th width="8%">超速</th>
-		<th width="8%">疲劳</th>
+		<th width="5%">超速</th>
+		<th width="5%">疲劳</th>
 		<th width="15%">最后通信时间</th>
 		<th width="12%">任务状态</th>
 		<th width="8%">SIM卡号</th>
@@ -129,7 +130,6 @@ font-weight: bold;
 	</tr>
 	<%
 	for(VehicleStatus vs:vss){
-		
 		StateHelperBean shb = new StateHelperBean();
 		shb.setVehicleId(vs.getVehicleId());
 		StateHelper helper = shb.findById();
@@ -161,40 +161,43 @@ font-weight: bold;
 		String viewURL = "javascript:href('view-vehicle-status.jsp?vehicleId="+vs.getVehicleId()+"')";
 	%>
 	<tr>
-		<td id="p_<%=vs.getVehicleId()%>" colspan="11">
+		<td id="p_<%=vs.getVehicleId()%>" colspan="99">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>
+				<td width="6%"><a href="<%=viewURL %>"><%=vs.getVehicle().getInternalNumber()%></a></td>
 				<td width="8%"><a href="<%=viewURL %>"><%=vs.getLicensPadNumber()%></a></td>
-
 				<td width="8%"><a href="<%=viewURL %>"><%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%></a></td>
-				<td width="7%"><a href="<%=viewURL %>"><%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%></a></td>
-				<td width="7%"><a <%=askHelpClass %> href="<%=viewURL %>"><%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%></a></td>
+				<td width="5%"><a href="<%=viewURL %>"><%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%></a></td>
+				<td width="5%"><a <%=askHelpClass %> href="<%=viewURL %>"><%=vs.getIsAskHelp()==0?"-":VehicleStatusService.askHelpStates.get(vs.getIsAskHelp())%></a></td>
 				<td width="11%"><a <%=limitAreaClass %> href="<%=viewURL %>"><%=vs.getLimitAreaAlarm()==0?"-":VehicleStatusService.regionStates.get(vs.getLimitAreaAlarm())%></a></td>
-				<td width="8%"><a <%=overSpeedClass %> href="<%=viewURL %>"><%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%></a></td>
-				<td width="8%"><a <%=tiredDriveClass %> href="<%=viewURL %>"><%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%></a></td>
+				<td width="5%"><a <%=overSpeedClass %> href="<%=viewURL %>"><%=vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed())%></a></td>
+				<td width="5%"><a <%=tiredDriveClass %> href="<%=viewURL %>"><%=vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive())%></a></td>
 				<td width="15%"><a href="<%=viewURL %>"><%=helper.getLastMessage()==null?"-":Util.FormatDateLong(helper.getLastMessage())%></a></td>
-				<% if(vs.getTaskId()!=null && vs.getTaskId() > 0 ) {
-						TaskBean tb = new TaskBean();
-						tb.setTaskId(vs.getTaskId());
-						Task task = tb.findById();
-						if(task!=null){
-				%>
-							<td width="12%"><a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')"><%=task.getTaskName()%></a></td>
-				<%						
+				<td width="12%">
+					<% if(vs.getTaskId()!=null && vs.getTaskId() > 0 ) {
+							TaskBean tb = new TaskBean();
+							tb.setTaskId(vs.getTaskId());
+							Task task = tb.findById();
+							if(task!=null){
+					%>
+								<a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')"><%=task.getTaskName()%></a>
+					<%						
+							} else {
+					%>
+								任务查询错误
+					<%			
+							}
 						} else {
-				%>
-							<td width="12%">任务查询错误</td>
-				<%			
+					%>
+						<%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%>
+					<%		
 						}
-					} else {
-				%>
-					<td width="12%"><%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%></td>
-				<%		
-					}
-				%>
+					%>
+					</td>
 				<td width="8%"><%=vs.getVehicle().getSimCardNo() %></td>
 				<td width="8%">
-					<a href="javascript:href('<%=basePath %>tzgl/vehicle/view-vehicle.jsp?vehicleId=<%=vs.getVehicleId()%>')">车辆</a> | <a href="javascript:href('<%=basePath %>org-struc/users/view-users.jsp?userId=<%=vs.getVehicle().getUsers().getUserId()%>')">车主</a>
+					<a href="javascript:openWindow('<%=basePath %>tzgl/vehicle/view-vehicle.jsp?vehicleId=<%=vs.getVehicleId()%>')">车辆</a> 
+					| <a href="javascript:openWindow('<%=basePath %>org-struc/users/view-users.jsp?userId=<%=vs.getVehicle().getUsers().getUserId()%>')">车主</a>
 				</td>
 			</tr>
 		</table>
@@ -202,7 +205,7 @@ font-weight: bold;
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="11" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="99" align="center"></td>
 	</tr>
 </table>
 <% } %>
