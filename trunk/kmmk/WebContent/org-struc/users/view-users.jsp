@@ -19,6 +19,7 @@ if(u == null){
 		Role r = u.getUserRoles().iterator().next().getRole();
 		roleName = r.getRoleName();
 	}
+	Util.setNull2DefaultValue(u);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -79,6 +80,10 @@ $(document).ready(function(){
 					<td align="left"><%=u.getOrganization().getName()%></td>
 				</tr>
 <%} %>
+				<tr>
+					<td width="20%" align="right">联系电话：</td>
+					<td align="left"><%=u.getTel()%></td>
+				</tr>
 				<tr>
 					<td width="20%" align="right">注册日期：</td>
 					<td align="left"><%=Util.FormatDateLong(u.getRegisterDate())%></td>
