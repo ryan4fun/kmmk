@@ -7,10 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.json.JSONObject;
 
+import com.gps.orm.HibernateUtil;
 import com.gps.orm.StateHelper;
+import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleStatus;
 import com.gps.service.RoleService;
 import com.gps.service.VehicleService;
@@ -122,7 +125,7 @@ public class VehicleStatusBean extends AbstractBean {
 			
 			crit.createAlias("vehicle", "t");			
 			if (this.vehicleState != null)
-				crit.add(Restrictions.eq("t.vehicleState", this.vehicleState));				
+				crit.add(Restrictions.eq("t.vehicleState", this.vehicleState));
 			else
 				crit.add(Restrictions.ne("t.vehicleState", VehicleService.VEHICLE_DEL_STATE));
 			
@@ -143,6 +146,117 @@ public class VehicleStatusBean extends AbstractBean {
 			return null;
 	}
 
+	public List<Vehicle> getListOrderByInternalNumber(){
+		try {
+			Criteria crit = HibernateUtil.getSession().createCriteria(Vehicle.class);
+			Criteria critVehicleStatus = crit.createCriteria("vehicleStatus");
+			Criteria critUsers = crit.createCriteria("users");
+			Criteria critOrganization = crit.createCriteria("users.organization");
+			
+			Criteria _crit = HibernateUtil.getSession().createCriteria(Vehicle.class);
+			Criteria _critVehicleStatus = _crit.createCriteria("vehicleStatus");
+			Criteria _critUsers = _crit.createCriteria("users");
+			Criteria _critOrganization = _crit.createCriteria("users.organization");
+			
+			if (this.getUserId() != null && userId>0){
+				critUsers.add(Restrictions.eq("userId", this.getUserId()));
+				_critUsers.add(Restrictions.eq("userId", this.getUserId()));
+			}
+				
+			if (this.getOrganizationId() != null && organizationId>0){
+				critOrganization.add(Restrictions.eq("organizationId", this.getOrganizationId()));
+				_critOrganization.add(Restrictions.eq("organizationId", this.getOrganizationId()));
+			}
+				
+			if (this.vehicleState != null && this.vehicleState>0){
+				crit.add(Restrictions.eq("vehicleState", this.vehicleState));
+				_crit.add(Restrictions.eq("vehicleState", this.vehicleState));
+			} else {
+				crit.add(Restrictions.ne("vehicleState", VehicleService.VEHICLE_DEL_STATE));
+				_crit.add(Restrictions.ne("vehicleState", VehicleService.VEHICLE_DEL_STATE));
+			}
+			
+			if (this.currentLong != null && this.currentLong>=-180 && this.currentLong<=180){
+				critVehicleStatus.add(Restrictions.eq("currentLong", this.currentLong));
+				_critVehicleStatus.add(Restrictions.eq("currentLong", this.currentLong));
+			}
+			if (this.currentLat != null && this.currentLat>=-90 && this.currentLat<=90){
+				critVehicleStatus.add(Restrictions.eq("currentLat", this.currentLat));
+				_critVehicleStatus.add(Restrictions.eq("currentLat", this.currentLat));	
+			}
+			if (this.getVehicleId() != null && this.vehicleId>0){
+				critVehicleStatus.add(Restrictions.eq("vehicleId", this.getVehicleId()));
+				_critVehicleStatus.add(Restrictions.eq("vehicleId", this.getVehicleId()));	
+			}
+			if (this.getIsRunning() != null && this.isRunning>0){
+				critVehicleStatus.add(Restrictions.eq("isRunning", this.getIsRunning()));
+				_critVehicleStatus.add(Restrictions.eq("isRunning", this.getIsRunning()));	
+			}
+			if (this.getIsOnline() != null && this.isOnline>0){
+				critVehicleStatus.add(Restrictions.eq("isOnline", this.getIsOnline()));
+				_critVehicleStatus.add(Restrictions.eq("isOnline", this.getIsOnline()));
+			}
+			if (this.getIsAskHelp() != null && this.isAskHelp>0){
+				critVehicleStatus.add(Restrictions.eq("isAskHelp", this.getIsAskHelp()));
+				_critVehicleStatus.add(Restrictions.eq("isAskHelp", this.getIsAskHelp()));
+			}
+			if (this.getLimitAreaAlarm() != null && this.limitAreaAlarm>0){
+				critVehicleStatus.add(Restrictions.eq("limitAreaAlarm", this.getLimitAreaAlarm()));
+				_critVehicleStatus.add(Restrictions.eq("limitAreaAlarm", this.getLimitAreaAlarm()));
+			}
+			if (this.getOverSpeed() != null && this.overSpeed>0){
+				critVehicleStatus.add(Restrictions.eq("overSpeed", this.getOverSpeed()));
+				_critVehicleStatus.add(Restrictions.eq("overSpeed", this.getOverSpeed()));
+			}
+			if (this.getTireDrive() != null && this.tireDrive>0){
+				critVehicleStatus.add(Restrictions.eq("tireDrive", this.getTireDrive()));
+				_critVehicleStatus.add(Restrictions.eq("tireDrive", this.getTireDrive()));
+			}
+
+			if (this.getTaskState() != null){
+				if(this.taskState == VehicleStatusService.VEHICLE_ONTASK_STATE_ON ){
+					critVehicleStatus.add(Restrictions.gt("taskId", 0));
+					_critVehicleStatus.add(Restrictions.gt("taskId", 0));
+				} else if(this.taskState == VehicleStatusService.VEHICLE_ONTASK_STATE_OFF ){
+					critVehicleStatus.add(Restrictions.or(Restrictions.le("taskId", 0),Restrictions.isNull("taskId")));
+					_critVehicleStatus.add(Restrictions.or(Restrictions.le("taskId", 0),Restrictions.isNull("taskId")));
+				}
+			}
+			if (queryRadius != null && queryRadius > 0 && queryLong != null
+					&& queryLong > 0 && queryLat != null && queryLat > 0) {
+				critVehicleStatus.add(Restrictions.ge("currentLong", queryLong
+						- Util.CalculateDistance2LongGap(queryLong, queryRadius)));
+				critVehicleStatus.add(Restrictions.ge("currentLat", queryLat
+						- Util.CalculateDistance2LatGap(queryRadius)));
+
+				critVehicleStatus.add(Restrictions.le("currentLong", queryLong
+						+ Util.CalculateDistance2LongGap(queryLong, queryRadius)));
+				critVehicleStatus.add(Restrictions.le("currentLat", queryLat
+						+ Util.CalculateDistance2LatGap(queryRadius)));
+				
+				_critVehicleStatus.add(Restrictions.ge("currentLong", queryLong
+						- Util.CalculateDistance2LongGap(queryLong, queryRadius)));
+				_critVehicleStatus.add(Restrictions.ge("currentLat", queryLat
+						- Util.CalculateDistance2LatGap(queryRadius)));
+
+				_critVehicleStatus.add(Restrictions.le("currentLong", queryLong
+						+ Util.CalculateDistance2LongGap(queryLong, queryRadius)));
+				_critVehicleStatus.add(Restrictions.le("currentLat", queryLat
+						+ Util.CalculateDistance2LatGap(queryRadius)));
+			}
+			
+			crit.addOrder(Order.asc("internalNumber"));
+			addPagination(crit);
+			List<Vehicle> list = crit.list();
+			
+			getTotalCount(_crit);
+			return list;
+		} catch (HibernateException e) {
+			logger.error(e);
+			throw e;
+		}
+	}
+	
 	public Integer getVehicleId() {
 		return vehicleId;
 	}
