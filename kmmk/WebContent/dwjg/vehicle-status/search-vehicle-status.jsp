@@ -8,7 +8,7 @@
 				com.gps.service.*"%>
 <%@ include file="/header.jsp"%><%
 VehicleStatusBean vsb = new VehicleStatusBean(request);
-List<VehicleStatus> vss = vsb.getList();
+List<Vehicle> vss = vsb.getListOrderByInternalNumber();
 Util.setNull2DefaultValue(vsb);
 
 DecimalFormat df = new DecimalFormat();
@@ -129,7 +129,8 @@ font-weight: bold;
 		
 	</tr>
 	<%
-	for(VehicleStatus vs:vss){
+	for(Vehicle v:vss){
+		VehicleStatus vs = v.getVehicleStatus();
 		StateHelperBean shb = new StateHelperBean();
 		shb.setVehicleId(vs.getVehicleId());
 		StateHelper helper = shb.findById();
@@ -164,7 +165,7 @@ font-weight: bold;
 		<td id="p_<%=vs.getVehicleId()%>" colspan="12">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>
-				<td width="6%"><a href="<%=viewURL %>"><%=vs.getVehicle().getInternalNumber()%></a></td>
+				<td width="6%"><a href="<%=viewURL %>"><%=v.getInternalNumber()%></a></td>
 				<td width="8%"><a href="<%=viewURL %>"><%=vs.getLicensPadNumber()%></a></td>
 				<td width="8%"><a href="<%=viewURL %>"><%=vs.getIsRunning()==0?"-":VehicleStatusService.runningStates.get(vs.getIsRunning())%></a></td>
 				<td width="5%"><a href="<%=viewURL %>"><%=vs.getIsOnline()==0?"-":VehicleStatusService.onlineStates.get(vs.getIsOnline())%></a></td>
@@ -214,7 +215,7 @@ function pageSelectCallback(pageNumber){
 
 function MM_controlSound(x, _sndObj, sndFile) { //v3.0
   var i, method = "", sndObj = eval(_sndObj);
-  if (sndObj != null) {
+  if (_sndObj != null) {
     if (navigator.appName == 'Netscape') 
         method = "play";
     else {
