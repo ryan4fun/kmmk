@@ -189,9 +189,9 @@ function resetPwd(id){
 		<th width="15%">登录名称</th>
 		<th width="15%">真实姓名</th>
 		<th width="15%">所属单位</th>
+		<th width="10%">联系电话</th>	
 		<th width="15%">注册日期</th>
 		<th width="15%">最后登录日期</th>
-		<th width="10%">最后登录IP</th>		
 		<th width="15%">操作</th>
 	</tr>
 	<% for(Users u:uss){ 
@@ -203,9 +203,9 @@ function resetPwd(id){
 				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getLoginName()%></a></td>
 				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getRealName()%></a></td>
 				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getOrganization()==null?"":u.getOrganization().getName()%></a></td>
+				<td width="10%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getTel()%></a></td>	
 				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=Util.FormatDateLong(u.getRegisterDate())%></a></td>
 				<td width="15%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=Util.FormatDateLong(u.getLastLoginDate())%></a></td>
-				<td width="10%"><a href="javascript:href('view-users.jsp?userId=<%=u.getUserId()%>')" ><%=u.getLastLoginIp()%></a></td>				
 				<td width="15%"><a href="javascript:href('update-users.jsp?userId=<%=u.getUserId()%>')">修   改</a> | <a href="javascript:resetPwd('<%=u.getUserId()%>')">重置密码</a> | <a href="javascript:delOrg('<%=u.getUserId()%>')">删   除</a></td>
 			</tr>
 		</table>
