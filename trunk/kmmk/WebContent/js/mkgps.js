@@ -131,3 +131,22 @@ if(!Array.prototype.indexOf){
 		return i;
 	}
 }
+function setCookie(name,value){
+	if (document.cookie) {
+		var exp  = new Date();
+	    exp.setTime(exp.getTime() + 365*24*60*60*1000);
+	    document.cookie = "mkgps_" + name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+}
+function getCookie(name){
+    var arr = document.cookie.match(new RegExp("(^| )"+"mkgps_" + name+"=([^;]*)(;|$)"));
+    return (arr != null) ? unescape(arr[2]) : null;
+}
+function delCookie(name){
+    var cval=getCookie(name);
+    if(cval!=null){
+    	var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        document.cookie= "mkgps_" + name + "="+cval+";expires="+exp.toGMTString();
+    }
+}
