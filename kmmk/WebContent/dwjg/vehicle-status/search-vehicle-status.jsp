@@ -161,7 +161,7 @@ font-weight: bold;
 		String viewURL = "javascript:href('view-vehicle-status.jsp?vehicleId="+vs.getVehicleId()+"')";
 	%>
 	<tr>
-		<td id="p_<%=vs.getVehicleId()%>" colspan="99">
+		<td id="p_<%=vs.getVehicleId()%>" colspan="12">
 		<table cellSpacing="0" width="100%" cellpadding="0">
 			<tr>
 				<td width="6%"><a href="<%=viewURL %>"><%=vs.getVehicle().getInternalNumber()%></a></td>
@@ -181,18 +181,14 @@ font-weight: bold;
 							if(task!=null){
 					%>
 								<a href="javascript:href('<%=basePath%>rwgl/task/view-task.jsp?taskId=<%=task.getTaskId()%>')"><%=task.getTaskName()%></a>
-					<%						
-							} else {
-					%>
+							<% } else { %>
 								任务查询错误
 					<%			
 							}
 						} else {
 					%>
 						<%=VehicleStatusService.taskStates.get(VehicleStatusService.VEHICLE_ONTASK_STATE_OFF)%>
-					<%		
-						}
-					%>
+					<% } %>
 					</td>
 				<td width="8%"><%=vs.getVehicle().getSimCardNo() %></td>
 				<td width="8%">
@@ -205,7 +201,7 @@ font-weight: bold;
 	</tr>
 	<% } %>
 	<tr>
-		<td class="pagination" id="__pagination" name="__pagination" colspan="99" align="center"></td>
+		<td class="pagination" id="__pagination" name="__pagination" colspan="12" align="center"></td>
 	</tr>
 </table>
 <% } %>
