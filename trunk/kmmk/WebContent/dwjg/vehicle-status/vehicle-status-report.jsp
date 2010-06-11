@@ -58,13 +58,13 @@ for(Organization o:os){
 	vsb.setIsOnline(VehicleStatusService.VEHICLE_ONLINE_STATE_BLIND);	
 	int blindCount = vsb.getList().size();
 %>
-<p style="font-size:1.3em;font-weight:bold;"><%=o.getName() %></p><br>
+<p style="font-size:1.3em;font-weight:bold;"><%=o.getName() %></p><br/>
 <p>
 车辆总数：<%=vs.size() %>
+&nbsp;&nbsp;&nbsp;&nbsp;未初始化数量：<%=vs.size()-onlineCount-offlineCount-blindCount %>
 &nbsp;&nbsp;&nbsp;&nbsp;在线数量：<%=onlineCount %>
 &nbsp;&nbsp;&nbsp;&nbsp;离线数量：<%=offlineCount %>
 &nbsp;&nbsp;&nbsp;&nbsp;盲区数量：<%=blindCount %>
-&nbsp;&nbsp;&nbsp;&nbsp;未初始化数量：<%=vs.size()-onlineCount-offlineCount-blindCount %>
 </p>
 <table border="0" cellspacing="0" cellpadding="0" width="650" class="vehicle-status-report">
 	<tr>
