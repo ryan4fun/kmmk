@@ -47,7 +47,11 @@ public class VehicleStatusBean extends AbstractBean {
 	private Integer userId;
 	private Integer organizationId;
 	
-	
+	private String order;
+	public String getVehicleStatusOrder() {
+		return vehicleStatusOrder;
+	}
+
 	public VehicleStatusBean(){
 	}
 			
@@ -146,7 +150,7 @@ public class VehicleStatusBean extends AbstractBean {
 			return null;
 	}
 
-	public List<Vehicle> getListOrderByInternalNumber(){
+	public List<Vehicle> getListOrderBy(){
 		try {
 			Criteria crit = HibernateUtil.getSession().createCriteria(Vehicle.class);
 			Criteria critVehicleStatus = crit.createCriteria("vehicleStatus");
@@ -244,8 +248,12 @@ public class VehicleStatusBean extends AbstractBean {
 				_critVehicleStatus.add(Restrictions.le("currentLat", queryLat
 						+ Util.CalculateDistance2LatGap(queryRadius)));
 			}
+			if(this.order != null)
+				crit.addOrder(Order.asc(order));
 			
-			crit.addOrder(Order.asc("internalNumber"));
+			if(this.vehicleStatusOrder != null)
+				critVehicleStatus.addOrder(Order.asc(vehicleStatusOrder));
+			
 			addPagination(crit);
 			List<Vehicle> list = crit.list();
 			
@@ -396,6 +404,23 @@ public class VehicleStatusBean extends AbstractBean {
 	public Integer getOrganizationId() {
 		return organizationId;
 	}
+	
+	public String getOrder() {
+		return order;
+	}
+
+	public void setOrder(String order) {
+		this.order = order;
+	}
+	
+	public void setVehicleStatusOrder(String vehicleStatusOrder) {
+		this.vehicleStatusOrder = vehicleStatusOrder;
+	}
+
+	private String vehicleStatusOrder;
+	
+	
+	
 
 	public void setOrganizationId(Integer organizationId) {
 		this.organizationId = organizationId;
