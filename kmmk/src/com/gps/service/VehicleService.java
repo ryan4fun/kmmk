@@ -188,9 +188,9 @@ public class VehicleService extends AbstractService {
 		List results = HibernateUtil.getSession().createCriteria(VehicleStatus.class)
 		.createAlias("vehicle", "t").createAlias("vehicle.users", "u").createAlias("vehicle.users.organization", "o")
 		.add(Restrictions.eq("t.vehicleState", VehicleService.VEHICLE_NORM_STATE))
-		.add(Restrictions.eq("o.organizationID", orgId))
+		.add(Restrictions.eq("o.organizationId", orgId))
 	    .setProjection( 
-	    		Projections.projectionList().add( Projections.rowCount(), "runCount" )
+	    		Projections.projectionList()
 	    			.add( Projections.property("vehicle.vehicleId"), "vehicleId" )
 	    			.add( Projections.property("t.licensPadNumber"), "licensPadNumber" )
 	    			.add( Projections.property("t.internalNumber"), "internalNumber" )
