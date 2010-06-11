@@ -63,7 +63,7 @@ for(Organization o:os){
 	<tr>
 		<td><%=v.getInternalNumber()%></td>
 		<td><%=v.getVehicleStatus().getLicensPadNumber()%></td>
-		<td><%=v.getVehicleStatus().getIsOnline()==0?"未知":VehicleStatusService.onlineStates.get(v.getVehicleStatus().getIsOnline())%></td>
+		<td><%=v.getVehicleStatus().getIsOnline()==0?"未初始化":VehicleStatusService.onlineStates.get(v.getVehicleStatus().getIsOnline())%></td>
 		<td><%=v.getSimCardNo()%></td>
 		<td><%=v.getUsers().getRealName()%></td>
 		<td><%=v.getUsers().getTel()==null?"&nbsp;":v.getUsers().getTel()%></td>
