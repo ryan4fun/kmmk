@@ -44,7 +44,7 @@ List<Organization> os = ob.getList();
 for(Organization o:os){
 %>
 <p style="font-size:1.3em;font-weight:bold;"><%=o.getName() %></p>
-<table border="0" cellspacing="0" cellpadding="0" width="100%" class="vehicle-status-report">
+<table border="0" cellspacing="0" cellpadding="0" width="650" class="vehicle-status-report">
 	<tr>
 		<th>自编号</th>
 		<th>车牌号</th>
@@ -66,7 +66,7 @@ for(Organization o:os){
 		<td><%=v.getVehicleStatus().getIsOnline()==0?"未知":VehicleStatusService.onlineStates.get(v.getVehicleStatus().getIsOnline())%></td>
 		<td><%=v.getSimCardNo()%></td>
 		<td><%=v.getUsers().getRealName()%></td>
-		<td><%=v.getUsers().getTel()==null?"":v.getUsers().getTel()%></td>
+		<td><%=v.getUsers().getTel()==null?"&nbsp;":v.getUsers().getTel()%></td>
 	</tr>
 <%
 	}
