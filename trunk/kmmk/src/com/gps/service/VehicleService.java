@@ -8,9 +8,14 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 
 import com.gps.bean.GpsDeviceInstallationBean;
+import com.gps.orm.FRuningLog;
 import com.gps.orm.GpsDeviceInstallation;
 import com.gps.orm.HibernateUtil;
 import com.gps.orm.Organization;
@@ -176,5 +181,32 @@ public class VehicleService extends AbstractService {
 		
 		commitTransaction();
 	}
+	
+	public List getAllVechileByOrgAndState(int orgId){
+		
+		
+		List results = HibernateUtil.getSession().createCriteria(VehicleStatus.class)
+		.createAlias("vehicle", "t").createAlias("vehicle.users", "u").createAlias("vehicle.users.organization", "o")
+		.add(Restrictions.eq("t.vehicleState", VehicleService.VEHICLE_NORM_STATE))
+		.add(Restrictions.eq("o.organizationID", orgId))
+	    .setProjection( 
+	    		Projections.projectionList().add( Projections.rowCount(), "runCount" )
+	    			.add( Projections.property("vehicle.vehicleId"), "vehicleId" )
+	    			.add( Projections.property("t.licensPadNumber"), "licensPadNumber" )
+	    			.add( Projections.property("t.internalNumber"), "internalNumber" )
+	    			.add( Projections.property("isOnline"), "onlineState" )
+	    			.add( Projections.property("t.simCardNo"), "simCardNo" )
+	    			.add( Projections.property("u.realName"), "realName" )
+	    			.add( Projections.property("u.tel"), "tel" )
+	    			
+	    )
+	    .addOrder( Property.forName("isOnline").desc() )
+	    .list();
+		
+		return results;
+		
+	}
+	
+	
 	
 }
