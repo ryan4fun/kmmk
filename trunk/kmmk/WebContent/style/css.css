@@ -147,7 +147,28 @@ input.error { border: 1px dotted red; }
 
 
 
+.vehicle-status-report{
+	margin-top:10px;
+	margin-bottom:10px;
+	border:1px solid #C9DCA6;
+	page-break-after:always;
+}
 
+.vehicle-status-report th, .vehicle-status-report td{
+	border-bottom: 1px solid #C9DCA6;
+	padding-top:3px;	
+	padding-bottom:3px;
+	text-align: center;
+	font-size:1.1em;
+}
+
+.listtable td{	
+	padding-left:5px;
+	padding-top:2px;
+	padding-right:5px;
+	padding-bottom:2px;
+	text-align: center;
+}
 
 
 .listtable{

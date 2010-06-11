@@ -8,7 +8,8 @@
 				com.gps.service.*"%>
 <%@ include file="/header.jsp"%><%
 VehicleStatusBean vsb = new VehicleStatusBean(request);
-List<Vehicle> vss = vsb.getListOrderByInternalNumber();
+vsb.setOrder("internalNumber");
+List<Vehicle> vss = vsb.getListOrderBy();
 Util.setNull2DefaultValue(vsb);
 
 DecimalFormat df = new DecimalFormat();
