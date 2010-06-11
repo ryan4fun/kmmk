@@ -7,7 +7,7 @@
 				java.text.DecimalFormat,
 				com.gps.service.*"%>
 <%@ include file="/header.jsp"%><%
-
+	String isPrint = request.getParameter("print");
 %><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -36,14 +36,36 @@ font-weight: bold;
 </head>
 
 <body>
-<p style="text-align: center;"><input type="button" onclick="print();" value="打 印"></input></p>
-
+<%if(isPrint == null){ %>
+<p style="text-align: center;"><input type="button" onclick="window.open('vehicle-status-report.jsp?print=true');" value="打 印"></input></p>
+<%}%>
 <%
 OrganizationBean ob = new OrganizationBean();
 List<Organization> os = ob.getList();
 for(Organization o:os){
+	VehicleStatusBean vsb = new VehicleStatusBean();
+	vsb.setOrganizationId(o.getOrganizationId());
+	vsb.setVehicleStatusOrder("isOnline");
+	List<Vehicle> vs = vsb.getListOrderBy();
+	
+	vsb.setVehicleStatusOrder(null);
+	vsb.setIsOnline(VehicleStatusService.VEHICLE_ONLINE_STATE_ONLINE);	
+	int onlineCount = vsb.getList().size();
+
+	vsb.setIsOnline(VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE);	
+	int offlineCount = vsb.getList().size();
+	
+	vsb.setIsOnline(VehicleStatusService.VEHICLE_ONLINE_STATE_BLIND);	
+	int blindCount = vsb.getList().size();
 %>
-<p style="font-size:1.3em;font-weight:bold;"><%=o.getName() %></p>
+<p style="font-size:1.3em;font-weight:bold;"><%=o.getName() %></p><br>
+<p>
+车辆总数：<%=vs.size() %>
+&nbsp;&nbsp;&nbsp;&nbsp;在线数量：<%=onlineCount %>
+&nbsp;&nbsp;&nbsp;&nbsp;离线数量：<%=offlineCount %>
+&nbsp;&nbsp;&nbsp;&nbsp;盲区数量：<%=blindCount %>
+&nbsp;&nbsp;&nbsp;&nbsp;未初始化数量：<%=vs.size()-onlineCount-offlineCount-blindCount %>
+</p>
 <table border="0" cellspacing="0" cellpadding="0" width="650" class="vehicle-status-report">
 	<tr>
 		<th>自编号</th>
@@ -54,10 +76,7 @@ for(Organization o:os){
 		<th>车主电话</th>
 	</tr>
 <%
-	VehicleStatusBean vsb = new VehicleStatusBean();
-	vsb.setOrganizationId(o.getOrganizationId());
-	vsb.setVehicleStatusOrder("isOnline");
-	List<Vehicle> vs = vsb.getListOrderBy();
+	
 	for(Vehicle v:vs){		
 %>	
 	<tr>
