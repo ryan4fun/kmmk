@@ -107,4 +107,5 @@ public abstract class AbstractRuleChecker {
 
 	abstract public String getDiscription();
 
+
 }

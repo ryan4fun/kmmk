@@ -5,6 +5,7 @@ package com.gps.rule;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
@@ -36,6 +37,8 @@ import com.gps.state.IStateChecker;
  */
 public class RuleManager {
 
+	public static HashMap<String,RuleManager> _allRuleMgrs = new HashMap<String,RuleManager>();
+	
 	public static short RULE_STATE_FINISHED = 9999;
 	
 	public static  short MONIT_LEVEL_SPEED = 1;
@@ -65,9 +68,16 @@ public class RuleManager {
 			}
 			initial();
 		}
+		_allRuleMgrs.put(vs.getVehicle().getDeviceId(), this);
 	}
 	
 
+	public RuleManager getRuleManager(String deviceId){
+		
+		return _allRuleMgrs.get(deviceId);
+		
+	}
+	
 	private void initial() {
 		
 		this.everyMessageRules.clear();
@@ -119,8 +129,9 @@ public class RuleManager {
 		if(vehicle.getSpeedLimitation() != null){
 			speedLimt = vehicle.getSpeedLimitation();
 		}
-		AbstractRuleChecker checker = RuleCheckerFactory.getSpeedChecker(speedLimt,vehicle);
-			
+		OverSpeedChecker checker = RuleCheckerFactory.getSpeedChecker(speedLimt,vehicle);
+		checker.setDefault(true);	
+		
 		List<AbstractRuleChecker> checkerList = this.everyMessageRules;
 		checkerList.add(checker);
 		
@@ -370,4 +381,30 @@ public class RuleManager {
 		return ServiceLocator.getInstance();
 	}
 
+	
+	public static void updateVechileSpeedLimitation(Vehicle v){
+		
+		
+		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
+		
+		if(mgr != null){
+			
+			mgr.updateVechileRule(v);
+		}
+		
+	}
+
+
+	private void updateVechileRule(Vehicle v) {
+		
+		for(AbstractRuleChecker ruleChecker : this.everyMessageRules){
+			
+			if(ruleChecker instanceof OverSpeedChecker 
+					&& ((OverSpeedChecker)ruleChecker).isDefault()){
+				
+				((OverSpeedChecker)ruleChecker).setSpeed(v.getSpeedLimitation());
+			}
+		}
+		
+	}
 }
