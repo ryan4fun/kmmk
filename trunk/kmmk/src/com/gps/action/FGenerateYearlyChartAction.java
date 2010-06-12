@@ -53,7 +53,7 @@ public class FGenerateYearlyChartAction extends Action{
 		
 		if(vehicleId != null && year != null){
 
-			
+			ServiceLocator.getInstance().getVehicleService().getAllVechileByOrgAndState(1);
 			
 			File reportXMLFile = new File(basePath+"charts/yearlyLineChart.jrxml");  
 			File reportFile = new File(basePath+"charts/yearlyLineChart.jasper");  
