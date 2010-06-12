@@ -33,8 +33,6 @@ if(v == null){
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 
-
-
 <style type="text/css">
 
 </style>
@@ -67,8 +65,7 @@ $(document).ready(function(){
 				<tr> 
  					<td width="20%" align="right">所属单位：</td>
 					<td align="left">
-					<%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%>
-					</td>
+						<%=v.getUsers()!=null?v.getUsers().getOrganization().getName():""%></td>
 				</tr>
 				<tr>
 					<td width="20%" align="right">车主：</td>
@@ -95,6 +92,11 @@ $(document).ready(function(){
 					<td align="left"><%=v.getCapability()%></td>
 				</tr>
 				<tr>
+ 					<td width="20%" align="right">车辆限速：</td>
+					<td align="left">
+						<%=v.getSpeedLimitation()==null?"":v.getSpeedLimitation()%></td>
+				</tr>
+				<tr>
  					<td width="20%" align="right">登记日期：</td>
 					<td align="left"><%=Util.FormatDateShort(v.getRegisterDate())%></td>
 				</tr>
@@ -112,7 +114,7 @@ $(document).ready(function(){
 				</tr>
 				<tr>
  					<td width="20%" align="right">资产基数：</td>
-					<td align="left"><%=v.getAssetBaseValue()%></td>
+					<td align="left"><%=v.getAssetBaseValue()==null?"":v.getAssetBaseValue()%></td>
 				</tr>
 				<tr>
  					<td width="20%" align="right">SIM卡号：</td>

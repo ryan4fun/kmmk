@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.*"%>
 <%@ include file="/header.jsp"%>
-
-
 <%
 String idstr = request.getParameter("vehicleId");
 Vehicle v = null;
@@ -21,11 +19,11 @@ if(v == null){
 	out.print("无法找到该车辆！");
 	return;
 }
-	VehicleTypeDicBean vtb = new VehicleTypeDicBean();
-	List<VehicleTypeDic> vts = vtb.getList();
-	OrganizationBean ob = new OrganizationBean();
-	//ob.setPagination(false);
-	List<Organization> os = ob.getList();
+VehicleTypeDicBean vtb = new VehicleTypeDicBean();
+List<VehicleTypeDic> vts = vtb.getList();
+OrganizationBean ob = new OrganizationBean();
+//ob.setPagination(false);
+List<Organization> os = ob.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -44,30 +42,31 @@ if(v == null){
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
 
 <style type="text/css">
 
 </style>
 <script language="JavaScript">
-jQuery.validator.addMethod("licensPadNumber", function(value, element) {
-	var result = false;
-	$.ajax({
-		url : "mkgps.do",
-		dataType : "json",
-		data : {
-			action : "CheckDuplicatedAjax",
-			type : "licensPadNumber",
-			value : escape(element.value),
-			id : "<%=idstr==null?"":idstr%>"
-		},
-		cache : false,
-		async : false,
-		success : function(json){
-			result = json.result;
-		}
-	});
-	return result;
-}, "该车牌号已被使用！");
+	jQuery.validator.addMethod("licensPadNumber", function(value, element) {
+		var result = false;
+		$.ajax({
+			url : "mkgps.do",
+			dataType : "json",
+			data : {
+				action : "CheckDuplicatedAjax",
+				type : "licensPadNumber",
+				value : escape(element.value),
+				id : "<%=idstr==null?"":idstr%>"
+			},
+			cache : false,
+			async : false,
+			success : function(json){
+				result = json.result;
+			}
+		});
+		return result;
+	}, "该车牌号已被使用！");
 
 	var allOwners = new Array();
 	$(document).ready(function(){
@@ -82,11 +81,8 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
    		$("#inputform").validate({
    			success: function(label) {
    				var $input = label.parent("td").children("input");
-   				if($input.length){
-					if($input.attr("name")=="licensPadNumber"){
-						label.text("车牌号可以使用！").addClass("success");
-					}
-   	   			}
+   				if($input.length && $input.attr("name")=="licensPadNumber")
+					label.text("车牌号可以使用！").addClass("success");
 			},
 			rules: {
    				deviceId: {
@@ -136,6 +132,9 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 				},
 				simCardNo: {
 					required: true
+				},
+				speedLimitation: {
+					digits: true
 				}
 			},
 			messages: {
@@ -193,7 +192,6 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 		   			form.submit();
 		   		}
 			}
-							
 		});
 
    		$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
@@ -301,6 +299,12 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
  					<td width="20%" align="right">核载：</td>
 					<td align="left">
 					<input type="text" id="capability" name = "capability" value="<%=v.getCapability()==null?"":v.getCapability()%>" />
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">车辆限速：</td>
+					<td align="left">
+					<input type="text" id="speedLimitation" name = "speedLimitation" value="<%=v.getSpeedLimitation()==null?"":v.getSpeedLimitation()%>" />
 					</td>
 				</tr>
 				<tr>
