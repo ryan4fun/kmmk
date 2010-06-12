@@ -24,6 +24,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public static int DEFAULT_ALERTTYPEDIC_ID = 1;
 	private Integer speedLimitation;
 	private Double currentSpeed;
+	private boolean isDefault;
 
 
 	public OverSpeedChecker(Rules rule, Vehicle vehicle) {
@@ -47,7 +48,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		AlertTypeDic alertDic = ServiceLocator.getInstance().getAlertTypeDicService().findById(AlertTypeDicService.ALERT_TYPE_DIC_ID_OVERSPEED);
 		this.alertTypeDic = alertDic;
 		this.ruleName = "超速限制";
-		this.intParam1 = (int) speedLimt;
+		
 		initial();
 	}
 
@@ -60,6 +61,16 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		}
 	}
 
+	public void setDefault(boolean b) {
+		
+		this.isDefault = b;
+		
+	}
+
+	public boolean isDefault(){
+		
+		return this.isDefault;
+	}
 
 	@Override
 	public boolean doCheck(Message msg) {
@@ -108,5 +119,12 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		}
 		str.append(this.speedLimitation);
 		return str.toString();
+	}
+
+
+	public void setSpeed(double speedLimitation2) {
+		
+		this.intParam1 = (int)speedLimitation2;
+		
 	}
 }
