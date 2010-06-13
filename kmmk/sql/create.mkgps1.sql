@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Tuesday, May 04, 2010 23:36:04
+ * Date Created : Sunday, June 13, 2010 21:38:18
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -1382,6 +1382,7 @@ CREATE TABLE vehicleTypeDic(
     vehicleTypeName    varchar(50)     NULL,
     description        varchar(200)    NULL,
     stateTag           smallint        NULL,
+    speedLimitation    int             NULL,
     CONSTRAINT PK36 PRIMARY KEY NONCLUSTERED (vehicleTypeID)
 )
 go
