@@ -14,6 +14,7 @@ public class VehicleTypeDic implements java.io.Serializable {
 	private String vehicleTypeName;
 	private String description;
 	private Short stateTag;
+	private Integer speedLimitation;
 	private Set<Vehicle> vehicles = new HashSet<Vehicle>(0);
 
 	public VehicleTypeDic() {
@@ -24,11 +25,13 @@ public class VehicleTypeDic implements java.io.Serializable {
 	}
 
 	public VehicleTypeDic(short vehicleTypeId, String vehicleTypeName,
-			String description, Short stateTag, Set<Vehicle> vehicles) {
+			String description, Short stateTag, Integer speedLimitation,
+			Set<Vehicle> vehicles) {
 		this.vehicleTypeId = vehicleTypeId;
 		this.vehicleTypeName = vehicleTypeName;
 		this.description = description;
 		this.stateTag = stateTag;
+		this.speedLimitation = speedLimitation;
 		this.vehicles = vehicles;
 	}
 
@@ -62,6 +65,14 @@ public class VehicleTypeDic implements java.io.Serializable {
 
 	public void setStateTag(Short stateTag) {
 		this.stateTag = stateTag;
+	}
+
+	public Integer getSpeedLimitation() {
+		return this.speedLimitation;
+	}
+
+	public void setSpeedLimitation(Integer speedLimitation) {
+		this.speedLimitation = speedLimitation;
 	}
 
 	public Set<Vehicle> getVehicles() {
