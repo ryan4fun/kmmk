@@ -39,7 +39,7 @@ if(rtd == null){
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
-
+<script type="text/javascript" src="<%=basePath %>js/dependency/messages_cn.js"></script>
 
 
 <style type="text/css">
@@ -58,7 +58,10 @@ if(rtd == null){
 			rules: {
    				regionTypeName: {
 					required: true
-				}				
+				},
+				speedLimitation: {
+					digits: true
+				}
 			},
 			messages: {
 				regionTypeName: {
@@ -106,22 +109,27 @@ if(rtd == null){
 		<input type="hidden" name = "success" value="update-vehicle-type-succ.jsp"/>
 		<input type="hidden" name = "failed" value="update-faild.jsp"/>
 		<input type="hidden" name = "vehicleTypeId" value="<%=rtd.getVehicleTypeId()%>"/>		
-			<table cellSpacing="5" width="95%">
- 				<tr> 
-					<td width="20%" align="right">名称：</td>
-					<td align="left">
+		<table cellSpacing="5" width="95%">
+				<tr> 
+				<td width="20%" align="right">名称：</td>
+				<td align="left">
 					<input style="" type="text" id="vehicleTypeName" name = "vehicleTypeName" value="<%=rtd.getVehicleTypeName()%>" /><label id="name_lable"></label>
 					</td>
-				</tr>
-				<tr>
-					<td width="20%" align="right">描述：</td>
-					<td align="left">
+			</tr>
+			<tr> 
+				<td width="20%" align="right">车型限速：</td>
+				<td align="left">
+					<input style="" type="text" id="gspeedLimitation" name = "gspeedLimitation" value="<%=rtd.getSpeedLimitation()==null?"":rtd.getSpeedLimitation()%>" />
+					</td>
+			</tr>
+			<tr>
+				<td width="20%" align="right">描述：</td>
+				<td align="left">
 					<textarea rows="3" id="description" name = "description"><%=rtd.getDescription()%></textarea>
 					</td>
-				</tr>
-			</table>
-			<p align="center"><input type="submit" style="" value="提交"/> <input type="reset" style="" value="重置"/></p>
-
+			</tr>
+		</table>
+		<p align="center"><input type="submit" style="" value="提交"/> <input type="reset" style="" value="重置"/></p>
 	</form>
 </div>
 </div>
