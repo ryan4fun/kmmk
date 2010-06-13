@@ -46,7 +46,7 @@ public class VehicleAddAction extends Action{
 		getServiceLocator().getVehicleService().addVehicle(v);
 		request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
 		
-		if(v.getSpeedLimitation() != null && v.getSpeedLimitation()>0)
-			RuleManager.updateVechileSpeedLimitation(v);
+//		if(v.getSpeedLimitation() != null && v.getSpeedLimitation()>0)
+//			RuleManager.updateVechileSpeedLimitation(v);
 	}
 }
