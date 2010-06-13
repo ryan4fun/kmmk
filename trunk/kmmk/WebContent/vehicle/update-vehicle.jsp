@@ -139,6 +139,9 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 				},
 				simCardNo: {
 					required: true
+				},
+				speedLimitation: {
+					digits: true
 				}
 			},
 			messages: {
@@ -332,6 +335,12 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
  					<td width="20%" align="right">核载：</td>
 					<td align="left">
 					<input type="text" id="capability" name = "capability" value="<%=v.getCapability()==null?"":v.getCapability()%>" />
+					</td>
+				</tr>
+				<tr>
+ 					<td width="20%" align="right">车辆限速：</td>
+					<td align="left">
+					<input type="text" id="speedLimitation" name = "speedLimitation" value="<%=v.getSpeedLimitation()==null?"":v.getSpeedLimitation()%>" />
 					</td>
 				</tr>
 				<tr>

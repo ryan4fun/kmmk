@@ -94,20 +94,25 @@ $(document).ready(function(){
 				<tr>
  					<td align="right">核载：</td>
 					<td align="left"><%=v.getCapability()%></td>
+ 					<td align="right">车辆限速：</td>
+					<td align="left">
+						<%=v.getSpeedLimitation()==null?"":v.getSpeedLimitation()%></td>
+				</tr>				
+				<tr>
 					<td align="right">年检状态：</td>
 					<td align="left"><%=VehicleService.annualCheckStates.get(v.getAnnualCheckState())%></td>
-				</tr>				
-				<tr>
  					<td align="right">二级维护到期时间：</td>
 					<td align="left"><%=Util.FormatDateShort(v.getSecondMaintainDate())%></td>
-					<td align="right">资产基数：</td>
-					<td align="left"><%=v.getAssetBaseValue()==null?"":v.getAssetBaseValue()%></td>
 				</tr>				
 				<tr>
+					<td align="right">资产基数：</td>
+					<td align="left"><%=v.getAssetBaseValue()==null?"":v.getAssetBaseValue()%></td>
  					<td align="right">SIM卡号：</td>
 					<td align="left"><%=v.getSimCardNo()%></td>
+				</tr>
+				<tr>
 					<td align="right">GPS设备号：</td>
-					<td align="left"><%=v.getDeviceId()%></td>
+					<td colspan="3" align="left"><%=v.getDeviceId()%></td>
 				</tr>
 				<!--
  					<td align="right">车辆状态：</td>
