@@ -17,6 +17,9 @@
         <property name="stateTag" type="java.lang.Short">
             <column name="stateTag" />
         </property>
+        <property name="speedLimitation" type="java.lang.Integer">
+            <column name="speedLimitation" />
+        </property>
         <set name="vehicles" inverse="true" cascade="all-delete-orphan">
             <key>
                 <column name="vehicleTypeID" />
