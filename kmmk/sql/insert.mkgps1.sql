@@ -136,9 +136,9 @@ SET IDENTITY_INSERT [users] OFF
 
 Print 'starting import vehicleTypeDic (3 records)'
 SET IDENTITY_INSERT [vehicleTypeDic] ON
-INSERT INTO [vehicleTypeDic] ([vehicleTypeID],[vehicleTypeName],[description],[stateTag]) VALUES(1,'油罐车',NULL,0)
-INSERT INTO [vehicleTypeDic] ([vehicleTypeID],[vehicleTypeName],[description],[stateTag]) VALUES(2,'搅拌车',NULL,0)
-INSERT INTO [vehicleTypeDic] ([vehicleTypeID],[vehicleTypeName],[description],[stateTag]) VALUES(3,'轿车','',NULL)
+INSERT INTO [vehicleTypeDic] ([vehicleTypeID],[vehicleTypeName],[description],[stateTag],[speedLimitation]) VALUES(1,'油罐车',NULL,0,60)
+INSERT INTO [vehicleTypeDic] ([vehicleTypeID],[vehicleTypeName],[description],[stateTag],[speedLimitation]) VALUES(2,'搅拌车',NULL,0,60)
+INSERT INTO [vehicleTypeDic] ([vehicleTypeID],[vehicleTypeName],[description],[stateTag],[speedLimitation]) VALUES(3,'轿车',NULL,0,80)
 SET IDENTITY_INSERT [vehicleTypeDic] OFF
 
 Print 'starting import vehicle (78 records)'
