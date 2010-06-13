@@ -96,8 +96,9 @@ function delOrg(id){
 <table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 	<tr>
 		<th width="25%">名称</th>
-		<th width="50%">描述</th>
-		<th width="25%">操作</th>
+		<th width="15%">车型限速</th>
+		<th width="45%">描述</th>
+		<th width="15%">操作</th>
 	</tr>
 <% 
 	for(VehicleTypeDic rtd:rtds){ 
@@ -108,8 +109,9 @@ function delOrg(id){
 		<table cellSpacing="0" width="100%" border="0" cellpadding="0">
 			<tr>
 				<td width="25%"><%=rtd.getVehicleTypeName()%></td>
-				<td width="50%"><%=rtd.getDescription()%>&nbsp;</td>
-				<td width="25%"><a href="javascript:href('update-vehicle-type.jsp?vehicleTypeId=<%=rtd.getVehicleTypeId()%>')">修   改</a> | <a href="javascript:delOrg('<%=rtd.getVehicleTypeId()%>')">删   除</a></td>
+				<td width="15%"><%=rtd.getSpeedLimitation()%>&nbsp;</td>
+				<td width="45%"><%=rtd.getDescription()%>&nbsp;</td>
+				<td width="15%"><a href="javascript:href('update-vehicle-type.jsp?vehicleTypeId=<%=rtd.getVehicleTypeId()%>')">修   改</a> | <a href="javascript:delOrg('<%=rtd.getVehicleTypeId()%>')">删   除</a></td>
 			</tr>
 		</table>
 		</td>
