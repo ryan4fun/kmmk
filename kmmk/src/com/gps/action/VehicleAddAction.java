@@ -6,6 +6,7 @@ import com.gps.orm.Gpsfee;
 import com.gps.orm.Users;
 import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleTypeDic;
+import com.gps.rule.RuleManager;
 import com.gps.service.GpsFeeService;
 import com.gps.service.VehicleService;
 import com.gps.util.Util;
@@ -16,10 +17,12 @@ public class VehicleAddAction extends Action{
 		Vehicle v = new Vehicle();
 		Users u = this.getServiceLocator().getUsersService().findById(this.getInteger("userId"));
 		if(u == null)
-			throw new Message("User not find!");
+			throw new Message("无法找到该用户!");
 		VehicleTypeDic vt = this.getServiceLocator().getVehicleTypeDicService().findById(this.getShort("vehicleTypeId"));
 		if(vt == null)
-			throw new Message("VehicleTypeDic not find!");
+			throw new Message("无法找到该车辆类型!");
+		if(v.getSpeedLimitation()==null)
+			v.setSpeedLimitation(vt.getSpeedLimitation().doubleValue());
 		generateAllSimpleProp(v);
 		v.setRegisterDate(Util.getCurrentDateTime());
 		v.setVehicleState(VehicleService.VEHICLE_NORM_STATE);
@@ -41,8 +44,9 @@ public class VehicleAddAction extends Action{
 		}
 		
 		getServiceLocator().getVehicleService().addVehicle(v);
-		
 		request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
+		
+		if(v.getSpeedLimitation() != null && v.getSpeedLimitation()>0)
+			RuleManager.updateVechileSpeedLimitation(v);
 	}
-	
 }
