@@ -123,9 +123,9 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		str.append("车速 ");
 		str.append(this.currentSpeed);
 		if(this.opType == RulesService.RULE_OP_OBEY){
-			str.append(" 超过警戒速 ");
+			str.append(" 限速 ");
 		} else {
-			str.append(" 低于警戒速 ");
+			str.append(" 低于限速 ");
 		}
 		str.append(this.speedLimitation);
 		return str.toString();
