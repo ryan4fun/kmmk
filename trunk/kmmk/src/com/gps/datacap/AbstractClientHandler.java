@@ -97,7 +97,7 @@ public abstract class AbstractClientHandler implements Runnable{
 			this.sendMsg(responseMsg);
 		}
 		
-		if(message != null){			
+		if(message != null && message.getDeviceId() != null){			
 	
 			Vehicle vehicle = getVehicleById(message.getDeviceId());			
 			if(vehicle != null){
@@ -119,9 +119,13 @@ public abstract class AbstractClientHandler implements Runnable{
 				short monitorLevel = vehicle.getMonitLevel();
 				if(isHandled && monitorLevel== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){
 					
-					if(this.ruleManager != null && vs.getTaskId()!= null && vs.getTaskId().intValue() > 0){
-						
-						this.ruleManager.checkMsg(message);
+					RuleManager ruleMgr = RuleManager.getRuleManager(vehicle);
+					if(ruleMgr == null && vs != null){
+						ruleMgr =  new RuleManager(vs);
+					}
+					if(ruleMgr != null ){
+						System.out.println("Start rule checking ... "); 
+						ruleMgr.checkMsg(message);
 					}
 				}
 			}else{
