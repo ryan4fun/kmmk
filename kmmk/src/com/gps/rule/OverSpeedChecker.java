@@ -22,8 +22,8 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	
 	
 	public static int DEFAULT_ALERTTYPEDIC_ID = 1;
-	private Integer speedLimitation;
-	private Double currentSpeed;
+	private int speedLimitation;
+	private double currentSpeed;
 	private boolean isDefault;
 
 
@@ -43,13 +43,18 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public OverSpeedChecker(double speedLimt, Vehicle vehicle) {
 
 		super(vehicle);
-
+		
 		this.opType = RulesService.RULE_OP_OBEY;
 		AlertTypeDic alertDic = ServiceLocator.getInstance().getAlertTypeDicService().findById(AlertTypeDicService.ALERT_TYPE_DIC_ID_OVERSPEED);
 		this.alertTypeDic = alertDic;
 		this.ruleName = "超速限制";
 		
-		initial();
+		speedLimitation = (int) speedLimt;
+		if(speedLimitation > 0){
+			this.isInitialed = true;
+		}
+//	System.out.println("Speed limitation checker initialed  speedLimit = " + this.speedLimitation);
+//		initial();
 	}
 
 
@@ -75,17 +80,22 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	@Override
 	public boolean doCheck(Message msg) {
 		this.currentSpeed = msg.getSpeed();
+		
+		System.out.println("Start speed checking : v = " + msg.getDeviceId()  + " speed = " + msg.getSpeed() + " limitation = " + speedLimitation);
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			
 			if(msg.getSpeed() > this.speedLimitation){
+				System.out.println("speed check return true !!!");
 				return true; // trigger the alert
 			}
 		}else{
 			if(msg.getSpeed() <= this.speedLimitation){
+				System.out.println("speed check return true !!! disobye");
 				return true; // trigger the alert
 			}
 			
 		}
+		System.out.println("speed check return false");
 		return false;
 	}
 
@@ -111,7 +121,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public String getDiscription() {
 		StringBuffer str = new StringBuffer(100);
 		str.append("当时车速 ");
-		str.append(this.currentSpeed.intValue());
+		str.append(this.currentSpeed);
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			str.append(" 超过警戒速 ");
 		} else {
