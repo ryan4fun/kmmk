@@ -120,7 +120,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	@Override
 	public String getDiscription() {
 		StringBuffer str = new StringBuffer(100);
-		str.append("当时车速 ");
+		str.append("车速 ");
 		str.append(this.currentSpeed);
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			str.append(" 超过警戒速 ");
