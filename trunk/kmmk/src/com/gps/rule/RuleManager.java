@@ -72,9 +72,9 @@ public class RuleManager {
 	}
 	
 
-	public RuleManager getRuleManager(String deviceId){
+	public static RuleManager getRuleManager(Vehicle v){
 		
-		return _allRuleMgrs.get(deviceId);
+		return _allRuleMgrs.get(v.getDeviceId());
 		
 	}
 	
@@ -125,6 +125,7 @@ public class RuleManager {
 	
 	private void initVehicleRules() {
 		
+//		System.out.println("# start initial speed limitation checker");
 		double speedLimt = 100;
 		if(vehicle.getSpeedLimitation() != null){
 			speedLimt = vehicle.getSpeedLimitation();
