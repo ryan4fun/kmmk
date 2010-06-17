@@ -135,6 +135,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public void setSpeed(double speedLimitation2) {
 		
 		this.intParam1 = (int)speedLimitation2;
+		this.speedLimitation = (int)speedLimitation2;
 		
 	}
 }
