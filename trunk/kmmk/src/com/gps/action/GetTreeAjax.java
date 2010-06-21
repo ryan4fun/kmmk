@@ -147,7 +147,7 @@ public class GetTreeAjax extends Action {
 			} else if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_BLIND){				
 				icon = "vehicle-blind.gif";
 				tip += "当前状态：盲区";
-			} else if(vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ALERT){				
+			} else if(vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON){				
 				icon = "vehicle-error.gif";
 				tip += "当前状态：警告";
 			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING){				

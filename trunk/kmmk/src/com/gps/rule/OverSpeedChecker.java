@@ -85,7 +85,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			
 			if(msg.getSpeed() > this.speedLimitation){
-				System.out.println("speed check return true !!!");
+				//System.out.println("speed check return true !!!");
 				return true; // trigger the alert
 			}
 		}else{
