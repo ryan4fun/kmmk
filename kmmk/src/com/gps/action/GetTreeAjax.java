@@ -149,7 +149,19 @@ public class GetTreeAjax extends Action {
 				tip += "当前状态：盲区";
 			} else if(vs.getOverSpeed() == VehicleStatusService.VEHICLE_OVERSPEED_STATE_ON){				
 				icon = "vehicle-error.gif";
-				tip += "当前状态：警告";
+				tip += "当前状态：超速";
+			} else if(vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_ENTER){				
+				icon = "vehicle-error.gif";
+				tip += "当前状态：进入限制区域";
+			} else if(vs.getLimitAreaAlarm() == VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE_LEAVE){				
+				icon = "vehicle-error.gif";
+				tip += "当前状态：离开限制区域";
+			} else if(vs.getTireDrive() == VehicleStatusService.VEHICLE_TIREDRIVE_STATE_ON){				
+				icon = "vehicle-error.gif";
+				tip += "当前状态：疲劳驾驶";
+			} else if(vs.getIsAskHelp() == VehicleStatusService.VEHICLE_ASKHELP_STATE_ON){				
+				icon = "vehicle-error.gif";
+				tip += "当前状态：求救";
 			} else if(vs.getIsRunning() == VehicleStatusService.VEHICLE_RUNNING_STATE_RUNNING){				
 				icon = "vehicle-run.gif";
 				tip += "当前状态：行驶中";
