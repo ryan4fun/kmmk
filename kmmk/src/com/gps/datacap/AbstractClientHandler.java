@@ -124,7 +124,7 @@ public abstract class AbstractClientHandler implements Runnable{
 						ruleMgr =  new RuleManager(vs);
 					}
 					if(ruleMgr != null ){
-						System.out.println("Start rule checking ... "); 
+						//System.out.println("Start rule checking ... "); 
 						ruleMgr.checkMsg(message);
 					}
 				}
@@ -169,7 +169,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		alert.setVehicle(vehicle);
 		alert.setAlertTypeDic(alertDic);
 		alert.setOccurDate(new Date());
-		System.out.println("get an illeagle position data :  long=" + message.getLongitude() + "lat="+ message.getLatitude());
+		//System.out.println("get an illeagle position data :  long=" + message.getLongitude() + "lat="+ message.getLatitude());
 		alert.setDescription("异常数据: 经度(" + message.getLongitude() + ") 纬度("+ message.getLatitude()+")");
 		ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 

@@ -302,7 +302,7 @@ public class RuleManager {
 		
 		if(checker.doCheck(msg)){
 			//trigger alert
-			System.out.println("Alert!   long = " + msg.getLongitude() + " lat = "+ msg.getLatitude());
+			//System.out.println("Alert!   long = " + msg.getLongitude() + " lat = "+ msg.getLatitude());
 			AlertTypeDic alertDic = ((AbstractPrivateRuleChecker)checker).getAlertTypeDic();
 			AlertHistory alert =  new AlertHistory();
 			alert.setVehicle(checker.vehicle);
@@ -356,9 +356,7 @@ public class RuleManager {
 
 	private void clearAlert(VehicleStatus state, AlertTypeDic alertTypeDic2) {
 		int alertType = alertTypeDic2.getAlertTypeId();
-
 		switch (alertType) {
-
 		case AlertTypeDicService.ALERT_TYPE_DIC_ID_TIREDDRIVING:
 			state.setTireDrive((byte) VehicleStatusService.VEHICLE_TIREDRIVE_STATE_OFF);
 			break;
@@ -368,8 +366,7 @@ public class RuleManager {
 		case AlertTypeDicService.ALERT_TYPE_DIC_ID_LIMITAREA:
 			state.setLimitAreaAlarm(VehicleStatusService.VEHICLE_LIMITAREAALARM_STATE);
 			break;
-		}
-		
+		}		
 	}
 	
 	public void stopMonitoring(short monitLevel){
