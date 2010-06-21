@@ -81,7 +81,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public boolean doCheck(Message msg) {
 		this.currentSpeed = msg.getSpeed();
 		
-		System.out.println("Start speed checking : v = " + msg.getDeviceId()  + " speed = " + msg.getSpeed() + " limitation = " + speedLimitation);
+		//System.out.println("Start speed checking : v = " + msg.getDeviceId()  + " speed = " + msg.getSpeed() + " limitation = " + speedLimitation);
 		if(this.opType == RulesService.RULE_OP_OBEY){
 			
 			if(msg.getSpeed() > this.speedLimitation){
@@ -90,12 +90,12 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 			}
 		}else{
 			if(msg.getSpeed() <= this.speedLimitation){
-				System.out.println("speed check return true !!! disobye");
+				//System.out.println("speed check return true !!! disobye");
 				return true; // trigger the alert
 			}
 			
 		}
-		System.out.println("speed check return false");
+		//System.out.println("speed check return false");
 		return false;
 	}
 
