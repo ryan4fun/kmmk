@@ -28,13 +28,11 @@ public class VehicleStatusService extends AbstractService {
 	public final static byte VEHICLE_LIMITAREAALARM_STATE_LEAVE = 2;
 	public final static byte VEHICLE_LIMITAREAALARM_STATE_ENTER = 3;
 	
-	
 	public final static byte VEHICLE_OVERSPEED_STATE_OFF = 1;
 	public final static byte VEHICLE_OVERSPEED_STATE_ON = 2;
 	
 	public final static byte VEHICLE_TIREDRIVE_STATE_ON = 2;
 	public final static byte VEHICLE_TIREDRIVE_STATE_OFF = 1;
-	
 	
 	public final static byte VEHICLE_ONTASK_STATE_OFF = 1;
 	public final static byte VEHICLE_ONTASK_STATE_ON = 2;
@@ -48,6 +46,9 @@ public class VehicleStatusService extends AbstractService {
 	public final static String VEHICLE_TIREDRIVE_STATE_ICON = "images/google_icon/alert.png";
 	public final static String VEHICLE_LIMITAREAALARM_STATE_ICON = "images/google_icon/alert.png";
 	public final static String VEHICLE_ASKHELP_STATE_ICON = "images/google_icon/alert.png";
+	
+	public final static String VEHICLE_BLIND_STATE_ICON = "images/google_icon/blind.png";
+	public final static String VEHICLE_UNKNOW_STATE_ICON = "images/google_icon/unknow.png";
 	
 	public final static String VEHICLE_RUNNING_ICON = "images/google_icon/running.png";
 	public final static String VEHICLE_OFFLINE_ICON = "images/google_icon/offline.png";
