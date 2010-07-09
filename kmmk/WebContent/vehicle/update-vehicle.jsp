@@ -141,7 +141,7 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 					required: true
 				},
 				speedLimitation: {
-					digits: true
+					number: true
 				}
 			},
 			messages: {
