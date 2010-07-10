@@ -160,7 +160,7 @@ font-weight: bold;
 			askHelpClass = "class=\"alert\"";
 		}
 		
-		String viewURL = "javascript:href('view-vehicle-status.jsp?vehicleId="+vs.getVehicleId()+"')";
+		String viewURL = "javascript:href('"+basePath+"vehicle/view-vehicle-status.jsp?vehicleId="+vs.getVehicleId()+"')";
 	%>
 	<tr>
 		<td id="p_<%=vs.getVehicleId()%>" colspan="12">
