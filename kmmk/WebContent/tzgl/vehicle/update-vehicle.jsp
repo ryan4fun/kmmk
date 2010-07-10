@@ -134,7 +134,7 @@ List<Organization> os = ob.getList();
 					required: true
 				},
 				speedLimitation: {
-					digits: true
+					number: true
 				}
 			},
 			messages: {
