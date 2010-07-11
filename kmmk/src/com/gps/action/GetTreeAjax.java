@@ -26,8 +26,7 @@ public class GetTreeAjax extends Action {
 	public void doAction() throws Exception {
 		JSONObject json = new JSONObject();
 
-		LoginInfo login = (LoginInfo) request.getSession()
-				.getAttribute("login");
+		LoginInfo login = (LoginInfo) request.getSession().getAttribute("login");
 		if (login != null) {
 			int role = login.getRoles().iterator().next();
 
@@ -63,7 +62,7 @@ public class GetTreeAjax extends Action {
 						JSONArray jsonos = generateJsonTreeArray(osb.getList());
 
 						UsersBean usb = new UsersBean();
-						usb.setOrganizationId(login.getOrganizationId());
+						usb.setUserId(login.getUserId());
 						JSONArray jsonus = generateJsonTreeArray(usb.getList());
 
 						VehicleBean vsb = new VehicleBean();
