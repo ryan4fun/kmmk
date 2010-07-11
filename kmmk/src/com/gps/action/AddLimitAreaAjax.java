@@ -48,10 +48,7 @@ public class AddLimitAreaAjax extends Action {
 			List<Rules> rs = rb.getList();
 			if( rs.size()>0 ){
 				for(Rules existRule : rs){
-					if (r == null)
-						r = existRule;
-					else
-						getServiceLocator().getRulesService().deleteRules(existRule);
+					getServiceLocator().getRulesService().deleteRules(existRule);						
 				}
 				VehicleRuleBean vrb = new VehicleRuleBean();
 				vrb.setVehicleId(v.getVehicleId());
@@ -62,14 +59,16 @@ public class AddLimitAreaAjax extends Action {
 					vr.setRules(r);
 					vr.setVehicle(v);
 					getServiceLocator().getVehicleRuleService().addVehicleRule(vr);
-				}				
-			} else {
+				}
+			}
+			else {
 				r = new Rules();
 				r.setRuleName(rg.getName());
 				AlertTypeDic vt = getServiceLocator().getAlertTypeDicService().findById(RulesService.RULE_TYPE_LIMITAREAALARM);
 				if(vt == null)
 					throw new Message("AlertTypeDic not find!");
 				r.setAlertTypeDic(vt);
+				r.setRuleType(RulesService.RULE_TYPE_LIMITAREAALARM);
 				r.setRuleState(RulesService.RULE_NORM_STATE);
 				r.setIntParam1(limitAreaId);
 				
