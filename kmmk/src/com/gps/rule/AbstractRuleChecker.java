@@ -35,6 +35,8 @@ public abstract class AbstractRuleChecker {
 
 	protected boolean isInitialed;
 	private RuleManager manager;
+	
+	private boolean isDefault;
 
 	abstract public boolean doCheck(Message msg);
 
@@ -107,5 +109,14 @@ public abstract class AbstractRuleChecker {
 
 	abstract public String getDiscription();
 
+	public void setDefault(boolean b) {
+		
+		this.isDefault = b;
+		
+	}
 
+	public boolean isDefault(){
+		
+		return this.isDefault;
+	}
 }

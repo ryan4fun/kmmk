@@ -24,7 +24,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 	public static int DEFAULT_ALERTTYPEDIC_ID = 1;
 	private int speedLimitation;
 	private double currentSpeed;
-	private boolean isDefault;
+
 
 
 	public OverSpeedChecker(Rules rule, Vehicle vehicle) {
@@ -66,16 +66,7 @@ public class OverSpeedChecker extends AbstractPrivateRuleChecker {
 		}
 	}
 
-	public void setDefault(boolean b) {
-		
-		this.isDefault = b;
-		
-	}
 
-	public boolean isDefault(){
-		
-		return this.isDefault;
-	}
 
 	@Override
 	public boolean doCheck(Message msg) {

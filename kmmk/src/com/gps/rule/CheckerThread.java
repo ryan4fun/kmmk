@@ -47,7 +47,7 @@ public class CheckerThread implements Runnable{
 						alert.setTag(AlertHistoryService.FROM_TASK_RULE);
 						ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 						
-						this.checker.getManager().notiryUI(alert);
+						this.checker.getManager().notifyUI(alert);
 						this.checker.getManager().postUIChanges();
 					}
 						
