@@ -12,6 +12,7 @@ import com.gps.orm.Region;
 import com.gps.orm.Rules;
 import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleRule;
+import com.gps.rule.RuleManager;
 import com.gps.service.RulesService;
 
 public class AddLimitAreaAjax extends Action {
@@ -61,7 +62,7 @@ public class AddLimitAreaAjax extends Action {
 					vr.setRules(r);
 					vr.setVehicle(v);
 					getServiceLocator().getVehicleRuleService().addVehicleRule(vr);
-				}
+				}				
 			} else {
 				r = new Rules();
 				r.setRuleName(rg.getName());
@@ -78,6 +79,7 @@ public class AddLimitAreaAjax extends Action {
 				r.getVehicleRules().add(vr);
 				getServiceLocator().getRulesService().addRules(r);
 			}
+			RuleManager.reinitialVechileRule(v);
 		}
 		response.getWriter().write(json.toString());
 	}
