@@ -104,7 +104,7 @@ public abstract class AbstractClientHandler implements Runnable{
 				
 				//for illeagle position:
 				if(!isLeaglePosition(message)){
-					addIleaglePosAlert(message,vehicle);
+//					addIleaglePosAlert(message,vehicle);
 					return;
 				}
 				
