@@ -6,7 +6,6 @@ package com.gps.rule;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
@@ -29,7 +28,7 @@ import com.gps.service.AlertHistoryService;
 import com.gps.service.AlertTypeDicService;
 import com.gps.service.ServiceLocator;
 import com.gps.service.VehicleStatusService;
-import com.gps.state.IStateChecker;
+
 
 /**
  * @author Ryan
