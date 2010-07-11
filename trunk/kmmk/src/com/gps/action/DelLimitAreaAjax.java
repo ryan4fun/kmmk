@@ -12,6 +12,7 @@ import com.gps.orm.Region;
 import com.gps.orm.Rules;
 import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleRule;
+import com.gps.rule.RuleManager;
 import com.gps.service.RulesService;
 
 public class DelLimitAreaAjax extends Action {
@@ -54,6 +55,7 @@ public class DelLimitAreaAjax extends Action {
 					getServiceLocator().getVehicleRuleService().deleteVehicleRule(vr);
 				}
 			}
+			RuleManager.reinitialVechileRule(v);
 		}
 		response.getWriter().write(json.toString());
 	}
