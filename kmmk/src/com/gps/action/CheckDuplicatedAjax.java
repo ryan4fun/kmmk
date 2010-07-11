@@ -28,10 +28,18 @@ public class CheckDuplicatedAjax extends Action {
 			if(vb.getList().size()>0){
 				if(id == null || id.equals("") || !id.equals(String.valueOf(vb.getList().get(0).getVehicleId())))
 					result=false;
-			}
-				
-			
-		} else if(type.equals("organizationName")){
+			}			
+		} else if(type.equals("deviceId")){
+			VehicleBean vb = new VehicleBean();
+			vb.setDeviceId(value);
+			vb.setPagination(false);
+			if(vb.getList().size()>0){
+				if(id == null || id.equals("") || !id.equals(String.valueOf(vb.getList().get(0).getVehicleId()))){
+					result = false;
+					json.put("licensPadNumber", vb.getList().get(0).getLicensPadNumber());
+				}
+			}			
+		}else if(type.equals("organizationName")){
 			OrganizationBean ob = new OrganizationBean();
 			ob.setName(value);
 			ob.setPagination(false);
