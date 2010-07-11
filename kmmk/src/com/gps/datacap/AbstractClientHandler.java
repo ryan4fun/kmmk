@@ -124,7 +124,7 @@ public abstract class AbstractClientHandler implements Runnable{
 						ruleMgr =  new RuleManager(vs);
 					}
 					if(ruleMgr != null ){
-						System.out.println("Start rule checking ... "); 
+//						System.out.println("Start rule checking ... "); 
 						ruleMgr.checkMsg(message);
 					}
 				}

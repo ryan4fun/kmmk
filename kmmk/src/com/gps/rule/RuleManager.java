@@ -139,7 +139,12 @@ public class RuleManager {
 		
 		for(VehicleRule vRule:vehicleRuleList){
 
-			AbstractRuleChecker tempChecker = RuleCheckerFactory.getRuleChecker(vRule.getRules(),vehicle,this);
+			Rules rule = vRule.getRules();
+			if(rule == null){
+				System.out.println("!!!Error rule is null");
+				throw new RuntimeException("Error rule is null");
+			}
+			AbstractRuleChecker tempChecker = RuleCheckerFactory.getRuleChecker(rule,vehicle,this);
 			if(tempChecker.isMessageBased()){
 				checker.setDefault(true);	
 				this.everyMessageRules.add(tempChecker);
