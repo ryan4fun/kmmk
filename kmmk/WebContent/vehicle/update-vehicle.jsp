@@ -72,6 +72,28 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 	return result;
 }, "该车牌号已被使用！");
 
+var duplicatedLicensPadNumber = "";
+jQuery.validator.addMethod("deviceId", function(value, element) {
+	var result = false;
+	$.ajax({
+		url : "mkgps.do",
+		dataType : "json",
+		data : {
+			action : "CheckDuplicatedAjax",
+			type : "deviceId",
+			value : element.value,
+			id : "<%=idstr==null?"":idstr%>"
+		},
+		cache : false,
+		async : false,
+		success : function(json){
+			result = json.result;
+			duplicatedLicensPadNumber = json.licensPadNumber;
+		}
+	});
+	return result;
+}, function(){return "该设备号已被 " + duplicatedLicensPadNumber + " 使用！"});
+
 	var allOwners = new Array();
 	$(document).ready(function(){
 		$("#search-div").accordion({
@@ -93,7 +115,8 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 			},
 			rules: {
    				deviceId: {
-   					required: true
+   					required: true,
+   					deviceId: true
 				},
 				userId: {
 					required: true
@@ -139,15 +162,12 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 				},
 				simCardNo: {
 					required: true
-				},
+				},				
 				speedLimitation: {
 					number: true
 				}
 			},
-			messages: {
-				deviceId: {
-					required: "请输入GPS设备号"
-				},
+			messages: {				
 				userId: {
 					required: "请输入车主"
 				},
@@ -186,6 +206,9 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 				},
 				simCardNo: {
 					required: "请输入SIM卡号"
+				},
+				deviceId: {
+					required: "请输入GPS设备号"
 				}
 			},
 			submitHandler: function(form) {
