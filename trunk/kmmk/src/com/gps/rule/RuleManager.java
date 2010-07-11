@@ -141,7 +141,7 @@ public class RuleManager {
 
 			AbstractRuleChecker tempChecker = RuleCheckerFactory.getRuleChecker(vRule.getRules(),vehicle,this);
 			if(tempChecker.isMessageBased()){
-				
+				checker.setDefault(true);	
 				this.everyMessageRules.add(tempChecker);
 			}
 			
@@ -279,7 +279,7 @@ public class RuleManager {
 //		
 		for(AlertHistory alert :alertList){
 			
-			notiryUI(alert);
+			notifyUI(alert);
 		}
 		
 		postUIChanges();
@@ -321,7 +321,7 @@ public class RuleManager {
 	}
 
 	
-	public void notiryUI(AlertHistory alert) {
+	public void notifyUI(AlertHistory alert) {
 
 		VehicleStatus state = vehicle.getVehicleStatus();
 		setAlert(state, alert.getAlertTypeDic());
@@ -389,6 +389,68 @@ public class RuleManager {
 			mgr.updateVechileRule(v);
 		}
 		
+	}
+
+	
+	public static void reinitialVechileRule(Vehicle v){
+		
+		
+		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
+		
+		if(mgr != null){
+			
+			mgr.deletAndInitVechileRule(v);
+		}
+		
+	}
+	
+	private void deletAndInitVechileRule(Vehicle v){
+		
+		List<AbstractRuleChecker> needRemove = new ArrayList<AbstractRuleChecker>();
+		
+		for(AbstractRuleChecker ruleChecker : this.everyMessageRules){
+			
+			if(ruleChecker.isDefault()){
+				needRemove.add(ruleChecker);
+			}
+		}
+		for(AbstractRuleChecker ruleChecker:needRemove){
+			
+			this.everyMessageRules.remove(ruleChecker);
+		}
+		
+		for(AbstractRuleChecker ruleChecker : this.everyMessageRules){
+			
+			if(ruleChecker.isDefault()){
+				needRemove.add(ruleChecker);
+			}
+		}
+		for(AbstractRuleChecker ruleChecker:needRemove){
+			
+			this.everyMessageRules.remove(ruleChecker);
+		}
+		
+		//reinitial
+		double speedLimt = 100;
+		if(vehicle.getSpeedLimitation() != null){
+			speedLimt = vehicle.getSpeedLimitation();
+		}
+		OverSpeedChecker checker = RuleCheckerFactory.getSpeedChecker(speedLimt,vehicle);
+		checker.setDefault(true);	
+		
+		List<AbstractRuleChecker> checkerList = this.everyMessageRules;
+		checkerList.add(checker);
+		
+		List<VehicleRule> vehicleRuleList = ServiceLocator.getInstance().getVehicleRuleService().getRuleListByVehicleId(vehicle.getVehicleId());
+		
+		for(VehicleRule vRule:vehicleRuleList){
+
+			AbstractRuleChecker tempChecker = RuleCheckerFactory.getRuleChecker(vRule.getRules(),vehicle,this);
+			if(tempChecker.isMessageBased()){
+				checker.setDefault(true);	
+				this.everyMessageRules.add(tempChecker);
+			}
+		}
 	}
 
 
