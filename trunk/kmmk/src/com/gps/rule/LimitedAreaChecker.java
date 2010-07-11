@@ -3,6 +3,8 @@
  */
 package com.gps.rule;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Set;
 
 import com.gps.datacap.Message;
@@ -68,6 +70,9 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 	@Override
 	public boolean doCheck(Message msg) {
 		
+//		System.out.println("Limited Area start to check : long = " + msg.getLongitude() + " lat= " + msg.getLatitude());
+//		System.out.println("Vechile = " + this.vehicle.getLicensPadNumber() + " rule Name = " + this.ruleName);
+		
 //		if(this.opType == RulesService.RULE_OP_OBEY){
 //			
 //			if(isInThisRegione(msg)){
@@ -92,6 +97,8 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 			
 			state = STATE_OUTSIDE;
 		}
+		
+
 		
 		if(state != this.curState  && this.curState != -1){
 			
@@ -139,7 +146,19 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 			
 		}else {
 			
-			return isInPoligon(msg, (RegionPoints[]) this.regione.getRegionPointses().toArray());
+			Set<RegionPoints> pointsSet = this.regione.getRegionPointses();
+			
+			RegionPoints[] pointList = new RegionPoints[pointsSet.size()]; 
+			Iterator<RegionPoints> it = pointsSet.iterator();
+			int i = 0;
+			while(it.hasNext()){
+				
+				RegionPoints p = it.next();
+				pointList[i] = p;
+				i++;
+			}
+	
+			return isInPoligon(msg, pointList);
 		}
 		
 		return false;
@@ -223,13 +242,7 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 		
 		StringBuffer str = new StringBuffer(100);
 		
-//		if(this.opType == RulesService.RULE_OP_OBEY){
-//			
-//			str.append("���룺");
-//		}else{
-//			
-//			str.append("�뿪��");
-//		}
+
 
 		if(this.curState == STATE_INSIDE){
 			

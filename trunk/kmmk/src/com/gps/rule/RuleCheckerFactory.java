@@ -36,6 +36,7 @@ public class RuleCheckerFactory {
 				
 			default:
 				GPSServerExcepton ex = new GPSServerExcepton("Unknown Rule type " + ruleType);
+				throw ex;
 		}
 		
 		if(result != null){
