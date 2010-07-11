@@ -69,7 +69,7 @@ public class QQXMessageHandler extends MessageHandler{
 		
 		{
 			String deviceId = new String(data,5,4);
-			System.out.println("Device ID:" + deviceId);
+//			System.out.println("Device ID:" + deviceId);
 			byte[] tempIdBytes = new byte[4];
 			System.arraycopy(data, 5, tempIdBytes, 0, 4);
 			int i = 0;
@@ -90,7 +90,7 @@ public class QQXMessageHandler extends MessageHandler{
 				idValue = idValue + tempValue;
 				i++;
 			}
-			System.out.println("Decoded Device ID:" + idValue);
+//			System.out.println("Decoded Device ID:" + idValue );
 			result.setDeviceId(Integer.toString(idValue));
 			
 			int cmd =  data[3];
@@ -98,7 +98,7 @@ public class QQXMessageHandler extends MessageHandler{
 			
 		
 			parseData(result,data);
-			
+			System.out.println("Message parse successed! deviceId:"+ result.getDeviceId()+" Recieve Date:" + result.getServerReceiveDate()   +  "  Device send Date:  " + result.getGPSTimestamp());
         }
 		
 		return result;

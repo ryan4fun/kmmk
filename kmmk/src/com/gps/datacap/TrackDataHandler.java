@@ -61,9 +61,9 @@ public class TrackDataHandler {
 
 			short tagResult = updateVehicleState(message,vehicle);
 			
-			if(logger.isDebugEnabled()){
+//			if(logger.isDebugEnabled()){
 				System.out.println(vehicle.getVehicleId()+" is alerting, saving track information...");
-			}
+//			}
 			AlertHistory alert =  new AlertHistory();
 			alert.setVehicle(vehicle);
 			alert.setAlertTypeDic(getAlertTypeDic(message.getAlertType()));
