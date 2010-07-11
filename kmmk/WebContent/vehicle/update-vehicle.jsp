@@ -113,11 +113,7 @@ jQuery.validator.addMethod("deviceId", function(value, element) {
 					}
    	   			}				
 			},
-			rules: {
-   				deviceId: {
-   					required: true,
-   					deviceId: true
-				},
+			rules: {   				
 				userId: {
 					required: true
 				},
@@ -165,6 +161,10 @@ jQuery.validator.addMethod("deviceId", function(value, element) {
 				},				
 				speedLimitation: {
 					number: true
+				},
+				deviceId: {
+   					required: true,
+   					deviceId: true
 				}
 			},
 			messages: {				
