@@ -48,8 +48,12 @@ public class AddLimitAreaAjax extends Action {
 			List<Rules> rs = rb.getList();
 			if( rs.size()>0 ){
 				for(Rules existRule : rs){
-					getServiceLocator().getRulesService().deleteRules(existRule);						
+					if (r == null)
+						r = existRule;
+					else
+						getServiceLocator().getRulesService().deleteRules(existRule);
 				}
+				r.setRuleType(RulesService.RULE_TYPE_LIMITAREAALARM);
 				VehicleRuleBean vrb = new VehicleRuleBean();
 				vrb.setVehicleId(v.getVehicleId());
 				vrb.setRuleId(r.getRuleId());
