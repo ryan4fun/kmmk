@@ -36,7 +36,7 @@ import com.gps.service.VehicleStatusService;
  */
 public class RuleManager {
 
-	public static HashMap<String,RuleManager> _allRuleMgrs = new HashMap<String,RuleManager>();
+	private static HashMap<String,RuleManager> _allRuleMgrs = new HashMap<String,RuleManager>();
 	
 	public static short RULE_STATE_FINISHED = 9999;
 	
@@ -65,13 +65,17 @@ public class RuleManager {
 			if(vs.getTaskId() != null){
 				this.currentTask = getServiceLocator().getTaskService().findById(vs.getTaskId());
 			}
+			System.out.println("Create RuleManager ! " + this.vehicle.getLicensPadNumber() + " RuleManager = " + this);
+			_allRuleMgrs.put(this.vehicle.getDeviceId(), this);
 			initial();
 		}
-		_allRuleMgrs.put(vs.getVehicle().getDeviceId(), this);
+		
 	}
 	
 
 	public static RuleManager getRuleManager(Vehicle v){
+		
+		System.out.println("Get RuleManger v=" + v.getLicensPadNumber()  + " poolSize =" + _allRuleMgrs.size());
 		
 		return _allRuleMgrs.get(v.getDeviceId());
 		
@@ -386,10 +390,10 @@ public class RuleManager {
 	
 	public static void updateVechileSpeedLimitation(Vehicle v){
 		
-		System.out.println("Update speed limitation rule");
+		
 		
 		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
-		
+		System.out.println("Update speed limitation rule  RuleMgr = " + mgr  + " v = " + v.getLicensPadNumber());
 		if(mgr != null){
 			
 			mgr.updateVechileRule(v);
@@ -400,7 +404,7 @@ public class RuleManager {
 	
 	public static void reinitialVechileRule(Vehicle v){
 		
-		System.out.println("Rebuild vechile rule");
+		System.out.println("Rebuild vechile rule " + v.getLicensPadNumber());
 		
 		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
 		
@@ -468,6 +472,7 @@ public class RuleManager {
 			if(ruleChecker instanceof OverSpeedChecker 
 					&& ((OverSpeedChecker)ruleChecker).isDefault()){
 				
+				System.out.println("Update speed limitation rule!!!!! " + v.getLicensPadNumber());
 				((OverSpeedChecker)ruleChecker).setSpeed(v.getSpeedLimitation());
 			}
 		}

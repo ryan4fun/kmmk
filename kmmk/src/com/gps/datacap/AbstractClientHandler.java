@@ -109,10 +109,10 @@ public abstract class AbstractClientHandler implements Runnable{
 				}
 				
 				VehicleStatus vs = vehicle.getVehicleStatus();
-				if(vs != null /*&& vs.getTaskId()!= null && vs.getTaskId().intValue() > 0*/ && this.ruleManager == null){
-					
-					this.ruleManager = new RuleManager(vs);
-				}
+//				if(vs != null /*&& vs.getTaskId()!= null && vs.getTaskId().intValue() > 0*/ && this.ruleManager == null){
+//					
+//					this.ruleManager = new RuleManager(vs);
+//				}
 
 				boolean isHandled = this.dataHandler.handle(vehicle,message);
 
