@@ -53,6 +53,8 @@ $(document).ready(function(){
 			
 		}
 	});
+
+	window.print();
 });
 
 function convertLinkAnd2InputText( ){
