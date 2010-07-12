@@ -41,12 +41,12 @@ public class TrackDataHandler {
 				}
 			}
 			
-			if(message.isAlert()){			
-				updated = handleAlert(vehicle,message);
-				if(logger.isDebugEnabled()){
-					System.out.println(vehicle.getVehicleId()+" handleAlert...");
-				}
-			}
+//			if(message.isAlert()){			
+//				updated = handleAlert(vehicle,message);
+//				if(logger.isDebugEnabled()){
+//					System.out.println(vehicle.getVehicleId()+" handleAlert...");
+//				}
+//			}
 		}
 		if(!updated){
 			if(logger.isDebugEnabled()){
