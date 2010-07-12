@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@page import="com.gps.bean.*,com.gps.orm.*,com.gps.util.*,java.util.*"%>
-<%@ include file="/header.jsp"%><%
+<%@ include file="/header.jsp"%>
+<%
 String idstr = request.getParameter("alertId");
 AlertHistory ah = null;
 AlertHistoryBean ahb = new AlertHistoryBean();
@@ -12,7 +13,6 @@ if(ah == null){
 	out.print("无法找到该违规信息！");
 } else {
 	Vehicle vechile = ah.getVehicle();
-%>
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
