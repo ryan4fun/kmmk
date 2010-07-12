@@ -277,11 +277,11 @@ public class RuleManager {
 			}
 		}
 		
-//		for(AlertTypeDic alertDic :clearList){
-//			
-//			cleartUI(alertDic);
-//		}
-//		
+		for(AlertTypeDic alertDic :clearList){
+			
+			cleartUI(alertDic);
+		}
+		
 		for(AlertHistory alert :alertList){
 			
 			notifyUI(alert);
@@ -386,6 +386,7 @@ public class RuleManager {
 	
 	public static void updateVechileSpeedLimitation(Vehicle v){
 		
+		System.out.println("Update speed limitation rule");
 		
 		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
 		
@@ -399,6 +400,7 @@ public class RuleManager {
 	
 	public static void reinitialVechileRule(Vehicle v){
 		
+		System.out.println("Rebuild vechile rule");
 		
 		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
 		
