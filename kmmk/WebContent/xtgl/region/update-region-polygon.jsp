@@ -21,7 +21,7 @@ if(r == null){
 }
 
 RegionTypeDicBean rtdb = new RegionTypeDicBean();
-rtdb.setStateTag(String.valueOf(RegionTypeDicService.REGION_TYPE_RECTANGLE));
+rtdb.setStateTag(String.valueOf(RegionTypeDicService.REGION_TYPE_POLY));
 List<RegionTypeDic> rtds = rtdb.getList();
 
 Double strLat = Util.CENTER_LAT;
@@ -81,7 +81,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#regionTypeId")[0].options.add(new Option("请区域类型",""));
+	$("#regionTypeId")[0].options.add(new Option("请选择区域类型",""));
 	<%if(rtds != null){
 		for(RegionTypeDic rtd:rtds){ 
 	%>
