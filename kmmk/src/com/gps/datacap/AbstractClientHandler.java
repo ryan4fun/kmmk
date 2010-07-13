@@ -14,6 +14,7 @@ import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleStatus;
 import com.gps.rule.AbstractPrivateRuleChecker;
 import com.gps.rule.RuleManager;
+import com.gps.rule.RuleManagerContainer;
 import com.gps.service.AlertHistoryService;
 import com.gps.service.AlertTypeDicService;
 import com.gps.service.ServiceLocator;
@@ -119,7 +120,7 @@ public abstract class AbstractClientHandler implements Runnable{
 				short monitorLevel = vehicle.getMonitLevel();
 				if(isHandled && monitorLevel== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){
 					
-					RuleManager ruleMgr = RuleManager.getRuleManager(vehicle);
+					RuleManager ruleMgr = RuleManagerContainer.getRuleManager(vehicle);
 					if(ruleMgr == null && vs != null){
 						ruleMgr =  new RuleManager(vs);
 					}
