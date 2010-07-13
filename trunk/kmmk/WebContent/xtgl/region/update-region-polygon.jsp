@@ -73,7 +73,7 @@ $(document).ready(function(){
 		},
 		messages: {
 			regionTypeId: {
-				required: "请输入区域类型"
+				required: "请选择区域类型"
 			},
 			name: {
 				required: "请输入区域名"
