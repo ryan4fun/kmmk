@@ -36,7 +36,7 @@ import com.gps.service.VehicleStatusService;
  */
 public class RuleManager {
 
-	private static HashMap<String,RuleManager> _allRuleMgrs = new HashMap<String,RuleManager>();
+
 	
 	public static short RULE_STATE_FINISHED = 9999;
 	
@@ -65,21 +65,14 @@ public class RuleManager {
 			if(vs.getTaskId() != null){
 				this.currentTask = getServiceLocator().getTaskService().findById(vs.getTaskId());
 			}
-			System.out.println("Create RuleManager ! " + this.vehicle.getLicensPadNumber() + " RuleManager = " + this);
-			_allRuleMgrs.put(this.vehicle.getDeviceId(), this);
+			System.out.println("Create RuleManager ! " + this.vehicle.getLicensPadNumber() + " RuleManager = " + this + " DeviceId = " +this.vehicle.getDeviceId());
+			RuleManagerContainer.register(this.vehicle.getDeviceId(), this);
 			initial();
 		}
 		
 	}
 	
 
-	public static RuleManager getRuleManager(Vehicle v){
-		
-		System.out.println("Get RuleManger v=" + v.getLicensPadNumber()  + " poolSize =" + _allRuleMgrs.size());
-		
-		return _allRuleMgrs.get(v.getDeviceId());
-		
-	}
 	
 	private void initial() {
 		
@@ -90,7 +83,7 @@ public class RuleManager {
 			
 			initPublicRules();
 			initPrivateRules();		
-			initSegmentRules();
+//			initSegmentRules();
 			
 		}
 		initVehicleRules();
@@ -388,34 +381,9 @@ public class RuleManager {
 	}
 
 	
-	public static void updateVechileSpeedLimitation(Vehicle v){
-		
-		
-		
-		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
-		System.out.println("Update speed limitation rule  RuleMgr = " + mgr  + " v = " + v.getLicensPadNumber());
-		if(mgr != null){
-			
-			mgr.updateVechileRule(v);
-		}
-		
-	}
 
 	
-	public static void reinitialVechileRule(Vehicle v){
-		
-		System.out.println("Rebuild vechile rule " + v.getLicensPadNumber());
-		
-		RuleManager mgr = _allRuleMgrs.get(v.getDeviceId());
-		
-		if(mgr != null){
-			
-			mgr.deletAndInitVechileRule(v);
-		}
-		
-	}
-	
-	private void deletAndInitVechileRule(Vehicle v){
+	void deletAndInitVechileRule(Vehicle v){
 		
 		List<AbstractRuleChecker> needRemove = new ArrayList<AbstractRuleChecker>();
 		
@@ -465,7 +433,7 @@ public class RuleManager {
 	}
 
 
-	private void updateVechileRule(Vehicle v) {
+	void updateVechileRule(Vehicle v) {
 		
 		for(AbstractRuleChecker ruleChecker : this.everyMessageRules){
 			

@@ -5,6 +5,7 @@ import com.gps.orm.Users;
 import com.gps.orm.Vehicle;
 import com.gps.orm.VehicleTypeDic;
 import com.gps.rule.RuleManager;
+import com.gps.rule.RuleManagerContainer;
 import com.gps.service.VehicleService;
 
 public class VehicleUpdateAction extends Action {
@@ -32,6 +33,6 @@ public class VehicleUpdateAction extends Action {
 		request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
 		
 		if(v.getSpeedLimitation() != null && oldSpeed != v.getSpeedLimitation())
-			RuleManager.updateVechileSpeedLimitation(v);
+			RuleManagerContainer.updateVechileSpeedLimitation(v);
 	}
 }
