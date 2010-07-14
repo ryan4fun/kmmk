@@ -57,7 +57,7 @@ public class FGenerateYearlyChartAction extends Action{
 			
 			File reportXMLFile = new File(basePath+"charts/yearlyLineChart.jrxml");  
 			File reportFile = new File(basePath+"charts/yearlyLineChart.jasper");  
-			System.out.println("Start Report export : " + basePath+"charts/yearlyLineChart.jasper");
+//			System.out.println("Start Report export : " + basePath+"charts/yearlyLineChart.jasper");
 			
 			
 			

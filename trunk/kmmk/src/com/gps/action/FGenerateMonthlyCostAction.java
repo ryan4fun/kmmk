@@ -63,7 +63,7 @@ public class FGenerateMonthlyCostAction extends Action{
 			
 			File reportXMLFile = new File(basePath+"vehicle_monthly.jrxml");  
 			File reportFile = new File(basePath+"charts/costAnalysis.jasper");  
-			System.out.println("Start Report export : " + basePath+"charts/costAnalysis.jasper");
+//			System.out.println("Start Report export : " + basePath+"charts/costAnalysis.jasper");
 			
 			
 //			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
