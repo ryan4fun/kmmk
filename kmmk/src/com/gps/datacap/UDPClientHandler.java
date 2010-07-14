@@ -81,8 +81,7 @@ public class UDPClientHandler extends AbstractClientHandler {
 				if (receivCount > 0) {
 
 					String str = new String(buff, 0, receivCount);
-					System.out.println("Message Received from UDP server : "
-							+ str);
+//					System.out.println("Message Received from UDP server : " + str);
 					byte[] tempBuf = new byte[receivCount];
 					System.arraycopy(buff, 0, tempBuf, 0, receivCount);
 					handleMessage(tempBuf);

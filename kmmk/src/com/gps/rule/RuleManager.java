@@ -440,7 +440,7 @@ public class RuleManager {
 			if(ruleChecker instanceof OverSpeedChecker 
 					&& ((OverSpeedChecker)ruleChecker).isDefault()){
 				
-				System.out.println("Update speed limitation rule!!!!! " + v.getLicensPadNumber());
+//				System.out.println("Update speed limitation rule!!!!! " + v.getLicensPadNumber());
 				((OverSpeedChecker)ruleChecker).setSpeed(v.getSpeedLimitation());
 			}
 		}

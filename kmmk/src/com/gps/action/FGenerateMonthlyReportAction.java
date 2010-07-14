@@ -63,7 +63,7 @@ public class FGenerateMonthlyReportAction extends Action{
 			
 			File reportXMLFile = new File(basePath+"vehicle_monthly.jrxml");  
 			File reportFile = new File(basePath+"vehicle_monthly.jasper");  
-			System.out.println("Start Report export : " + basePath+"vehicle_monthly.jasper");
+//			System.out.println("Start Report export : " + basePath+"vehicle_monthly.jasper");
 			
 			
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
