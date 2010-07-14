@@ -65,7 +65,7 @@ public class RuleManager {
 			if(vs.getTaskId() != null){
 				this.currentTask = getServiceLocator().getTaskService().findById(vs.getTaskId());
 			}
-			System.out.println("Create RuleManager ! " + this.vehicle.getLicensPadNumber() + " RuleManager = " + this + " DeviceId = " +this.vehicle.getDeviceId());
+//			System.out.println("Create RuleManager ! " + this.vehicle.getLicensPadNumber() + " RuleManager = " + this + " DeviceId = " +this.vehicle.getDeviceId());
 			RuleManagerContainer.register(this.vehicle.getDeviceId(), this);
 			initial();
 		}

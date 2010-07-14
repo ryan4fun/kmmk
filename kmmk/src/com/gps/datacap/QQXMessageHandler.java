@@ -98,7 +98,7 @@ public class QQXMessageHandler extends MessageHandler{
 			
 		
 			parseData(result,data);
-			System.out.println("Message parse successed! deviceId:"+ result.getDeviceId()+" Recieve Date:" + result.getServerReceiveDate()   +  "  Device send Date:  " + result.getGPSTimestamp());
+//			System.out.println("Message parse successed! deviceId:"+ result.getDeviceId()+" Recieve Date:" + result.getServerReceiveDate()   +  "  Device send Date:  " + result.getGPSTimestamp());
         }
 		
 		return result;
