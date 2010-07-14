@@ -101,7 +101,7 @@ public class DataCaptureServer {
 					while (!server.isClosed()) {
 						Socket s = server.accept();
 						
-						System.out.println("TCP Client accepted!");
+//						System.out.println("TCP Client accepted!");
 						TCPClientHandler handler = new TCPClientHandler(s,DataCaptureServer.this);
 						handler.start();
 					}
