@@ -253,7 +253,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
       						if( isNaN( $controlDiv.nextAll("input:first").val() ) )
       	              			$controlDiv.nextAll("span:last").html("0 升");
       	              		else
-      							$controlDiv.nextAll("span:last").html( Math.round( $controlDiv.nextAll("input:first").val()*mdc.measureDistanceLine.getLength() /100000) + " 升");
+      							$controlDiv.nextAll("span:last").html( Math.round( $controlDiv.nextAll("input:first").val()*mdc.measureDistanceLine.getLength() /10000)/10 + " 升");
       						mdc.measureDistancePoints.push(
     	      	      			new DivMarker(
     	  	      					latlng, 
@@ -276,7 +276,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
               		if( isNaN($(this).val()) )
               			$controlDiv.nextAll("span:last").html("0 升");
               		else
-              			$controlDiv.nextAll("span:last").html(Math.round($(this).val()*mdc.measureDistanceLine.getLength()/100000) + " 升");
+              			$controlDiv.nextAll("span:last").html(Math.round($(this).val()*mdc.measureDistanceLine.getLength()/10000)/10 + " 升");
           		}); 
         	}
         });
