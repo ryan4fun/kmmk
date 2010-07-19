@@ -63,7 +63,7 @@
 <iframe id="main-frame-1" frameborder="0" scrolling="auto" style="width: 100%; height: 100%" _src="search-vehicle-trace.jsp?vehicleId=<%=vehicleId%>&queryType=1" ></iframe>
 </div>
 <div id="tabs-2">
-<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 100%" _src="vsearch-vehicle-trace.jsp?vehicleId=<%=vehicleId%>&queryType=2" ></iframe>
+<iframe id="main-frame-2" frameborder="0" scrolling="auto" style="width: 100%; height: 100%" _src="search-vehicle-trace.jsp?vehicleId=<%=vehicleId%>&queryType=2" ></iframe>
 </div>
 <div id="tabs-3">
 <iframe id="main-frame-3" frameborder="0" scrolling="auto" style="width: 100%; height: 100%" _src="search-vehicle-trace.jsp?vehicleId=<%=vehicleId%>" ></iframe>
