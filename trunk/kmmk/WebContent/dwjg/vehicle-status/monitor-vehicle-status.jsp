@@ -73,7 +73,7 @@ $(document).ready(function(){
 
 function createMarker(vs) {
 	<%if( login.getMapType()==LoginInfo.MAPABC ){%>
-		var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
+		var html = "车牌号: <b>" + vs.licensPadNumber + 
 			"</b><br>自编号: <b>" + vs.internalNumber + 
 			"</b><br>纬度: <b>" + vs.currentLat + 
 			"</b><br>经度: <b>" + vs.currentLong + 
@@ -84,7 +84,8 @@ function createMarker(vs) {
 			"</b><br>超速报警: <b>" + vs.overSpeed + 
 			"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
 			"</b><br>当前速度: <b>" + vs.currentSpeed + 
-			"</b><br>更新时间: <b>" + vs.lastUpdate;
+			"</b><br>更新时间: <b>" + vs.lastUpdate + 
+			"</b>";
 	
 		var tipOption = new MTipOptions();
 		tipOption.title = "车辆信息";
