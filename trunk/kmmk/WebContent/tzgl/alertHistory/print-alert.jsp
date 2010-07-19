@@ -48,7 +48,7 @@ $(document).ready(function(){
 	convertLinkAnd2InputText();
 	$("#search-div").accordion({
 		header:"h3",		
-		collapsible:true,
+		collapsible: true,
 		change: function(event, ui) {
 			
 		}
@@ -72,7 +72,7 @@ function convertLinkAnd2InputText( ){
 </head>
 <body>
 <div id="search-div" style="">
-<h3><a href="#">更多查询条件</a></h3>
+<h3><a href="#">查询条件</a></h3>
 <div style="padding:2px;overflow:visible;" >
 <form id="inputform" action="search-alert.jsp" method="post">
 <table cellSpacing="5" width="650px;">
