@@ -117,7 +117,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	    	mapObj.setCenter(latlng);
 	    	gAddrParser.getLocationByLatLng(function(response){
 	    		marker.imgMarker_.openInfoWindowHtml(html + "</b><br>位置：<b>" + gAddrParser.parseResponse(response) + "</b>");
-	    	},latlng);
+	    	},marker.imgMarker_.getLatLng());
 		});
 	    mapObj.addOverlay(marker);
 	    return marker;
