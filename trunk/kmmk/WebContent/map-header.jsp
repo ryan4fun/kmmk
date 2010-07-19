@@ -112,15 +112,15 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 			"</b><br>当前速度: <b>" + vs.currentSpeed + 
 			"</b><br>更新时间: <b>" + vs.lastUpdate;
 		
-			var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,"<%=mapImagePath%>" + vs.alertIcon );
-		    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
-		    	mapObj.setCenter(latlng);
-		    	gAddrParser.getLocationByLatLng(function(response){
-		    		marker.imgMarker_.openInfoWindowHtml(html + "</b><br>位置：<b>" + gAddrParser.parseResponse(response) + "</b>");
-		    	},latlng);
-			});
-		    mapObj.addOverlay(marker);
-		    return marker;
+		var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,"<%=mapImagePath%>" + vs.alertIcon );
+	    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
+	    	mapObj.setCenter(latlng);
+	    	gAddrParser.getLocationByLatLng(function(response){
+	    		marker.imgMarker_.openInfoWindowHtml(html + "</b><br>位置：<b>" + gAddrParser.parseResponse(response) + "</b>");
+	    	},latlng);
+		});
+	    mapObj.addOverlay(marker);
+	    return marker;
 	}
 	
 	function createCommonMap( mapDivID, option ){
@@ -139,8 +139,8 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	function createCommonLatLng(lat,lng){
 		return new GLatLng(lat, lng);
 	}
-	function createCommonMarker( LatLng, option, markerID ){
-		if(markerOption)
+	function createCommonMarker( LatLng, option ){
+		if(option)
 			return new GMarker( latlng, option );
 		else
 			return new GMarker( latlng );
@@ -148,17 +148,17 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 
 	function setCenterByLatLngs(mapObj, lat1, lng1, lat2, lng2){
 		mapObj.setCenter(
-				new GLatLng(
-						(Number(lat1) + Number(lat2))/2,
-						(Number(lng1) + Number(lng2))/2
-						),
-				mapObj.getBoundsZoomLevel(
-						new GLatLngBounds(
-								new GLatLng(Math.min(lat1,lat2), Math.min(lng1,lng2)),
-								new GLatLng(Math.max(lat1,lat2), Math.max(lng1,lng2))
-								)
-						)
-				);
+			new GLatLng(
+				(Number(lat1) + Number(lat2))/2,
+				(Number(lng1) + Number(lng2))/2
+			),
+			mapObj.getBoundsZoomLevel(
+				new GLatLngBounds(
+					new GLatLng(Math.min(lat1,lat2), Math.min(lng1,lng2)),
+					new GLatLng(Math.max(lat1,lat2), Math.max(lng1,lng2))
+				)
+			)
+		);
 	}
 	
 	function setCenterByMarkers(mapObj, latLngs){
@@ -210,16 +210,16 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	function enlargeMapByOverlayObj(mapObj, overlayObj){
 		if(overlayObj.getBounds) {
 			setCenterByLatLngs(mapObj, 
-					Math.max(mapObj.getBounds().getNorthEast().lat(), overlayObj.getBounds().getNorthEast().lat()), 
-					Math.max(mapObj.getBounds().getNorthEast().lng(), overlayObj.getBounds().getNorthEast().lng()), 
-					Math.min(mapObj.getBounds().getSouthWest().lat(), overlayObj.getBounds().getSouthWest().lat()), 
-					Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getBounds().getSouthWest().lng()) );
+				Math.max(mapObj.getBounds().getNorthEast().lat(), overlayObj.getBounds().getNorthEast().lat()), 
+				Math.max(mapObj.getBounds().getNorthEast().lng(), overlayObj.getBounds().getNorthEast().lng()), 
+				Math.min(mapObj.getBounds().getSouthWest().lat(), overlayObj.getBounds().getSouthWest().lat()), 
+				Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getBounds().getSouthWest().lng()) );
 		} else if(overlayObj.getLatLng()) {
 			setCenterByLatLngs(mapObj, 
-					Math.max(mapObj.getBounds().getNorthEast().lat(), overlayObj.getLatLng().lat()), 
-					Math.max(mapObj.getBounds().getNorthEast().lng(), overlayObj.getLatLng().lng()), 
-					Math.min(mapObj.getBounds().getSouthWest().lat(), overlayObj.getLatLng().lat()), 
-					Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getLatLng().lng()) );
+				Math.max(mapObj.getBounds().getNorthEast().lat(), overlayObj.getLatLng().lat()), 
+				Math.max(mapObj.getBounds().getNorthEast().lng(), overlayObj.getLatLng().lng()), 
+				Math.min(mapObj.getBounds().getSouthWest().lat(), overlayObj.getLatLng().lat()), 
+				Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getLatLng().lng()) );
 		}
 	}
 
