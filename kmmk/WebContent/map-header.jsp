@@ -99,23 +99,26 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	var ALERT_ICON = "<%=mapImagePath %>images/google_icon/alert.png";
 
 	function addVehicleMarker(mapObj, vs) {
-		var html = "</b><br>车牌号: <b>" + vs.licensPadNumber + 
-			"</b><br>自编号: <b>" + vs.internalNumber + 
-			"</b><br>纬度: <b>" + vs.currentLat + 
-			"</b><br>经度: <b>" + vs.currentLong + 
-			"</b><br>行驶状态: <b>" + vs.isRunning + 
-			"</b><br>在线状态: <b>" + vs.isOnline + 
-			"</b><br>求救状态: <b>" + vs.isAskHelp + 
-			"</b><br>限制区域报警: <b>" + vs.limitAreaAlarm + 
-			"</b><br>超速报警: <b>" + vs.overSpeed + 
-			"</b><br>疲劳驾驶: <b>" + vs.tireDrive + 
-			"</b><br>当前速度: <b>" + vs.currentSpeed + 
-			"</b><br>更新时间: <b>" + vs.lastUpdate;
+		var html = "<br><b>车牌号: </b>" + vs.licensPadNumber + 
+			"<br><b>自编号: </b>" + vs.internalNumber + 
+			"<br><b>纬度: </b>" + vs.currentLat + 
+			"<br><b>经度: </b>" + vs.currentLong + 
+			"<br><b>行驶状态: </b>" + vs.isRunning + 
+			"<br><b>在线状态: </b>" + vs.isOnline + 
+			"<br><b>求救状态: </b>" + vs.isAskHelp + 
+			"<br><b>限制区域报警: </b>" + vs.limitAreaAlarm + 
+			"<br><b>超速报警: </b>" + vs.overSpeed + 
+			"<br><b>疲劳驾驶: </b>" + vs.tireDrive + 
+			"<br><b>当前速度: </b>" + vs.currentSpeed + 
+			"<br><b>更新时间: </b>" + vs.lastUpdate;
 		
 			var marker = new DivImageMarker( new GLatLng( Number(vs.currentLat)+CN_OFFSET_LAT,Number(vs.currentLong)+CN_OFFSET_LON ), vs.licensPadNumber ,"<%=mapImagePath%>" + vs.alertIcon );
 		    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 		    	mapObj.setCenter(latlng);
-				marker.imgMarker_.openInfoWindowHtml(html);
+		    	gAddrParser.getLocationByLatLng(function(response){
+		    		html += "<br><b>" + gAddrParser.parseResponse(response) + "</b>";
+		    		marker.imgMarker_.openInfoWindowHtml(html);
+		    	},latlng);
 			});
 		    mapObj.addOverlay(marker);
 		    return marker;
@@ -220,6 +223,24 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 					Math.min(mapObj.getBounds().getSouthWest().lng(), overlayObj.getLatLng().lng()) );
 		}
 	}
+
+	function GeoParser() {}
+	GeoParser.prototype.geocoder = null;
+	GeoParser.prototype.getLocationByLatLng = function(callbackFunc, latLng){
+		var gp = this;
+		if(!gp.geocoder)
+			gp.geocoder = new GClientGeocoder();
+		if(callbackFunc && latLng)
+			gp.geocoder.getLocations(latLng, callbackFunc);
+	}
+	GeoParser.prototype.parseResponse = function(response) {
+		if (!response || response.Status.code != 200 || response.Placemark.length<1) {
+			return '查询位置失败！';
+	    } else {
+	        return '位置：' + response.Placemark[0].address;
+	    }
+    }
+    var gAddrParser = new GeoParser();
 	
 	//controls
 	function MeasureDistanceControl() {}
