@@ -502,6 +502,7 @@ public class VehicleStatusBean extends AbstractBean {
 	public JSONObject getVehicleInfo() throws Exception{
 		if( vehicleId == null || vehicleId < 1 ){
 			JSONObject json = new JSONObject();
+			setPagination(false);
 			List<VehicleStatus> vss = getList();
 			for(VehicleStatus vs:vss){
 				json.put(String.valueOf(vs.getVehicleId()),generateVehicleInfo(vs));
