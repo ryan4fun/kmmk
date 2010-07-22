@@ -123,9 +123,9 @@ function searchVehicleStatus(){
 		cache: false,
 		success: function(json) {
 		   for(var prop in json){
-			   if ( points[json[prop].vehicleId] && json[prop].currentLat && json[prop].currentLong ){
-				   mapObj.removeOverlay(points[json[prop].vehicleId]);
-				   points[json[prop].vehicleId] = createMarker(json[prop]);
+			   if ( points[prop] && json[prop].currentLat && json[prop].currentLong ){
+				   mapObj.removeOverlay(points[prop]);
+				   points[prop] = createMarker(json[prop]);
 			   }
 		   }
 		}
@@ -134,7 +134,7 @@ function searchVehicleStatus(){
 </script>
 </head>
 <body style="background:transparent;" onunload="GUnload()">
-	实时刷新：<input type="checkbox" id="isRefresh" name="isRefresh" onclick="autoRefresh()"/>
+	实时刷新：<input type="checkbox" id="isRefresh" name="isRefresh" onclick="autoRefresh()" />
 	<div id="map_canvas" style="width: 100%; height: 700px"></div>
 </body>
 </html>
