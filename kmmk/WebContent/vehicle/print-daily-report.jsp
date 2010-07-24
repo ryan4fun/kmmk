@@ -104,10 +104,11 @@ $(document).ready(function(){
 			
 		}
 	});
-
+	
+	<%if( login.getMapType()!=LoginInfo.MAPABC ){%>
 	positions["<%=firstPoint.getLatValue() + "_" + firstPoint.getLongValue()%>"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
 	positions["<%=lastPoint.getLatValue() + "_" + lastPoint.getLongValue()%>"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.getLongValue()%> );
-
+		
 	for(var prop in positions){
 		if ( positions[prop] ){
 			gAddrParser.getLocationByLatLng(function(response){
@@ -115,6 +116,7 @@ $(document).ready(function(){
 			}, positions[prop]);
 	   }
 	}
+	<%}%>
 });
 </script>
 </head>
@@ -192,10 +194,12 @@ $(document).ready(function(){
 	<%
 	int i = 0;
 	for(RealtimeTrack tmpRt : stopPoints){
-		Util.setNull2DefaultValue(tmpRt);%>
-	<script language="JavaScript">
-		positions["<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
-	</script>
+		Util.setNull2DefaultValue(tmpRt);
+		if( login.getMapType()!=LoginInfo.MAPABC ){%>
+		<script language="JavaScript">
+			positions["<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
+		</script>
+	<%	}%>
 	<tr>
 		<td colspan="5">
 		<table cellSpacing="0" width="100%" cellpadding="0">
