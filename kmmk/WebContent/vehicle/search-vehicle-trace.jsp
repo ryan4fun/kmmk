@@ -77,7 +77,12 @@ $(document).ready(function(){
 	$("#search-div-title").click(function(){
 		setTimeout(resize, 500);
 	});
-	
+
+	$("#dailyReportBtn").click(function(){
+		var $form = $(this).parents("form:first");
+		$form = $form.next("div:first").empty().append($form.clone()).children("form:last");
+		$form.attr("target","_blank").attr("action","print-daily-report.jsp").submit();
+	});
 });
 
 function resize(){
@@ -334,48 +339,51 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 
 <body style="background: transparent;" onunload="GUnload()">
 <div id="search-div">
-<h3 id="search-div-title"><a href="#">更多查询条件</a></h3>
-<div style="padding:2px;overflow:visible">
-<form id="inputform" action="search-vehicle-trace.jsp" method="post">
-<table cellSpacing="5" width="width:650px;">
-	<tr>
-		<td width="20%" align="right">轨迹精度：</td>
-		<td align="left">
-			<select id="queryPrecision" name="queryPrecision" >
-				<option value="<%=TrackBean.QUERY_HOURLY%>">一小时精度</option>
-				<option value="<%=TrackBean.QUERY_TENMIN%>">十分钟精度</option>
-				<option value="<%=TrackBean.QUERY_REALTIME%>" selected>一分钟精度</option>
-			</select></td>
-		<td width="20%" align="right">车牌号：</td>
-		<td><jsp:include page="/vehicle-selector.jsp" />
-			</td>
-	</tr>
-	<!-- 
-	<tr>
-		<td width="20%" align="right">任务编号：</td>
-		<td align="left" colspan="3">
-			<input type="text" id="taskId" name="taskId" value="<%=tb.getTaskId()!=null?tb.getTaskId():""%>" />
-			<label>按任务编号查询无需输入其他查询条件！按时间段查询请输入车牌号、起始时间、终止时间！</label></td>
-	</tr>
-	 -->	
-	<tr>
-		<td align="right">起始时间：<br/>（查询车牌必填）</td>
-		<td align="left" valign="top"><input type="text"
-			id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
-			value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
-		<td align="right">终止时间：<br/>（查询车牌必填）</td>
-		<td align="left" valign="top"><input type="text"
-			id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
-			value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
-	</tr>
-</table>
-<p align="center">
-	<input type="submit" value="显示轨迹" />
-	<input type="reset" value="重   置" /></p>
+	<h3 id="search-div-title"><a href="#">更多查询条件</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id="inputform" action="search-vehicle-trace.jsp" method="post">
+			<table cellSpacing="5" width="width:650px;">
+				<tr>
+					<td width="20%" align="right">轨迹精度：</td>
+					<td align="left">
+						<select id="queryPrecision" name="queryPrecision" >
+							<option value="<%=TrackBean.QUERY_HOURLY%>">一小时精度</option>
+							<option value="<%=TrackBean.QUERY_TENMIN%>">十分钟精度</option>
+							<option value="<%=TrackBean.QUERY_REALTIME%>" selected>一分钟精度</option>
+						</select></td>
+					<td width="20%" align="right">车牌号：</td>
+					<td><jsp:include page="/vehicle-selector.jsp" />
+						</td>
+				</tr>
+				<!-- 
+				<tr>
+					<td width="20%" align="right">任务编号：</td>
+					<td align="left" colspan="3">
+						<input type="text" id="taskId" name="taskId" value="<%=tb.getTaskId()!=null?tb.getTaskId():""%>" />
+						<label>按任务编号查询无需输入其他查询条件！按时间段查询请输入车牌号、起始时间、终止时间！</label></td>
+				</tr>
+				 -->	
+				<tr>
+					<td align="right">起始时间：<br/>（查询车牌必填）</td>
+					<td align="left" valign="top"><input type="text"
+						id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
+						value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
+					<td align="right">终止时间：<br/>（查询车牌必填）</td>
+					<td align="left" valign="top"><input type="text"
+						id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
+						value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
+				</tr>
+			</table>
+			<p align="center">
+				<input type="submit" value="显示轨迹" />
+				<input id="dailyReportBtn" type="button" value="日统计报表" />
+				<input type="reset" value="重   置" />
+			</p>
+		</form>
+		<div style="display:none;"></div>
+	</div>
+</div>
 
-</form>
-</div>
-</div>
-	<div id="map_canvas" style="border:1px solid black; width: 100%; height: 500px"></div>
+<div id="map_canvas" style="border:1px solid black; width: 100%; height: 500px"></div>
 </body>
 </html>
