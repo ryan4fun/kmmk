@@ -7,6 +7,12 @@ TrackBean tb = new TrackBean(request);
 tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 List ts = tb.getList();
 Util.setNull2DefaultValue(tb);
+
+if(ts == null || ts.size()<1){
+	out.print("无法找到该时间段车辆运行记录！");
+	return;
+}
+
 double totalDist = 0;
 long totalRunTime = 0;
 long totalStopTime = 0;
@@ -89,7 +95,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("stop-div").accordion({
+	$("#stop-div").accordion({
 		header:"h3",		
 		collapsible:true,
 		change: function(event, ui) {
@@ -97,7 +103,7 @@ $(document).ready(function(){
 		}
 	});
 
-	$("alert-div").accordion({
+	$("#alert-div").accordion({
 		header:"h3",		
 		collapsible:true,
 		change: function(event, ui) {
@@ -106,150 +112,155 @@ $(document).ready(function(){
 	});
 	
 	<%if( login.getMapType()!=LoginInfo.MAPABC ){%>
-	positions["<%=firstPoint.getLatValue() + "_" + firstPoint.getLongValue()%>"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
-	positions["<%=lastPoint.getLatValue() + "_" + lastPoint.getLongValue()%>"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.getLongValue()%> );
+	positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
+	positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.getLongValue()%> );
 		
 	for(var prop in positions){
-		if ( positions[prop] ){
-			gAddrParser.getLocationByLatLng(function(response){
-				$(prop).text("<b>" + gAddrParser.parseResponse(response) + "</b>");
-			}, positions[prop]);
-	   }
+		getAddr(prop, positions[prop]);
 	}
 	<%}%>
 });
+
+function getAddr(id, value){
+	if ( value ){
+		gAddrParser.getLocationByLatLng(function(response){
+			$("#" + id).text(gAddrParser.parseResponse(response));
+		}, value);
+   }
+}
+
 </script>
 </head>
 
 <body>
 <div id="search-div">
-<h3 id="search-div-title"><a href="#">运行统计</a></h3>
-<div style="padding:2px;overflow:visible">
-<form id="inputform" action="print-daily-report.jsp" method="post">
-	<table cellSpacing="5" width="width:650px;">
-		<tr>
-			<td width="20%" align="right" colspan="3" >车牌号：</td>
-			<td><%=v.getLicensPadNumber()%><input type="hidden" name="vehicleId" id="vehicleId" value="<%=v.getVehicleId()%>" /></td>
-		</tr>
-		<tr>
-			<td align="right">起始时间：<br/>（必填）</td>
-			<td align="left" valign="top"><input type="text"
-				id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
-				value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
-			<td align="right">终止时间：<br/>（必填）</td>
-			<td align="left" valign="top"><input type="text"
-				id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
-				value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
-		</tr>
-	</table>
-	<p align="center">
-		<input type="submit" value="日统计报表" />
-		<input type="reset" value="重   置" />
-	</p>
-</form>
-</div>
+	<h3 id="search-div-title"><a href="#">运行统计</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<form id="inputform" action="print-daily-report.jsp" method="post">
+			<table cellSpacing="5" width="width:650px;">
+				<tr>
+					<td align="right" >车牌号：</td>
+					<td colspan="3" ><%=v.getLicensPadNumber()%><input type="hidden" name="vehicleId" id="vehicleId" value="<%=v.getVehicleId()%>" /></td>
+				</tr>
+				<tr>
+					<td width="15%" align="right">起始时间：</td>
+					<td width="35%" align="left" ><input type="text"
+						id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
+						value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
+					<td width="15%" align="right">终止时间：</td>
+					<td align="left" ><input type="text"
+						id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
+						value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
+				</tr>
+			</table>
+			<p align="center">
+				<input type="submit" value="日统计报表" />
+				<input type="reset" value="重   置" />
+			</p>
+		</form>
+	</div>
 </div>
 
 <div id="summary-div">
-<h3 id="summary-div-title"><a href="#">运行日报表</a></h3>
-<div style="padding:2px;overflow:visible">
-	<table cellSpacing="5" width="width:650px;">
-		<tr>
-			<td width="20%" align="right" colspan="3" >总里程：</td>
-			<td><%=totalDist%>公里</td>
-		</tr>
-		<tr>
-			<td align="right">起始位置：</td>
-			<td align="left" valign="top" id="<%=firstPoint.getLatValue() + "_" + firstPoint.getLongValue()%>" ></td>
-			<td align="right">结束位置：</td>
-			<td align="left" valign="top" id="<%=lastPoint.getLatValue() + "_" + lastPoint.getLongValue()%>" ></td>
-		</tr>
-		<tr>
-			<td align="right">行驶时间：</td>
-			<td align="left" valign="top"><%=totalRunTime%></td>
-			<td align="right">停留时间：</td>
-			<td align="left" valign="top"><%=totalStopTime%></td>
-		</tr>
-		<tr>
-			<td align="right">参考成本：</td>
-			<td align="left" valign="top"><input type="text" name="costPerKm" id="costPerKm" />元/公里</td>
-			<td align="right">总成本：</td>
-			<td align="left" valign="top"><%=totalStopTime%>元</td>
-		</tr>
-	</table>
-</div>
+	<h3 id="summary-div-title"><a href="#">运行日报表</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<table cellSpacing="5" width="width:650px;">
+			<tr>
+				<td align="right" >总里程：</td>
+				<td colspan="3" ><%=totalDist%>公里</td>
+			</tr>
+			<tr>
+				<td width="15%" align="right">起始位置：</td>
+				<td width="35%" align="left" id="firstPoint" ></td>
+				<td width="15%" align="right">结束位置：</td>
+				<td align="left" id="lastPoint" ></td>
+			</tr>
+			<tr>
+				<td align="right">行驶时间：</td>
+				<td align="left" ><%=Util.getDays(totalRunTime) + "天" + Util.getHours(totalRunTime) + "小时" + Util.getMins(totalRunTime) + "分钟"%></td>
+				<td align="right">停留时间：</td>
+				<td align="left" ><%=Util.getDays(totalStopTime) + "天" + Util.getHours(totalStopTime) + "小时" + Util.getMins(totalStopTime) + "分钟"%></td>
+			</tr>
+			<tr>
+				<td align="right">参考成本：</td>
+				<td align="left" ><input type="text" name="costPerKm" id="costPerKm" />元/公里</td>
+				<td align="right">总成本：</td>
+				<td align="left" ><%=totalStopTime%>元</td>
+			</tr>
+		</table>
+	</div>
 </div>
 
 <div id="stop-div">
-<h3 id="stop-div-title"><a href="#">停留详单</a></h3>
-<div style="padding:2px;overflow:visible">
-<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
-	<tr>		
-		<th width="15%">定位时间</th>
-		<th width="15%">停留时间</th>
-		<th width="10%">经度</th>
-		<th width="10%">纬度</th>
-		<th width="50%">位置</th>
-	</tr>
-	<%
-	int i = 0;
-	for(RealtimeTrack tmpRt : stopPoints){
-		Util.setNull2DefaultValue(tmpRt);
-		if( login.getMapType()!=LoginInfo.MAPABC ){%>
-		<script language="JavaScript">
-			positions["<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
-		</script>
-	<%	}%>
-	<tr>
-		<td colspan="5">
-		<table cellSpacing="0" width="100%" cellpadding="0">
-			<tr>				
-				<td align="left" width="15%"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
-				<td align="left" width="15%"><%=stoptimes.get(i)%></td>
-				<td align="left" width="10%"><%=tmpRt.getLongValue()%></td>
-				<td align="left" width="10%"><%=tmpRt.getLatValue()%></td>
-				<td align="left" width="50%" id="<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>" >&nbsp;</td>
+	<h3 id="stop-div-title"><a href="#">停留详单</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
+			<tr>		
+				<th width="15%">定位时间</th>
+				<th width="15%">停留时间</th>
+				<th width="10%">经度</th>
+				<th width="10%">纬度</th>
+				<th width="50%">位置</th>
 			</tr>
+			<%
+			int i = 0;
+			for(RealtimeTrack tmpRt : stopPoints){
+				Util.setNull2DefaultValue(tmpRt);
+				if( login.getMapType()!=LoginInfo.MAPABC ){%>
+				<script language="JavaScript">
+					positions["<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
+				</script>
+			<%	}%>
+			<tr>
+				<td colspan="5">
+				<table cellSpacing="0" width="100%" cellpadding="0">
+					<tr>				
+						<td align="left" width="15%"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
+						<td align="left" width="15%"><%=stoptimes.get(i)%></td>
+						<td align="left" width="10%"><%=tmpRt.getLongValue()%></td>
+						<td align="left" width="10%"><%=tmpRt.getLatValue()%></td>
+						<td align="left" width="50%" id="<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>" >&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<% 
+			i++;
+			} %>
 		</table>
-		</td>
-	</tr>
-	<% 
-	i++;
-	} %>
-</table>
-</div>
+	</div>
 </div>
 
 <div id="alert-div">
-<h3 id="alert-div-title"><a href="#">报警详单</a></h3>
-<div style="padding:2px;overflow:visible">
-<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
-	<tr>		
-		<th width="15%">定位时间</th>
-		<th width="15%">报警内容</th>
-		<th width="10%">经度</th>
-		<th width="10%">纬度</th>
-		<th width="50%">位置</th>
-	</tr>
-	<%
-	for(AlertHistory ah:ahs){ 
-		Util.setNull2DefaultValue(ah);%>
-	<tr>
-		<td colspan="5">
-		<table cellSpacing="0" width="100%" cellpadding="0">
-			<tr>				
-				<td align="left" width="15%"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
-				<td align="left" width="15%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>
-				<td align="left" width="10%"><%=""%></td>
-				<td align="left" width="10%"><%=""%></td>
-				<td align="left" width="10%" id="" >&nbsp;</td>
+	<h3 id="alert-div-title"><a href="#">报警详单</a></h3>
+	<div style="padding:2px;overflow:visible">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
+			<tr>		
+				<th width="15%">定位时间</th>
+				<th width="15%">报警内容</th>
+				<th width="10%">经度</th>
+				<th width="10%">纬度</th>
+				<th width="50%">位置</th>
 			</tr>
+			<%
+			for(AlertHistory ah:ahs){ 
+				Util.setNull2DefaultValue(ah);%>
+			<tr>
+				<td colspan="5">
+				<table cellSpacing="0" width="100%" cellpadding="0">
+					<tr>				
+						<td align="left" width="15%"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
+						<td align="left" width="15%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>
+						<td align="left" width="10%"><%=""%></td>
+						<td align="left" width="10%"><%=""%></td>
+						<td align="left" width="10%" id="" >&nbsp;</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<% } %>
 		</table>
-		</td>
-	</tr>
-	<% } %>
-</table>
-</div>
+	</div>
 </div>
 
 </body>
