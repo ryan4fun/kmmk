@@ -183,6 +183,7 @@ function leftClick( param ) {
 	<%if( isShowMap ){%>
 	实时刷新：<input type="checkbox" id="isRefresh" name="isRefresh" onclick="autoRefresh()" checked/>
 	<%}%>
+	&nbsp;&nbsp;&nbsp;&nbsp;当前位置：<span id="current_address"></span>
 	<div id="map_canvas" style="width: 100%; height: 500px"></div>
 </body>
 </html>

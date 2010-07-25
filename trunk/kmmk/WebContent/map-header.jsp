@@ -116,9 +116,18 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	    GEvent.addListener(marker.imgMarker_, "click", function(latlng) {
 	    	mapObj.setCenter(latlng);
 	    	gAddrParser.getLocationByLatLng(function(response){
-	    		marker.imgMarker_.openInfoWindowHtml(html + "</b><br>位置：<b>" + gAddrParser.parseResponse(response) + "</b>");
+	    		marker.imgMarker_.openInfoWindowHtml(html + "</b><br>当前位置：<b>" + gAddrParser.parseResponse(response) + "</b>");
 	    	},marker.imgMarker_.getLatLng());
 		});
+
+
+		
+		if($("#current_address").length){
+			gAddrParser.getLocationByLatLng(function(response){
+				$("#current_address").html(gAddrParser.parseResponse(response));
+	    	},marker.imgMarker_.getLatLng());
+		}
+			
 	    mapObj.addOverlay(marker);
 	    return marker;
 	}
