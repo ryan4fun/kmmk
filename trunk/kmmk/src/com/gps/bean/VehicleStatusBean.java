@@ -477,7 +477,8 @@ public class VehicleStatusBean extends AbstractBean {
 			.put("overSpeed", vs.getOverSpeed()==0?"-":VehicleStatusService.overSpeedStates.get(vs.getOverSpeed()))
 			.put("tireDrive", vs.getTireDrive()==0?"-":VehicleStatusService.tiredDriveStates.get(vs.getTireDrive()))
 			.put("lastUpdate", Util.FormatDateLong(sh.getLastUpdate()))
-			.put("alertIcon", VehicleStatusBean.getAlertIcon(vs));
+			.put("alertIcon", VehicleStatusBean.getAlertIcon(vs))
+			.put("vehicleId", vs.getVehicleId());
 		
 //		if (!isOverSpeed) {
 //			json.put("overSpeedIcon", "");
