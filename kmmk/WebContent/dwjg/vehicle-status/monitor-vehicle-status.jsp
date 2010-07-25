@@ -107,7 +107,7 @@ function createMarker(vs) {
 var resreshObj = null;
 function autoRefresh(){
 	if($("#isRefresh").attr("checked")){
-		resreshObj = setInterval("searchVehicleStatus()",60 * 1000);
+		resreshObj = setInterval("searchVehicleStatus()",10 * 1000);
 	} else {
 		clearInterval(resreshObj);
 	}

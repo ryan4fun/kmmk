@@ -239,3 +239,8 @@ input.error { border: 1px dotted red; }
 		cursor : pointer;
 		white-space : nowrap;
 }
+
+#current_address {
+	font-size: 1.3em;
+	color: blue;
+}
