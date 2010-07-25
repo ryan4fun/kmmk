@@ -208,7 +208,7 @@ function getAddr(id, value){
 				Util.setNull2DefaultValue(tmpRt);
 				if( login.getMapType()!=LoginInfo.MAPABC ){%>
 				<script language="JavaScript">
-					positions["<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
+					positions["<%="stop_point_" + i%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
 				</script>
 			<%	}%>
 			<tr>
@@ -219,7 +219,7 @@ function getAddr(id, value){
 						<td align="left" width="15%"><%=stoptimes.get(i)%></td>
 						<td align="left" width="10%"><%=tmpRt.getLongValue()%></td>
 						<td align="left" width="10%"><%=tmpRt.getLatValue()%></td>
-						<td align="left" width="50%" id="<%=tmpRt.getLatValue() + "_" + tmpRt.getLongValue()%>" >&nbsp;</td>
+						<td align="left" width="50%" id="<%="stop_point_" + i%>" >&nbsp;</td>
 					</tr>
 				</table>
 				</td>
