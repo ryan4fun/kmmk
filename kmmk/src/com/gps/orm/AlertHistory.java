@@ -18,6 +18,8 @@ public class AlertHistory implements java.io.Serializable {
 	private Integer accUser;
 	private String description;
 	private String accComment;
+	private Double longVal;
+	private Double latVal;
 
 	public AlertHistory() {
 	}
@@ -28,7 +30,8 @@ public class AlertHistory implements java.io.Serializable {
 
 	public AlertHistory(long alertId, Vehicle vehicle,
 			AlertTypeDic alertTypeDic, Short tag, Date occurDate, Date acctime,
-			Integer accUser, String description, String accComment) {
+			Integer accUser, String description, String accComment,
+			Double longVal, Double latVal) {
 		this.alertId = alertId;
 		this.vehicle = vehicle;
 		this.alertTypeDic = alertTypeDic;
@@ -38,6 +41,8 @@ public class AlertHistory implements java.io.Serializable {
 		this.accUser = accUser;
 		this.description = description;
 		this.accComment = accComment;
+		this.longVal = longVal;
+		this.latVal = latVal;
 	}
 
 	public long getAlertId() {
@@ -110,6 +115,22 @@ public class AlertHistory implements java.io.Serializable {
 
 	public void setAccComment(String accComment) {
 		this.accComment = accComment;
+	}
+
+	public Double getLongVal() {
+		return this.longVal;
+	}
+
+	public void setLongVal(Double longVal) {
+		this.longVal = longVal;
+	}
+
+	public Double getLatVal() {
+		return this.latVal;
+	}
+
+	public void setLatVal(Double latVal) {
+		this.latVal = latVal;
 	}
 
 }
