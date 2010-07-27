@@ -31,7 +31,7 @@ public class Vehicle implements java.io.Serializable {
 	private Date serviceExpireDate;
 	private Short msgIntervel;
 	private Short monitLevel;
-	private Double speedLimitation;
+	private Integer speedLimitation;
 	private String imgPath1;
 	private String imgPath2;
 	private String imgPath3;
@@ -71,7 +71,7 @@ public class Vehicle implements java.io.Serializable {
 			Short annualCheckState, Date secondMaintainDate,
 			Integer assetBaseValue, String simCardNo, Short vehicleState,
 			Date serviceExpireDate, Short msgIntervel, Short monitLevel,
-			Double speedLimitation, String imgPath1, String imgPath2,
+			Integer speedLimitation, String imgPath1, String imgPath2,
 			String imgPath3, Set<FTools> FToolses,
 			Set<VehicleRule> vehicleRules, Set<FTyres> FTyreses,
 			Set<FMonthlyReport> FMonthlyReports,
@@ -288,11 +288,11 @@ public class Vehicle implements java.io.Serializable {
 		this.monitLevel = monitLevel;
 	}
 
-	public Double getSpeedLimitation() {
+	public Integer getSpeedLimitation() {
 		return this.speedLimitation;
 	}
 
-	public void setSpeedLimitation(Double speedLimitation) {
+	public void setSpeedLimitation(Integer speedLimitation) {
 		this.speedLimitation = speedLimitation;
 	}
 

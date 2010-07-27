@@ -65,8 +65,8 @@
         <property name="monitLevel" type="java.lang.Short">
             <column name="monitLevel" />
         </property>
-        <property name="speedLimitation" type="java.lang.Double">
-            <column name="speedLimitation" precision="53" scale="0" />
+        <property name="speedLimitation" type="java.lang.Integer">
+            <column name="speedLimitation" />
         </property>
         <property name="imgPath1" type="string">
             <column name="imgPath1" length="100" />
