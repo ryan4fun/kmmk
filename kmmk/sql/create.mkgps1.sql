@@ -4,7 +4,7 @@
  * Project :      GPS.DM1
  * Author :       ttt
  *
- * Date Created : Sunday, June 13, 2010 21:38:18
+ * Date Created : Tuesday, July 27, 2010 23:00:27
  * Target DBMS : Microsoft SQL Server 2005
  */
 
@@ -19,15 +19,17 @@ go
  */
 
 CREATE TABLE alertHistory(
-    alertID        bigint          IDENTITY(1,1),
-    tag            smallint        NULL,
-    vehicleID      int             NULL,
-    occurDate      datetime        NULL,
-    acctime        datetime        NULL,
-    accUser        int             NULL,
-    description    varchar(100)    NULL,
-    accComment     varchar(200)    NULL,
-    AlertTypeID    int             NULL,
+    alertID        bigint              IDENTITY(1,1),
+    tag            smallint            NULL,
+    vehicleID      int                 NULL,
+    occurDate      datetime            NULL,
+    acctime        datetime            NULL,
+    accUser        int                 NULL,
+    description    varchar(100)        NULL,
+    accComment     varchar(200)        NULL,
+    AlertTypeID    int                 NULL,
+    longVal        double precision    NULL,
+    latVal         double precision    NULL,
     CONSTRAINT PK50 PRIMARY KEY NONCLUSTERED (alertID)
 )
 go
@@ -1224,30 +1226,30 @@ go
  */
 
 CREATE TABLE vehicle(
-    vehicleID             int                 IDENTITY(1,1),
-    deviceID              varchar(30)         NULL,
-    licensPadNumber       varchar(10)         NULL,
-    internalNumber        varchar(30)         NULL,
-    engineNumber          varchar(100)        NULL,
-    frameNumber           varchar(100)        NULL,
-    modelNumber           varchar(100)        NULL,
-    capability            float               NULL,
-    registerDate          datetime            NULL,
-    approvalDate          datetime            NULL,
-    annualCheckState      smallint            NULL,
-    secondMaintainDate    datetime            NULL,
-    assetBaseValue        int                 NULL,
-    userID                int                 NULL,
-    simCardNo             varchar(20)         NULL,
-    vehicleState          smallint            NULL,
-    vehicleTypeID         smallint            NULL,
-    serviceExpireDate     datetime            NULL,
-    msgIntervel           smallint            NULL,
-    monitLevel            smallint            NULL,
-    speedLimitation       double precision    NULL,
-    imgPath1              varchar(100)        NULL,
-    imgPath2              varchar(100)        NULL,
-    imgPath3              varchar(100)        NULL,
+    vehicleID             int             IDENTITY(1,1),
+    deviceID              varchar(30)     NULL,
+    licensPadNumber       varchar(10)     NULL,
+    internalNumber        varchar(30)     NULL,
+    engineNumber          varchar(100)    NULL,
+    frameNumber           varchar(100)    NULL,
+    modelNumber           varchar(100)    NULL,
+    capability            float           NULL,
+    registerDate          datetime        NULL,
+    approvalDate          datetime        NULL,
+    annualCheckState      smallint        NULL,
+    secondMaintainDate    datetime        NULL,
+    assetBaseValue        int             NULL,
+    userID                int             NULL,
+    simCardNo             varchar(20)     NULL,
+    vehicleState          smallint        NULL,
+    vehicleTypeID         smallint        NULL,
+    serviceExpireDate     datetime        NULL,
+    msgIntervel           smallint        NULL,
+    monitLevel            smallint        NULL,
+    speedLimitation       int             NULL,
+    imgPath1              varchar(100)    NULL,
+    imgPath2              varchar(100)    NULL,
+    imgPath3              varchar(100)    NULL,
     CONSTRAINT PK3 PRIMARY KEY NONCLUSTERED (vehicleID)
 )
 go
