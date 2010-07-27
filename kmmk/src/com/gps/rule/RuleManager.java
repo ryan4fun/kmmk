@@ -311,6 +311,8 @@ public class RuleManager {
 			alert.setOccurDate(new Date());
 			alert.setTag(AlertHistoryService.FROM_TASK_RULE);
 			alert.setDescription(checker.getDiscription());
+			alert.setLongVal(msg.getLongitude());
+			alert.setLatVal(msg.getLatitude());
 			ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 			
 			return alert;
