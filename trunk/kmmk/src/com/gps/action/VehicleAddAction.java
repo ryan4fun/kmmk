@@ -22,7 +22,7 @@ public class VehicleAddAction extends Action{
 		if(vt == null)
 			throw new Message("无法找到该车辆类型!");
 		if(v.getSpeedLimitation()==null)
-			v.setSpeedLimitation(vt.getSpeedLimitation().doubleValue());
+			v.setSpeedLimitation(vt.getSpeedLimitation().intValue());
 		generateAllSimpleProp(v);
 		v.setRegisterDate(Util.getCurrentDateTime());
 		v.setVehicleState(VehicleService.VEHICLE_NORM_STATE);

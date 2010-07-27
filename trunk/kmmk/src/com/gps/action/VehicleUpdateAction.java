@@ -13,7 +13,7 @@ public class VehicleUpdateAction extends Action {
 	@Override
 	public void doAction() throws Exception{
 		Vehicle v = getServiceLocator().getVehicleService().findById(this.getInteger("vehicleId"));
-		Double oldSpeed = v.getSpeedLimitation();
+		Integer oldSpeed = v.getSpeedLimitation();
 		if(v == null)
 			throw new Message("无法找到该车辆!");
 		Users u = this.getServiceLocator().getUsersService().findById(this.getInteger("userId"));		
@@ -23,7 +23,7 @@ public class VehicleUpdateAction extends Action {
 		if(vt == null)
 			throw new Message("无法找到该车辆类型!");
 		if(v.getSpeedLimitation()==null)
-			v.setSpeedLimitation(vt.getSpeedLimitation().doubleValue());
+			v.setSpeedLimitation(vt.getSpeedLimitation().intValue());
 		generateAllSimpleProp(v);
 		v.setVehicleState(VehicleService.VEHICLE_NORM_STATE);
 		v.setUsers(u);
