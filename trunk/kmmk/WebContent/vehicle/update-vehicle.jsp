@@ -160,7 +160,7 @@ jQuery.validator.addMethod("deviceId", function(value, element) {
 					required: true
 				},				
 				speedLimitation: {
-					number: true
+					digits: true
 				},
 				deviceId: {
    					required: true,
