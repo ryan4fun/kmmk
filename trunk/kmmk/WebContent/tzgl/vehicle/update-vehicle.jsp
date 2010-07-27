@@ -153,7 +153,7 @@ List<Organization> os = ob.getList();
 					required: true
 				},
 				speedLimitation: {
-					number: true
+					digits: true
 				},
 				deviceId: {
    					required: true,
