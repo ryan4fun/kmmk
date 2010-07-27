@@ -32,5 +32,11 @@
         <property name="accComment" type="string">
             <column name="accComment" length="200" />
         </property>
+        <property name="longVal" type="java.lang.Double">
+            <column name="longVal" precision="53" scale="0" />
+        </property>
+        <property name="latVal" type="java.lang.Double">
+            <column name="latVal" precision="53" scale="0" />
+        </property>
     </class>
 </hibernate-mapping>
