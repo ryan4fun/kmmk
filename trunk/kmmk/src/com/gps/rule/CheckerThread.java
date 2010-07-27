@@ -44,6 +44,8 @@ public class CheckerThread implements Runnable{
 						alert.setVehicle(this.checker.vehicle);
 						alert.setAlertTypeDic(alertDic);
 						alert.setOccurDate(new Date());
+//						alert.setLongVal(msg.getLongitude());
+//						alert.setLatVal(msg.getLatitude());
 						alert.setTag(AlertHistoryService.FROM_TASK_RULE);
 						ServiceLocator.getInstance().getAlertHistoryService().addAlertHistory(alert);
 						
