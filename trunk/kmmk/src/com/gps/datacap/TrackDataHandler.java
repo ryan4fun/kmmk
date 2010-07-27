@@ -69,6 +69,8 @@ public class TrackDataHandler {
 			alert.setAlertTypeDic(getAlertTypeDic(message.getAlertType()));
 			alert.setOccurDate(message.getServerReceiveDate());
 			alert.setDescription(getAlertDescription(message));
+			alert.setLongVal(message.getLongitude());
+			alert.setLatVal(message.getLatitude());
 			getServiceLocator().getAlertHistoryService().addAlertHistory(alert);			
 			
 			this.messageCount++;
