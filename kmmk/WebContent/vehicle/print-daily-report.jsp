@@ -40,6 +40,7 @@ for(Object o : ts){
 	}
 	rt = (RealtimeTrack)o;
 }
+Math.round(totalDist);
 RealtimeTrack firstPoint = (RealtimeTrack)ts.get(0);
 RealtimeTrack lastPoint = rt;
 
@@ -125,7 +126,7 @@ $(document).ready(function(){
 		if( isNaN($(this).val()) )
 			$("#totalCost").html("0 元");
   		else
-  			$("#totalCost").html(Math.round($(this).val()*<%=totalDist%>/100)/100 + " 元");
+  			$("#totalCost").html(Math.round($(this).val()*<%=totalDist%>*100)/100 + " 元");
 	});
 	
 });
@@ -194,7 +195,7 @@ function getAddr(id, value){
 				<td align="right">参考成本：</td>
 				<td align="left" ><input type="text" name="costPerKm" id="costPerKm" />元/公里</td>
 				<td align="right">总成本：</td>
-				<td align="left" id="totalCost" ><%=totalStopTime%>元</td>
+				<td align="left" id="totalCost" >0 元</td>
 			</tr>
 		</table>
 	</div>
