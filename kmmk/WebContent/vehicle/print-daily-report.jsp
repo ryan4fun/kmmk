@@ -73,6 +73,7 @@ Util.setNull2DefaultValue(ab);
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery-ui-1.7.2.custom.min.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
 
 <style type="text/css">
 </style>
