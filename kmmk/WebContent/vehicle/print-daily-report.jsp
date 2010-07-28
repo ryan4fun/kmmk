@@ -40,7 +40,7 @@ for(Object o : ts){
 	}
 	rt = (RealtimeTrack)o;
 }
-Math.round(totalDist);
+totalDist = Math.round(totalDist);
 RealtimeTrack firstPoint = (RealtimeTrack)ts.get(0);
 RealtimeTrack lastPoint = rt;
 
@@ -114,9 +114,6 @@ $(document).ready(function(){
 	});
 	
 	<%if( login.getMapType()!=LoginInfo.MAPABC ){%>
-	positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
-	positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.getLongValue()%> );
-		
 	for(var prop in positions){
 		getAddr(prop, positions[prop]);
 	}
@@ -139,6 +136,8 @@ function getAddr(id, value){
    }
 }
 
+positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
+positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.getLongValue()%> );
 </script>
 </head>
 
