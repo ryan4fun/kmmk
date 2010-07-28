@@ -243,22 +243,29 @@ function getAddr(id, value){
 				<th width="50%">位置</th>
 			</tr>
 			<%
+			i = 0;
 			for(AlertHistory ah:ahs){ 
-				Util.setNull2DefaultValue(ah);%>
+				Util.setNull2DefaultValue(ah);
+				if( login.getMapType()!=LoginInfo.MAPABC ){%>
+				<script language="JavaScript">
+					positions["<%="stop_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>, <%=ah.getLongVal()%> );
+				</script>
+			<%	}%>
 			<tr>
 				<td colspan="5">
 				<table cellSpacing="0" width="100%" cellpadding="0">
 					<tr>				
 						<td align="left" width="15%"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
 						<td align="left" width="15%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>
-						<td align="left" width="10%"><%=""%></td>
-						<td align="left" width="10%"><%=""%></td>
-						<td align="left" width="10%" id="" >&nbsp;</td>
+						<td align="left" width="10%"><%=ah.getLongVal()%></td>
+						<td align="left" width="10%"><%=ah.getLatVal()%></td>
+						<td align="left" width="50%" id="<%="stop_point_" + i%>" >&nbsp;</td>
 					</tr>
 				</table>
 				</td>
 			</tr>
-			<% } %>
+			<% i++;
+			} %>
 		</table>
 	</div>
 </div>
