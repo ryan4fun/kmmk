@@ -248,7 +248,7 @@ function getAddr(id, value){
 				Util.setNull2DefaultValue(ah);
 				if( login.getMapType()!=LoginInfo.MAPABC ){%>
 				<script language="JavaScript">
-					positions["<%="stop_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>, <%=ah.getLongVal()%> );
+					positions["<%="alert_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>, <%=ah.getLongVal()%> );
 				</script>
 			<%	}%>
 			<tr>
@@ -259,7 +259,7 @@ function getAddr(id, value){
 						<td align="left" width="15%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>
 						<td align="left" width="10%"><%=ah.getLongVal()%></td>
 						<td align="left" width="10%"><%=ah.getLatVal()%></td>
-						<td align="left" width="50%" id="<%="stop_point_" + i%>" >&nbsp;</td>
+						<td align="left" width="50%" id="<%="alert_point_" + i%>" >&nbsp;</td>
 					</tr>
 				</table>
 				</td>
