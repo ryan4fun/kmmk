@@ -79,9 +79,14 @@ $(document).ready(function(){
 	});
 
 	$("#dailyReportBtn").click(function(){
-		var $form = $(this).parents("form:first");
-		$form = $form.next("div:first").empty().append($form.clone()).children("form:last");
-		$form.attr("target","_blank").attr("action","print-daily-report.jsp").submit();
+		var qtime = $("#recieveTimeEnd").val().replace(/\D/g,"") - $("#recieveTimeStart").val().replace(/\D/g,"");
+		if(qtime < 0 || qtime > 6000000){
+			jAlert("查询时间范围请选择6天内的！", "警告", null);
+		} else {
+			var $form = $(this).parents("form:first");
+			$form = $form.next("div:first").empty().append($form.clone()).children("form:last");
+			$form.attr("target","_blank").attr("action","print-daily-report.jsp").submit();
+   		}		
 	});
 });
 
