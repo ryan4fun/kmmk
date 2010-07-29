@@ -284,6 +284,7 @@ var currentId;
 			if(text.indexOf(input.value)>-1){
 				tree.selectItem(itemId);
 				tree.focusItem(itemId);
+				break;
 			}
 		} 
 	}
