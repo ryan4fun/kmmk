@@ -20,7 +20,6 @@ RealtimeTrack rt = null;
 RealtimeTrack nextRt = null;
 List<RealtimeTrack> stopPoints = new ArrayList<RealtimeTrack>();
 List<String> stoptimes = new ArrayList<String>();
-long tmpl = 0;
 for(Object o : ts){
 	if(rt != null){
 		nextRt = (RealtimeTrack)o;
@@ -30,9 +29,11 @@ for(Object o : ts){
 				rt.getLatValue(),
 				rt.getLongValue());
 		if(rt.getTag() != null && rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-			tmpl = nextRt.getRecieveTime().getTime() - rt.getRecieveTime().getTime();
-			totalStopTime += tmpl;
-			stoptimes.add(Util.getDays(tmpl) + "天" + Util.getHours(tmpl) + "小时" + Util.getMins(tmpl) + "分钟");
+			long tmpl = nextRt.getRecieveTime().getTime() - rt.getRecieveTime().getTime();
+			//totalStopTime += tmpl;
+			int day = Util.getDays(tmpl);
+			int hour = Util.getHours(tmpl);
+			stoptimes.add( (day>0 ? day + "天" : "") + (hour>0 ? hour + "小时" : "") + Util.getMins(tmpl) + "分钟");
 			stopPoints.add(rt);
 			stopPoints.add(nextRt);
 		} else {
@@ -41,6 +42,8 @@ for(Object o : ts){
 	}
 	rt = (RealtimeTrack)o;
 }
+//盲区时间算停止时间
+totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime;
 totalDist = Math.round(totalDist);
 RealtimeTrack firstPoint = (RealtimeTrack)ts.get(0);
 RealtimeTrack lastPoint = rt;
