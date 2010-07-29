@@ -148,7 +148,7 @@ $(document).ready(function(){
 				jAlert("查询时间范围请选择6天内的！", "警告", null);
 			} else {
 			//must use form.submit() manually
-	   			//form.submit();
+	   			form.submit();
 	   		}
 		}
 	});
