@@ -274,6 +274,23 @@ var currentId;
 			closedItems.clear();
 		}
 	}
+
+	function searchTree(input){
+		if(input.value == "") return;
+		var childless = tree.getAllChildless().split(",");;
+		for(var i=0; i<childless.length; i++){
+			var itemId = childless[i];
+			var text = tree.getItemText(itemId);
+			if(text.indexOf(input.value)>-1){
+				tree.selectItem(itemId);
+				tree.focusItem(itemId);
+			}
+		} 
+	}
+
+	function clearSearch(){
+		$("#searchInput").val("");
+	}
 </script>
 
 </head>
@@ -292,6 +309,7 @@ var currentId;
 		<table height="100%" width="100%;" border="0" cellSpacing="0" cellPadding="0">
 			<tr height="25">
 				<td align="center" style="padding-top:6px;">
+				<p>快速查找：<input type="text" value="" id="searchInput" size=10 onkeyup="searchTree(this)">&nbsp;<input type="button" value="清除" onclick="clearSearch()"></p><br/>
 				<p><a href="javascript:expandAll(true)">展开所有</a>&nbsp;&nbsp;&nbsp;
 				<a href="javascript:expandAll(false)">收缩所有</a>				
 				</p><br/>
