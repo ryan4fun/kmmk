@@ -277,16 +277,18 @@ var currentId;
 
 	function searchTree(input){
 		if(input.value == "") return;
-		var childless = tree.getAllChildless().split(",");;
+		var childless = tree.getAllChildless().split(",");
+		var found = false;
 		for(var i=0; i<childless.length; i++){
 			var itemId = childless[i];
 			var text = tree.getItemText(itemId);
-			if(text.indexOf(input.value)>-1){
+			if(text.toUpperCase().indexOf(input.value.toUpperCase())>-1){
 				tree.selectItem(itemId);
 				tree.focusItem(itemId);
+				found = true;
 				break;
 			}
-		} 
+		}
 	}
 
 	function clearSearch(){
