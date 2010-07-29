@@ -31,9 +31,7 @@ for(Object o : ts){
 		if(rt.getTag() != null && rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
 			long tmpl = nextRt.getRecieveTime().getTime() - rt.getRecieveTime().getTime();
 			//totalStopTime += tmpl;
-			int day = Util.getDays(tmpl);
-			int hour = Util.getHours(tmpl);
-			stoptimes.add( (day>0 ? day + "天" : "") + (hour>0 ? hour + "小时" : "") + Util.getMins(tmpl) + "分钟");
+			stoptimes.add(Util.formateLongToDays(tmpl));
 			stopPoints.add(rt);
 			stopPoints.add(nextRt);
 		} else {
@@ -210,9 +208,9 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			</tr>
 			<tr>
 				<td align="right">行驶时间：</td>
-				<td align="left" ><%=Util.getDays(totalRunTime) + "天" + Util.getHours(totalRunTime) + "小时" + Util.getMins(totalRunTime) + "分钟"%></td>
+				<td align="left" ><%=Util.formateLongToDays(totalRunTime)%></td>
 				<td align="right">停留时间：</td>
-				<td align="left" ><%=Util.getDays(totalStopTime) + "天" + Util.getHours(totalStopTime) + "小时" + Util.getMins(totalStopTime) + "分钟"%></td>
+				<td align="left" ><%=Util.formateLongToDays(totalStopTime)%></td>
 			</tr>
 			<tr>
 				<td align="right">参考成本：</td>
