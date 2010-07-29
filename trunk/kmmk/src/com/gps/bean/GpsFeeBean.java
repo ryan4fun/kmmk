@@ -57,14 +57,22 @@ public class GpsFeeBean extends AbstractBean {
 	public List<Gpsfee> getList(){
 		try {
 			Criteria crit = HibernateUtil.getSession().createCriteria(Gpsfee.class);
-			
-			crit.createAlias("users", "u");			
-			if (this.getUserId() != null && userId>0)
-				crit.add(Restrictions.eq("u.userId", this.getUserId()));
-			
-			crit.createAlias("users.organization", "o");			
-			if (this.getOrganizationId() != null && organizationId>0)
-				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
+			Criteria critUsers = crit.createCriteria("users");
+//			Criteria critOrganization = critUsers.createCriteria("organization");
+			if (this.getUserId() != null && userId>0){
+				critUsers.add(Restrictions.eq("userId", this.getUserId()));				
+			}
+				
+//			if (this.getOrganizationId() != null && organizationId>0){
+//				critOrganization.add(Restrictions.eq("organizationId", this.getOrganizationId()));				
+//			}			
+//			crit.createAlias("users", "u");
+//			if (this.getUserId() != null && userId>0)
+//				crit.add(Restrictions.eq("u.userId", this.getUserId()));
+//			
+//			crit.createAlias("users.organization", "o");			
+//			if (this.getOrganizationId() != null && organizationId>0)
+//				crit.add(Restrictions.eq("o.organizationId", this.getOrganizationId()));
 			
 			if (this.getFeeType() != null && feeType > 0)
 				crit.add(Restrictions.eq("feeType", this.getFeeType()));
