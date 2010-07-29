@@ -51,6 +51,7 @@ Vehicle v = vb.findById();
 
 AlertHistoryBean ab = new AlertHistoryBean();
 ab.setPagination(false);
+ab.setVehicleId(tb.getVehicleId());
 ab.setOccurDateStart(tb.getRecieveTimeStart());
 ab.setOccurDateEnd(tb.getRecieveTimeEnd());
 List<AlertHistory> ahs = ab.getList();
@@ -72,6 +73,7 @@ Util.setNull2DefaultValue(ab);
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/dependency/jquery.alerts.js"></script>
 <script type="text/javascript" src="<%=basePath %>js/datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="<%=basePath %>js/dependency/jquery.validate.js"></script>
 
 <style type="text/css">
 </style>
@@ -121,6 +123,34 @@ $(document).ready(function(){
 			$("#totalCost").html("0 元");
   		else
   			$("#totalCost").html(Math.round($(this).val()*<%=totalDist%>*100)/100 + " 元");
+	});
+
+	$("#inputform").validate({
+		rules: {   				
+			recieveTimeStart: {
+				required: true
+			},
+			recieveTimeEnd: {
+				required: true
+			}
+		},
+		messages: {				
+			recieveTimeStart: {
+				required: "请输入起始时间"
+			},
+			recieveTimeEnd: {
+				required: "请输入终止时间"
+			}
+		},
+		submitHandler: function(form) {
+			var qtime = $("#recieveTimeEnd").val().replace(/\D/g,"") - $("#recieveTimeStart").val().replace(/\D/g,"");
+			if(qtime < 0 || qtime > 6000000){
+				jAlert("查询时间范围请选择6天内的！", "警告", null);
+			} else {
+			//must use form.submit() manually
+	   			//form.submit();
+	   		}
+		}
 	});
 	
 });
@@ -175,14 +205,6 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				<td align="right" >总里程：</td>
 				<td colspan="3" ><%=totalDist%>公里</td>
 			</tr>
-			<%--
-			<tr>
-				<td width="15%" align="right">起始位置：</td>
-				<td width="35%" align="left" id="firstPoint" ></td>
-				<td width="15%" align="right">结束位置：</td>
-				<td align="left" id="lastPoint" ></td>
-			</tr>
-			--%>
 			<tr>
 				<td align="right">行驶时间：</td>
 				<td align="left" ><%=Util.getDays(totalRunTime) + "天" + Util.getHours(totalRunTime) + "小时" + Util.getMins(totalRunTime) + "分钟"%></td>
