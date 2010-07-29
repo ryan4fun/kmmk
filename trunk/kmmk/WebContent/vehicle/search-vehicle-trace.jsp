@@ -364,11 +364,11 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 				</tr>
 				 -->	
 				<tr>
-					<td align="right">起始时间：<br/>（查询车牌必填）</td>
+					<td align="right">起始时间：</td>
 					<td align="left" valign="top"><input type="text"
 						id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
 						value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
-					<td align="right">终止时间：<br/>（查询车牌必填）</td>
+					<td align="right">终止时间：</td>
 					<td align="left" valign="top"><input type="text"
 						id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
 						value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
