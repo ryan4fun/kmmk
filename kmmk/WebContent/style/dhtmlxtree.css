@@ -32,7 +32,8 @@ background-color: #FFFFCC;
 }
 
 .intreeeditRow{
-  width:100%; font-size:8pt; height:16px; border:1px solid silver; padding:0; margin:0;
+  font-size:8pt; height:16px; border:1px solid silver; padding:0; margin:0;
+  margin-left:4px;
   -moz-user-select:  text;   
   -khtml-user-select: text;
 }
@@ -64,25 +65,21 @@ background-position-y: center;
 	background:white;
 	color:black;
 }
-*html .dhxtree_dhx_skyblue .standartTreeRow{
+*html .dhxtree_dhx_skyblue .standartTreeRow, *html .dhxtree_dhx_skyblue .standartTreeRow_lor{
 	border-right:0px solid red;
 	border-left:0px solid red;
 }
-*html .dhxtree_dhx_skyblue span.standartTreeRow{
+*html .dhxtree_dhx_skyblue span.standartTreeRow, *html .dhxtree_dhx_skyblue span.standartTreeRow_lor{
 	margin-left:1px;	
 }
 
-.dhxtree_dhx_skyblue .standartTreeRow{
+.dhxtree_dhx_skyblue .standartTreeRow, .dhxtree_dhx_skyblue .standartTreeRow_lor{
 	border-right:1px solid transparent;
 	border-left: 1px solid transparent;
 	font-family:Tahoma;
 	font-size:11px !important;
 	overflow:hidden;
 	padding:0px 0px 0px 0px;
-}
-.dhxtree_dhx_skyblue .standartTreeRow_lor{
-	font-family:Tahoma;
-	font-size:11px !important;
 }
 .dhxtree_dhx_skyblue .selectedTreeRow_lor, .dhxtree_dhx_skyblue .selectedTreeRow{
 	background-color:white;
@@ -97,19 +94,43 @@ background-position-y: center;
 	font-family:Tahoma;
 	overflow:hidden;
 }
-html > body /**/ .dhxtree_dhx_skyblue .selectedTreeRow{
+html > body /**/ .dhxtree_dhx_skyblue .selectedTreeRow, html > body /**/ .dhxtree_dhx_skyblue .selectedTreeRow_lor{
 	padding:1px 0px 1px 0px;
 	line-height:normal;
 	display:inline-block !ie;
 	height:13px;
 }
-body:nth-of-type(1) .dhxtree_dhx_skyblue span.selectedTreeRow{
+body:nth-of-type(1) .dhxtree_dhx_skyblue span.selectedTreeRow, body:nth-of-type(1) .dhxtree_dhx_skyblue span.selectedTreeRow_lor{
 	padding:1px 0px 1px 0px;
   	display:inline-block;
   	padding-top:0px;
   	height:13px;
 }
-body:nth-of-type(1) .dhxtree_dhx_skyblue span.standartTreeRow{
+body:nth-of-type(1) .dhxtree_dhx_skyblue span.standartTreeRow, body:nth-of-type(1) .dhxtree_dhx_skyblue span.standartTreeRow_lor{
   	display:inline-block;
   	height:14px;
+}
+
+.dhxtree_dhx_web .selectedTreeRow_lor, .dhxtree_dhx_web .selectedTreeRow{
+	background-color:transparent;
+	
+}
+.dhxtree_dhx_web span.selectedTreeRow_lor , .dhxtree_dhx_web span.selectedTreeRow{
+	background-color:#ACDAF0;
+	color:black;
+}
+
+.dhxtree_dhx_web td.standartTreeRow, .dhxtree_dhx_web td.selectedTreeRow{
+	padding-left:2px;
+}
+.dhxtree_dhx_web span.standartTreeRow, .dhxtree_dhx_web span.selectedTreeRow{
+	padding-left:3px !important;
+}
+
+
+
+.dhxtree_dhx_web .standartTreeRow, .dhxtree_dhx_web .standartTreeRow, .dhxtree_dhx_web .selectedTreeRow_lor, .dhxtree_dhx_web .selectedTreeRow{
+	font-size:12px;
+	font-family:Tahoma;
+	overflow:hidden;
 }
