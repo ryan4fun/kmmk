@@ -200,7 +200,6 @@ var currentId;
 				//setTimeout(function(){
 				//	$("#tree-div").unblock();
 				//}, 500);
-				
 			}
 		});
 	}
