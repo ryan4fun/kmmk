@@ -12,39 +12,53 @@ if(ts == null || ts.size()<1){
 	out.print("无法找到该时间段车辆运行记录！");
 	return;
 }
-
+//计算总距离，筛选停止点
 double totalDist = 0;
-long totalRunTime = 0;
-long totalStopTime = 0;
-RealtimeTrack rt = null;
-RealtimeTrack nextRt = null;
+RealtimeTrack lastRt = null;
+RealtimeTrack thisRt = null;
 List<RealtimeTrack> stopPoints = new ArrayList<RealtimeTrack>();
-List<String> stoptimes = new ArrayList<String>();
 for(Object o : ts){
-	if(rt != null){
-		nextRt = (RealtimeTrack)o;
+	if(lastRt != null){
+		thisRt = (RealtimeTrack)o;
 		totalDist += Util.CalculateLatLng2Distance(
-				nextRt.getLatValue(), 
-				nextRt.getLongValue(),
-				rt.getLatValue(),
-				rt.getLongValue());
-		if(rt.getTag() != null && rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-			long tmpl = nextRt.getRecieveTime().getTime() - rt.getRecieveTime().getTime();
-			//totalStopTime += tmpl;
-			stoptimes.add(Util.formateLongToDays(tmpl));
-			stopPoints.add(rt);
-			stopPoints.add(nextRt);
-		} else {
-			totalRunTime += nextRt.getRecieveTime().getTime() - rt.getRecieveTime().getTime();
+				thisRt.getLatValue(), 
+				thisRt.getLongValue(),
+				lastRt.getLatValue(),
+				lastRt.getLongValue());
+		if(thisRt.getTag() != null 
+				&& (thisRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP 
+						|| thisRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) ){
+			stopPoints.add(thisRt);
 		}
 	}
-	rt = (RealtimeTrack)o;
+	lastRt = (RealtimeTrack)o;
 }
-//盲区时间算停止时间
-totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime;
 totalDist = Math.round(totalDist);
 RealtimeTrack firstPoint = (RealtimeTrack)ts.get(0);
-RealtimeTrack lastPoint = rt;
+RealtimeTrack lastPoint = lastRt;
+
+//计算运行时间和停止时间
+lastRt = null;
+long totalRunTime = 0;
+List<String> stopTimes = new ArrayList<String>();
+List<String> runTimes = new ArrayList<String>();
+long tmpl = 0;
+for(RealtimeTrack rt : stopPoints){
+	if(lastRt != null)
+		tmpl = rt.getRecieveTime().getTime() - lastRt.getRecieveTime().getTime();
+	else
+		tmpl = rt.getRecieveTime().getTime() - tb.getRecieveTimeStart().getTime();
+	if(rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP ){
+		totalRunTime += tmpl;
+		runTimes.add(Util.formateLongToDays(tmpl));
+	} else if(rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN ){
+		stopTimes.add(Util.formateLongToDays(tmpl));
+	}
+	lastRt = rt;
+}
+
+//盲区时间算停止时间
+long totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime;
 
 VehicleBean vb = new VehicleBean();
 vb.setVehicleId(tb.getVehicleId());
@@ -251,16 +265,17 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</td>
 			</tr>
 			<%
-			int i = 0, j = 0;
+			int i = 0, j = 0, k = 0;
 			for(RealtimeTrack tmpRt : stopPoints){
 				Util.setNull2DefaultValue(tmpRt);
 				String desc = "&nbsp;";
 				if(tmpRt.getTag() != null){
 					if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-						desc = "停车（" + stoptimes.get(j) + "）";
+						desc = "行驶了 " + runTimes.get(j) + " 停车";
 						j++;
 					} else if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) {
-						desc = "起步";
+						desc = "停止了 " + stopTimes.get(k) + " 起步";
+						k++;
 					}
 				}
 				if( login.getMapType()!=LoginInfo.MAPABC ){
