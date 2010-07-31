@@ -209,7 +209,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</tr>
 			</table>
 			<p align="center">
-				<input type="submit" value="日统计报表" />
+				<input type="submit" value="重新统计" />
 				<input type="reset" value="重   置" />
 			</p>
 		</form>
@@ -232,7 +232,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			</tr>
 			<tr>
 				<td align="right">参考成本：</td>
-				<td align="left" ><input type="text" name="costPerKm" id="costPerKm" />元/公里</td>
+				<td align="left" ><input type="text" name="costPerKm" id="costPerKm" /> 元/公里</td>
 				<td align="right">总成本：</td>
 				<td align="left" id="totalCost" >0 元</td>
 			</tr>
