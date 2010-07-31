@@ -243,7 +243,7 @@ if( login.getMapType()==LoginInfo.MAPABC ){
 	}
 	GeoParser.prototype.parseResponse = function(response) {
 		if (!response || response.Status.code != 200 || response.Placemark.length<1) {
-			return '查询位置失败！';
+			return '';
 	    } else {
 	        return response.Placemark[0].address;
 	    }
