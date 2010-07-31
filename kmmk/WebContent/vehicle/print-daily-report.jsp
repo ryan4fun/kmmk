@@ -194,16 +194,16 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 		<form id="inputform" action="print-daily-report.jsp" method="post">
 			<table cellSpacing="5" width="width:650px;">
 				<tr>
-					<td align="right" >车牌号：</td>
+					<td >车牌号：</td>
 					<td colspan="3" ><%=v.getLicensPadNumber()%><input type="hidden" name="vehicleId" id="vehicleId" value="<%=v.getVehicleId()%>" /></td>
 				</tr>
 				<tr>
-					<td width="15%" align="right">起始时间：</td>
-					<td width="35%" align="left" ><input type="text"
+					<td width="15%">起始时间：</td>
+					<td width="35%" ><input type="text"
 						id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
 						value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
-					<td width="15%" align="right">终止时间：</td>
-					<td align="left" ><input type="text"
+					<td width="15%">终止时间：</td>
+					<td ><input type="text"
 						id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
 						value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
 				</tr>
@@ -221,20 +221,20 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 	<div style="padding:5px;overflow:visible">
 		<table cellSpacing="5" width="width:650px;">
 			<tr>
-				<td align="right" >总里程：</td>
+				<td >总里程：</td>
 				<td colspan="3" ><%=totalDist%>公里</td>
 			</tr>
 			<tr>
-				<td align="right">行驶时间：</td>
-				<td align="left" ><%=Util.formateLongToDays(totalRunTime)%></td>
-				<td align="right">停留时间：</td>
-				<td align="left" ><%=Util.formateLongToDays(totalStopTime)%></td>
+				<td>行驶时间：</td>
+				<td ><%=Util.formateLongToDays(totalRunTime)%></td>
+				<td>停留时间：</td>
+				<td ><%=Util.formateLongToDays(totalStopTime)%></td>
 			</tr>
 			<tr>
-				<td align="right">参考成本：</td>
-				<td align="left" ><input type="text" name="costPerKm" id="costPerKm" />&nbsp;元/公里</td>
-				<td align="right">总成本：</td>
-				<td align="left" id="totalCost" >0 元</td>
+				<td>参考成本：</td>
+				<td ><input type="text" name="costPerKm" id="costPerKm" />&nbsp;元/公里</td>
+				<td>总成本：</td>
+				<td id="totalCost" >0 元</td>
 			</tr>
 		</table>
 	</div>
@@ -250,9 +250,9 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				<th width="70%">描述</th>				
 			</tr>
 			<tr>
-				<td align="left" nowrap><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
-				<td align="left" nowrap id="firstPoint" >&nbsp;</td>
-				<td align="left" nowrap>起点</td>		
+				<td nowrap><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
+				<td nowrap id="firstPoint" >&nbsp;</td>
+				<td nowrap>起点</td>		
 			</tr>
 			<%
 			int i = 0, j = 0, k = 0;
@@ -275,17 +275,17 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</script>
 			<%	}%>
 			<tr>
-				<td align="left" nowrap><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
-				<td align="left" nowrap id="<%="stop_point_" + i%>" >&nbsp;</td>
-				<td align="left" nowrap><%=desc%></td>	
+				<td nowrap><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
+				<td nowrap id="<%="stop_point_" + i%>" >&nbsp;</td>
+				<td nowrap><%=desc%></td>	
 			</tr>
 			<% 
 			i++;
 			} %>
 			<tr>
-				<td align="left" nowrap><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
-				<td align="left" nowrap id="lastPoint" >&nbsp;</td>
-				<td align="left" nowrap>终点</td>	
+				<td nowrap><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
+				<td nowrap id="lastPoint" >&nbsp;</td>
+				<td nowrap>终点</td>	
 			</tr>
 		</table>
 	</div>
@@ -310,9 +310,9 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</script>
 			<%	}%>
 			<tr>
-				<td align="left" nowrap><%=Util.FormatDateLong(ah.getOccurDate())%></td>
-				<td align="left" nowrap id="<%="alert_point_" + i%>" >&nbsp;</td>
-				<td align="left" nowrap><%=ah.getDescription()%></td>
+				<td nowrap><%=Util.FormatDateLong(ah.getOccurDate())%></td>
+				<td nowrap id="<%="alert_point_" + i%>" >&nbsp;</td>
+				<td nowrap><%=ah.getDescription()%></td>
 			</tr>
 			<% i++;
 			} %>
