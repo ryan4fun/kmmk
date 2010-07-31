@@ -173,7 +173,11 @@ $(document).ready(function(){
 function getAddr(id, value){
 	if ( value ){
 		gAddrParser.getLocationByLatLng(function(response){
-			$("#" + id).text(gAddrParser.parseResponse(response));
+			if(gAddrParser.parseResponse(response)){
+				$("#" + id).text(gAddrParser.parseResponse(response));
+			} else {
+				getAddr(id, value);
+			}
 		}, value);
    }
 }
@@ -241,28 +245,14 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 	<div style="padding:2px;overflow:visible">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 			<tr>		
-				<th width="15%">定位时间</th>
-				<th width="15%">描述</th>
-				<!--
-				<th width="10%">经度</th>
-				<th width="10%">纬度</th>
-				-->
-				<th width="50%">位置</th>
+				<th width="15%">时间</th>
+				<th width="15%">位置</th>
+				<th width="70%">描述</th>				
 			</tr>
 			<tr>
-				<td colspan="5">
-				<table cellSpacing="0" width="100%" cellpadding="0">
-					<tr>				
-						<td align="left" width="15%"><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
-						<td align="left" width="15%">起始位置</td>
-						<!--
-						<td align="left" width="10%"><%=firstPoint.getLongValue()==null?"":firstPoint.getLongValue()%></td>
-						<td align="left" width="10%"><%=firstPoint.getLatValue()==null?"":firstPoint.getLatValue()%></td>
-						-->
-						<td align="left" width="50%" id="firstPoint" >&nbsp;</td>
-					</tr>
-				</table>
-				</td>
+				<td align="left" nowrap><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
+				<td align="left" nowrap id="firstPoint" >&nbsp;</td>
+				<td align="left" nowrap>起点</td>		
 			</tr>
 			<%
 			int i = 0, j = 0, k = 0;
@@ -271,10 +261,10 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				String desc = "&nbsp;";
 				if(tmpRt.getTag() != null){
 					if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-						desc = "行驶了 " + runTimes.get(j) + " 停车";
+						desc = "起步，持续行驶 " + runTimes.get(j) + "";
 						j++;
 					} else if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) {
-						desc = "停止了 " + stopTimes.get(k) + " 起步";
+						desc = "停车 " + stopTimes.get(k) + "";
 						k++;
 					}
 				}
@@ -285,37 +275,17 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</script>
 			<%	}%>
 			<tr>
-				<td colspan="5">
-				<table cellSpacing="0" width="100%" cellpadding="0">
-					<tr>				
-						<td align="left" width="15%"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
-						<td align="left" width="15%"><%=desc%></td>
-						<!-- 
-						<td align="left" width="10%"><%=tmpRt.getLongValue()==null?"":tmpRt.getLongValue()%></td>
-						<td align="left" width="10%"><%=tmpRt.getLatValue()==null?"":tmpRt.getLatValue()%></td>
-						 -->
-						<td align="left" width="50%" id="<%="stop_point_" + i%>" >&nbsp;</td>
-					</tr>
-				</table>
-				</td>
+				<td align="left" nowrap><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
+				<td align="left" nowrap id="<%="stop_point_" + i%>" >&nbsp;</td>
+				<td align="left" nowrap><%=desc%></td>	
 			</tr>
 			<% 
 			i++;
 			} %>
 			<tr>
-				<td colspan="5">
-				<table cellSpacing="0" width="100%" cellpadding="0">
-					<tr>				
-						<td align="left" width="15%"><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>
-						<td align="left" width="15%">结束位置</td>
-						<!-- 
-						<td align="left" width="10%"><%=lastPoint.getLongValue()==null?"":lastPoint.getLongValue()%></td>
-						<td align="left" width="10%"><%=lastPoint.getLatValue()==null?"":lastPoint.getLatValue()%></td>
-						 -->
-						<td align="left" width="50%" id="lastPoint" >&nbsp;</td>
-					</tr>
-				</table>
-				</td>
+				<td align="left" nowrap><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
+				<td align="left" nowrap id="lastPoint" >&nbsp;</td>
+				<td align="left" nowrap>终点</td>	
 			</tr>
 		</table>
 	</div>
@@ -327,12 +297,8 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 			<tr>		
 				<th width="15%">定位时间</th>
-				<th width="15%">报警内容</th>
-				<!-- 
-				<th width="10%">经度</th>
-				<th width="10%">纬度</th>
-				-->
-				<th width="50%">位置</th>
+				<th width="15%">位置</th>
+				<th width="70%">报警内容</th>
 			</tr>
 			<%
 			i = 0;
@@ -344,19 +310,9 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</script>
 			<%	}%>
 			<tr>
-				<td colspan="5">
-				<table cellSpacing="0" width="100%" cellpadding="0">
-					<tr>				
-						<td align="left" width="15%"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
-						<td align="left" width="15%"><%=ah.getAlertTypeDic().getAlertTypeName()%></td>
-						<!-- 
-						<td align="left" width="10%"><%=ah.getLongVal()==null?"":ah.getLongVal()%></td>
-						<td align="left" width="10%"><%=ah.getLatVal()==null?"":ah.getLatVal()%></td>
-						-->
-						<td align="left" width="50%" id="<%="alert_point_" + i%>" >&nbsp;</td>
-					</tr>
-				</table>
-				</td>
+				<td align="left" nowrap><%=Util.FormatDateLong(ah.getOccurDate())%></td>
+				<td align="left" nowrap><%=ah.getAlertTypeDic().getAlertTypeName()%></td>						
+				<td align="left" nowrap id="<%="alert_point_" + i%>" >&nbsp;</td>
 			</tr>
 			<% i++;
 			} %>
