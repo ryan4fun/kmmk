@@ -180,6 +180,11 @@ input.error { border: 1px dotted red; }
 	border-bottom: 1px solid #C9DCA6;
 }
 
+.listtable>tbody>tr>th{
+	border-bottom: 1px solid #C9DCA6;
+	text-align: center;
+}
+
 .listtable table td{	
 	padding-left:5px;
 	padding-top:3px;
