@@ -50,7 +50,7 @@ $(document).ready(function(){
 <body style="background:transparent;">
 <div id="search-div">
 <h3 id="search-div-title"><a href="#">定制车辆状态信息数据列</a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="form1" action="#" method="post">
 		<table cellSpacing="5" width="95%">
 			<tr>
