@@ -128,8 +128,10 @@ $(document).ready(function(){
 	});
 	
 	<%if( login.getMapType()!=LoginInfo.MAPABC ){%>
+	var i = 0;
 	for(var prop in positions){
-		getAddr(prop, positions[prop]);
+		window.setTimeout(getAddr,500*i,prop, positions[prop]);
+		i++;
 	}
 	<%}%>
 
@@ -170,7 +172,7 @@ $(document).ready(function(){
 	
 });
 
-function getAddr(id, value){
+function getAddr(id, value, timeouts){
 	if ( value ){
 		gAddrParser.getLocationByLatLng(function(response){
 			if(gAddrParser.parseResponse(response)){
@@ -180,6 +182,15 @@ function getAddr(id, value){
 			}
 		}, value);
    }
+}
+
+var __sto = setTimeout;
+window.setTimeout = function(callback,timeout,param){
+    var args = Array.prototype.slice.call(arguments,2);
+    var _cb = function(){
+        callback.apply(null,args);    
+    }
+    __sto(_cb,timeout);
 }
 
 positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
