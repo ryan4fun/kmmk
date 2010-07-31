@@ -54,7 +54,7 @@ $(document).ready(function(){
 <body style="background:transparent;">
 <div id="search-div">
 <h3><a href="#">报警类型</a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="inputform" action="#" method="post" enctype="multipart/form-data" >		
 			<table cellSpacing="5" width="95%">
  				<tr> 
