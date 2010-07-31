@@ -190,7 +190,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 <body>
 <div id="search-div">
 	<h3 id="search-div-title"><a href="#">运行统计</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<form id="inputform" action="print-daily-report.jsp" method="post">
 			<table cellSpacing="5" width="width:650px;">
 				<tr>
@@ -218,7 +218,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 
 <div id="summary-div">
 	<h3 id="summary-div-title"><a href="#">运行日报表</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<table cellSpacing="5" width="width:650px;">
 			<tr>
 				<td align="right" >总里程：</td>
@@ -242,7 +242,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 
 <div id="stop-div">
 	<h3 id="stop-div-title"><a href="#">行程记录</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 			<tr>		
 				<th width="15%">时间</th>
@@ -293,7 +293,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 
 <div id="alert-div">
 	<h3 id="alert-div-title"><a href="#">报警记录</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 			<tr>		
 				<th width="15%">定位时间</th>
@@ -311,8 +311,8 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			<%	}%>
 			<tr>
 				<td align="left" nowrap><%=Util.FormatDateLong(ah.getOccurDate())%></td>
-				<td align="left" nowrap><%=ah.getAlertTypeDic().getAlertTypeName()%></td>						
 				<td align="left" nowrap id="<%="alert_point_" + i%>" >&nbsp;</td>
+				<td align="left" nowrap><%=ah.getDescription()%></td>
 			</tr>
 			<% i++;
 			} %>
