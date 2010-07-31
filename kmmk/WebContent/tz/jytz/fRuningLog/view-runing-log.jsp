@@ -49,7 +49,7 @@ $(document).ready(function(){
 <body style="background:transparent;">
 <div id="search-div">
 	<h3><a href="#">车辆经营收支明细台帐</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<table cellSpacing="5" width="95%">
 			<tr>
 				<td width="20%" align="right">车牌号：</td>

@@ -400,7 +400,7 @@ function checkName(newName){
 <body style="background:transparent;" onunload="GUnload()">
 <div id="search-div">
 <h3><a href="#">车辆任务信息</a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
 		<input type="hidden" name = "success" value="update-task-succ.jsp"/>

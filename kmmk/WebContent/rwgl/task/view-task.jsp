@@ -337,7 +337,7 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 <body style="background:transparent;">
 <div id="search-div">
 	<h3><a href="#">车辆任务信息</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<form id="inputform" action="mkgps.do" method="post">
 			<input type="hidden" name="taskId" value="<%=t.getTaskId()%>"/>
 			<table cellSpacing="5" width="95%">
