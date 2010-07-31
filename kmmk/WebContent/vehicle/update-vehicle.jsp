@@ -299,7 +299,7 @@ jQuery.validator.addMethod("deviceId", function(value, element) {
 <body style="background:transparent;">
 <div id="search-div">
 <h3><a href="#">修改车辆信息</a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="inputform" action="mkgps.do" method="post">
 		<input type="hidden" name = "action" value="<%=actionName%>"/>
 		<input type="hidden" name = "success" value="update-vehicle-succ.jsp"/>

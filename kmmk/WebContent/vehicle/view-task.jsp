@@ -341,7 +341,7 @@ function createMarker(rcvTime,latlng,icon) {
 <body style="background:transparent;" onunload="GUnload()">
 <div id="search-div">
 <h3 id="search-div-title"><a href="#"><%=t.getTaskName() %></a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="inputform" action="#" method="post">
 	<input type="hidden" id="vehicleId" value="<%=vs.getVehicleId()%>"/>
 		

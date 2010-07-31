@@ -161,7 +161,7 @@ function drawPoly() {
 <body style="background:transparent;" onunload="GUnload()" onload="initialize()">
 <div id="search-div">
 <h3><a href="#">请输入矩形区域信息</a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="inputform" action="#" method="post">
 		<table cellSpacing="5" width="95%">
 			<tr>

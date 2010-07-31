@@ -50,7 +50,7 @@ $(document).ready(function(){
 <body style="background:transparent;">
 <div id="search-div">
 <h3><a href="#">车辆信息</a></h3>
-<div style="padding:2px;overflow:visible">
+<div style="padding:5px;overflow:visible">
 	<form id="inputform" action="#" method="post">		
 			<table cellSpacing="5" width="600" style="table-layout:fixed">
 				<tr style="display:none;">
