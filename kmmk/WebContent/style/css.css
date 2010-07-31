@@ -167,20 +167,17 @@ input.error { border: 1px dotted red; }
 	padding-top:2px;
 	padding-right:5px;
 	padding-bottom:2px;
-	text-align: center;
+	text-align: left;
 }
 
 
 .listtable{
 	margin-top:15px;
+	margin-bottom:5px;
 }
 
-.listtable th, .listtable table td{
+.listtable>tbody>tr>td{
 	border-bottom: 1px solid #C9DCA6;
-	padding-top:3px;	
-	padding-bottom:3px;
-	font-size:1.1em;
-	
 }
 
 .listtable table td{	
@@ -188,7 +185,7 @@ input.error { border: 1px dotted red; }
 	padding-top:3px;
 	padding-right:5px;
 	padding-bottom:3px;
-	text-align: center;
+	text-align: left;
 }
 
 .pagination{
