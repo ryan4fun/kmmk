@@ -54,7 +54,7 @@ function submitForm(actionName){
 <body style="background:transparent;">
 <div id="search-div">	
 	<h3><a href="#">月台帐</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<form id="inputform" name="inputform" action="<%=f.getVehicle().getLicensPadNumber() %>-经营月报表-<%=f.getYearMonth()%>.do" method="post" target="_blank">
 			<input value="FGenerateMonthlyReportAction" type="hidden" name="action" />
 			

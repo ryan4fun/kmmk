@@ -56,7 +56,7 @@ function delOrg(id){
 <body style="background:transparent;">
 <div id="search-div">
 	<h3><a href="#">随车工具</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<table cellSpacing="5" width="95%">
 			<tr>
 				<td width="20%" align="right">所属车辆：</td>
@@ -74,7 +74,7 @@ function delOrg(id){
 	</div>
 	<% if(f.getFToolsKeepLogs().size()>0){ %>
 	<h3><a href="#">随车工具保管领用表</a></h3>
-	<div style="padding:2px;overflow:visible">
+	<div style="padding:5px;overflow:visible">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 			<tr>
 				<th width="20%">领用人</th>
