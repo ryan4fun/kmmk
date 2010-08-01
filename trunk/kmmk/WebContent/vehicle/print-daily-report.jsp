@@ -264,14 +264,12 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 	<div style="padding:5px;overflow:visible">
 		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
 			<tr>		
-				<th width="15%">时间</th>
-				<th width="15%">位置</th>
-				<th width="70%">描述</th>				
+				<th width="20%">时间</th>
+				<th width="80%">描述</th>				
 			</tr>
 			<tr>
 				<td nowrap="nowrap"><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
-				<td nowrap="nowrap" id="firstPoint" >&nbsp;</td>
-				<td nowrap="nowrap">离线：<%=Util.formateLongToDays(firstPoint.getRecieveTime().getTime()-tb.getRecieveTimeStart().getTime())%>，起步</td>		
+				<td nowrap="nowrap">离线：<%=Util.formateLongToDays(firstPoint.getRecieveTime().getTime()-tb.getRecieveTimeStart().getTime())%>，从&nbsp;<span nowrap="nowrap" id="firstPoint" >&nbsp;</span>&nbsp;起步</td>		
 			</tr>
 			<%
 			int i = 0, j = 0, k = 0;
@@ -280,10 +278,10 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				String desc = "&nbsp;";
 				if(tmpRt.getTag() != null){
 					if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-						desc = "持续行驶 ：" + runTimes.get(j) + "，停车";
+						desc = "持续行驶 ：" + runTimes.get(j) + "，到达&nbsp;<span id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;停车";
 						j++;
 					} else if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) {
-						desc = "停车：" + stopTimes.get(k) + "，起步";
+						desc = "在&nbsp;<span id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;停车：" + stopTimes.get(k) + "，起步";
 						k++;
 					}
 				}
@@ -295,7 +293,6 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			<%	}%>
 			<tr>
 				<td nowrap="nowrap"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
-				<td nowrap="nowrap" id="<%="stop_point_" + i%>" >&nbsp;</td>
 				<td nowrap="nowrap"><%=desc%></td>	
 			</tr>
 			<% 
@@ -303,8 +300,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			} %>
 			<tr>
 				<td nowrap="nowrap"><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
-				<td nowrap="nowrap" id="lastPoint" >&nbsp;</td>
-				<td nowrap="nowrap">离线：<%=Util.formateLongToDays(tb.getRecieveTimeEnd().getTime()-lastPoint.getRecieveTime().getTime())%></td>	
+				<td nowrap="nowrap">离线：<%=Util.formateLongToDays(tb.getRecieveTimeEnd().getTime()-lastPoint.getRecieveTime().getTime())%>，终止于&nbsp;<span nowrap="nowrap" id="lastPoint" >&nbsp;</span></td>	
 			</tr>
 		</table>
 	</div>
