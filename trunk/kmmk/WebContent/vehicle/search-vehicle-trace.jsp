@@ -319,18 +319,21 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 		var marker = new GMarker(latlng);
 	    GEvent.addListener(marker, "click", function() {
 			if(stopTimeDisp){
-				marker.openInfoWindowHtml(
-					( stopTimeDisp ? "<b>停留时长: </b>" + stopTimeDisp   : "" ) +					
-					( stopTime ? "<b><br>停车时间: </b>" + stopTime   : "" ) + 
-					( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" ) + 
-					"<b><br>纬度: </b>" + latlng.lat() + 
-					"<b><br>经度: </b>" + latlng.lng());
+		    	gAddrParser.getLocationByLatLng(function(response){
+		    		marker.openInfoWindowHtml( ( stopTimeDisp ? "<b>停留时长: </b>" + stopTimeDisp   : "" ) +					
+							( stopTime ? "<b><br>停车时间: </b>" + stopTime   : "" ) + 
+							( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" ) + 
+							"<b><br>纬度: </b>" + latlng.lat() + 
+							"<b><br>经度: </b>" + latlng.lng() + 
+							"<b><br>当前位置：</b>" + gAddrParser.parseResponse(response));
+		    	},latlng);
 			} else {
-				marker.openInfoWindowHtml(
-					( rcvTime ? "<b>接收时间: </b>" + rcvTime : "" ) +
-					"<b><br>纬度: </b>" + latlng.lat() + 
-					"<b><br>经度: </b>" + latlng.lng() 
-				);
+				gAddrParser.getLocationByLatLng(function(response){
+					marker.openInfoWindowHtml( ( rcvTime ? "<b>接收时间: </b>" + rcvTime : "" ) +
+							"<b><br>纬度: </b>" + latlng.lat() + 
+							"<b><br>经度: </b>" + latlng.lng()  + 
+							"<b><br>当前位置：</b>" + gAddrParser.parseResponse(response));
+	    		},latlng);
 			}
 		});
 	    mapObj.addOverlay(marker);
