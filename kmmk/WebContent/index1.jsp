@@ -297,8 +297,8 @@ var currentId;
 
 </head>
 <body style="margin:0px;background-color:#f3f3f3;">
-<div id="contextMenuModal" style="display:none">&nbsp;</div>
-<div id="sub_menu" class="mbmenu" style="display:none">&nbsp;</div>
+<div id="contextMenuModal" style="display:none;width:0px;height:0px;"></div>
+<div id="sub_menu" class="mbmenu" style="display:none;width:0px;height:0px;"></div>
 <table id="main-table" border="0" cellpadding="0" cellspacing="0" style="width:100%;height:100%;">	
 	<tr height="30">
 		<td colSpan="3" align="left">		
@@ -307,7 +307,7 @@ var currentId;
 	</tr>
 	<tr>
 		<td id="tree-td" align="center" style="border-right:1px solid gray;">
-		<div id="tree-container" style="height:100%;width:250px;">
+		<div id="tree-container" style="height:100%;width:280px;">
 		<table height="100%" width="100%;" border="0" cellSpacing="0" cellPadding="0">
 			<tr height="25">
 				<td align="center" style="padding-top:6px;">
