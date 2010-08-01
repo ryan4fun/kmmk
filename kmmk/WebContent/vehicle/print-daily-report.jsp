@@ -47,7 +47,7 @@ for(RealtimeTrack rt : stopPoints){
 	if(lastRt != null)
 		tmpl = rt.getRecieveTime().getTime() - lastRt.getRecieveTime().getTime();
 	else
-		tmpl = rt.getRecieveTime().getTime() - tb.getRecieveTimeStart().getTime();
+		tmpl = rt.getRecieveTime().getTime() - firstPoint.getRecieveTime().getTime();
 	if(rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP ){
 		totalRunTime += tmpl;
 		runTimes.add(Util.formateLongToDays(tmpl));
@@ -57,8 +57,10 @@ for(RealtimeTrack rt : stopPoints){
 	lastRt = rt;
 }
 
-//盲区时间算停止时间
-long totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime;
+//离线时间
+long totalOfflineTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - (lastPoint.getRecieveTime().getTime() - firstPoint.getRecieveTime().getTime());
+//停止时间
+long totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime - totalOfflineTime;
 
 VehicleBean vb = new VehicleBean();
 vb.setVehicleId(tb.getVehicleId());
@@ -161,6 +163,7 @@ $(document).ready(function(){
 		},
 		submitHandler: function(form) {
 			var qtime = $("#recieveTimeEnd").val().replace(/\D/g,"") - $("#recieveTimeStart").val().replace(/\D/g,"");
+			//alert(qtime);
 			if(qtime < 0 || qtime > 6000000){
 				jAlert("查询时间范围请选择6天内的！", "警告", null);
 			} else {
@@ -233,13 +236,15 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 		<table cellSpacing="5" width="width:650px;">
 			<tr>
 				<td >总里程：</td>
-				<td colspan="3" ><%=totalDist%>公里</td>
-			</tr>
-			<tr>
+				<td ><%=totalDist%>公里</td>
 				<td>行驶时间：</td>
 				<td ><%=Util.formateLongToDays(totalRunTime)%></td>
+			</tr>
+			<tr>
 				<td>停留时间：</td>
 				<td ><%=Util.formateLongToDays(totalStopTime)%></td>
+				<td>离线时间：</td>
+				<td ><%=Util.formateLongToDays(totalOfflineTime)%></td>
 			</tr>
 			<tr>
 				<td>参考成本：</td>
@@ -261,9 +266,9 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				<th width="70%">描述</th>				
 			</tr>
 			<tr>
-				<td nowrap><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
-				<td nowrap id="firstPoint" >&nbsp;</td>
-				<td nowrap>起点</td>		
+				<td nowrap="nowrap"><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
+				<td nowrap="nowrap" id="firstPoint" >&nbsp;</td>
+				<td nowrap="nowrap">离线：<%=Util.formateLongToDays(firstPoint.getRecieveTime().getTime()-tb.getRecieveTimeStart().getTime())%>，起步</td>		
 			</tr>
 			<%
 			int i = 0, j = 0, k = 0;
@@ -272,10 +277,10 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				String desc = "&nbsp;";
 				if(tmpRt.getTag() != null){
 					if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-						desc = "起步，持续行驶 " + runTimes.get(j) + "";
+						desc = "持续行驶 ：" + runTimes.get(j) + "，停车";
 						j++;
 					} else if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) {
-						desc = "停车 " + stopTimes.get(k) + "";
+						desc = "停车：" + stopTimes.get(k) + "，起步";
 						k++;
 					}
 				}
@@ -286,17 +291,17 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</script>
 			<%	}%>
 			<tr>
-				<td nowrap><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
-				<td nowrap id="<%="stop_point_" + i%>" >&nbsp;</td>
-				<td nowrap><%=desc%></td>	
+				<td nowrap="nowrap"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
+				<td nowrap="nowrap" id="<%="stop_point_" + i%>" >&nbsp;</td>
+				<td nowrap="nowrap"><%=desc%></td>	
 			</tr>
 			<% 
 			i++;
 			} %>
 			<tr>
-				<td nowrap><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
-				<td nowrap id="lastPoint" >&nbsp;</td>
-				<td nowrap>终点</td>	
+				<td nowrap="nowrap"><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
+				<td nowrap="nowrap" id="lastPoint" >&nbsp;</td>
+				<td nowrap="nowrap">离线：<%=Util.formateLongToDays(tb.getRecieveTimeEnd().getTime()-lastPoint.getRecieveTime().getTime())%></td>	
 			</tr>
 		</table>
 	</div>
@@ -321,9 +326,9 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				</script>
 			<%	}%>
 			<tr>
-				<td nowrap><%=Util.FormatDateLong(ah.getOccurDate())%></td>
-				<td nowrap id="<%="alert_point_" + i%>" >&nbsp;</td>
-				<td nowrap><%=ah.getDescription()%></td>
+				<td nowrap="nowrap"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
+				<td nowrap="nowrap" id="<%="alert_point_" + i%>" >&nbsp;</td>
+				<td nowrap="nowrap"><%=ah.getDescription()%></td>
 			</tr>
 			<% i++;
 			} %>
