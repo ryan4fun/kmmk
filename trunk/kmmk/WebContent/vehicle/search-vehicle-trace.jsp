@@ -79,7 +79,7 @@ $(document).ready(function(){
 	});
 
 	$("#dailyReportBtn").click(function(){
-		var qtime = $("#recieveTimeEnd").val().replace(/\D/g,"") - $("#recieveTimeStart").val().replace(/\D/g,"");
+		var qtime = Date.parse($("#recieveTimeEnd").val().replace(/-/g,"/")) - Date.parse($("#recieveTimeStart").val().replace(/-/g,"/"));
 		if(qtime < 0 || qtime > 6000000){
 			jAlert("查询时间范围请选择6天内的！", "警告", null);
 		} else {
