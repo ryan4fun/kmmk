@@ -80,7 +80,7 @@ $(document).ready(function(){
 
 	$("#dailyReportBtn").click(function(){
 		var qtime = Date.parse($("#recieveTimeEnd").val().replace(/-/g,"/")) - Date.parse($("#recieveTimeStart").val().replace(/-/g,"/"));
-		if(qtime < 0 || qtime > 6000000){
+		if(qtime < 0 || qtime > 6 * 24 * 60 * 60 * 1000){
 			jAlert("查询时间范围请选择6天内的！", "警告", null);
 		} else {
 			var $form = $(this).parents("form:first");
