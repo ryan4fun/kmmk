@@ -68,7 +68,12 @@ $(document).ready(function(){
 	$("#search-div-title").click(function(){
 		setTimeout(resize, 500);
 	});
-	
+
+	$("#dailyReportBtn").click(function(){
+		var $form = $(this).parents("form:first");
+		$form = $form.next("div:first").empty().append($form.clone()).children("form:last");
+		$form.attr("target","_blank").attr("action","print-daily-report.jsp").submit();
+	});
 });
 
 function resize(){
@@ -310,19 +315,22 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 	<% } else { %>
 		var marker = new GMarker(latlng);
 	    GEvent.addListener(marker, "click", function() {
-			if(stopTimeDisp){
-				marker.openInfoWindowHtml(
-					( stopTimeDisp ? "<b>停留时长: </b>" + stopTimeDisp   : "" ) +					
-					( stopTime ? "<b><br>停车时间: </b>" + stopTime   : "" ) + 
-					( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" ) + 
-					"<b><br>纬度: </b>" + latlng.lat() + 
-					"<b><br>经度: </b>" + latlng.lng());
+	    	if(stopTimeDisp){
+		    	gAddrParser.getLocationByLatLng(function(response){
+		    		marker.openInfoWindowHtml( ( stopTimeDisp ? "<b>停留时长: </b>" + stopTimeDisp   : "" ) +					
+							( stopTime ? "<b><br>停车时间: </b>" + stopTime   : "" ) + 
+							( rcvTime ? "<b><br>启动时间: </b>" + rcvTime : "" ) + 
+							"<b><br>纬度: </b>" + latlng.lat() + 
+							"<b><br>经度: </b>" + latlng.lng() + 
+							"<b><br>当前位置：</b>" + gAddrParser.parseResponse(response));
+		    	},latlng);
 			} else {
-				marker.openInfoWindowHtml(
-					( rcvTime ? "<b>接收时间: </b>" + rcvTime : "" ) +
-					"<b><br>纬度: </b>" + latlng.lat() + 
-					"<b><br>经度: </b>" + latlng.lng() 
-				);
+				gAddrParser.getLocationByLatLng(function(response){
+					marker.openInfoWindowHtml( ( rcvTime ? "<b>接收时间: </b>" + rcvTime : "" ) +
+							"<b><br>纬度: </b>" + latlng.lat() + 
+							"<b><br>经度: </b>" + latlng.lng()  + 
+							"<b><br>当前位置：</b>" + gAddrParser.parseResponse(response));
+	    		},latlng);
 			}
 		});
 	    mapObj.addOverlay(marker);
@@ -373,8 +381,8 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 </table>
 <p align="center">
 	<input type="submit" value="显示轨迹" />
+	<input id="dailyReportBtn" type="button" value="日统计报表" />
 	<input type="reset" value="重   置" /></p>
-
 </form>
 </div>
 </div>
