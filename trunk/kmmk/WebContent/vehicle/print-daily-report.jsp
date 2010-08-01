@@ -4,6 +4,10 @@
 <%@ include file="/header.jsp"%>
 <%
 TrackBean tb = new TrackBean(request);
+if(request.getParameter("recieveTimeStart")==null || request.getParameter("recieveTimeEnd")==null){
+	tb.setRecieveTimeStart(Util.getCurrentDate());
+	tb.setRecieveTimeEnd(Util.getCurrentDateTime());
+}
 tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 List ts = tb.getList();
 Util.setNull2DefaultValue(tb);
