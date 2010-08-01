@@ -381,7 +381,7 @@ function createMarker(rcvTime,latlng,icon,stopTimeDisp,stopTime) {
 			</table>
 			<p align="center">
 				<input type="submit" value="显示轨迹" />
-				<input id="dailyReportBtn" type="button" value="日统计报表" />
+				<input id="dailyReportBtn" type="button" value="运行报表" />
 				<input type="reset" value="重   置" />
 			</p>
 		</form>
