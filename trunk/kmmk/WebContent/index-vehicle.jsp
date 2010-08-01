@@ -70,6 +70,7 @@
 	<li><a href="#tabs-6"><span>历史任务</span></a></li>
 	 -->
 	 <li><a href="#tabs-5"><span>报警记录</span></a></li>
+	 <li><a href="#tabs-6"><span>日运行报表</span></a></li>
 </ul>
 <div id="tabs-0">
 <iframe id="main-frame-0" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/view-vehicle-status.jsp?vehicleId=<%=vehicleId%>" ></iframe>
@@ -96,6 +97,9 @@
  -->
 <div id="tabs-5">
 <iframe id="main-frame-5" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="tzgl/alertHistory/search-alert.jsp?vehicle_select=false&vehicleId=<%=vehicleId%>" ></iframe>
+</div>
+<div id="tabs-6">
+<iframe id="main-frame-6" frameborder="0" scrolling="auto" style="width: 100%; height: 93%" _src="vehicle/print-daily-report.jsp?vehicleId=<%=vehicleId%>" ></iframe>
 </div>
 </div>
 </body>
