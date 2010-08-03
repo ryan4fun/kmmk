@@ -12,60 +12,6 @@ tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 List ts = tb.getList();
 Util.setNull2DefaultValue(tb);
 
-if(ts == null || ts.size()<1){
-	out.print("无法找到该时间段车辆运行记录！");
-	return;
-}
-//计算总距离，筛选停止点
-double totalDist = 0;
-RealtimeTrack lastRt = null;
-RealtimeTrack thisRt = null;
-List<RealtimeTrack> stopPoints = new ArrayList<RealtimeTrack>();
-for(Object o : ts){
-	if(lastRt != null){
-		thisRt = (RealtimeTrack)o;
-		totalDist += Util.CalculateLatLng2Distance(
-				thisRt.getLatValue(), 
-				thisRt.getLongValue(),
-				lastRt.getLatValue(),
-				lastRt.getLongValue());
-		if(thisRt.getTag() != null 
-				&& (thisRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP 
-						|| thisRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) ){
-			stopPoints.add(thisRt);
-		}
-	}
-	lastRt = (RealtimeTrack)o;
-}
-totalDist = Math.round(totalDist);
-RealtimeTrack firstPoint = (RealtimeTrack)ts.get(0);
-RealtimeTrack lastPoint = lastRt;
-
-//计算运行时间和停止时间
-lastRt = null;
-long totalRunTime = 0;
-List<String> stopTimes = new ArrayList<String>();
-List<String> runTimes = new ArrayList<String>();
-long tmpl = 0;
-for(RealtimeTrack rt : stopPoints){
-	if(lastRt != null)
-		tmpl = rt.getRecieveTime().getTime() - lastRt.getRecieveTime().getTime();
-	else
-		tmpl = rt.getRecieveTime().getTime() - firstPoint.getRecieveTime().getTime();
-	if(rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP ){
-		totalRunTime += tmpl;
-		runTimes.add(Util.formateLongToDays(tmpl));
-	} else if(rt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN ){
-		stopTimes.add(Util.formateLongToDays(tmpl));
-	}
-	lastRt = rt;
-}
-
-//离线时间
-long totalOfflineTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - (lastPoint.getRecieveTime().getTime() - firstPoint.getRecieveTime().getTime());
-//停止时间
-long totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime - totalOfflineTime;
-
 VehicleBean vb = new VehicleBean();
 vb.setVehicleId(tb.getVehicleId());
 Vehicle v = vb.findById();
@@ -77,6 +23,71 @@ ab.setOccurDateStart(tb.getRecieveTimeStart());
 ab.setOccurDateEnd(tb.getRecieveTimeEnd());
 List<AlertHistory> ahs = ab.getList();
 Util.setNull2DefaultValue(ab);
+
+//计算总距离，筛选停止点
+RealtimeTrack firstPoint = (RealtimeTrack)ts.get(0);
+RealtimeTrack lastPoint = (RealtimeTrack)ts.get(ts.size()-1);;
+double totalDist = 0;
+RealtimeTrack lastRt = null;
+RealtimeTrack thisRt = null;
+RealtimeTrack lastStopRt = null;
+List<RealtimeTrack> stopPoints = new ArrayList<RealtimeTrack>();
+List<String> stopTimes = new ArrayList<String>();
+List<String> runTimes = new ArrayList<String>();
+long totalRunTime = 0;
+long tmpl = 0;
+int i = 0;
+for(Object o : ts){
+	thisRt = (RealtimeTrack)o;
+	if(lastRt != null){
+		totalDist += Util.CalculateLatLng2Distance(
+				thisRt.getLatValue(), thisRt.getLongValue(),
+				lastRt.getLatValue(), lastRt.getLongValue());
+		if(thisRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP ){
+			RealtimeTrack startStopRt = firstPoint;
+			if(i>2){	//start with run point
+				if(lastStopRt == null){
+					firstPoint.setTag(TrackBean.TRACK_TAG_STARTRUN);
+					stopPoints.add(firstPoint);
+				}
+				
+				startStopRt = (RealtimeTrack)ts.get(i-2);
+				startStopRt.setTag(TrackBean.TRACK_TAG_STARTSTOP);
+				stopPoints.add(startStopRt);
+			} else {	//start with stop point
+				firstPoint.setTag(TrackBean.TRACK_TAG_STARTSTOP);
+				stopPoints.add(firstPoint);
+			}
+			
+			RealtimeTrack startRunRt = lastPoint;
+			if(i<ts.size()-1){	//end with run point
+				startRunRt = (RealtimeTrack)ts.get(i+1);
+				startRunRt.setTag(TrackBean.TRACK_TAG_STARTRUN);
+				stopPoints.add(startRunRt);
+			} else {	//end with stop point
+//				lastPoint.setTag(TrackBean.TRACK_TAG_STARTRUN);
+//				stopPoints.add(lastPoint);
+			}
+
+			tmpl = startRunRt.getRecieveTime().getTime() - startStopRt.getRecieveTime().getTime();
+			stopTimes.add(Util.formateLongToDays(tmpl));
+			
+			tmpl = startStopRt.getRecieveTime().getTime() - (lastStopRt == null ? firstPoint.getRecieveTime().getTime() : lastStopRt.getRecieveTime().getTime());
+			totalRunTime += tmpl;
+			runTimes.add(Util.formateLongToDays(tmpl));
+			
+			lastStopRt = startRunRt;
+		}
+	}
+	lastRt = (RealtimeTrack)o;
+	i++;
+}
+totalDist = Math.round(totalDist);
+
+//离线时间
+long totalOfflineTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - (lastPoint.getRecieveTime().getTime() - firstPoint.getRecieveTime().getTime());
+//停止时间
+long totalStopTime = tb.getRecieveTimeEnd().getTime() - tb.getRecieveTimeStart().getTime() - totalRunTime - totalOfflineTime;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -145,7 +156,7 @@ $(document).ready(function(){
 		if( isNaN($(this).val()) )
 			$("#totalCost").html("0 元");
   		else
-  			$("#totalCost").html(Math.round($(this).val()*<%=totalDist%>*100)/100 + " 元");
+  			$("#totalCost").html(Math.round($(this).val() * <%=totalDist%>*100)/100 + " 元");
 	});
 
 	$("#inputform").validate({
@@ -267,23 +278,18 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				<th width="20%">时间</th>
 				<th width="80%">描述</th>				
 			</tr>
-			<tr>
-				<td nowrap="nowrap"><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
-				<td nowrap="nowrap">从&nbsp;<span style="color:red;" nowrap="nowrap" id="firstPoint" >&nbsp;</span>&nbsp;起步</td>
-			</tr>
 			<%
-			int i = 0, j = 0, k = 0;
+			String desc;
+			i = 0;
+			int j = 0, k = 0;
 			for(RealtimeTrack tmpRt : stopPoints){
 				Util.setNull2DefaultValue(tmpRt);
-				String desc = "&nbsp;";
-				if(tmpRt.getTag() != null){
-					if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-						desc = "持续行驶 ：<span style=\"color:blue;\">" + runTimes.get(j) + "</span>，到达&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;停车";
-						j++;
-					} else if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTRUN) {
-						desc = "在&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;停车：<span style=\"color:blue;\">" + stopTimes.get(k) + "</span>，起步";
-						k++;
-					}
+				if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
+					desc = "到达&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;停车&nbsp;<span style=\"color:blue;\">" + (stopTimes.size()>j ? stopTimes.get(j) : "&nbsp;") + "</span>";
+					j++;
+				} else {
+					desc = "从&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
+					k++;
 				}
 				if( login.getMapType()!=LoginInfo.MAPABC ){
 				%>
@@ -298,10 +304,6 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			<% 
 			i++;
 			} %>
-			<tr>
-				<td nowrap="nowrap"><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>											
-				<td nowrap="nowrap">终止于&nbsp;<span style="color:red;" nowrap="nowrap" id="lastPoint" >&nbsp;</span></td>	
-			</tr>
 		</table>
 	</div>
 </div>
