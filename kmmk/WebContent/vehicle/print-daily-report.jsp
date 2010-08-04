@@ -291,13 +291,13 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 			for(RealtimeTrack tmpRt : stopPoints){
 				Util.setNull2DefaultValue(tmpRt);
 				if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-					desc = "到达&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;停车&nbsp;<span style=\"color:blue;\">" + (stopTimes.size()>j ? stopTimes.get(j) : "&nbsp;") + "</span>";
+					desc = "到达&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>，停车&nbsp;<span style=\"color:blue;\">" + (stopTimes.size()>j ? stopTimes.get(j) : "&nbsp;") + "</span>";
 					j++;
 				} else {
 					if(i == 0)
 						desc = "从&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
 					else
-						desc = "车辆起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
+						desc = "起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
 					k++;
 				}
 				if( login.getMapType()!=LoginInfo.MAPABC ){
