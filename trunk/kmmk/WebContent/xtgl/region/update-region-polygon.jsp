@@ -30,6 +30,10 @@ if( r.getCentralLat() != null && r.getCentralLong() != null && r.getCentralLong(
 	strLat = r.getCentralLat();
 	strLon = r.getCentralLong();
 }
+
+VehicleStatusBean vsb = new VehicleStatusBean();
+vsb.setPagination(false);
+List<VehicleStatus> lvs = vsb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -62,6 +66,15 @@ $(document).ready(function(){
 			
 		}
 	});
+
+	$("vehicle-div").accordion({
+		header:"h3",		
+		collapsible:true,
+		change: function(event, ui) {
+			
+		}
+	});
+
 	$("#inputform").validate({
 		rules: {
 			regionTypeId: {
@@ -106,6 +119,16 @@ $(document).ready(function(){
 		$("#organizationId").val(["<%=r.getOrganization()==null ? "" : r.getOrganization().getOrganizationId()%>"]);
 	<%}%>
 
+	$("#vehicleId")[0].options.add(new Option("请选择车辆",""));
+	<%if(lvs != null){
+		for(VehicleStatus vs:lvs){
+			if(vs.getCurrentLat() != null && vs.getCurrentLong() != null){
+	%>
+				$("#vehicleId")[0].options.add(new Option("<%=vs.getLicensPadNumber()%>","<%=vs.getCurrentLat() + "_" + vs.getCurrentLong()%>"));
+	<%		}
+		}
+	}%>
+	
 	initialize();
 });
 
@@ -236,6 +259,14 @@ function doAction() {
 	}
 	f.submit();
 }
+
+function setVehicleCenter() {
+	var val = $("#vehicleId").val();
+	if(val){
+		var latLng = val.split("_");
+		mapObj.setCenter(new GLatLng(latLng[0],latLng[1]));
+	}
+}
 <%}%>
 
 </script>
@@ -287,6 +318,24 @@ function doAction() {
 	    </p>
 	</form>
 </div>
+
+<div id="vehicle-div">
+	<h3 id="vehicle-div-title"><a href="#">设定车辆为中心</a></h3>
+	<div style="padding:5px;overflow:visible">
+		<table cellSpacing="5" width="width:650px;">
+			<tr>
+				<td width="20%" align="right">车辆：</td>
+				<td align="left" colSpan="3">
+					<select id="vehicleId" name="vehicleId" ></select>
+				</td>
+			</tr>
+		</table>
+		<p align="center">
+			<input type="button" value="设置" onclick="setVehicleCenter()" />
+	    </p>
+	</div>
+</div>
+
 </div>
 	<div id="map_canvas" style="border:1px solid black; width: 100%; height: 500px"></div>
 </body>
