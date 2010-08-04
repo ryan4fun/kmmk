@@ -30,10 +30,6 @@ if( r.getCentralLat() != null && r.getCentralLong() != null && r.getCentralLong(
 	strLat = r.getCentralLat();
 	strLon = r.getCentralLong();
 }
-
-VehicleStatusBean vsb = new VehicleStatusBean();
-vsb.setPagination(false);
-List<VehicleStatus> lvs = vsb.getList();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -108,27 +104,18 @@ $(document).ready(function(){
 		OrganizationBean ob = new OrganizationBean();
 		List<Organization> os = ob.getList();
 	%>
-		$("#organizationId")[0].options.add(new Option("请选择所属单位",""));
+		$("#ownerOrganizationId")[0].options.add(new Option("请选择所属单位",""));
 	<%	if(os != null){
 			for(Organization o:os){ 
 	%>
-		$("#organizationId")[0].options.add(new Option("<%=o.getName()%>","<%=o.getOrganizationId()%>"));
+		$("#ownerOrganizationId")[0].options.add(new Option("<%=o.getName()%>","<%=o.getOrganizationId()%>"));
 	<%		}
 		}
 	%>	
-		$("#organizationId").val(["<%=r.getOrganization()==null ? "" : r.getOrganization().getOrganizationId()%>"]);
+		$("#ownerOrganizationId").val(["<%=r.getOrganization()==null ? "" : r.getOrganization().getOrganizationId()%>"]);
 	<%}%>
 
-	$("#vehicleId")[0].options.add(new Option("请选择车辆",""));
-	<%if(lvs != null){
-		for(VehicleStatus vs:lvs){
-			if(vs.getCurrentLat() != null && vs.getCurrentLong() != null){
-	%>
-				$("#vehicleId")[0].options.add(new Option("<%=vs.getLicensPadNumber()%>","<%=vs.getCurrentLat() + "_" + vs.getCurrentLong()%>"));
-	<%		}
-		}
-	}%>
-	
+	initVehicleSelector();
 	initialize();
 });
 
@@ -260,11 +247,27 @@ function doAction() {
 	f.submit();
 }
 
+var marker;
 function setVehicleCenter() {
-	var val = $("#vehicleId").val();
-	if(val){
-		var latLng = val.split("_");
-		mapObj.setCenter(new GLatLng(latLng[0],latLng[1]));
+	var vId = $("#vehicleId").val();
+	if(vId){
+		$.ajax({
+			url: "mkgps.do",
+			data: {
+				action: "VehicleStatusSearchAction",
+				vehicleId: vId
+			},
+			dataType: "json",
+			cache: false,
+			success: function(json) {
+			   if (json.currentLat && json.currentLat != "" && json.currentLong && json.currentLong != ""){
+				if(marker)
+					  mapObj.removeOverlay(marker);
+				  marker = addVehicleMarker(mapObj,json);
+				  mapObj.setCenter(marker.getLatLng(), 13);
+			   }
+			}
+		});	
 	}
 }
 <%}%>
@@ -284,9 +287,9 @@ function setVehicleCenter() {
 		<table cellSpacing="5" width="95%">
 		<% if( Util.isCurrentUserAdmin(request) ){ %>
 			<tr>
-					<td width="20%" align="right">区域所属单位：</td>
+				<td width="20%" align="right">区域所属单位：</td>
 				<td align="left" colSpan="3">
-					<select id="organizationId" name="organizationId" ></select>
+					<select id="ownerOrganizationId" name="ownerOrganizationId" ></select>
 				</td>
 			</tr>
 		<% } %>
@@ -320,18 +323,18 @@ function setVehicleCenter() {
 </div>
 
 <div id="vehicle-div">
-	<h3 id="vehicle-div-title"><a href="#">设定车辆为中心</a></h3>
+	<h3 id="vehicle-div-title"><a href="#">设定以车辆为中心</a></h3>
 	<div style="padding:5px;overflow:visible">
 		<table cellSpacing="5" width="width:650px;">
 			<tr>
 				<td width="20%" align="right">车辆：</td>
 				<td align="left" colSpan="3">
-					<select id="vehicleId" name="vehicleId" ></select>
+					<jsp:include page="/vehicle-selector.jsp" />
 				</td>
 			</tr>
 		</table>
 		<p align="center">
-			<input type="button" value="设置" onclick="setVehicleCenter()" />
+			<input type="button" value="设定" onclick="setVehicleCenter()" />
 	    </p>
 	</div>
 </div>
