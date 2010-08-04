@@ -21,7 +21,7 @@ public class RegionAddAction extends Action{
 		r.setRegionTypeDic(rtd);
 		Organization o = getServiceLocator().getOrganizationService().findById(this.getCurrentOrganizationId());
 		if( o == null && Util.isCurrentUserAdmin(request) )
-			o = getServiceLocator().getOrganizationService().findById(this.getInteger("organizationId"));
+			o = getServiceLocator().getOrganizationService().findById(this.getInteger("ownerOrganizationId"));
 		if(o == null)
 			throw new Message("无法找到用户所属单位！");
 		r.setOrganization(o);
