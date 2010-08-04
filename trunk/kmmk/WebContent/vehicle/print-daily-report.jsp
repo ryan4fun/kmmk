@@ -10,6 +10,12 @@ if(request.getParameter("recieveTimeStart")==null || request.getParameter("recie
 }
 tb.setQueryPrecision(TrackBean.QUERY_REALTIME);
 List ts = tb.getList();
+
+if(ts == null || ts.size() == 0){
+	out.print("无记录！");
+	return;
+}
+
 Util.setNull2DefaultValue(tb);
 
 VehicleBean vb = new VehicleBean();
