@@ -323,18 +323,18 @@ function setVehicleCenter() {
 </div>
 
 <div id="vehicle-div">
-	<h3 id="vehicle-div-title"><a href="#">设定以车辆为中心</a></h3>
+	<h3 id="vehicle-div-title"><a href="#">定位车辆</a></h3>
 	<div style="padding:5px;overflow:visible">
 		<table cellSpacing="5" width="width:650px;">
 			<tr>
 				<td width="20%" align="right">车辆：</td>
-				<td align="left" colSpan="3">
+				<td align="left">
 					<jsp:include page="/vehicle-selector.jsp" />
 				</td>
 			</tr>
 		</table>
 		<p align="center">
-			<input type="button" value="设定" onclick="setVehicleCenter()" />
+			<input type="button" value="定 位" onclick="setVehicleCenter()" />
 	    </p>
 	</div>
 </div>
