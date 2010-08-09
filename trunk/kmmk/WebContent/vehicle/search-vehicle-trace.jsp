@@ -191,9 +191,14 @@ function initialize() {
 			mapObj.addOverlay(polyShape, true);
 		<%} else {
 			if( lat != null && lon != null ){
-			%>startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), START_ICON);
+			%>
+				startMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), START_ICON);
 		    <%
 			}
+			%>
+			var points = new Array();
+			var stopMarkers = new Array();
+			<%
 			if(ts.size()>1){
 				Object lastPoint = ts.get(ts.size()-1);
 				lat = (Double)PropertyUtils.getProperty(lastPoint,"latValue");
@@ -202,87 +207,95 @@ function initialize() {
 				if( lat != null && lon != null ){
 					tag = (Short)PropertyUtils.getProperty(lastPoint,"tag");
 					if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-				%>endMarker = createMarker("-", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), null, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
-				<%
+						%>
+						endMarker = createMarker("-", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), null, "-", "<%=Util.FormatDateLong((Date)recieveTime)%>");
+						<%
 					} else {
-				%>endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), RUNNING_ICON);
-				<%
+						%>
+						endMarker = createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>", new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON), RUNNING_ICON);
+						<%
 					}
 				}
-			}
-			%>var points = new Array();
-			var stopMarkers = new Array();
-			<%
-			Double tempValue = null;
-			Double minLat = Util.MAX_LAT;
-			Double minLon = Util.MAX_LON;
-			Double maxLat = Util.MIN_LAT;
-			Double maxLon = Util.MIN_LON;
-			
-			Object prevPoint = null;
-			for(Object trace:ts){
-				tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
-				if( tempValue == null )
-					continue;
-				if( tempValue.equals(lat) ) {
-					tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
-					if( tempValue == null || tempValue.equals(lon) )
+				
+				Double tempValue = null;
+				Double minLat = Util.MAX_LAT;
+				Double minLon = Util.MAX_LON;
+				Double maxLat = Util.MIN_LAT;
+				Double maxLon = Util.MIN_LON;
+				
+				int i = 0;
+				for(Object trace:ts){
+					tempValue = (Double)PropertyUtils.getProperty(trace,"latValue");
+					if( tempValue == null )
 						continue;
-					else {
+					//for stop point marker add by Ryan
+					if(i<ts.size()-1){
+						tag = (Short)PropertyUtils.getProperty(trace,"tag");
+						if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
+							Object startStopRt = (i>2) ? ts.get(i-2) : firstPoint;
+							Object startRunRt = ts.get(i+1);
+							
+							recieveTime = (Date)PropertyUtils.getProperty(startRunRt,"recieveTime");
+							Date prevRecieveTime = (Date)PropertyUtils.getProperty(startStopRt,"recieveTime");
+							if(recieveTime!=null && prevRecieveTime!=null){
+								String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
+								lat = (Double)PropertyUtils.getProperty(startStopRt,"latValue");
+								lon = (Double)PropertyUtils.getProperty(startStopRt,"longValue");
+								if(lat != null && lon != null){
+									%>
+									stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
+									<%
+								}
+							}
+						}
+					}
+					i++;
+					
+					if( tempValue.equals(lat) ) {
+						tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
+						if( tempValue == null || tempValue.equals(lon) ){
+							continue;
+						} else {
+							lon = tempValue;
+							if(tempValue < minLon)
+								minLon = tempValue;
+							if(tempValue > maxLon)
+								maxLon = tempValue;
+						}
+					} else {
+						lat = tempValue;
+						if(tempValue < minLat)
+							minLat = tempValue;
+						if(tempValue > maxLat)
+							maxLat = tempValue;
+						
+						tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
+						if( tempValue == null )
+							continue;
 						lon = tempValue;
 						if(tempValue < minLon)
 							minLon = tempValue;
 						if(tempValue > maxLon)
 							maxLon = tempValue;
 					}
-				} else {
-					lat = tempValue;
-					if(tempValue < minLat)
-						minLat = tempValue;
-					if(tempValue > maxLat)
-						maxLat = tempValue;
-					
-					tempValue = (Double)PropertyUtils.getProperty(trace,"longValue");
-					if( tempValue == null )
-						continue;
-					lon = tempValue;
-					if(tempValue < minLon)
-						minLon = tempValue;
-					if(tempValue > maxLon)
-						maxLon = tempValue;
-				}
-				if(lat != null && lon != null){
-					%>points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));<%
-				}
-				//for stop point marker add by Ryan
-				tag = (Short)PropertyUtils.getProperty(trace,"tag");
-				if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTRUN){
-					if(prevPoint!=null){
-						recieveTime = (Date)PropertyUtils.getProperty(trace,"recieveTime");
-						Date prevRecieveTime = (Date)PropertyUtils.getProperty(prevPoint,"recieveTime");
-						if(recieveTime!=null && prevRecieveTime!=null && (recieveTime.getTime()- prevRecieveTime.getTime())>0){
-							String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
-							lat = (Double)PropertyUtils.getProperty(prevPoint,"latValue");
-							lon = (Double)PropertyUtils.getProperty(prevPoint,"longValue");
-							if(lat != null && lon != null){
-								%>stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
-								<%
-							}
-						}
+					if(lat != null && lon != null){
+						%>
+						points.push(new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON));
+						<%
 					}
 				}
-				prevPoint = trace;
+				%>
+				setCenterByLatLngs(mapObj, <%=maxLat%>+CN_OFFSET_LAT, <%=maxLon%>+CN_OFFSET_LON, <%=minLat%>+CN_OFFSET_LAT, <%=minLon%>+CN_OFFSET_LON);
+				//mapObj.addOverlay(new GPolyline(points, "#00ff00", 6));
+				var rc = new ReplayControl();
+				mapObj.addControl(rc);
+				rc.initReplay( mapObj, points, new GPolyline(points, "#00ff00", 6), endMarker, stopMarkers );
+				var cpc = new CheckPointControl();
+				mapObj.addControl(cpc);
+				cpc.initCheckPoint( $("#vehicleId").val(), $("#recieveTimeStart").val(), $("#recieveTimeEnd").val() );
+			<%
 			}
-			%>
-			setCenterByLatLngs(mapObj, <%=maxLat%>+CN_OFFSET_LAT, <%=maxLon%>+CN_OFFSET_LON, <%=minLat%>+CN_OFFSET_LAT, <%=minLon%>+CN_OFFSET_LON);
-			//mapObj.addOverlay(new GPolyline(points, "#00ff00", 6));
-			var rc = new ReplayControl();
-			mapObj.addControl(rc);
-			rc.initReplay( mapObj, points, new GPolyline(points, "#00ff00", 6), endMarker, stopMarkers );
-			var cpc = new CheckPointControl();
-			mapObj.addControl(cpc);
-			cpc.initCheckPoint( $("#vehicleId").val(), $("#recieveTimeStart").val(), $("#recieveTimeEnd").val() );
-		<%}%>
+		}%>
     }
     <% } else {%>
 		$("#map_canvas").append("没有数据！");
