@@ -70,13 +70,14 @@ for(Object o : ts){
 				startRunRt = (RealtimeTrack)ts.get(i+1);
 				startRunRt.setTag(TrackBean.TRACK_TAG_STARTRUN);
 				stopPoints.add(startRunRt);
+				
+				tmpl = startRunRt.getRecieveTime().getTime() - startStopRt.getRecieveTime().getTime();
+				stopTimes.add(Util.formateLongToDays(tmpl));
 			} else {	//end with stop point
 //				lastPoint.setTag(TrackBean.TRACK_TAG_STARTRUN);
 //				stopPoints.add(lastPoint);
+				stopTimes.add("");
 			}
-
-			tmpl = startRunRt.getRecieveTime().getTime() - startStopRt.getRecieveTime().getTime();
-			stopTimes.add(Util.formateLongToDays(tmpl));
 			
 			tmpl = startStopRt.getRecieveTime().getTime() - (lastStopRt == null ? firstPoint.getRecieveTime().getTime() : lastStopRt.getRecieveTime().getTime());
 			totalRunTime += tmpl;
