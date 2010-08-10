@@ -239,11 +239,11 @@ function initialize() {
 							Date prevRecieveTime = (Date)PropertyUtils.getProperty(startStopRt,"recieveTime");
 							if(recieveTime!=null && prevRecieveTime!=null){
 								String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
-								lat = (Double)PropertyUtils.getProperty(trace,"latValue");
-								lon = (Double)PropertyUtils.getProperty(trace,"longValue");
-								if(lat != null && lon != null){
+								Double stopLat = (Double)PropertyUtils.getProperty(trace,"latValue");
+								Double stopLon = (Double)PropertyUtils.getProperty(trace,"longValue");
+								if(stopLat != null && stopLon != null){
 									%>
-									stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
+									stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=stopLat%>)+CN_OFFSET_LAT, Number(<%=stopLon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
 									<%
 								}
 							}
