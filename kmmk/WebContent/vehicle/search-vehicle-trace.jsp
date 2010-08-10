@@ -239,8 +239,8 @@ function initialize() {
 							Date prevRecieveTime = (Date)PropertyUtils.getProperty(startStopRt,"recieveTime");
 							if(recieveTime!=null && prevRecieveTime!=null){
 								String stopTimeDisp = Util.formateLongToDays(recieveTime.getTime()- prevRecieveTime.getTime());
-								lat = (Double)PropertyUtils.getProperty(startStopRt,"latValue");
-								lon = (Double)PropertyUtils.getProperty(startStopRt,"longValue");
+								lat = (Double)PropertyUtils.getProperty(trace,"latValue");
+								lon = (Double)PropertyUtils.getProperty(trace,"longValue");
 								if(lat != null && lon != null){
 									%>
 									stopMarkers.push(createMarker("<%=Util.FormatDateLong((Date)recieveTime)%>",new GLatLng(Number(<%=lat%>)+CN_OFFSET_LAT, Number(<%=lon%>)+CN_OFFSET_LON),STOP_ICON,"<%=stopTimeDisp%>","<%=Util.FormatDateLong((Date)prevRecieveTime)%>"));
