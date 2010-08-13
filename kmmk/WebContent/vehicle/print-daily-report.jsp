@@ -217,8 +217,8 @@ window.setTimeout = function(callback,timeout,param){
     __sto(_cb,timeout);
 }
 
-positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>, <%=firstPoint.getLongValue()%> );
-positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.getLongValue()%> );
+positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>+CN_OFFSET_LAT, <%=firstPoint.getLongValue()%>+CN_OFFSET_LON );
+positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT, <%=lastPoint.getLongValue()%>+CN_OFFSET_LON );
 </script>
 </head>
 
@@ -304,7 +304,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				if( login.getMapType()!=LoginInfo.MAPABC ){
 				%>
 				<script language="JavaScript">
-					positions["<%="stop_point_" + i%>"] = new GLatLng(<%=tmpRt.getLatValue()%>, <%=tmpRt.getLongValue()%> );
+					positions["<%="stop_point_" + i%>"] = new GLatLng(<%=tmpRt.getLatValue()%>+CN_OFFSET_LAT, <%=tmpRt.getLongValue()%>+CN_OFFSET_LON );
 				</script>
 			<%	}%>
 			<tr>
@@ -333,7 +333,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>, <%=lastPoint.
 				Util.setNull2DefaultValue(ah);
 				if( login.getMapType()!=LoginInfo.MAPABC ){%>
 				<script language="JavaScript">
-					positions["<%="alert_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>, <%=ah.getLongVal()%> );
+					positions["<%="alert_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>+CN_OFFSET_LAT, <%=ah.getLongVal()%>+CN_OFFSET_LON );
 				</script>
 			<%	}%>
 			<tr>
