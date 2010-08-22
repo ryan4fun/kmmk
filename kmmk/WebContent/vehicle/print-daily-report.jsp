@@ -217,6 +217,12 @@ window.setTimeout = function(callback,timeout,param){
     __sto(_cb,timeout);
 }
 
+function _print(){
+	$("#buttons").hide();
+	window.print();
+	$("#buttons").show();
+}
+
 positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>+CN_OFFSET_LAT, <%=firstPoint.getLongValue()%>+CN_OFFSET_LON );
 positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT, <%=lastPoint.getLongValue()%>+CN_OFFSET_LON );
 </script>
@@ -243,9 +249,10 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 						value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
 				</tr>
 			</table>
-			<p align="center">
+			<p align="center" id="buttons">
 				<input type="submit" value="重新统计" />
 				<input type="reset" value="重   置" />
+				<input type="reset" value="打 印" onclick="_print()"/>
 			</p>
 		</form>
 	</div>
