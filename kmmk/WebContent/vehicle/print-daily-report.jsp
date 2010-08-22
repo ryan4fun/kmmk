@@ -218,9 +218,14 @@ window.setTimeout = function(callback,timeout,param){
 }
 
 function _print(){
-	$("#buttons").hide();
-	window.print();
-	$("#buttons").show();
+	if(!window.opener){
+		window.open(window.location.href);
+	} else {
+		$("#buttons").hide();
+		window.print();
+		$("#buttons").show();
+	}
+	
 }
 
 positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>+CN_OFFSET_LAT, <%=firstPoint.getLongValue()%>+CN_OFFSET_LON );
