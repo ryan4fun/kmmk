@@ -15,6 +15,7 @@ public class MessageHandlerFactory {
 	
 	public static final short MESSAGE_TYPE_518 = 1;
 	public static final short MESSAGE_TYPE_QQX = 2;
+	public static final short MESSAGE_TYPE_GT02 = 3;
 	
 
 	public static MessageHandler getHandlerInstance(byte[] buf,AbstractClientHandler client) {
@@ -31,7 +32,10 @@ public class MessageHandlerFactory {
 			case MESSAGE_TYPE_QQX:
 				msgHandler = new QQXMessageHandler();
 				break;
-			
+				
+			case MESSAGE_TYPE_GT02:
+				msgHandler = new GT02MessageHandler();
+				break;
 			default: 
 				
 				throw new UnsupportedDevicePotocol();
@@ -55,6 +59,12 @@ public class MessageHandlerFactory {
 		if(tempStr.startsWith("))")){
 		
 			return MESSAGE_TYPE_QQX;
+		}
+		
+		
+		if(tempStr.startsWith("hh")){
+			
+			return MESSAGE_TYPE_GT02;
 		}
 		
 		return 0;
