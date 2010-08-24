@@ -71,32 +71,39 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			byte[] tempIdBytes = new byte[8];
 			System.arraycopy(data, 5, tempIdBytes, 0, 8);
-			StringBuffer idBuffer = new StringBuffer();			
-			
-			int idValue = 0; 
-			
-			for(int i = 0; i < 8; i++){
-//				System.out.println(" : " + tempIdBytes[i]);
-				if(tempIdBytes[i] != 0 || idBuffer.length() > 0  ){
-					
-					idValue = tempIdBytes[i] & 0xf0;
-					idValue >>= 4;
-					if(idValue != 0 ||  idBuffer.length() > 0){
-						
-						idBuffer.append(idValue);
-					}
-			    
-			    	idValue = tempIdBytes[i] & 0x0f;
-			    	idBuffer.append(idValue);
-				}
-			}
-			
-			result.setDeviceId(idBuffer.toString());
+
+
+			result.setDeviceId(decodeDeviceId(tempIdBytes));
 //			System.out.println("GT02 device id: " + result.getDeviceId());
 			parseData(result,data);			
         }
 		
 		return result;
+	}
+
+
+	private String decodeDeviceId(byte[] tempIdBytes) {
+		StringBuffer idBuffer = new StringBuffer();
+		
+		int idValue = 0;
+ 
+		
+		for(int i = 0; i < 8; i++){
+			System.out.println(" : " + tempIdBytes[i]);
+			if(tempIdBytes[i] != 0 || idBuffer.length() > 0  ){
+				
+				idValue = tempIdBytes[i] & 0xf0;
+				idValue >>= 4;
+				if(idValue != 0 ||  idBuffer.length() > 0){
+					
+					idBuffer.append(idValue);
+				}
+		    
+		    	idValue = tempIdBytes[i] & 0x0f;
+		    	idBuffer.append(idValue);
+			}
+		}
+		return idBuffer.toString();
 	}
 
 
@@ -244,4 +251,12 @@ public class GT02MessageHandler extends MessageHandler{
 		return result;
 	}
 
+	
+	public static void main(String[] args){
+		
+		byte[] test = new byte[]{0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x05};
+		
+		
+		
+	}
 }
