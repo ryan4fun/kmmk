@@ -180,10 +180,12 @@ public class GT02MessageHandler extends MessageHandler{
     	}
     	
         int value = 0;
-        for (int i = 0; i < 4; i++) {
-            int shift = (4 - 1 - i) * 8;
-            value |= (b[i] & 0x000000FF) << shift;
-        }
+		for (int i = 0; i < 4; i++)
+		{
+			int n = (b[i] < 0 ? (int)b[i] + 256 : (int)b[i]) << (8 * i);
+			System.out.println(n);
+			value += n;
+		}
         return value;
     }
     
