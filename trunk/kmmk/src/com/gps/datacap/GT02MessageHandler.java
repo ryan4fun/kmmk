@@ -181,7 +181,7 @@ public class GT02MessageHandler extends MessageHandler{
         int value = 0;
 		for (int i = 0; i < 4; i++)
 		{
-			int n = (b[i] < 0 ? (int)b[i] + 256 : (int)b[i]) << (8 * i);
+			int n = (b[i] < 0 ? (int)b[i] + 256 : (int)b[i]) << (8 * (3-i));
 			System.out.println(n);
 			value += n;
 		}
