@@ -72,7 +72,6 @@ public class GT02MessageHandler extends MessageHandler{
 			byte[] tempIdBytes = new byte[8];
 			System.arraycopy(data, 5, tempIdBytes, 0, 8);
 
-
 			result.setDeviceId(decodeDeviceId(tempIdBytes));
 //			System.out.println("GT02 device id: " + result.getDeviceId());
 			parseData(result,data);			
@@ -89,7 +88,7 @@ public class GT02MessageHandler extends MessageHandler{
  
 		
 		for(int i = 0; i < 8; i++){
-			System.out.println(" : " + tempIdBytes[i]);
+//			System.out.println(" : " + tempIdBytes[i]);
 			if(tempIdBytes[i] != 0 || idBuffer.length() > 0  ){
 				
 				idValue = tempIdBytes[i] & 0xf0;
@@ -143,7 +142,7 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			BigDecimal latTempValue = new BigDecimal(tempValue);
 			
-			latTempValue = latTempValue.divide(convertConstaint);
+			latTempValue = latTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
 			BigDecimal latValue = new BigDecimal(Math.floor(latTempValue.doubleValue()) / convertFact.intValue()) ;
 			latTempValue = latTempValue.subtract(latValue);
 			latTempValue = latTempValue.divide(convertFact,10,BigDecimal.ROUND_HALF_DOWN);
@@ -156,7 +155,7 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			BigDecimal longTempValue = new BigDecimal(tempValue);
 			
-			longTempValue = longTempValue.divide(convertConstaint);
+			longTempValue = longTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
 			BigDecimal longValue = new BigDecimal(Math.floor(longTempValue.doubleValue()) / convertFact.intValue()) ;
 			longTempValue = longTempValue.subtract(longValue);
 			longTempValue = longTempValue.divide(convertFact,10,BigDecimal.ROUND_HALF_DOWN);
