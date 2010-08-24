@@ -72,11 +72,12 @@ public class GT02MessageHandler extends MessageHandler{
 			System.arraycopy(data, 5, tempIdBytes, 0, 8);
 			StringBuffer idBuffer = new StringBuffer();
 			
+			
 			int idValue = 0;
  
 			
 			for(int i = 0; i < 8; i++){
-				
+				System.out.println(" : " + tempIdBytes[i]);
 				if(tempIdBytes[i] != 0 || idBuffer.length() > 0  ){
 					
 					idValue = tempIdBytes[i] & 0xf0;
