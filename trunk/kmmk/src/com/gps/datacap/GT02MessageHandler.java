@@ -54,16 +54,9 @@ public class GT02MessageHandler extends MessageHandler{
 	
 	private String getResponse(Message message) {
 		
-		String result = null;
-		if(message.getCmd().equalsIgnoreCase(CMD_BP00)){
-			
-			result = "(0" + message.getDeviceId() + CMD_AP01 + ")";
-//			System.out.println("Confirm client shake hands : " + message.getDeviceId());
-		}else if(message.getCmd().equalsIgnoreCase(CMD_BP05)){
-			
-			result = "(0" + message.getDeviceId() + CMD_AP05 + ")";
-//			System.out.println("Confirm client register : " + message.getDeviceId());
-		}
+		String result = "Th";
+		result = result + (char)0x1a  + (char)0x0d + (char)0x0a;  
+		
 			
 		return result;
 	}
