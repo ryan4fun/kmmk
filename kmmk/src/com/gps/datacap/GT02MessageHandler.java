@@ -82,7 +82,7 @@ public class GT02MessageHandler extends MessageHandler{
 					
 					idValue = tempIdBytes[i] & 0xf0;
 					idValue >>= 4;
-					if(idValue == 0 ){
+					if(idValue != 0 ||  idBuffer.length() > 0){
 						
 						idBuffer.append(idValue);
 					}
