@@ -52,10 +52,7 @@ public class GT02MessageHandler extends MessageHandler{
 	}
 
 	
-	private String getResponse(Message message) {		
-		System.out.println(message);
-		System.out.println(message.getCmd());
-		System.out.println(message.getDeviceId());
+	private String getResponse(Message message) {
 		System.out.println(message.getLatitude());
 		System.out.println(message.getLongitude());
 		System.out.println(message.getSpeed());
