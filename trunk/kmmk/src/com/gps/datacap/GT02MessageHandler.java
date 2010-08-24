@@ -5,8 +5,6 @@ package com.gps.datacap;
 
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,14 +20,7 @@ public class GT02MessageHandler extends MessageHandler{
 	public static final int PACKET_END = 0x0D0A;
 	public static final String PACKET_PLACEHOLDER = "0";
 	
-	public static final String CMD_BP00 = "BP00"; //shake hands
-	public static final String CMD_AP01 = "AP01"; //shake hands response
-	public static final String CMD_BP05 = "BP05"; //register
-	public static final String CMD_AP05 = "AP05"; //response for register
-	public static final String CMD_BR00 = "BR00"; // auto report
-	public static final String CMD_AR00 = "AR00"; //set interval
-	
-	public static final String CMD_BO01 = "BO01"; //alert
+
 	
 	public static final BigDecimal convertFact = new BigDecimal("60");
 	public static final BigDecimal convertConstaint = new BigDecimal("30000");
@@ -71,10 +62,21 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			byte[] tempIdBytes = new byte[8];
 			System.arraycopy(data, 5, tempIdBytes, 0, 8);
-
+			
 			result.setDeviceId(decodeDeviceId(tempIdBytes));
+			byte  length = data[2];
+			if(length == 37 ){
+				
+				parseData(result,data);	
+				result.setIsTrack(true);
+			}else{
+				
+				result.setIsTrack(false);
+			}
+			
+		
 //			System.out.println("GT02 device id: " + result.getDeviceId());
-			parseData(result,data);			
+					
         }
 		
 		return result;
@@ -241,7 +243,7 @@ public class GT02MessageHandler extends MessageHandler{
 		buf.append(PACKET_START);
 		buf.append(PACKET_PLACEHOLDER);
 		buf.append(deviceId);
-		buf.append(CMD_AR00);
+
 		buf.append(temp);
 		buf.append("0000");
 		buf.append(PACKET_END);
