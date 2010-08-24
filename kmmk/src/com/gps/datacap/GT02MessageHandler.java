@@ -109,6 +109,7 @@ public class GT02MessageHandler extends MessageHandler{
 		if(data.length > 0) {
 			
 			byte[] gpsBytes = new byte[24];
+//			System.out.println("data length: " + data.length);
 			System.arraycopy(data, 16, gpsBytes, 0, 24);
 				
 			msgObj.setIsTrack(true);
