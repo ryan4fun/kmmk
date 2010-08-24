@@ -52,12 +52,16 @@ public class GT02MessageHandler extends MessageHandler{
 	}
 
 	
-	private String getResponse(Message message) {
+	private String getResponse(Message message) {		
+		System.out.println(message);
+		System.out.println(message.getCmd());
+		System.out.println(message.getDeviceId());
+		System.out.println(message.getLatitude());
+		System.out.println(message.getLongitude());
+		System.out.println(message.getSpeed());
 		
 		String result = "Th";
-		result = result + (char)0x1a  + (char)0x0d + (char)0x0a;  
-		
-			
+		result = result + (char)0x1a  + (char)0x0d + (char)0x0a;  			
 		return result;
 	}
 
@@ -70,14 +74,12 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			byte[] tempIdBytes = new byte[8];
 			System.arraycopy(data, 5, tempIdBytes, 0, 8);
-			StringBuffer idBuffer = new StringBuffer();
+			StringBuffer idBuffer = new StringBuffer();			
 			
-			
-			int idValue = 0;
- 
+			int idValue = 0; 
 			
 			for(int i = 0; i < 8; i++){
-				System.out.println(" : " + tempIdBytes[i]);
+//				System.out.println(" : " + tempIdBytes[i]);
 				if(tempIdBytes[i] != 0 || idBuffer.length() > 0  ){
 					
 					idValue = tempIdBytes[i] & 0xf0;
@@ -92,10 +94,9 @@ public class GT02MessageHandler extends MessageHandler{
 				}
 			}
 			
-			result.setDeviceId(Integer.toString(idValue));
-			
-			parseData(result,data);
-			
+			result.setDeviceId(idBuffer.toString());
+//			System.out.println("GT02 device id: " + result.getDeviceId());
+			parseData(result,data);			
         }
 		
 		return result;
