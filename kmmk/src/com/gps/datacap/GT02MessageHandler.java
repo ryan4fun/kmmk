@@ -9,6 +9,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.gps.datacap.exception.MessageException;
+import com.gps.orm.Vehicle;
+import com.gps.orm.VehicleStatus;
+import com.gps.service.ServiceLocator;
 
 /**
  * @author Ryan
@@ -66,12 +69,20 @@ public class GT02MessageHandler extends MessageHandler{
 			result.setDeviceId(decodeDeviceId(tempIdBytes));
 			byte  length = data[2];
 			if(length == 37 ){
-				
+				//data packet
 				parseData(result,data);	
 				result.setIsTrack(true);
 			}else{
+				//beat packet
 				
-				result.setIsTrack(false);
+				Vehicle vehicle = getVehicleById(result.getDeviceId());
+				
+				if(vehicle != null) {
+					VehicleStatus vs = vehicle.getVehicleStatus();
+					result.setLatitude(vs.getCurrentLat());
+					result.setLongitude(vs.getCurrentLong());
+					result.setCmd(Message.PACKET_TYPE_HEARTBEAT);
+				}
 			}
 			
 		
@@ -260,5 +271,20 @@ public class GT02MessageHandler extends MessageHandler{
 		
 		
 		
+	}
+	
+	
+	protected Vehicle getVehicleById(String deviceId) {
+		
+		Vehicle result = null;
+		result = this.server.getVehicleById(deviceId);
+		if(result == null){
+			result = ServiceLocator.getInstance().getVehicleService().findByDeviceId(deviceId);
+			if(result != null){
+				
+				this.server.registerVehicleCache(deviceId, result);
+			}
+		}
+		return result;
 	}
 }
