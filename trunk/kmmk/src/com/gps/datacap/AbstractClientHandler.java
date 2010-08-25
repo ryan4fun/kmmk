@@ -149,7 +149,7 @@ public abstract class AbstractClientHandler implements Runnable{
 		
 	}
 	
-	private Vehicle getVehicleById(String deviceId) {
+	protected Vehicle getVehicleById(String deviceId) {
 		
 		Vehicle result = null;
 		result = this.server.getVehicleById(deviceId);

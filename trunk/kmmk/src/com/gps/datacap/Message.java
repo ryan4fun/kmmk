@@ -32,6 +32,10 @@ public class Message {
 	public static final short ALERT_TYPE_SLOW = 4;
 	public static final short ALERT_TYPE_OVERSPEED = 5;
 	public static final short ALERT_TYPE_EXITSPOT = 6;
+	
+	
+	public static final String PACKET_TYPE_HEARTBEAT = "HeartBeat";
+	public static final String PACKET_TYPE_POSITION = "position";
 
 	public void setDeviceId(String deviceId) {
 		
