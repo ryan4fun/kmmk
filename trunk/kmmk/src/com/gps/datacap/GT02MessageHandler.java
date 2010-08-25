@@ -81,10 +81,11 @@ public class GT02MessageHandler extends MessageHandler{
 					VehicleStatus vs = vehicle.getVehicleStatus();
 					result.setLatitude(vs.getCurrentLat());
 					result.setLongitude(vs.getCurrentLong());
+					result.setSpeed(0);
 					result.setCmd(Message.PACKET_TYPE_HEARTBEAT);
+					result.setIsTrack(true);
 				}
-			}
-			
+			}			
 		
 //			System.out.println("GT02 device id: " + result.getDeviceId());
 					
@@ -97,8 +98,7 @@ public class GT02MessageHandler extends MessageHandler{
 	private String decodeDeviceId(byte[] tempIdBytes) {
 		StringBuffer idBuffer = new StringBuffer();
 		
-		int idValue = 0;
- 
+		int idValue = 0; 
 		
 		for(int i = 0; i < 8; i++){
 //			System.out.println(" : " + tempIdBytes[i]);
@@ -283,12 +283,8 @@ public class GT02MessageHandler extends MessageHandler{
 	}
 
 	
-	public static void main(String[] args){
-		
+	public static void main(String[] args){		
 		byte[] test = new byte[]{0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x05};
-		
-		
-		
 	}
 	
 	
