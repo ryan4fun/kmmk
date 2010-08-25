@@ -233,6 +233,10 @@ var currentId;
 		}
 	}
 
+	function viewAll(){
+		$("#main-frame").attr("src","dwjg/vehicle-status/monitor-vehicle-status.jsp");
+	}
+	
 	function logout(){
 		jConfirm("确定要退出吗？", "警告", function(r){
 			if(r){
@@ -313,8 +317,10 @@ var currentId;
 				<td align="center" style="padding-top:6px;">
 				<p>快速查找：<input type="text" value="" id="searchInput" size=10 onkeyup="searchTree(this)">&nbsp;<input type="button" value="清除" onclick="clearSearch()"></p><br/>
 				<p><a href="javascript:expandAll(true)">展开所有</a>&nbsp;&nbsp;&nbsp;
-				<a href="javascript:expandAll(false)">收缩所有</a>				
-				</p><br/>
+				<a href="javascript:expandAll(false)">收缩所有</a>&nbsp;&nbsp;&nbsp;
+				<a href="javascript:viewAll()">全局车辆视图</a>
+				</p>				
+				<br/>
 				</td>
 			</tr>
 			<tr height="100%;">
