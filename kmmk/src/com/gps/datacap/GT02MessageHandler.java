@@ -153,27 +153,45 @@ public class GT02MessageHandler extends MessageHandler{
 			System.arraycopy(gpsBytes, 6, tempBytes, 0, 4);
 			int tempValue = byteArrayToInt(tempBytes);
 			
+//			BigDecimal latTempValue = new BigDecimal(tempValue);
+//			
+//			latTempValue = latTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
+//			BigDecimal latValue = new BigDecimal(Math.floor(latTempValue.doubleValue()) / convertFact.intValue()) ;
+//			latTempValue = latTempValue.subtract(latValue);
+//			latTempValue = latTempValue.divide(convertFact,10,BigDecimal.ROUND_HALF_DOWN);
+//			
+//			latValue = latValue.add(latTempValue);
+//			result.setLatitude(latValue.doubleValue());
+			
+			
 			BigDecimal latTempValue = new BigDecimal(tempValue);
-			
 			latTempValue = latTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
-			BigDecimal latValue = new BigDecimal(Math.floor(latTempValue.doubleValue()) / convertFact.intValue()) ;
-			latTempValue = latTempValue.subtract(latValue);
-			latTempValue = latTempValue.divide(convertFact,10,BigDecimal.ROUND_HALF_DOWN);
-			
+			BigDecimal latValue = new BigDecimal(Math.floor(latTempValue.doubleValue() / convertFact.intValue()));
+			latTempValue = latTempValue.subtract(latValue.multiply(convertFact));
+			latTempValue = latTempValue.divide(new BigDecimal(100), 10, BigDecimal.ROUND_HALF_DOWN);
 			latValue = latValue.add(latTempValue);
+
 			result.setLatitude(latValue.doubleValue());
 			
 			System.arraycopy(gpsBytes, 10, tempBytes, 0, 4);
 			tempValue = byteArrayToInt(tempBytes);
 			
+//			BigDecimal longTempValue = new BigDecimal(tempValue);
+//			
+//			longTempValue = longTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
+//			BigDecimal longValue = new BigDecimal(Math.floor(longTempValue.doubleValue()) / convertFact.intValue()) ;
+//			longTempValue = longTempValue.subtract(longValue);
+//			longTempValue = longTempValue.divide(convertFact,10,BigDecimal.ROUND_HALF_DOWN);
+//			
+//			longValue = longValue.add(longTempValue);
+			
 			BigDecimal longTempValue = new BigDecimal(tempValue);
-			
 			longTempValue = longTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
-			BigDecimal longValue = new BigDecimal(Math.floor(longTempValue.doubleValue()) / convertFact.intValue()) ;
-			longTempValue = longTempValue.subtract(longValue);
-			longTempValue = longTempValue.divide(convertFact,10,BigDecimal.ROUND_HALF_DOWN);
+			BigDecimal longValue = new BigDecimal(Math.floor(longTempValue.doubleValue() / convertFact.intValue()));
+			longTempValue = longTempValue.subtract(longValue.multiply(convertFact));
+			longTempValue = longTempValue.divide(new BigDecimal(100), 10, BigDecimal.ROUND_HALF_DOWN);
+			longValue = longValue.add(latTempValue);
 			
-			longValue = longValue.add(longTempValue);
 			result.setLongitude(longValue.doubleValue());
 		
 			int speed = gpsBytes[14];
