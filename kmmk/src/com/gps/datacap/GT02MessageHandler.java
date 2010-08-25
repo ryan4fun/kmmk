@@ -190,7 +190,7 @@ public class GT02MessageHandler extends MessageHandler{
 			BigDecimal longValue = new BigDecimal(Math.floor(longTempValue.doubleValue() / convertFact.intValue()));
 			longTempValue = longTempValue.subtract(longValue.multiply(convertFact));
 			longTempValue = longTempValue.divide(new BigDecimal(100), 10, BigDecimal.ROUND_HALF_DOWN);
-			longValue = longValue.add(latTempValue);
+			longValue = longValue.add(longTempValue);
 			
 			result.setLongitude(longValue.doubleValue());
 		
