@@ -175,9 +175,9 @@ public class GetTreeAjax extends Action {
 			tip += "\n";
 			if(vs.getCurrentSpeed() != null){
 				if(vs.getIsOnline() == VehicleStatusService.VEHICLE_ONLINE_STATE_ONLINE){
-					tip += "当前速度："+vs.getCurrentSpeed();
+					tip += "当前速度：" + (vs.getCurrentSpeed()==0?"-":vs.getCurrentSpeed());
 				} else {
-					tip += "最后速度："+vs.getCurrentSpeed();
+					tip += "最后速度：" + (vs.getCurrentSpeed()==0?"-":vs.getCurrentSpeed());
 				}
 			} else {
 				tip += "无法获取速度信息";
