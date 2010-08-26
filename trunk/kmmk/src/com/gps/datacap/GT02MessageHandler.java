@@ -47,6 +47,7 @@ public class GT02MessageHandler extends MessageHandler{
 
 	
 	private String getResponse(Message message) {
+	
 		System.out.println(message.getLatitude());
 		System.out.println(message.getLongitude());
 		System.out.println(message.getSpeed());
@@ -68,6 +69,7 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			result.setDeviceId(decodeDeviceId(tempIdBytes));
 			byte  length = data[2];
+			
 			if(length == 37 ){
 				//data packet
 				parseData(result,data);	
@@ -79,7 +81,9 @@ public class GT02MessageHandler extends MessageHandler{
 				Vehicle vehicle = getVehicleById(result.getDeviceId());
 				
 				if(vehicle != null) {
+					
 					VehicleStatus vs = vehicle.getVehicleStatus();
+					
 					result.setLatitude(vs.getCurrentLat());
 					result.setLongitude(vs.getCurrentLong());
 					result.setSpeed(0);
@@ -88,6 +92,7 @@ public class GT02MessageHandler extends MessageHandler{
 					result.setIsTrack(true);
 					result.setIsHeartBeat(true);
 					result.setValid(true);
+					
 				}
 			}			
 		
