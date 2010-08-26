@@ -72,6 +72,7 @@ public class GT02MessageHandler extends MessageHandler{
 				//data packet
 				parseData(result,data);	
 				result.setIsTrack(true);
+
 			}else{
 				//beat packet
 				
@@ -84,6 +85,8 @@ public class GT02MessageHandler extends MessageHandler{
 					result.setSpeed(0);
 					result.setCmd(Message.PACKET_TYPE_HEARTBEAT);
 					result.setIsTrack(true);
+					result.setIsHeartBeat(true);
+					result.setValid(true);
 				}
 			}			
 		
@@ -148,6 +151,7 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			byte c = gpsBytes[23];
 			msgObj.setValid((c & 0x01) > 0);
+			System.out.println(" Message Valide is :" + msgObj.isValid() );
 			
 			byte[] tempBytes = new byte[4];
 			System.arraycopy(gpsBytes, 6, tempBytes, 0, 4);

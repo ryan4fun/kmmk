@@ -24,6 +24,7 @@ public class Message {
 	private boolean isAlert;
 	private short alertType;
 	private double currentSpeed;
+	private boolean isHeartBeat;
 	
 	public static final short ALERT_TYPE_POWER = 0;
 	public static final short ALERT_TYPE_ENTERSPOT = 1;
@@ -87,6 +88,18 @@ public class Message {
 		
 		return this.isTrack;
 	}
+	
+	
+	public void setIsHeartBeat(boolean b) {
+		
+		this.isHeartBeat = b;
+	}
+	
+	public boolean isHeartBeat(){
+		
+		return this.isHeartBeat;
+	}
+	
 
 	public void setGPSTimestamp(Date date) {
 		
