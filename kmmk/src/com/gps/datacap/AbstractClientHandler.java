@@ -103,10 +103,6 @@ public abstract class AbstractClientHandler implements Runnable{
 			Vehicle vehicle = getVehicleById(message.getDeviceId());			
 			if(vehicle != null){
 				
-				if(vehicle.getVehicleId() == 56){
-					
-					System.out.println("  ###### 01 " + vehicle.getVehicleId());
-				}
 				//for illeagle position:
 				if(!isLeaglePosition(message)){
 //					addIleaglePosAlert(message,vehicle);
