@@ -168,7 +168,7 @@ public class GT02MessageHandler extends MessageHandler{
 			latTempValue = latTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
 			BigDecimal latValue = new BigDecimal(Math.floor(latTempValue.doubleValue() / convertFact.intValue()));
 			latTempValue = latTempValue.subtract(latValue.multiply(convertFact));
-			latTempValue = latTempValue.divide(new BigDecimal(100), 10, BigDecimal.ROUND_HALF_DOWN);
+			latTempValue = latTempValue.divide(new BigDecimal(60), 10, BigDecimal.ROUND_HALF_DOWN);
 			latValue = latValue.add(latTempValue);
 
 			result.setLatitude(latValue.doubleValue());
@@ -189,7 +189,7 @@ public class GT02MessageHandler extends MessageHandler{
 			longTempValue = longTempValue.divide(convertConstaint, 10, BigDecimal.ROUND_HALF_DOWN);
 			BigDecimal longValue = new BigDecimal(Math.floor(longTempValue.doubleValue() / convertFact.intValue()));
 			longTempValue = longTempValue.subtract(longValue.multiply(convertFact));
-			longTempValue = longTempValue.divide(new BigDecimal(100), 10, BigDecimal.ROUND_HALF_DOWN);
+			longTempValue = longTempValue.divide(new BigDecimal(60), 10, BigDecimal.ROUND_HALF_DOWN);
 			longValue = longValue.add(longTempValue);
 			
 			result.setLongitude(longValue.doubleValue());
