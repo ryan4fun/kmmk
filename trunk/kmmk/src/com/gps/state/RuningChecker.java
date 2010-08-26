@@ -125,7 +125,7 @@ public class RuningChecker implements Runnable,IStateChecker {
 			
 			int tempId = it.nextElement();
 			int tempCount = this.vechileCountsMap.get(tempId);
-			System.out.println(tempId + ".tempCount="+tempCount);			
+//			System.out.println(tempId + ".tempCount="+tempCount);			
 			
 
 			if(tempCount >= this.countThreshold){
