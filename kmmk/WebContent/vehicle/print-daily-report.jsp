@@ -298,34 +298,51 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 				<th width="80%">描述</th>				
 			</tr>
 			<%
-			String desc;
-			i = 0;
-			int j = 0, k = 0;
-			for(RealtimeTrack tmpRt : stopPoints){
-				Util.setNull2DefaultValue(tmpRt);
-				if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
-					desc = "到达&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>，停车&nbsp;<span style=\"color:blue;\">" + (stopTimes.size()>j ? stopTimes.get(j) : "&nbsp;") + "</span>";
-					j++;
-				} else {
-					if(i == 0)
-						desc = "从&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
-					else
-						desc = "起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
-					k++;
-				}
-				if( login.getMapType()!=LoginInfo.MAPABC ){
-				%>
-				<script language="JavaScript">
-					positions["<%="stop_point_" + i%>"] = new GLatLng(<%=tmpRt.getLatValue()%>+CN_OFFSET_LAT, <%=tmpRt.getLongValue()%>+CN_OFFSET_LON );
-				</script>
-			<%	}%>
-			<tr>
-				<td nowrap="nowrap"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
-				<td nowrap="nowrap"><%=desc%></td>	
-			</tr>
-			<% 
-			i++;
-			} %>
+			if(stopPoints.size()<1){
+				String desc = "从&nbsp;<span style=\"color:red;\" id=\"firstPoint\" >&nbsp;</span>&nbsp;起步，持续行驶&nbsp;<span style=\"color:blue;\">" + Util.formateLongToDays(totalRunTime) + "</span>";
+			%>
+				<tr>
+					<td nowrap="nowrap"><%=Util.FormatDateLong(firstPoint.getRecieveTime())%></td>
+					<td nowrap="nowrap"><%=desc%></td>
+				</tr>
+			<%
+			desc = "到达&nbsp;<span style=\"color:red;\" id=\"lastPoint\" >&nbsp;</span>，继续行驶";
+			%>
+				<tr>
+					<td nowrap="nowrap"><%=Util.FormatDateLong(lastPoint.getRecieveTime())%></td>
+					<td nowrap="nowrap"><%=desc%></td>
+				</tr>
+			<%
+			} else {
+				String desc;
+				i = 0;
+				int j = 0, k = 0;
+				for(RealtimeTrack tmpRt : stopPoints){
+					Util.setNull2DefaultValue(tmpRt);
+					if( tmpRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP) {
+						desc = "到达&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>，停车&nbsp;<span style=\"color:blue;\">" + (stopTimes.size()>j ? stopTimes.get(j) : "&nbsp;") + "</span>";
+						j++;
+					} else {
+						if(i == 0)
+							desc = "从&nbsp;<span style=\"color:red;\" id=\"stop_point_" + i + "\" >&nbsp;</span>&nbsp;起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
+						else
+							desc = "起步，持续行驶&nbsp;<span style=\"color:blue;\">" + (runTimes.size()>k ? runTimes.get(k) : "&nbsp;") + "</span>";
+						k++;
+					}
+					if( login.getMapType()!=LoginInfo.MAPABC ){
+					%>
+					<script language="JavaScript">
+						positions["<%="stop_point_" + i%>"] = new GLatLng(<%=tmpRt.getLatValue()%>+CN_OFFSET_LAT, <%=tmpRt.getLongValue()%>+CN_OFFSET_LON );
+					</script>
+				<%	}%>
+				<tr>
+					<td nowrap="nowrap"><%=Util.FormatDateLong(tmpRt.getRecieveTime())%></td>
+					<td nowrap="nowrap"><%=desc%></td>
+				</tr>
+				<% 
+				i++;
+				} 
+			}%>
 		</table>
 	</div>
 </div>
