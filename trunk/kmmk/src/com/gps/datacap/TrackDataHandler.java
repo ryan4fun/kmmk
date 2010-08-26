@@ -36,11 +36,7 @@ public class TrackDataHandler {
 		if(vehicle != null){
 			if(message.isTrack() && message.isValid()){		
 				
-				if(vehicle.getVehicleId() == 56){
-					
-					System.out.println("  ###### 02 " + vehicle.getVehicleId());
-				}
-				
+
 				updated = handleTrackInfo(vehicle,message);
 				if(logger.isDebugEnabled()){
 					System.out.println(vehicle.getVehicleId()+" handleTrackInfo...");
@@ -148,10 +144,6 @@ public class TrackDataHandler {
 
 		short result = updateVehicleState(message, vehicle);
 
-		if(vehicle.getVehicleId() == 56){
-			
-			System.out.println("  ###### 03 " + vehicle.getVehicleId());
-		}
 		
 		VehicleStatus state = vehicle.getVehicleStatus();
 		if (logger.isDebugEnabled()) {
@@ -164,10 +156,7 @@ public class TrackDataHandler {
 						+ " is running, saving track information...");
 			}
 			
-			if(vehicle.getVehicleId() == 56){
-				
-				System.out.println("  ###### 03 " + vehicle.getVehicleId());
-			}
+
 			
 			saveRealtimeTrack(message, vehicle.getVehicleId(), result);
 			if (this.messageCount % 10 == 0) {
