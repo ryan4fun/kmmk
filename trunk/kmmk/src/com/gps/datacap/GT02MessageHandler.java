@@ -83,6 +83,7 @@ public class GT02MessageHandler extends MessageHandler{
 					result.setLatitude(vs.getCurrentLat());
 					result.setLongitude(vs.getCurrentLong());
 					result.setSpeed(0);
+					result.setServerReceiveDate(new Date());
 					result.setCmd(Message.PACKET_TYPE_HEARTBEAT);
 					result.setIsTrack(true);
 					result.setIsHeartBeat(true);
