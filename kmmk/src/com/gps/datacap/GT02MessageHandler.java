@@ -47,9 +47,9 @@ public class GT02MessageHandler extends MessageHandler{
 
 	
 	private String getResponse(Message message) {
-		System.out.println(message.getLatitude());
-		System.out.println(message.getLongitude());
-		System.out.println(message.getSpeed());
+//		System.out.println(message.getLatitude());
+//		System.out.println(message.getLongitude());
+//		System.out.println(message.getSpeed());
 		
 		String result = "Th";
 		result = result + (char)0x1a  + (char)0x0d + (char)0x0a;  			
