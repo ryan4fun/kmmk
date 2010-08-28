@@ -58,8 +58,8 @@ for(Object o : ts){
 				}
 				
 				startStopRt = (RealtimeTrack)ts.get(i-2);
-				//startStopRt.setTag(TrackBean.TRACK_TAG_STARTSTOP);
-				stopPoints.add(thisRt);
+				startStopRt.setTag(TrackBean.TRACK_TAG_STARTSTOP);
+				stopPoints.add(startStopRt);
 			} else {	//start with stop point
 				firstPoint.setTag(TrackBean.TRACK_TAG_STARTSTOP);
 				stopPoints.add(firstPoint);
