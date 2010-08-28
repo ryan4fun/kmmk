@@ -3,6 +3,9 @@
  */
 package com.gps.datacap;
 
+import com.gps.orm.Vehicle;
+import com.gps.service.ServiceLocator;
+
 /**
  * @author Ryan
  *
@@ -42,5 +45,17 @@ public abstract class MessageHandler {
 
 	public AbstractClientHandler getClientHandler(){
 		return this.clienthandler;
+	}
+	
+	public Vehicle getVehicleById(String deviceId) {		
+		Vehicle result = null;
+		result = this.server.getVehicleById(deviceId);
+		if(result == null){
+			result = ServiceLocator.getInstance().getVehicleService().findByDeviceId(deviceId);
+			if(result != null){				
+				this.server.registerVehicleCache(deviceId, result);
+			}
+		}
+		return result;
 	}
 }
