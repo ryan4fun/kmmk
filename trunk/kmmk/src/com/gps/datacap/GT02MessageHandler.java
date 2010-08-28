@@ -152,7 +152,7 @@ public class GT02MessageHandler extends MessageHandler{
 			
 			byte c = gpsBytes[23];
 			msgObj.setValid((c & 0x01) > 0);
-			System.out.println(" Message Valide is :" + msgObj.isValid() );
+//			System.out.println(" Message Valide is :" + msgObj.isValid() );
 			
 			byte[] tempBytes = new byte[4];
 			System.arraycopy(gpsBytes, 6, tempBytes, 0, 4);
@@ -207,17 +207,13 @@ public class GT02MessageHandler extends MessageHandler{
 	}
 
 	
-    public static int byteArrayToInt(byte[] b) {
-    	
-    	if(b.length != 4){
-    		
+    public static int byteArrayToInt(byte[] b) {    	
+    	if(b.length != 4){    		
     		return 0;
-    	}
-    	
+    	}    	
         int value = 0;
 		for (int i = 0; i < 4; i++){
-			int n = (b[i] < 0 ? (int)b[i] + 256 : (int)b[i]) << (8 * (3-i));
-			System.out.println(n);
+			int n = (b[i] < 0 ? (int)b[i] + 256 : (int)b[i]) << (8 * (3-i));			
 			value += n;
 		}
         return value;

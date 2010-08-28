@@ -123,18 +123,15 @@ public class TCPClientHandler extends AbstractClientHandler {
 			
 			}
 		} catch (IOException e) {
-
-			e.printStackTrace();
-
+			//e.printStackTrace();
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (HibernateException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			HibernateUtil.rollbackTransaction();
 		} finally {
 			HibernateUtil.closeSession();
 		}
-
 	}
 	
 	
