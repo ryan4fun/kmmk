@@ -26,24 +26,18 @@ public class UDPClientHandler extends AbstractClientHandler {
 
 	private DatagramPacket dataPacket;
 	 
-	public UDPClientHandler(int port, DataCaptureServer dataCaptureServer) {
-		
+	public UDPClientHandler(int port, DataCaptureServer dataCaptureServer) {		
 		super();
 		this.server = dataCaptureServer;
 		this.port = port;
-		
 		init();
 	
 	}
 
-	public UDPClientHandler(DatagramSocket serverSocket, DataCaptureServer dataCaptureServer) {
-		
+	public UDPClientHandler(DatagramSocket serverSocket, DataCaptureServer dataCaptureServer) {		
 		super();
 		this.server = dataCaptureServer;
 		this.serverSocket = serverSocket;
-		
-
-	
 	}
 
 
@@ -74,12 +68,9 @@ public class UDPClientHandler extends AbstractClientHandler {
 		int receivCount = 0;
 		try {
 			while (true) {
-
 				serverSocket.receive(dataPacket);
 				receivCount = dataPacket.getLength();
-
 				if (receivCount > 0) {
-
 					String str = new String(buff, 0, receivCount);
 //					System.out.println("Message Received from UDP server : " + str);
 					byte[] tempBuf = new byte[receivCount];
@@ -87,26 +78,18 @@ public class UDPClientHandler extends AbstractClientHandler {
 					handleMessage(tempBuf);
 
 				} else {
-
 					// TODO later
 				}
 
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (IOException e) {			
+			//e.printStackTrace();
 		} finally {
 			if (serverSocket != null) {
 				serverSocket.close();
 			}
-
 		}
-		
-		
 	}
-
-
-
 
 	@Override
 	public void close() {
@@ -124,15 +107,10 @@ public class UDPClientHandler extends AbstractClientHandler {
 
 	@Override
 	public void sendMsg(String msg) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
-
-	public boolean isInitialed() {
-		
+	public boolean isInitialed() {		
 		return this.initialed;
 	}
-	
-	
 }
