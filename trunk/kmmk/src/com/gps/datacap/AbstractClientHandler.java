@@ -102,24 +102,19 @@ public abstract class AbstractClientHandler implements Runnable{
 	
 			Vehicle vehicle = getVehicleById(message.getDeviceId());			
 			if(vehicle != null){
-				
 				//for illeagle position:
 				if(!isLeaglePosition(message)){
 //					addIleaglePosAlert(message,vehicle);
 					return;
-				}
-				
+				}				
 				VehicleStatus vs = vehicle.getVehicleStatus();
 //				if(vs != null /*&& vs.getTaskId()!= null && vs.getTaskId().intValue() > 0*/ && this.ruleManager == null){
 //					
 //					this.ruleManager = new RuleManager(vs);
 //				}
-
-				boolean isHandled = this.dataHandler.handle(vehicle,message);
-
-				short monitorLevel = vehicle.getMonitLevel();
-				if(isHandled && monitorLevel== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){
-					
+				boolean isHandled = this.dataHandler.handle(vehicle,message);				
+				short monitorLevel = vehicle.getMonitLevel() == null? VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON:vehicle.getMonitLevel();				
+				if(isHandled && monitorLevel== VehicleService.VEHICLE_MONIT_LEVEL_TRACKING_ON){					
 					RuleManager ruleMgr = RuleManagerContainer.getRuleManager(vehicle);
 					if(ruleMgr == null && vs != null){
 						ruleMgr =  new RuleManager(vs);
@@ -146,17 +141,14 @@ public abstract class AbstractClientHandler implements Runnable{
 				}
 			}
 		}
-		
 	}
 	
 	protected Vehicle getVehicleById(String deviceId) {
-		
 		Vehicle result = null;
 		result = this.server.getVehicleById(deviceId);
 		if(result == null){
 			result = getServiceLocator().getVehicleService().findByDeviceId(deviceId);
 			if(result != null){
-				
 				this.server.registerVehicleCache(deviceId, result);
 			}
 		}
