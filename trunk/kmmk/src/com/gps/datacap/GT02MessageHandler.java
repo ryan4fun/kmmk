@@ -290,20 +290,6 @@ public class GT02MessageHandler extends MessageHandler{
 	
 	public static void main(String[] args){		
 		byte[] test = new byte[]{0x00,0x00,0x00,0x00,0x00,0x00,0x44,0x05};
-	}
+	}	
 	
-	
-	protected Vehicle getVehicleById(String deviceId) {
-		
-		Vehicle result = null;
-		result = this.server.getVehicleById(deviceId);
-		if(result == null){
-			result = ServiceLocator.getInstance().getVehicleService().findByDeviceId(deviceId);
-			if(result != null){
-				
-				this.server.registerVehicleCache(deviceId, result);
-			}
-		}
-		return result;
-	}
 }

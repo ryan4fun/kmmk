@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.gps.datacap.exception.MessageException;
+import com.gps.orm.Vehicle;
+import com.gps.orm.VehicleStatus;
 
 /**
  * @author Ryan
@@ -50,51 +52,34 @@ public class YD518MessageHandler extends MessageHandler{
 	}
 
 	
-	private String getResponse(Message message) {
-		
+	private String getResponse(Message message) {		
 		String result = null;
-		if(message.getCmd().equalsIgnoreCase(CMD_BP00)){
-			
+		if(message.getCmd().equalsIgnoreCase(CMD_BP00)){			
 			result = "(0" + message.getDeviceId() + CMD_AP01 + ")";
 //			System.out.println("Confirm client shake hands : " + message.getDeviceId());
 		}else if(message.getCmd().equalsIgnoreCase(CMD_BP05)){
-			
 			result = "(0" + message.getDeviceId() + CMD_AP05 + ")";
 //			System.out.println("Confirm client register : " + message.getDeviceId());
 		}
-			
 		return result;
 	}
 
 
 	private Message parseMessage(String messageStr) {
-
 		Message result = new Message();
-		
-		{
-			
-			String deviceId = messageStr.substring(2, 13);
-//			System.out.println("Device ID:" + deviceId);
-			result.setDeviceId(deviceId);
-			
-			String cmd =  messageStr.substring(13, 13+4);
-			result.setCmd(cmd);
-			
-			String data = messageStr.substring(17, messageStr.length()-1);
-			parseData(result,data);
-			
-        }
-		
+		String deviceId = messageStr.substring(2, 13);
+		result.setDeviceId(deviceId);
+		String cmd = messageStr.substring(13, 13 + 4);
+		result.setCmd(cmd);
+		String data = messageStr.substring(17, messageStr.length() - 1);
+		parseData(result, data);
 		return result;
 	}
 
 
-	private void parseData(Message msgObj, String dataStr) {
-		
-		Message result = msgObj;
-		
-		String gpsStr = dataStr;
-		
+	private void parseData(Message msgObj, String dataStr) {		
+		Message result = msgObj;		
+		String gpsStr = dataStr;		
 		if(msgObj.getCmd().equalsIgnoreCase(CMD_BP00)){
 			gpsStr = "";
 		}else if(msgObj.getCmd().equalsIgnoreCase(CMD_BP05)){
@@ -123,41 +108,41 @@ public class YD518MessageHandler extends MessageHandler{
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
-			
+			}
 			char c = gpsStr.charAt(6);
-			msgObj.setValid(c=='A');
-			
-			String longStr1 = gpsStr.substring(17, 17+3);
-			String longStr2 = gpsStr.substring(20, 20+7);
-			BigDecimal b1 = new BigDecimal(longStr1);
-			BigDecimal b2 = new BigDecimal(longStr2);
-			b2 = b2.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
-			double longitude = b1.add(b2).doubleValue();
-//	        double longitude = Double.parseDouble(longStr1) + Double.parseDouble(longStr2) / 60;
-	        result.setLongitude(longitude);
-//	        System.out.println("long:" + longitude);
-	        
-	        
-			String lantStr1 = gpsStr.substring(7, 7+2);
-			String lantStr2 = gpsStr.substring(9, 9+7);
-			b1 = new BigDecimal(lantStr1);
-			b2 = new BigDecimal(lantStr2);
-			b2 = b2.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
-			double lantitude = b1.add(b2).doubleValue();
-//	        double lantitude = Double.parseDouble(lantStr1) + Double.parseDouble(lantStr2) / 60;
-	        result.setLatitude(lantitude);
-//	        System.out.println("lant:" + lantitude);
-	        
-	        String speedStr = gpsStr.substring(28, 28+5);
-	        double speed = Double.parseDouble(speedStr) ;
-	        result.setSpeed(speed);
-        
-		}
-		
+			if(c=='A'){
+				msgObj.setValid(true);
+				String longStr1 = gpsStr.substring(17, 17+3);
+				String longStr2 = gpsStr.substring(20, 20+7);
+				BigDecimal b1 = new BigDecimal(longStr1);
+				BigDecimal b2 = new BigDecimal(longStr2);
+				b2 = b2.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
+				double longitude = b1.add(b2).doubleValue();
+		        result.setLongitude(longitude);	        
+		        
+				String lantStr1 = gpsStr.substring(7, 7+2);
+				String lantStr2 = gpsStr.substring(9, 9+7);
+				b1 = new BigDecimal(lantStr1);
+				b2 = new BigDecimal(lantStr2);
+				b2 = b2.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
+				double lantitude = b1.add(b2).doubleValue();
+		        result.setLatitude(lantitude);
+		        
+		        String speedStr = gpsStr.substring(28, 28+5);
+		        double speed = Double.parseDouble(speedStr) ;
+		        result.setSpeed(speed);
+			} else {
+				Vehicle vehicle = getVehicleById(result.getDeviceId());				
+				if(vehicle != null) {
+					VehicleStatus vs = vehicle.getVehicleStatus();
+					result.setLatitude(vs.getCurrentLat());
+					result.setLongitude(vs.getCurrentLong());
+					result.setSpeed(0);					
+					result.setValid(true);					
+				}
+			}
+		}		
 	}
-
-
 
 	@Override
 	public String buildMsg(short cmdType, String[] params,String deviceId) {
