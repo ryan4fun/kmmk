@@ -342,12 +342,16 @@ function setRecieveTimeEnd(t){
 				<input type="text" id="description" name = "description" /></td>
 		</tr>
 		<tr>
-			<td align="right">起始节点：</td>
+			<td align="right">轨迹起始时间：</td>
 			<td align="left">
-				<input type="text" readonly id="recieveTimeStart" name="recieveTimeStart" value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" /></td>	
-			<td align="right">终止节点：</td>
+				<input type="hidden" id="recieveTimeStart" name="recieveTimeStart" value="<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>" />
+				<%=Util.FormatDateLong(tb.getRecieveTimeStart())%>
+			</td>	
+			<td align="right">轨迹终止时间：</td>
 			<td align="left">
-				<input type="text" readonly id="recieveTimeEnd" name="recieveTimeEnd" value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" /></td>
+				<input type="hidden" id="recieveTimeEnd" name="recieveTimeEnd" value="<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>" />
+				<%=Util.FormatDateLong(tb.getRecieveTimeEnd())%>	
+			</td>
 		</tr>
 	</table>
 	<p align="center">
