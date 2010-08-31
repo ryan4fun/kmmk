@@ -100,7 +100,7 @@ function initVehicleSelector(){
 		$("#organizationId").val(organizationId);
 		selectOrganization(organizationId);
 	}	
-	setVehicleString();
+	setVehicleString();	
 	
 	$("#hideVehicleSelectorBtn").click(function(){
 		$("#vehicleSelectorTable").css("display","none");
@@ -147,7 +147,9 @@ function setVehicleString(){
 				$("#vehicleString").val(vehicleString);
 			}
 		}
-	}	
+	} else {
+		$("#vehicleString").val("");
+	}
 }
 
 function selectOrganization(orgId){
