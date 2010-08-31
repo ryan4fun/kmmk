@@ -55,12 +55,14 @@ $(document).ready(function(){
 <input type="hidden" name = "queryPrecision" value="<%=TrackBean.QUERY_REALTIME%>"/>
 
 <table cellSpacing="5" width="width:650px;">
+<!--
 	<tr>
 		<td width="18%" align="right">任务编号：</td>
 		<td width="82%" align="left" colspan="3">
 			<input type="text" id="taskId" name="taskId" />
 			按任务编号查询无需输入其他条件，按时间段查询请输入车牌号、起始时间、终止时间！</td>
 	</tr>
+-->
 	<tr>
 		<td align="right">车牌号：</td>
 		<td><jsp:include page="/vehicle-selector.jsp" />
@@ -69,11 +71,11 @@ $(document).ready(function(){
 		<td></td>
 	</tr>
 	<tr>
-		<td align="right">起始时间：<br/>（查询车牌必填）</td>
+		<td align="right">起始时间：<br/>（必填）</td>
 		<td align="left" valign="top"><input type="text"
 			id="recieveTimeStart" name="recieveTimeStart" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
 			value="<%=Util.FormatDateLong(Util.getYesterDay())%>" /></td>	
-		<td align="right">终止时间：<br/>（查询车牌必填）</td>
+		<td align="right">终止时间：<br/>（必填）</td>
 		<td align="left" valign="top"><input type="text"
 			id="recieveTimeEnd" name="recieveTimeEnd" onclick="WdatePicker({dateFmt:'<%=Util.DATE_FORMAT_LONG%>'})" 
 			value="<%=Util.FormatDateLong(Util.getCurrentDateTime())%>" /></td>
