@@ -197,7 +197,7 @@ if( login.getMapType()!=LoginInfo.MAPABC ){
 	    				//public static short CheckPoint_STATE_NEGETIVE = 0;
 	    				var cp = this.checkPoints[i];
 	    				if( cp.lat && cp.lng && cp.lat>0 && cp.lng>0 ){
-	    					cp.marker = new DivImageMarker( new GLatLng( Number(cp.lat)+CN_OFFSET_LAT,Number(cp.lng)+CN_OFFSET_LON ), (cp.checkState && cp.checkState==1) ? "经过该检查点" : "未经过该检查点" );
+	    					cp.marker = new DivImageMarker( new GLatLng( Number(cp.lat)+CN_OFFSET_LAT,Number(cp.lng)+CN_OFFSET_LON ), (cp.checkState && cp.checkState==1) ? "<span style='background-color:green;color:white;'>经过</span>" : "<span style='background-color:red;color:white;font-weight:bold;'>未经过</span>" );
     						mapObj.addOverlay(cp.marker);
 	    				}
 	    			}
