@@ -66,7 +66,7 @@ $(document).ready(function(){
 	<tr>
 		<td align="right">车牌号：</td>
 		<td><jsp:include page="/vehicle-selector.jsp" />
-			</td>
+		</td>
 		<td></td>
 		<td></td>
 	</tr>
