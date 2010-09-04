@@ -357,7 +357,7 @@ function setRecieveTimeEnd(t){
 	<p align="center">
 		<input type="submit" value="提交"/>
 		<input type="reset" value="重置"/>
-		<input type="button" value="返回车辆轨迹查询" onclick="javascript:history.back()"/>
+		<input type="button" value="重新调整轨迹" onclick="javascript:history.back()"/>
 	</p>
 </form>
 </div>

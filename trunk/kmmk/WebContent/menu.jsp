@@ -38,7 +38,11 @@
 									continue;
 								String url = l.url;
 								String target="_self";
-								if(!url.startsWith("javascript:")){
+								if(url.startsWith("javascript:")){
+									
+								} else if(url.startsWith("http")){									
+									 target = "_blank";
+								} else {
 									 url = basePath+url;
 									 target = "main";
 								}
@@ -51,7 +55,11 @@
 									continue;
 								String url = l.url;
 								String target="_self";
-								if(!url.startsWith("javascript:")){
+								if(url.startsWith("javascript:")){
+									
+								} else if(url.startsWith("http")){									
+									 target = "_blank";
+								} else {
 									 url = basePath+url;
 									 target = "main";
 								}

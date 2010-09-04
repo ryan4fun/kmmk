@@ -224,8 +224,7 @@ function _print(){
 		$("#buttons").hide();
 		window.print();
 		$("#buttons").show();
-	}
-	
+	}	
 }
 
 positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>+CN_OFFSET_LAT, <%=firstPoint.getLongValue()%>+CN_OFFSET_LON );
@@ -257,7 +256,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 			<p align="center" id="buttons">
 				<input type="submit" value="重新统计" />
 				<input type="reset" value="重   置" />
-				<input type="reset" value="打 印" onclick="_print()"/>
+				<input type="reset" value="打 印" onclick="_print()"/>				
 			</p>
 		</form>
 	</div>
@@ -266,7 +265,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 <div id="summary-div">
 	<h3 id="summary-div-title"><a href="#">运行日报表</a></h3>
 	<div style="padding:5px;overflow:visible">
-		<table cellSpacing="5" width="width:650px;">
+		<table cellSpacing="5" width="width:650px;" id="report_table">
 			<tr>
 				<td >总里程：</td>
 				<td ><%=totalDist%>公里</td>
