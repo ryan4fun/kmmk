@@ -29,7 +29,9 @@ public class VehicleUpdateAction extends Action {
 		v.setUsers(u);
 		v.setVehicleTypeDic(vt);
 
+		v.getVehicleStatus().setLicensPadNumber(v.getLicensPadNumber());
 		getServiceLocator().getVehicleService().updateVehicle(v);
+		
 		request.setAttribute("vehicleId", String.valueOf(v.getVehicleId()));
 		
 		if(v.getSpeedLimitation() != null && oldSpeed != v.getSpeedLimitation())
