@@ -93,8 +93,8 @@
 		</Function>
 	</FunctionGroup>
 	<FunctionGroup folder="help" name="帮助" roles="*" img="9_0.png">
-		<Function name="帮助" roles="1,2,3,4,11,12" img="9_1.png">
-			<Link url="about:blank" name="帮助" roles="1,2,3,4,11,12" />
+		<Function name="帮助" roles="*" img="9_1.png">
+			<Link url="http://www.kmmkgps.com/gpshelp/index.htm" name="帮助" roles="*" />
 		</Function>
 		<Function name="联系我们" roles="1,2,3,4,11,12" img="9_2_0.png">
 			<Link url="about:blank" name="北京公司" roles="1,2,3,4,11,12" img="9_2_1.png" />
