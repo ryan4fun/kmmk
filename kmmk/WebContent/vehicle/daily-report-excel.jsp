@@ -16,16 +16,19 @@
 </head>
 
 <body>
+时间
 <table>
 	<%=time %>
 </table>
+行程统计
 <table>
 	<%=summary %>
 </table>
+运行统计
 <table>	
 	<%=report %>	
 </table>
-
+报警记录
 <table>	
 	<%=alert %>
 </table>
