@@ -340,9 +340,22 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 				</tr>
 				<% 
 				i++;
-				} 
+				}
 			}%>
 		</table>
+		<script language="JavaScript">
+		<%
+		i = 0;
+		int j = 0, k = 0;
+		for(RealtimeTrack tmpRt : stopPoints){			
+			if( login.getMapType()!=LoginInfo.MAPABC ){
+		%>			
+				positions["<%="stop_point_" + i%>"] = new GLatLng(<%=tmpRt.getLatValue()%>+CN_OFFSET_LAT, <%=tmpRt.getLongValue()%>+CN_OFFSET_LON );
+		<%
+			}
+		}
+		%>
+		</script>
 	</div>
 </div>
 
@@ -359,21 +372,33 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 			i = 0;
 			for(AlertHistory ah:ahs){ 
 				Util.setNull2DefaultValue(ah);
-				if( login.getMapType()!=LoginInfo.MAPABC ){%>
-				<script language="JavaScript">
-					positions["<%="alert_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>+CN_OFFSET_LAT, <%=ah.getLongVal()%>+CN_OFFSET_LON );
-				</script>
-			<%	}%>
+			%>
 			<tr>
 				<td nowrap="nowrap"><%=Util.FormatDateLong(ah.getOccurDate())%></td>
 				<td nowrap="nowrap" id="<%="alert_point_" + i%>" >&nbsp;</td>
 				<td nowrap="nowrap"><%=ah.getDescription()%></td>
 			</tr>
-			<% i++;
-			} %>
+			<%
+				i++;
+			}
+			%>
 		</table>
+		<script language="JavaScript">
+		<%
+			i = 0;
+			for(AlertHistory ah:ahs){ 
+				Util.setNull2DefaultValue(ah);
+				if( login.getMapType()!=LoginInfo.MAPABC ){
+		%>positions["<%="alert_point_" + i%>"] = new GLatLng(<%=ah.getLatVal()%>+CN_OFFSET_LAT, <%=ah.getLongVal()%>+CN_OFFSET_LON );<%
+				}
+				i++;
+			}
+		%>
+		</script>
 	</div>
 </div>
-
+<form action="">
+	<textarea id="" rows="" cols="" style="display:none"></textarea>
+</form>
 </body>
 </html>
