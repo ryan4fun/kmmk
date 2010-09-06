@@ -227,6 +227,14 @@ function _print(){
 	}	
 }
 
+function _toExcel(){
+	$("#time-content").val($("#time-table").html());
+	$("#summary-content").val($("#summary-table").html());
+	$("#report-content").val($("#report-table").html());
+	$("#alert-content").val($("#alert-table").html());
+	$("#excel-form").submit();
+}
+
 positions["firstPoint"] = new GLatLng(<%=firstPoint.getLatValue()%>+CN_OFFSET_LAT, <%=firstPoint.getLongValue()%>+CN_OFFSET_LON );
 positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT, <%=lastPoint.getLongValue()%>+CN_OFFSET_LON );
 </script>
@@ -237,7 +245,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 	<h3 id="search-div-title"><a href="#">运行统计</a></h3>
 	<div style="padding:5px;overflow:visible">
 		<form id="inputform" action="print-daily-report.jsp" method="post">
-			<table cellSpacing="5" width="width:650px;">
+			<table cellSpacing="5" id="time-table" width="width:650px;">
 				<tr>
 					<td >车牌号：</td>
 					<td colspan="3" ><%=v.getLicensPadNumber()%><input type="hidden" name="vehicleId" id="vehicleId" value="<%=v.getVehicleId()%>" /></td>
@@ -256,7 +264,8 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 			<p align="center" id="buttons">
 				<input type="submit" value="重新统计" />
 				<input type="reset" value="重   置" />
-				<input type="reset" value="打 印" onclick="_print()"/>				
+				<input type="reset" value="打 印" onclick="_print()"/>
+				<input type="reset" value="导出Excel" onclick="_toExcel()"/>								
 			</p>
 		</form>
 	</div>
@@ -265,7 +274,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 <div id="summary-div">
 	<h3 id="summary-div-title"><a href="#">运行日报表</a></h3>
 	<div style="padding:5px;overflow:visible">
-		<table cellSpacing="5" width="width:650px;" id="report_table">
+		<table cellSpacing="5" width="width:650px;" id="summary-table">
 			<tr>
 				<td >总里程：</td>
 				<td ><%=totalDist%>公里</td>
@@ -291,7 +300,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 <div id="stop-div">
 	<h3 id="stop-div-title"><a href="#">行程记录</a></h3>
 	<div style="padding:5px;overflow:visible">
-		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
+		<table border="0" cellspacing="0" cellpadding="0" width="100%" id="report-table" class="listtable">
 			<tr>		
 				<th width="20%">时间</th>
 				<th width="80%">描述</th>				
@@ -362,7 +371,7 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 <div id="alert-div">
 	<h3 id="alert-div-title"><a href="#">报警记录</a></h3>
 	<div style="padding:5px;overflow:visible">
-		<table border="0" cellspacing="0" cellpadding="0" width="100%" class="listtable">
+		<table border="0" cellspacing="0" cellpadding="0" id="alert-table" width="100%" class="listtable">
 			<tr>		
 				<th width="15%">定位时间</th>
 				<th width="15%">位置</th>
@@ -397,8 +406,11 @@ positions["lastPoint"] = new GLatLng(<%=lastPoint.getLatValue()%>+CN_OFFSET_LAT,
 		</script>
 	</div>
 </div>
-<form action="">
-	<textarea id="" rows="" cols="" style="display:none"></textarea>
+<form id="excel-form" action="daily-report-excel.jsp" method="post">
+	<textarea name="time-content" id="time-content" rows="" cols="" style="display:none"></textarea>
+	<textarea name="summary-content" id="summary-content" rows="" cols="" style="display:none"></textarea>
+	<textarea name="report-content" id="report-content" rows="" cols="" style="display:none"></textarea>
+	<textarea name="alert-content" id="alert-content" rows="" cols="" style="display:none"></textarea>
 </form>
 </body>
 </html>
