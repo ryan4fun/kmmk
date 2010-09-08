@@ -144,7 +144,11 @@ public class VehicleBean extends AbstractBean {
 			if (this.getDeviceId() != null && !deviceId.equals("")){
 				crit.add(Restrictions.eq("deviceId", this.getDeviceId()));	
 				_crit.add(Restrictions.eq("deviceId", this.getDeviceId()));	
-			}			
+			}
+			if (this.getInternalNumber() != null && !internalNumber.equals("")){
+				crit.add(Restrictions.eq("internalNumber", this.getInternalNumber()));	
+				_crit.add(Restrictions.eq("internalNumber", this.getInternalNumber()));	
+			}
 			if (this.getServiceState() != null && this.serviceState>0){
 				crit.add(Restrictions.eq("serviceState", this.getServiceState()));	
 				_crit.add(Restrictions.eq("serviceState", this.getServiceState()));	
