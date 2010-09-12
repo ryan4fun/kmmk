@@ -8,7 +8,12 @@
 				com.gps.service.*"%>
 <%@ include file="/header.jsp"%><%
 VehicleStatusBean vsb = new VehicleStatusBean(request);
-vsb.setOrder("internalNumber");
+if(vsb.getIsOnline()!=null && (vsb.getIsOnline()==VehicleStatusService.VEHICLE_ONLINE_STATE_OFFLINE 
+		|| vsb.getIsOnline()==VehicleStatusService.VEHICLE_ONLINE_STATE_BLIND)){
+	vsb.setStateHelperOrder("lastMessage");
+} else {
+	vsb.setOrder("internalNumber");
+}
 List<Vehicle> vss = vsb.getListOrderBy();
 Util.setNull2DefaultValue(vsb);
 
@@ -135,6 +140,7 @@ font-weight: bold;
 		StateHelperBean shb = new StateHelperBean();
 		shb.setVehicleId(vs.getVehicleId());
 		StateHelper helper = shb.findById();
+		//StateHelper helper = v.getStateHelper();
 		Util.setNull2DefaultValue4Display(vs);
 		String overSpeedClass = "";
 		String limitAreaClass = "";
