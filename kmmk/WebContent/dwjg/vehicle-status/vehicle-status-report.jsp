@@ -42,9 +42,21 @@ font-weight: bold;
 <%
 OrganizationBean ob = new OrganizationBean();
 List<Organization> os = ob.getList();
+
 for(Organization o:os){
 	VehicleStatusBean vsb = new VehicleStatusBean();
+	
+	if(role.equals(String.valueOf(RoleService.ROLE_ORG_ADMIN))){
+		if(login.getOrganizationId() != o.getOrganizationId())
+			continue;
+	} else if(role.equals(String.valueOf(RoleService.ROLE_VEHICLE_OWNER))){
+		if(login.getOrganizationId() != o.getOrganizationId())
+			continue;
+		vsb.setUserId(login.getUserId());
+	}	
+	
 	vsb.setOrganizationId(o.getOrganizationId());
+	
 	vsb.setVehicleStatusOrder("isOnline");
 	List<Vehicle> vs = vsb.getListOrderBy();
 	
@@ -94,13 +106,6 @@ for(Organization o:os){
 <%
 }
 %>
-
-
-
-
-<script language="JavaScript">
-
-</script>
 
 </body>
 </html>
