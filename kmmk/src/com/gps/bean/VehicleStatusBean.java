@@ -48,10 +48,9 @@ public class VehicleStatusBean extends AbstractBean {
 	private Integer organizationId;
 	
 	private String order;
-	public String getVehicleStatusOrder() {
-		return vehicleStatusOrder;
-	}
-
+	private String vehicleStatusOrder;
+	private String stateHelperOrder;
+	
 	public VehicleStatusBean(){
 	}
 			
@@ -154,6 +153,7 @@ public class VehicleStatusBean extends AbstractBean {
 		try {
 			Criteria crit = HibernateUtil.getSession().createCriteria(Vehicle.class);
 			Criteria critVehicleStatus = crit.createCriteria("vehicleStatus");
+			Criteria critStateHelper = crit.createCriteria("stateHelper");
 			Criteria critUsers = crit.createCriteria("users");
 			Criteria critOrganization = crit.createCriteria("users.organization");
 			
@@ -253,6 +253,9 @@ public class VehicleStatusBean extends AbstractBean {
 			
 			if(this.vehicleStatusOrder != null)
 				critVehicleStatus.addOrder(Order.asc(vehicleStatusOrder));
+			
+			if(this.stateHelperOrder != null)
+				critStateHelper.addOrder(Order.desc(stateHelperOrder));
 			
 			addPagination(crit);
 			List<Vehicle> list = crit.list();
@@ -417,13 +420,20 @@ public class VehicleStatusBean extends AbstractBean {
 		this.vehicleStatusOrder = vehicleStatusOrder;
 	}
 
-	private String vehicleStatusOrder;
-	
-	
-	
+	public String getVehicleStatusOrder() {
+		return vehicleStatusOrder;
+	}
 
 	public void setOrganizationId(Integer organizationId) {
 		this.organizationId = organizationId;
+	}
+
+	public String getStateHelperOrder() {
+		return stateHelperOrder;
+	}
+
+	public void setStateHelperOrder(String stateHelperOrder) {
+		this.stateHelperOrder = stateHelperOrder;
 	}
 
 	public static String getAlertIcon(VehicleStatus vs){
