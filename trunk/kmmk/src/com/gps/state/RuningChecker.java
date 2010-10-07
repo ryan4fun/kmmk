@@ -37,7 +37,7 @@ public class RuningChecker implements Runnable,IStateChecker {
 	Hashtable<Integer,Integer> vechileCountsMap = new Hashtable<Integer,Integer>();
 //	long maxMsgLeg = 10 * 60 *1000; 
 	double movementThreshold = 100;
-	double countThreshold = 3;
+	double countThreshold = 2;
 
 	private volatile Thread workingThread;
 
