@@ -52,6 +52,29 @@ if(v == null){
 
 </style>
 <script language="JavaScript">
+
+var duplicatedLicensPadNumber = "";
+jQuery.validator.addMethod("internalNumber", function(value, element) {
+	var result = false;
+	$.ajax({
+		url : "mkgps.do",
+		dataType : "json",
+		data : {
+			action : "CheckDuplicatedAjax",
+			type : "internalNumber",
+			value : element.value,
+			id : "<%=idstr==null?"":idstr%>"
+		},
+		cache : false,
+		async : false,
+		success : function(json){
+			result = json.result;
+			duplicatedLicensPadNumber = json.licensPadNumber;
+		}
+	});
+	return result;
+}, function(){return "该自编号已被 " + duplicatedLicensPadNumber + " 使用！"});
+
 jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 	var result = false;
 	$.ajax({
@@ -72,7 +95,7 @@ jQuery.validator.addMethod("licensPadNumber", function(value, element) {
 	return result;
 }, "该车牌号已被使用！");
 
-var duplicatedLicensPadNumber = "";
+
 jQuery.validator.addMethod("deviceId", function(value, element) {
 	var result = false;
 	$.ajax({
@@ -122,7 +145,8 @@ jQuery.validator.addMethod("deviceId", function(value, element) {
 					licensPadNumber:true
 				},
 				internalNumber: {
-					required: true
+					required: true,
+					internalNumber: true
 				},
 				//engineNumber: {
 				//	required: true

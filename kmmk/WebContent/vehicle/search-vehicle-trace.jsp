@@ -151,7 +151,7 @@ function initialize() {
 					if(i<ts.size()-1){
 						tag = (Short)PropertyUtils.getProperty(trace,"tag");
 						if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-							Object startStopRt = (i>2) ? ts.get(i-2) : firstPoint;
+							Object startStopRt = (i>1) ? ts.get(i-1) : firstPoint;
 							Object startRunRt = ts.get(i+1);
 							
 							recieveTime = (Date)PropertyUtils.getProperty(startRunRt,"recieveTime");
@@ -242,7 +242,7 @@ function initialize() {
 					if(i<ts.size()-1){
 						tag = (Short)PropertyUtils.getProperty(trace,"tag");
 						if(tag != null && tag.shortValue() == TrackBean.TRACK_TAG_STARTSTOP){
-							Object startStopRt = (i>2) ? ts.get(i-2) : firstPoint;
+							Object startStopRt = (i>1) ? ts.get(i-1) : firstPoint;
 							Object startRunRt = ts.get(i+1);
 							
 							recieveTime = (Date)PropertyUtils.getProperty(startRunRt,"recieveTime");
