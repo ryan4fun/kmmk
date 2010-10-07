@@ -51,13 +51,13 @@ for(Object o : ts){
 				lastRt.getLatValue(), lastRt.getLongValue());
 		if(thisRt.getTag().shortValue() == TrackBean.TRACK_TAG_STARTSTOP ){
 			RealtimeTrack startStopRt = firstPoint;
-			if(i>2){	//start with run point
+			if(i>1){	//start with run point
 				if(lastStopRt == null){
 					firstPoint.setTag(TrackBean.TRACK_TAG_STARTRUN);
 					stopPoints.add(firstPoint);
 				}
 				
-				startStopRt = (RealtimeTrack)ts.get(i-2);
+				startStopRt = (RealtimeTrack)ts.get(i-1);
 				startStopRt.setTag(TrackBean.TRACK_TAG_STARTSTOP);
 				stopPoints.add(startStopRt);
 			} else {	//start with stop point
