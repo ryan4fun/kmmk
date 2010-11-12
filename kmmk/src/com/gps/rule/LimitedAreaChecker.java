@@ -208,7 +208,7 @@ public class LimitedAreaChecker extends AbstractPrivateRuleChecker {
 		
 		 if (sum % 2 != 0){
 			 
-			 System.out.println("Ploygon Check return true  ");
+//			 System.out.println("Ploygon Check return true  ");
 		    result = true;
 		 }
 		 
