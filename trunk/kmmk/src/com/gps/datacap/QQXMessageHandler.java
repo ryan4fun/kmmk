@@ -139,14 +139,15 @@ public class QQXMessageHandler extends MessageHandler{
 			byte tempByte = (byte) (gpsBytes[4] & 0x7f);
 			int tempValue = decodeCBCD(tempByte) * 10;
 			tempByte = gpsBytes[5];
-			tempValue += (tempByte >> 4);
 			
-			BigDecimal longValue = new BigDecimal(tempValue);
+			tempValue += (tempByte >>> 4);
+			
+			BigDecimal longValue = new BigDecimal(tempValue); /// degree
 			
 			int longValue2 = tempByte & 0x0f;
 			longValue2 = longValue2 *10;
 			tempByte = gpsBytes[6]; 
-			longValue2 = longValue2 + (tempByte >> 4);
+			longValue2 = longValue2 + (tempByte >>> 4);  //minute
 			BigDecimal tempDecimalValue =  new BigDecimal (longValue2);
 			
 //			tempDecimalValue = tempDecimalValue.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
@@ -154,9 +155,9 @@ public class QQXMessageHandler extends MessageHandler{
 			
 			tempByte = (byte) (gpsBytes[6] & 0x0f);
 			byte[] tempArray = new byte[]{tempByte,gpsBytes[7]}; 
-			int longValue3 = decodeCBCD(tempArray);
+			int longValue3 = decodeCBCD(tempArray);      // minute decimal
 			BigDecimal tempDecimalValue1  =  new BigDecimal (longValue3);
-			tempDecimalValue1 = tempDecimalValue1.divide(convertFact2, 10, BigDecimal.ROUND_HALF_UP);
+			tempDecimalValue1 = tempDecimalValue1.divide(convertFact2, 10, BigDecimal.ROUND_HALF_UP);  //decimal
 			tempDecimalValue = tempDecimalValue.add(tempDecimalValue1);
 			tempDecimalValue = tempDecimalValue.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
 			longValue =  longValue.add(tempDecimalValue);
@@ -248,9 +249,14 @@ public class QQXMessageHandler extends MessageHandler{
 		
 		System.out.print("Result : " + value);
 		
-		
+//		byte[] temp = new byte[]{0x29,0x29,0x80,0x13};
 		QQXMessageHandler hh = new QQXMessageHandler();
 		hh.buildSetIntervalCmd(new String[]{"60"});
+		
+		
+		
+		
+		
 		
 	}
 
