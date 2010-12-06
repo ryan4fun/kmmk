@@ -175,13 +175,13 @@ public class QQXMessageHandler extends MessageHandler{
 			tempByte = (byte) (gpsBytes[0] & 0x0f);
 			tempValue = decodeCBCD(tempByte) * 10;
 			tempByte = gpsBytes[1];
-			tempValue += (tempByte >> 4);
+			tempValue += (tempByte >>> 4);
 			BigDecimal latValue = new BigDecimal(tempValue);
 			
 			int latValue2 = tempByte & 0x0f;
 			latValue2 = latValue2 *10;
 			tempByte = gpsBytes[2]; 
-			latValue2 = latValue2 + (tempByte >> 4);
+			latValue2 = latValue2 + (tempByte >>> 4);
 			tempDecimalValue =  new BigDecimal (latValue2);
 //			tempDecimalValue = tempDecimalValue.divide(convertFact, 10, BigDecimal.ROUND_HALF_UP);
 //			latValue =  latValue.add(tempDecimalValue);
