@@ -99,6 +99,11 @@ public class QQXMessageHandler extends MessageHandler{
 			if(cmd == CMD_RPT){
 				parseData(result,data);
 				result.setValid(true);
+			}else{
+				System.out.println("Get unknown message packet from qqx device: *****************");
+				System.out.println(new String(data));
+				System.out.println("Message end here ****************");
+				
 			}
 //			System.out.println("Message parse successed! deviceId:"+ result.getDeviceId()+" Recieve Date:" + result.getServerReceiveDate()   +  "  Device send Date:  " + result.getGPSTimestamp());
         }
