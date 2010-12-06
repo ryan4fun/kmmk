@@ -96,8 +96,10 @@ public class QQXMessageHandler extends MessageHandler{
 			int cmd =  data[3];
 			result.setCmd(Integer.toString(cmd));
 			
-		
-			parseData(result,data);
+			if(cmd == CMD_RPT){
+				parseData(result,data);
+				result.setValid(true);
+			}
 //			System.out.println("Message parse successed! deviceId:"+ result.getDeviceId()+" Recieve Date:" + result.getServerReceiveDate()   +  "  Device send Date:  " + result.getGPSTimestamp());
         }
 		
